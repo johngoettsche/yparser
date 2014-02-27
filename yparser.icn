@@ -1,0 +1,181 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+#package yparser
+import grammars
+
+procedure main(args)
+#  this tool is executed as follows:
+#  yparser-states [-options] filename
+#     -r   shows the raw grammar
+#     -n  shows all the non terminals
+#     -t   shows all the terminals
+#     -p  shows production rules
+#     -s  shows states
+#
+#     -o  to write to the youtput.txt file
+
+   local x, y, arguments, file, allwords, wordset, rawGrammar, outfile
+   x := 1
+   arguments := '' #set up cset for options
+   y := *args[x]
+   while args[x][1:2] == "-" do {
+      arguments := arguments ++ args[x][2: *args[x] + 1]
+      x +:= 1
+   }
+   file := open(args[x], "r") | stop("ERROR: trouble reading " || args[x])
+
+   #Begin parsing file
+   allwords := getAllWords(file)
+   allwords := purgeComments(allwords)
+   rawGrammar := purgeC(allwords)
+   
+   if *args > 1 then if member(arguments, "r") then {
+      outfile := &output
+      if member(arguments, "o") then outfile := open("y-rawGrammar.txt", "c")
+      write("\nRaw Grammar\n")
+      if outfile ~=== &output then {
+         every write(outfile, "\t" || !rawGrammar)
+      }
+      every write("\t" || !rawGrammar)
+      write("\n(press ENTER to continue)\n")
+      getch()
+   }
+   rawGrammar::createNonTerminals(arguments, rawGrammar)
+end
+
+procedure duplicateGrammar(grammarList, grammar)
+#  checks to see if grammar is in the grammarList, if it is
+#  the grammar is suspended
+
+   local thisGrammar
+   every thisGrammar := !grammarList do{
+      if thisGrammar.getTxt() == grammar.getTxt() then {
+         #write(grammar.getTxt())
+         suspend grammar
+      }
+   }
+end
+
+procedure makeSubStateGrammars(thisRule, thisNonTerminal)
+#
+
+   local
+      mySubGrammar,
+      thisVariable,
+      newProductionRule,
+      newVariable
+   mySubGrammar := StateGrammar()
+#write(thisNonTerminal.getResult())
+   mySubGrammar.setLeft(thisNonTerminal)
+   every thisVariable := thisRule.getVariables() do 
+   {
+      mySubGrammar.addPossible(thisVariable)
+      if thisVariable.getType() == 1 then 
+      {
+         while \newProductionRule := thisVariable.getProductionRule(1) do 
+         {
+            every newVariable := newProductionRule.getVariables() do 
+               makeSubStateGrammars(newProductionRule)
+         }
+      }
+   }
+  return mySubGrammar
+end
+
+procedure getAllWords(file)
+# produces a list of allwords generated from the source file
+#  by sending each line of the file to the getWord procedure
+
+   local word, line, allwords, wordset
+   allwords := []
+   every put(allwords, word := getWord(line:=!file))
+   close(file)
+   allwords := purgeHeaderAndSub(allwords)
+   return allwords
+end
+
+procedure getWord(line)
+#  suspends each word from the line it has been provided
+
+   local word, wordDef,symbolDef
+   symbolDef := '%{}|:;'
+   wordDef := &letters++&digits++'_*/'
+   line ? while tab(upto(wordDef++symbolDef)) do {
+        if word := tab(many(wordDef)) then {}
+      else {
+         # check to see if the current space and the following space combine
+         # to make the word  "%%"
+         if line[&pos] & line[&pos + 1] == "%" then word := move(2)
+         else word := move(1)
+      }
+      suspend word
+   }  
+end
+
+procedure purgeHeaderAndSub(wordList)
+#  purges all the words in the header section and the 
+#  footer/sub section of the allwords list it is provided
+#  and returns the remainder of the list
+   
+   #count sections
+   local sections, word
+   sections := 1
+   every word := !wordList do if word == "%%" then sections +:= 1
+ 
+   #purge header
+   word := pop(wordList)
+   while word  ~== "%%" do word := pop(wordList)
+
+   #purge footer/sub section there is one
+   if sections == 3 then {   
+      word := pull(wordList)
+      while word ~== "%%" do word := pull(wordList)
+   }
+   return wordList
+end
+
+procedure purgeComments(wordList)
+#  purges all the comments from the wordList   
+
+   local x, wordSegment, comment
+   x := 1
+   comment := 0
+   while wordSegment := wordList[x] do {
+      if wordSegment == "/*" then {
+         comment := 1
+      }
+      while comment > 0  do {
+         delete(wordList, x)
+         if wordList[x] == "*/" then {
+            comment := 0
+            delete(wordList, x)
+         }
+      }
+      x +:= 1 
+   }
+   return wordList
+end
+
+procedure purgeC(wordList)
+#  purges all C code in the wordList and returns the remainder
+#  of the wordList
+
+   local x, brackets
+   x := 1
+   brackets := 0
+   while wordList[x] do {
+      if (wordList[x] == "{") then {
+         brackets +:= 1
+         delete(wordList, x)
+         while brackets > 0 do {
+            if wordList[x] == "}" then brackets -:= 1
+            if wordList[x] == "{" then brackets +:= 1
+            delete(wordList, x)
+         }
+      }
+      x +:= 1
+   }
+   return wordList 
+end

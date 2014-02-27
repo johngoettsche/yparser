@@ -1,0 +1,27 @@
+I0
+	program' -> .program 
+	program -> .decls EOFX 
+	program -> .error decls EOFX 
+	decls -> .
+	decls -> .decls decl 
+	decl -> .record 
+	decl -> .proc 
+	decl -> .global 
+	decl -> .link 
+	decl -> .package 
+	decl -> .import 
+	decl -> .invocable 
+	decl -> .cl 
+	record -> .RECORD IDENT LPAREN fldlist RPAREN 
+	proc -> .prochead SEMICOL locals initial procbody END 
+	proc -> .prochead error procbody END 
+	prochead -> .PROCEDURE IDENT LPAREN arglist RPAREN 
+	global -> .GLOBAL idlist 
+	link -> .LINK lnklist 
+	package -> .PACKAGE lnkfile 
+	import -> .IMPORT implist 
+	invocable -> .INVOCABLE invoclist 
+	cl -> .classhead SEMICOL END 
+	cl -> .classhead optsemi clocals methods optsemi initiallysection END 
+	classhead -> .CLASS IDENT supers LPAREN carglist RPAREN 
+

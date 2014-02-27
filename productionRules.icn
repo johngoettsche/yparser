@@ -1,0 +1,162 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+package production
+import states
+
+procedure createProductionRules(
+         args,
+         rawGrammar, 
+         nonTerminalCheckSet, 
+         nonTerminalsSet, 
+         terminalCheckSet, 
+         terminalsSet)
+#  from the rawGrammar, nonTerminalCheckSet, nonTerminalSet,
+#  terminalCheckSet and Terminals it produces the grammars and
+#  stores them in their respective nonTerminal, then procedes to 
+#  produce a report of the grammar
+
+   local 
+      grammar, 
+      output,
+      outfile
+      
+   grammar := makeProductionRules(
+         rawGrammar, 
+         nonTerminalCheckSet, 
+         nonTerminalsSet, 
+         terminalCheckSet, 
+         terminalsSet)
+
+   #print results
+
+   if *args > 0 then if member(args, "p") then {
+      outfile := &output
+      if member(args, "o") then outfile := open("y-productionRules.txt", "c")
+      write("\nCreated a grammar with the following production rules:")
+      if outfile ~=== &output then{
+         every output := !nonTerminalsSet do {
+            every write(outfile, output.getTxt())
+         }
+      }
+      every output := !nonTerminalsSet do {
+         every write("\t" || output.getTxt())
+      }
+      write("\n(press ENTER to continue)\n")
+      getch()
+   }
+   states::createStates(args, nonTerminalsSet, terminalsSet)
+   
+end
+
+procedure makeProductionRules(
+      rawGrammar, 
+      nonTerminalCheckSet, 
+      nonTerminalsSet, 
+      terminalCheckSet, 
+      terminalsSet)
+#  generates grammar rules from the rawGrammar, 
+#  nonTerminalCheckSet, nonTerminalSet, terminalCheckSet
+#  terminalsSet and populates each rule with the appropriate
+#  terminal or nonTerminal
+
+   local 
+      x, 
+      nonTerm, 
+      nonTerminal,
+      productionRule, 
+      term
+      
+   x := 1
+   while rawGrammar[x] do {   
+      if member(nonTerminalCheckSet, rawGrammar[x]) then {#is a non terminal?
+         if rawGrammar[x + 1] == ":" then { #is a grammar rule ?
+            every nonTerm := !nonTerminalsSet do {
+               if \nonTerm then {
+                  if nonTerm.getResult() == rawGrammar[x] then { 
+                     nonTerminal := nonTerm
+                     productionRule := ProductionRule()
+                     #write(nonTerminal.getResult() || ":")
+                     x := x + 1
+                  }
+               }
+            }
+         } else {
+            every nonTerm := !nonTerminalsSet do {
+               if \nonTerm then {
+                  if nonTerm.getResult() == rawGrammar[x] then {
+                     #write("adding non terminal to grammar")
+                     productionRule.addVariable(nonTerm)
+                  }
+               }
+            }
+         }
+      }#end non terminal
+
+      #is a terminal?
+      if member(terminalCheckSet, rawGrammar[x]) & rawGrammar[x] ~== "|" then {
+         every term := !terminalsSet do {
+            if \term then {
+               if term.getResult() == rawGrammar[x] then productionRule.addVariable(term)
+            }
+         }
+      }
+
+      #is an or?
+      if rawGrammar[x] == "|" then {
+         #write(productionRule.getTxt())
+         nonTerminal.addProductionRule(productionRule)
+         productionRule := ProductionRule()
+      }
+
+      #is end of nonTerminal?
+      if rawGrammar[x] == ";" then {
+        # write(productionRule.getTxt() || "\n")
+         nonTerminal.addProductionRule(productionRule)
+         if rawGrammar[x + 1] == "|" then {
+            productionRule := ProductionRule()
+            x +:= 1
+         }
+      }
+      #write("\t\t" || rawGrammar[x])
+      x +:= 1
+   }
+end
+
+class ProductionRule(variables)
+#  used to hold all the inputs for each grammar rule
+# the stuff that gets converted over into a non-terminal, a RHS.
+   
+   method addVariable(newVariable) 
+      put(variables, newVariable)
+   end
+
+   method getVariables()
+      local variable
+      every variable := !variables do suspend variable
+   end
+
+   method getVariableList()
+      return variables
+   end
+   
+   method getVariable(v)
+      return variables[v]
+   end
+
+   method getTxt()
+      local x, str
+      str := ""
+      x := 1
+      while x <= *variables do {
+         #write(variables[x].getResult())
+         str := str || variables[x].getResult() || " "
+         x +:= 1
+      }
+      return str
+   end
+
+initially
+   variables := []
+end

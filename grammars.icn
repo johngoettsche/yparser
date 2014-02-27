@@ -1,0 +1,202 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+#grammars.icn
+package rawGrammar
+import production
+
+procedure createNonTerminals(args, rawGrammar)  
+#  from the rawGrammar it creates the NonTerminals and
+#  procedes the createTerminals procedure
+
+   #create nonTerminals
+   local 
+      nonTerminal, 
+      nonTerminalsList, 
+      nonTerminalsSet, 
+      nonTerminalCheckSet,
+      outfile
+      
+   nonTerminalsList := []
+   nonTerminalCheckSet := set()
+   every nonTerminal := getNonTerminals(rawGrammar) do 
+      if not member(nonTerminalCheckSet, nonTerminal) then {
+         put(nonTerminalsList, nonTerminal)
+         insert(nonTerminalCheckSet, nonTerminal)
+      }
+   #every write(!nonTerminalCheckSet)
+   nonTerminalsSet := []
+   every put(nonTerminalsSet, makeNonTerminalsSet(nonTerminalsList))
+
+   if *args > 0 then if member(args, "n") then {
+      outfile := &output
+      if member(args, "o") then outfile := open("y-nonTerminals.txt", "c")
+      write("\nNon Terminals\n") 
+      if outfile ~=== &output then every write(outfile, !nonTerminalsList)
+      every write("\t" || !nonTerminalsList)
+      write("\n(press ENTER to continue)\n")
+      getch()
+   }  
+   createTerminals(args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet)
+end
+
+procedure createTerminals(args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet)
+#  from the rawGrammar, nonTerminalCheckSet and nonTerminalSet it
+#  produces the terminals and procedes to the creaeGrammar procedure
+
+   #create terminals
+   local 
+      terminalsList, 
+      terminalsSet, 
+      terminalCheckSet, 
+      terminal,
+      outfile
+      
+   terminalsList := []
+   terminalCheckSet := set()
+   every terminal := getTerminals(rawGrammar, nonTerminalCheckSet) do 
+      if not member(terminalCheckSet, terminal) then { 
+         put(terminalsList, terminal)
+         insert(terminalCheckSet, terminal)
+      }
+   terminalsSet := []
+   every put(terminalsSet, makeTerminalsSet(terminalsList))
+
+   if *args > 0 then if member(args, "t") then {
+      outfile := &output
+      if member(args, "o") then outfile := open("y-terminals.txt", "c")
+      write("\nTerminals\n") 
+      if outfile ~=== &output then every write(outfile, !terminalsList)
+      every write("\t" || !terminalsList)
+      write("\n(press ENTER to continue)\n")
+      getch()
+   }  
+   #write(production)
+   production::createProductionRules(
+         args,
+         rawGrammar, 
+         nonTerminalCheckSet, 
+         nonTerminalsSet, 
+         terminalCheckSet, 
+         terminalsSet)
+end
+
+procedure getNonTerminals(wordList)
+#  finds and suspends all the NonTerminals in the list (rawGrammar)
+
+   local x
+   x := 1
+   while wordList[x] do {
+      if wordList[x] ~== "|" then suspend wordList[x]
+      x +:= 1
+      while wordList[x] ~== ";" do x := x + 1
+      x +:= 1
+   } 
+end
+
+procedure makeNonTerminalsSet(nonTerminalsList)
+#  creates and suspends each NonTerminal in the nonTerminalsList
+# in the order they appear in the grammar
+
+   local x, result, thisNonTerminal
+   every result := !nonTerminalsList do {
+      thisNonTerminal := NonTerminal()
+      thisNonTerminal.setResult(result)
+      suspend thisNonTerminal
+   }
+end
+
+procedure makeTerminalsSet(terminalsList)
+# creates and susends each Terminal in the terminalsList
+
+   local result, thisTerminal
+   every result := !terminalsList do {
+      thisTerminal := Terminal(0)
+      thisTerminal.setResult(result)
+      suspend thisTerminal
+   }
+end
+
+procedure getTerminals(wordList, nonTerminals)
+#  finds all the Terminals in the list and creates and suspends
+#  each terminal
+
+   local x
+   x := 1
+   #write(list[x])
+   #every write(!nonTerminals)
+   while wordList[x] do {
+      if not member(nonTerminals, wordList[x]) then {
+         if not (wordList[x] == (":"|";"|"|")) then
+	    suspend wordList[x]
+      }
+      x := x + 1
+   }
+end
+
+class Terminal(type, result)
+#  used to hold a single terminal
+
+   method setResult(newResult)
+      result := newResult
+   end
+
+   method getType()
+      return type
+   end
+
+   method getResult()
+      return result
+   end   
+
+initially (thisType)
+   type := thisType
+end
+
+class NonTerminal(type, result, productionRules)
+#  used to hold a single non terminal
+
+   method setResult(newResult)
+      result := newResult
+   end
+
+   method addProductionRule(newProductionRule)
+      put(productionRules, newProductionRule)
+   end
+
+   method getType()
+      return type
+   end
+
+   method getResult()
+      return result
+   end
+
+   method findRule(matchRule)
+      local productionRule
+      every productionRule := !productionRules do
+         if productionRule == matchRule then return productionRule
+   end
+      
+   method getProductionRule(r)
+      return productionRules[r]
+   end
+
+   method getProductionRules()
+      local productionRule
+      every productionRule := !productionRules do suspend productionRule
+   end
+
+   method getTxt()      
+      local productionRule, thisString
+      every productionRule := !productionRules do {
+         thisString := result || " <- " || productionRule.getTxt()
+         suspend thisString
+      }
+   end
+   
+initially
+   type := 1
+   productionRules := []
+end
