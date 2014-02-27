@@ -77,7 +77,7 @@ procedure makeStateGrammars(myState, B, nonTerminalList)
       newVariable,
       stateNumber,
       stateName   
-      
+###############################################################################################################     
    every thisProductionRule := B.getProductionRules() do {
       newGrammar := StateGrammar()
       newGrammar.setLeft(B)
@@ -106,51 +106,60 @@ procedure makeAllStates(statesList, thisState, statesSet)
       newState,
       thisResult,
       newStateGrammar,
-      grammarList
+      grammarList,
+      shifts
    
+   shifts := []
    stateNumber := 0
    
    every thisStateGrammar := thisState.getStateGrammars() do {
       newStateGrammar := thisStateGrammar.getShift()
-      #write("===" || newStateGrammar.getTxt())
       shiftElement := newStateGrammar.getLastAlpha()
-      #write(shiftElement.getResult())
+      put(shifts, shiftElement)
+      write("Shift: " || shiftElement.getResult() || " - " || shiftElement.getType())
       element := newStateGrammar.getLeft()
       if element.getType() = "1" | "2" then {
-         grammarList := []
-         stateNumber +:= 1
-         stateName := "I" || stateNumber
-         newState := State(stateName, element, newStateGrammar)
-         makeStateGrammarRules(newState, grammarList, shiftElement)
-         if not duplicateState(statesList, grammarList, newState) then {
-            put(statesList, newState)
-            insert(statesSet, newState)
+         if not member(shifts, element) then {
+            grammarList := []
+            stateNumber +:= 1
+            stateName := "I" || stateNumber
+            newState := State(stateName, element, newStateGrammar)
+            makeStateGrammarRules(thisState, newState, grammarList, shiftElement)
+            #if not duplicateState(statesList, grammarList, newState) then {
+               put(statesList, newState)
+               insert(statesSet, newState)
+            #}
          }
       }
    }
 end
 
-procedure makeStateGrammarRules(thisState, grammarList, shiftElement)
+procedure makeStateGrammarRules(oldState, thisState, grammarList, shiftElement)
    local 
-      newStateGrammar, 
-      initialGrammar
-   
-   initialGrammar := thisState.getStateGrammarsList()[1]
-   every thisStateGrammar := thisState.getStateGrammars() do {
-      newStateGrammar := thisStateGrammar.getShift()
-      if \newStateGrammar then {
-         if newStateGrammar.getLastAlpha() === shiftElement then {
-            if not duplicateGrammar(grammarList, newStateGrammar) then {
-               if newStateGrammar.getLeft() === initialGrammar.getLastAlpha() then {
-                  put(thisState.addStateGrammar, newStateGrammar)
-                  put(grammarList, newStateGrammar)
+      newGrammar,
+      thisGrammar,
+      nonTerminalList
+      
+   nonTerminalList := set()
+   every thisGrammar := oldState.getStateGrammars() do {
+      newGrammar := thisGrammar.getShift()
+      if \newGrammar then {
+         if newGrammar.getLeft().getType() = "1" then {
+            if newGrammar.getLeft() === shiftElement then {
+               if not duplicateGrammar(thisState.getStateGrammarsList(), newGrammar) then {
+                  thisState.addStateGrammar(newGrammar)
                }
             }
          }
+         write(newGrammar.getTxt())
+         write(newGrammar.getBeta(1).getResult())
+         B := newGrammar.getBeta(1)
+         if \B then if B.getType() = "1" then
+            makeStateGrammars(thisState, B, nonTerminalList)
       }
    }
 end
-
+##################################################################################################
 procedure duplicateGrammar(grammarList, grammar)
 #  checks to see if grammar is in the grammarList, if it is
 #  the grammar is suspended
@@ -226,13 +235,13 @@ initially(newName, thisPrime, initialGrammar)
    newStateGrammar := StateGrammar()
    newStateGrammar.setLeft(thisPrime)
    every newAlpha := initialGrammar.getAlpha() do {
-      write("!!!" || newAlpha.getResult())
+      #write("!!!" || newAlpha.getResult())
       newStateGrammar.addAlpha(newAlpha)
    }
    every element := initialGrammar.getBetas() do
       newStateGrammar.addBeta(element)
    put(stateGrammars, newStateGrammar)
-   write("\t******\t" || name || "\n\t\t" || newStateGrammar.getTxt())
+   #write("\t******\t" || name || "\n\t\t" || newStateGrammar.getTxt())
 end
 
 class StateGrammar(left, alpha, beta)
@@ -244,8 +253,8 @@ class StateGrammar(left, alpha, beta)
    end
    
    method addAlpha(newAlpha)
-   write("adding: " || newAlpha.getResult())
-      push(alpha, newAlpha)
+   #write("adding: " || newAlpha.getResult())
+      put(alpha, newAlpha)
    end
    
    method addBeta(newBeta)
@@ -272,10 +281,10 @@ class StateGrammar(left, alpha, beta)
    
    method getLastAlpha()
       local element, thisElement
-      write("getting shift")
-      write("+ " || *getAlphaList())
+      #write("getting shift")
+      #write("+ " || *getAlphaList())
       every thisElement := getAlpha() do {
-         write("+" || thisElement.getResult())
+         #write("+" || thisElement.getResult())
          element := thisElement
       }
       #write(element.getResult())
