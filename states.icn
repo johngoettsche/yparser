@@ -112,9 +112,9 @@ procedure makeAllStates(statesList, thisState, statesSet)
    
    every thisStateGrammar := thisState.getStateGrammars() do {
       newStateGrammar := thisStateGrammar.getShift()
-      write(newStateGrammar.getTxt())
-      shiftElement := thisStateGrammar.getLastAlpha()
-      write(shiftElement.getResult())
+      #write("===" || newStateGrammar.getTxt())
+      shiftElement := newStateGrammar.getLastAlpha()
+      #write(shiftElement.getResult())
       element := newStateGrammar.getLeft()
       if element.getType() = "1" | "2" then {
          grammarList := []
@@ -135,14 +135,16 @@ procedure makeStateGrammarRules(thisState, grammarList, shiftElement)
       newStateGrammar, 
       initialGrammar
    
-   #initialGrammar := thisState.getStateGrammarsList()[1]
+   initialGrammar := thisState.getStateGrammarsList()[1]
    every thisStateGrammar := thisState.getStateGrammars() do {
       newStateGrammar := thisStateGrammar.getShift()
-      if newStateGrammar.getLastAlpha() == shiftElement then {
-         if not duplicateGrammar(grammarList, newStateGrammar) then {
-            if newStateGrammar.getLeft() === initialGrammar.getLastAlpha() then {
-               put(thisState.addStateGrammar, newStateGrammar)
-               put(grammarList, newStateGrammar)
+      if \newStateGrammar then {
+         if newStateGrammar.getLastAlpha() === shiftElement then {
+            if not duplicateGrammar(grammarList, newStateGrammar) then {
+               if newStateGrammar.getLeft() === initialGrammar.getLastAlpha() then {
+                  put(thisState.addStateGrammar, newStateGrammar)
+                  put(grammarList, newStateGrammar)
+               }
             }
          }
       }
@@ -295,27 +297,21 @@ class StateGrammar(left, alpha, beta)
    
    method getShift()
       local newStateGrammar, element, count
-      write(*beta)
+      
       if *beta > 0 then {
-      write("**")
          newStateGrammar := StateGrammar()
          newStateGrammar.setLeft(left)
          every element := getAlpha() do newStateGrammar.addAlpha(element)
          count := 1
          every element := getBetas() do {
-            write("| " || count)
             if count = 1 then {
-               write("/// " || element.getResult())
                newStateGrammar.addAlpha(element)
-               write("should be entered")
-               write(newStateGrammar.getAlpha().getResult())
             }   
             if count > 1 then {
                newStateGrammar.addBeta(element)
             }
             count +:= 1
          }
-         #write(newStateGrammar.getTxt())
          return newStateGrammar
       }   
    end
