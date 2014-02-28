@@ -107,12 +107,14 @@ procedure makeAllStates(statesList, state)
       shifts,
       count
    
+	outfile := open("test.txt", "c")
    stateNumber := 0   
    count := 1
    while stateNumber = 0 | count < stateNumber do {
       write(count - 1 || " / I" || stateNumber)
       if stateNumber = 0 then thisState := state
       if stateNumber > 0 then thisState := statesList[count]
+		write(outfile, thisState.getTxt())
       count +:= 1   
       shifts := []
       every thisStateGrammar := thisState.getStateGrammars() do {
