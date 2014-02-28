@@ -1,0 +1,8 @@
+<NotepadPlus>
+    <Project name="yparser">
+        <File name="grammars.icn" />
+        <File name="productionRules.icn" />
+        <File name="states.icn" />
+        <File name="yparser.icn" />
+    </Project>
+</NotepadPlus>

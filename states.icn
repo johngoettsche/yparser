@@ -25,10 +25,10 @@ procedure createStates(args, nonTerminalsSet, TerminalsSet)
       outfile,
       thisResult
 
+   write("N: " || *nonTerminalsSet || "\tT: " || *TerminalsSet)
    stateNumber := 0
    statesList := []
    nonTerminalList := set()
-   statesSet := set()
    
    #make item 0
    thisNonTerminal := nonTerminalsSet[1]
@@ -53,9 +53,8 @@ procedure createStates(args, nonTerminalsSet, TerminalsSet)
    }
    #write("Adding first State")
    put(statesList, myState)
-   insert(statesSet, myState)
    
-   makeAllStates(statesList, myState, statesSet)
+   makeAllStates(statesList, myState)
    
    if *args > 0 then if member(args, "s") then {
       outfile := &output
@@ -77,7 +76,7 @@ procedure makeStateGrammars(myState, B, nonTerminalList)
       newVariable,
       stateNumber,
       stateName   
-###############################################################################################################     
+    
    every thisProductionRule := B.getProductionRules() do {
       newGrammar := StateGrammar()
       newGrammar.setLeft(B)
@@ -100,35 +99,44 @@ procedure makeStateGrammars(myState, B, nonTerminalList)
    }
 end
 
-procedure makeAllStates(statesList, thisState, statesSet)
+procedure makeAllStates(statesList, state)
    local 
       stateNumber, 
+      thisState,
       newState,
       thisResult,
       newStateGrammar,
       grammarList,
-      shifts
+      shifts,
+      count
    
-   shifts := []
-   stateNumber := 0
-   
-   every thisStateGrammar := thisState.getStateGrammars() do {
-      newStateGrammar := thisStateGrammar.getShift()
-      shiftElement := newStateGrammar.getLastAlpha()
-      put(shifts, shiftElement)
-      write("Shift: " || shiftElement.getResult() || " - " || shiftElement.getType())
-      element := newStateGrammar.getLeft()
-      if element.getType() = "1" | "2" then {
-         if not member(shifts, element) then {
-            grammarList := []
-            stateNumber +:= 1
-            stateName := "I" || stateNumber
-            newState := State(stateName, element, newStateGrammar)
-            makeStateGrammarRules(thisState, newState, grammarList, shiftElement)
-            #if not duplicateState(statesList, grammarList, newState) then {
-               put(statesList, newState)
-               insert(statesSet, newState)
-            #}
+   stateNumber := 0   
+   count := 1
+   while stateNumber = 0 | count < stateNumber do {
+      write(count - 1 || " / I" || stateNumber)
+      if stateNumber = 0 then thisState := state
+      if stateNumber > 0 then thisState := statesList[count]
+      count +:= 1   
+      shifts := []
+      every thisStateGrammar := thisState.getStateGrammars() do {
+         newStateGrammar := thisStateGrammar.getShift()
+         shiftElement := newStateGrammar.getLastAlpha()
+         put(shifts, shiftElement)
+         element := newStateGrammar.getLeft()
+         if element.getType() = "1" | "2" then {
+            if not member(shifts, element) then {
+               grammarList := []
+               stateNumber +:= 1
+               stateName := "I" || stateNumber
+               newState := State(stateName, element, newStateGrammar)
+               makeStateGrammarRules(thisState, newState, grammarList, shiftElement)
+               if duplicateState(statesList, newState) then {
+                  stateNumber -:= 1
+               } else {
+               if not duplicateState(statesList, newState) then {
+                  put(statesList, newState)
+               }
+            }
          }
       }
    }
@@ -151,15 +159,13 @@ procedure makeStateGrammarRules(oldState, thisState, grammarList, shiftElement)
                }
             }
          }
-         write(newGrammar.getTxt())
-         write(newGrammar.getBeta(1).getResult())
          B := newGrammar.getBeta(1)
          if \B then if B.getType() = "1" then
             makeStateGrammars(thisState, B, nonTerminalList)
       }
    }
 end
-##################################################################################################
+
 procedure duplicateGrammar(grammarList, grammar)
 #  checks to see if grammar is in the grammarList, if it is
 #  the grammar is suspended
@@ -172,19 +178,21 @@ procedure duplicateGrammar(grammarList, grammar)
    }
 end
 
-procedure duplicateState(statesList, grammarList, state)
-#  **** this needs to be revised to handle subsets ****
+procedure duplicateState(statesList, state)
+#  Checks to see if the state is a duplicate by checking
+#  the first production //// in the state with the first
+#  //// of all the states in the stateList
 
-#  checks to see it the state is already in the statesList, 
-#  if it is the grammar is suspended
    local 
       thisState,
       thisGrammar
       
-   every thisState := !statesList do {
-      every thisGrammar := thisState.getStateGrammars() do
-         if duplicateGrammar(grammarList, thisGrammar) then {}
-            #return state
+   stateGrammars := state.getStateGrammarsList()
+   stateGrammar := stateGrammars[1]
+   every testState := !statesList do {
+      testGrammars := testState.getStateGrammarsList()
+      testGrammar := testGrammars[1]  
+      if testGrammar.getTxt() == stateGrammar.getTxt() then return state
    }
 end
 
