@@ -1,0 +1,1392 @@
+version	U12.1.00
+uid	productionRules.u1-1393638641-0
+record	production__ProductionRule__state,3
+	0,__s
+	1,__m
+	2,variables
+record	production__ProductionRule__methods,6
+	0,addVariable
+	1,getVariables
+	2,getVariableList
+	3,getVariable
+	4,getTxt
+	5,initially
+impl	local
+link	C:/Users/John/Documents/GitHub/yparser/states.u
+global	13
+	0,000005,production__createProductionRules,6
+	1,000005,production__makeProductionRules,5
+	2,000005,production__ProductionRule_addVariable,2
+	3,000005,production__ProductionRule_getVariables,1
+	4,000005,production__ProductionRule_getVariableList,1
+	5,000005,production__ProductionRule_getVariable,2
+	6,000005,production__ProductionRule_getTxt,1
+	7,000005,production__ProductionRule_initially,1
+	8,000011,production__ProductionRule__state,3
+	9,000011,production__ProductionRule__methods,6
+	10,000001,production__ProductionRule__oprec,0
+	11,000005,production__ProductionRule,1
+	12,000005,production__ProductionRuleinitialize,0
+
+proc production__createProductionRules
+	local	0,001000,args
+	local	1,001000,rawGrammar
+	local	2,001000,nonTerminalCheckSet
+	local	3,001000,nonTerminalsSet
+	local	4,001000,terminalCheckSet
+	local	5,001000,terminalsSet
+	local	6,000020,grammar
+	local	7,000020,output
+	local	8,000020,outfile
+	local	9,000000,production__makeProductionRules
+	local	10,000000,member
+	local	11,000000,open
+	local	12,000000,write
+	local	13,000000,getch
+	local	14,000000,states__createStates
+	con	0,002000,1,0
+	con	1,010000,1,160
+	con	2,010000,1,157
+	con	3,010000,21,171,055,160,162,157,144,165,143,164,151,157,156,122,165,154,145,163,056,164,170,164
+	con	4,010000,1,143
+	con	5,010000,55,012,103,162,145,141,164,145,144,040,141,040,147,162,141,155,155,141,162,040,167,151,164,150,040,164,150,145,040,146,157,154,154,157,167,151,156,147,040,160,162,157,144,165,143,164,151,157,156,040,162,165,154,145,163,072
+	con	6,010000,1,011
+	con	7,010000,27,012,050,160,162,145,163,163,040,105,116,124,105,122,040,164,157,040,143,157,156,164,151,156,165,145,051,012
+	declend
+	filen	productionRules.icn
+	line	8
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	6
+	var	9
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	line	25
+	colm	46
+	synt	any
+	invoke	5
+	line	25
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	34
+	colm	4
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	line	34
+	colm	7
+	synt	any
+	size
+	int	0
+	line	34
+	colm	13
+	synt	any
+	numgt
+	unmark
+	line	34
+	colm	22
+	synt	if
+	mark0
+	var	10
+	var	0
+	str	1
+	line	34
+	colm	31
+	synt	any
+	invoke	2
+	unmark
+	mark	L3
+	pnull
+	var	8
+	line	35
+	colm	18
+	synt	any
+	keywd	output
+	line	35
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	line	36
+	colm	7
+	synt	if
+	mark0
+	var	10
+	var	0
+	str	2
+	line	36
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	8
+	var	11
+	str	3
+	str	4
+	line	36
+	colm	48
+	synt	any
+	invoke	2
+	line	36
+	colm	41
+	synt	any
+	asgn
+	line	36
+	colm	7
+	synt	endif
+	unmark
+lab L4
+	mark	L5
+	var	12
+	str	5
+	line	37
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L5
+	mark	L6
+	line	38
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	8
+	line	38
+	colm	23
+	synt	any
+	keywd	output
+	line	38
+	colm	18
+	synt	any
+	neqv
+	unmark
+	line	39
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	7
+	pnull
+	var	3
+	line	39
+	colm	26
+	synt	any
+	bang
+	line	39
+	colm	23
+	synt	any
+	asgn
+	pop
+	mark0
+	line	40
+	colm	13
+	synt	every
+	mark0
+	var	12
+	var	8
+	pnull
+	var	7
+	line	40
+	colm	40
+	synt	any
+	field	getTxt
+	line	40
+	colm	47
+	synt	any
+	invoke	0
+	line	40
+	colm	24
+	synt	any
+	invoke	2
+	pop
+lab L9
+	efail
+lab L10
+	line	40
+	colm	13
+	synt	endevery
+	unmark
+lab L7
+	efail
+lab L8
+	line	39
+	colm	10
+	synt	endevery
+	line	38
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L11
+	line	43
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	7
+	pnull
+	var	3
+	line	43
+	colm	23
+	synt	any
+	bang
+	line	43
+	colm	20
+	synt	any
+	asgn
+	pop
+	mark0
+	line	44
+	colm	10
+	synt	every
+	mark0
+	var	12
+	pnull
+	str	6
+	pnull
+	var	7
+	line	44
+	colm	36
+	synt	any
+	field	getTxt
+	line	44
+	colm	43
+	synt	any
+	invoke	0
+	line	44
+	colm	27
+	synt	any
+	cat
+	line	44
+	colm	21
+	synt	any
+	invoke	1
+	pop
+lab L14
+	efail
+lab L15
+	line	44
+	colm	10
+	synt	endevery
+	unmark
+lab L12
+	efail
+lab L13
+	line	43
+	colm	7
+	synt	endevery
+	unmark
+lab L11
+	mark	L16
+	var	12
+	str	7
+	line	46
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	var	13
+	line	47
+	colm	12
+	synt	any
+	invoke	0
+	line	34
+	colm	22
+	synt	endif
+	line	34
+	colm	4
+	synt	endif
+	unmark
+lab L2
+	mark	L17
+	var	14
+	var	0
+	var	3
+	var	5
+	line	49
+	colm	24
+	synt	any
+	invoke	3
+	unmark
+lab L17
+	pnull
+	line	51
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__makeProductionRules
+	local	0,001000,rawGrammar
+	local	1,001000,nonTerminalCheckSet
+	local	2,001000,nonTerminalsSet
+	local	3,001000,terminalCheckSet
+	local	4,001000,terminalsSet
+	local	5,000020,x
+	local	6,000020,nonTerm
+	local	7,000020,nonTerminal
+	local	8,000020,productionRule
+	local	9,000020,term
+	local	10,000000,member
+	local	11,000000,production__ProductionRule
+	con	0,002000,1,1
+	con	1,010000,1,072
+	con	2,010000,1,174
+	con	3,010000,1,073
+	declend
+	line	53
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	5
+	int	0
+	line	71
+	colm	6
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+lab L3
+	line	72
+	colm	4
+	synt	while
+	mark0
+	pnull
+	var	0
+	var	5
+	line	72
+	colm	20
+	synt	any
+	subsc
+	unmark
+	mark	L3
+	mark	L6
+	line	73
+	colm	7
+	synt	if
+	mark0
+	var	10
+	var	1
+	pnull
+	var	0
+	var	5
+	line	73
+	colm	48
+	synt	any
+	subsc
+	line	73
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+	line	74
+	colm	10
+	synt	ifelse
+	mark	L7
+	pnull
+	pnull
+	var	0
+	pnull
+	var	5
+	int	0
+	line	74
+	colm	26
+	synt	any
+	plus
+	line	74
+	colm	23
+	synt	any
+	subsc
+	str	1
+	line	74
+	colm	31
+	synt	any
+	lexeq
+	unmark
+	line	75
+	colm	13
+	synt	every
+	mark0
+	pnull
+	var	6
+	pnull
+	var	2
+	line	75
+	colm	30
+	synt	any
+	bang
+	line	75
+	colm	27
+	synt	any
+	asgn
+	pop
+	mark0
+	line	76
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	76
+	colm	19
+	synt	any
+	nonnull
+	unmark
+	line	77
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	6
+	line	77
+	colm	29
+	synt	any
+	field	getResult
+	line	77
+	colm	39
+	synt	any
+	invoke	0
+	pnull
+	var	0
+	var	5
+	line	77
+	colm	55
+	synt	any
+	subsc
+	line	77
+	colm	42
+	synt	any
+	lexeq
+	unmark
+	mark	L11
+	pnull
+	var	7
+	var	6
+	line	78
+	colm	34
+	synt	any
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	8
+	var	11
+	line	79
+	colm	66
+	synt	any
+	invoke	0
+	line	79
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L12
+	pnull
+	var	5
+	pnull
+	var	5
+	int	0
+	line	81
+	colm	29
+	synt	any
+	plus
+	line	81
+	colm	24
+	synt	any
+	asgn
+	line	77
+	colm	19
+	synt	endif
+	line	76
+	colm	16
+	synt	endif
+	unmark
+lab L9
+	efail
+lab L10
+	line	75
+	colm	13
+	synt	endevery
+	goto	L8
+lab L7
+	line	86
+	colm	13
+	synt	every
+	mark0
+	pnull
+	var	6
+	pnull
+	var	2
+	line	86
+	colm	30
+	synt	any
+	bang
+	line	86
+	colm	27
+	synt	any
+	asgn
+	pop
+	mark0
+	line	87
+	colm	16
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	87
+	colm	19
+	synt	any
+	nonnull
+	unmark
+	line	88
+	colm	19
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	6
+	line	88
+	colm	29
+	synt	any
+	field	getResult
+	line	88
+	colm	39
+	synt	any
+	invoke	0
+	pnull
+	var	0
+	var	5
+	line	88
+	colm	55
+	synt	any
+	subsc
+	line	88
+	colm	42
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	8
+	line	90
+	colm	36
+	synt	any
+	field	addVariable
+	var	6
+	line	90
+	colm	48
+	synt	any
+	invoke	1
+	line	88
+	colm	19
+	synt	endif
+	line	87
+	colm	16
+	synt	endif
+	unmark
+lab L13
+	efail
+lab L14
+	line	86
+	colm	13
+	synt	endevery
+lab L8
+	line	74
+	colm	10
+	synt	endifelse
+	line	73
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L15
+	line	98
+	colm	7
+	synt	if
+	mark0
+	var	10
+	var	3
+	pnull
+	var	0
+	var	5
+	line	98
+	colm	45
+	synt	any
+	subsc
+	line	98
+	colm	16
+	synt	any
+	invoke	2
+	pop
+	pnull
+	pnull
+	var	0
+	var	5
+	line	98
+	colm	62
+	synt	any
+	subsc
+	str	2
+	line	98
+	colm	66
+	synt	any
+	lexne
+	unmark
+	line	99
+	colm	10
+	synt	every
+	mark0
+	pnull
+	var	9
+	pnull
+	var	4
+	line	99
+	colm	24
+	synt	any
+	bang
+	line	99
+	colm	21
+	synt	any
+	asgn
+	pop
+	mark0
+	line	100
+	colm	13
+	synt	if
+	mark0
+	pnull
+	var	9
+	line	100
+	colm	16
+	synt	any
+	nonnull
+	unmark
+	line	101
+	colm	16
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	9
+	line	101
+	colm	23
+	synt	any
+	field	getResult
+	line	101
+	colm	33
+	synt	any
+	invoke	0
+	pnull
+	var	0
+	var	5
+	line	101
+	colm	49
+	synt	any
+	subsc
+	line	101
+	colm	36
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	8
+	line	101
+	colm	72
+	synt	any
+	field	addVariable
+	var	9
+	line	101
+	colm	84
+	synt	any
+	invoke	1
+	line	101
+	colm	16
+	synt	endif
+	line	100
+	colm	13
+	synt	endif
+	unmark
+lab L16
+	efail
+lab L17
+	line	99
+	colm	10
+	synt	endevery
+	line	98
+	colm	7
+	synt	endif
+	unmark
+lab L15
+	mark	L18
+	line	107
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	var	5
+	line	107
+	colm	20
+	synt	any
+	subsc
+	str	2
+	line	107
+	colm	24
+	synt	any
+	lexeq
+	unmark
+	mark	L19
+	pnull
+	var	7
+	line	109
+	colm	21
+	synt	any
+	field	addProductionRule
+	var	8
+	line	109
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L19
+	pnull
+	var	8
+	var	11
+	line	110
+	colm	54
+	synt	any
+	invoke	0
+	line	110
+	colm	25
+	synt	any
+	asgn
+	line	107
+	colm	7
+	synt	endif
+	unmark
+lab L18
+	mark	L20
+	line	114
+	colm	7
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	var	5
+	line	114
+	colm	20
+	synt	any
+	subsc
+	str	3
+	line	114
+	colm	24
+	synt	any
+	lexeq
+	unmark
+	mark	L21
+	pnull
+	var	7
+	line	116
+	colm	21
+	synt	any
+	field	addProductionRule
+	var	8
+	line	116
+	colm	39
+	synt	any
+	invoke	1
+	unmark
+lab L21
+	line	117
+	colm	10
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	0
+	pnull
+	var	5
+	int	0
+	line	117
+	colm	26
+	synt	any
+	plus
+	line	117
+	colm	23
+	synt	any
+	subsc
+	str	2
+	line	117
+	colm	31
+	synt	any
+	lexeq
+	unmark
+	mark	L22
+	pnull
+	var	8
+	var	11
+	line	118
+	colm	57
+	synt	any
+	invoke	0
+	line	118
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L22
+	pnull
+	var	5
+	dup
+	int	0
+	line	119
+	colm	15
+	synt	any
+	plus
+	asgn
+	line	117
+	colm	10
+	synt	endif
+	line	114
+	colm	7
+	synt	endif
+	unmark
+lab L20
+	pnull
+	var	5
+	dup
+	int	0
+	line	123
+	colm	9
+	synt	any
+	plus
+	asgn
+lab L4
+	unmark
+	goto	L3
+lab L5
+	line	72
+	colm	4
+	synt	endwhile
+	unmark
+lab L2
+	pnull
+	line	125
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRule_addVariable
+	local	0,001000,self
+	local	1,001000,newVariable
+	local	2,000000,put
+	declend
+	line	131
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	pnull
+	var	0
+	line	132
+	colm	15
+	synt	any
+	field	variables
+	var	1
+	line	132
+	colm	10
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	pnull
+	line	133
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRule_getVariables
+	local	0,001000,self
+	local	1,000020,variable
+	declend
+	line	135
+	colm	11
+	synt	any
+	mark	L1
+	line	137
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	137
+	colm	30
+	synt	any
+	field	variables
+	line	137
+	colm	25
+	synt	any
+	bang
+	line	137
+	colm	22
+	synt	any
+	asgn
+	pop
+	mark0
+	line	137
+	colm	44
+	synt	suspend
+	mark0
+	var	1
+	synt	any
+	psusp
+	pop
+lab L4
+	efail
+lab L5
+	line	137
+	colm	44
+	synt	endsuspend
+	unmark
+lab L2
+	efail
+lab L3
+	line	137
+	colm	7
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	138
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRule_getVariableList
+	local	0,001000,self
+	declend
+	line	140
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	var	0
+	line	141
+	colm	18
+	synt	any
+	field	variables
+	line	141
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	142
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRule_getVariable
+	local	0,001000,self
+	local	1,001000,v
+	declend
+	line	144
+	colm	11
+	synt	any
+	mark	L1
+	mark	L2
+	pnull
+	pnull
+	var	0
+	line	145
+	colm	18
+	synt	any
+	field	variables
+	var	1
+	line	145
+	colm	28
+	synt	any
+	subsc
+	line	145
+	colm	7
+	synt	any
+	pret
+lab L2
+	synt	any
+	pfail
+	unmark
+lab L1
+	pnull
+	line	146
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRule_getTxt
+	local	0,001000,self
+	local	1,000020,x
+	local	2,000020,str
+	con	0,010000,0
+	con	1,002000,1,1
+	con	2,010000,1,040
+	declend
+	line	148
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	str	0
+	line	150
+	colm	11
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	1
+	int	1
+	line	151
+	colm	9
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+lab L4
+	line	152
+	colm	7
+	synt	while
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	152
+	colm	23
+	synt	any
+	field	variables
+	line	152
+	colm	18
+	synt	any
+	size
+	line	152
+	colm	15
+	synt	any
+	numle
+	unmark
+	mark	L4
+	mark	L7
+	pnull
+	var	2
+	pnull
+	pnull
+	var	2
+	pnull
+	pnull
+	pnull
+	var	0
+	line	154
+	colm	28
+	synt	any
+	field	variables
+	var	1
+	line	154
+	colm	38
+	synt	any
+	subsc
+	line	154
+	colm	41
+	synt	any
+	field	getResult
+	line	154
+	colm	51
+	synt	any
+	invoke	0
+	line	154
+	colm	21
+	synt	any
+	cat
+	str	2
+	line	154
+	colm	53
+	synt	any
+	cat
+	line	154
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L7
+	pnull
+	var	1
+	dup
+	int	1
+	line	155
+	colm	12
+	synt	any
+	plus
+	asgn
+lab L5
+	unmark
+	goto	L4
+lab L6
+	line	152
+	colm	7
+	synt	endwhile
+	unmark
+lab L3
+	mark	L8
+	mark	L9
+	var	2
+	line	157
+	colm	7
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	unmark
+lab L8
+	pnull
+	line	158
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRule_initially
+	local	0,001000,self
+	declend
+	line	160
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	pnull
+	var	0
+	line	161
+	colm	8
+	synt	any
+	field	variables
+	pnull
+	line	161
+	colm	20
+	synt	any
+	llist	0
+	line	161
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	mark	L3
+	pnull
+	line	162
+	colm	7
+	synt	any
+	pret
+lab L3
+	synt	any
+	pfail
+	unmark
+lab L2
+	pnull
+	line	163
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRule
+	local	0,001000,variables
+	local	1,000020,self
+	local	2,000020,clone
+	local	3,000000,production__ProductionRule__oprec
+	local	4,000000,production__ProductionRuleinitialize
+	local	5,000000,production__ProductionRule__state
+	declend
+	line	167
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	line	170
+	colm	3
+	synt	if
+	mark0
+	pnull
+	var	3
+	line	170
+	colm	6
+	synt	any
+	null
+	unmark
+	var	4
+	line	170
+	colm	82
+	synt	any
+	invoke	0
+	line	170
+	colm	3
+	synt	endif
+	unmark
+lab L2
+	einit	L1
+lab L3
+	mark	L4
+	pnull
+	var	1
+	var	5
+	line	172
+	colm	45
+	synt	any
+	keywd	null
+	var	3
+	var	0
+	line	172
+	colm	44
+	synt	any
+	invoke	3
+	line	172
+	colm	8
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	1
+	line	173
+	colm	7
+	synt	any
+	field	__s
+	var	1
+	line	173
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	mark	L7
+	pnull
+	pnull
+	var	1
+	line	174
+	colm	7
+	synt	any
+	field	__m
+	line	174
+	colm	11
+	synt	any
+	field	initially
+	var	1
+	line	174
+	colm	21
+	synt	any
+	invoke	1
+	line	174
+	colm	28
+	synt	any
+	esusp
+	goto	L8
+lab L7
+	line	174
+	colm	30
+	synt	any
+	pfail
+lab L8
+	unmark
+lab L6
+	mark	L9
+	mark	L10
+	var	1
+	line	175
+	colm	3
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	176
+	colm	1
+	synt	any
+	pfail
+	end
+proc production__ProductionRuleinitialize
+	local	0,000000,production__ProductionRule__oprec
+	local	1,000000,production__ProductionRule__methods
+	local	2,000000,production__ProductionRule_addVariable
+	local	3,000000,production__ProductionRule_getVariables
+	local	4,000000,production__ProductionRule_getVariableList
+	local	5,000000,production__ProductionRule_getVariable
+	local	6,000000,production__ProductionRule_getTxt
+	local	7,000000,production__ProductionRule_initially
+	declend
+	line	178
+	colm	11
+	synt	any
+lab L1
+	init	L3
+	mark	L2
+	pnull
+	var	0
+	var	1
+	var	2
+	var	3
+	var	4
+	var	5
+	var	6
+	var	7
+	line	179
+	colm	83
+	synt	any
+	invoke	6
+	line	179
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L2
+	einit	L1
+lab L3
+	line	180
+	colm	1
+	synt	any
+	pfail
+	end
