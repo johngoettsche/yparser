@@ -2,7 +2,6 @@
 #  under the direction of Clinton Jeffery
 #  University of Idaho
 
-#package yparser
 import grammars
 
 procedure main(args)
@@ -15,6 +14,15 @@ procedure main(args)
 #     -s  shows states
 #
 #     -o  to write to the youtput.txt file
+#
+# yparser parses a yakk file to dissect its grammar and produces a 
+#  - a raw grammar list which is a list of individual tokens and symbols 
+#  - a list of non-terminals used in the grammar
+#  - a list of terminals used in the grammar
+#  - a list of production rules in the grammar
+#  - a list of states or goto fuctions produced using a SLR parser as described
+#     in the 'Dragon Book' or "Compilers - Principles, Techniques, and Tools"
+#     by Alfred V. Aho, Ravi Sethi and Jeffery D. Ullman
 
    local x, y, arguments, file, allwords, wordset, rawGrammar, outfile
    x := 1
