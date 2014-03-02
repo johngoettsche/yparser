@@ -6,42 +6,43 @@
 package rawGrammar
 import production
 
-procedure createNonTerminals(args, rawGrammar)  
+procedure createNonTerminals(fileName, args, rawGrammar)  
 #  from the rawGrammar it creates the NonTerminals and
 #  procedes the createTerminals procedure
 
    #create nonTerminals
    local 
       nonTerminal, 
-      nonTerminalsList, 
+      nonTerminalWords, 
       nonTerminalsSet, 
       nonTerminalCheckSet,
       outfile
       
-   nonTerminalsList := []
+   nonTerminalWords := []
    nonTerminalCheckSet := set()
    every nonTerminal := getNonTerminals(rawGrammar) do 
       if not member(nonTerminalCheckSet, nonTerminal) then {
-         put(nonTerminalsList, nonTerminal)
+         put(nonTerminalWords, nonTerminal)
          insert(nonTerminalCheckSet, nonTerminal)
       }
    #every write(!nonTerminalCheckSet)
-   nonTerminalsSet := []
-   every put(nonTerminalsSet, makeNonTerminalsSet(nonTerminalsList))
+   nonTerminalsList := []
+   every put(nonTerminalsList, makeNonTerminalsSet(nonTerminalWords))
 
    if *args > 0 then if member(args, "n") then {
       outfile := &output
-      if member(args, "o") then outfile := open("y-nonTerminals.txt", "c")
+      outfileName := fileName || "-nonTerminals.txt"
+      if member(args, "o") then outfile := open(outfileName, "c")
       write("\nNon Terminals\n") 
-      if outfile ~=== &output then every write(outfile, !nonTerminalsList)
-      every write("\t" || !nonTerminalsList)
+      if outfile ~=== &output then every write(outfile, !nonTerminalWords)
+      every write("\t" || !nonTerminalWords)
       write("\n(press ENTER to continue)\n")
       getch()
    }  
-   createTerminals(args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet)
+   createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTerminalsList)
 end
 
-procedure createTerminals(args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet)
+procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet)
 #  from the rawGrammar, nonTerminalCheckSet and nonTerminalSet it
 #  produces the terminals and procedes to the creaeGrammar procedure
 
@@ -65,7 +66,8 @@ procedure createTerminals(args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet
 
    if *args > 0 then if member(args, "t") then {
       outfile := &output
-      if member(args, "o") then outfile := open("y-terminals.txt", "c")
+      outfileName := fileName || "-terminals.txt"
+      if member(args, "o") then outfile := open(outfileName, "c")
       write("\nTerminals\n") 
       if outfile ~=== &output then every write(outfile, !terminalsList)
       every write("\t" || !terminalsList)
@@ -74,6 +76,7 @@ procedure createTerminals(args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet
    }  
    #write(production)
    production::createProductionRules(
+         fileName,
          args,
          rawGrammar, 
          nonTerminalCheckSet, 
@@ -95,12 +98,12 @@ procedure getNonTerminals(wordList)
    } 
 end
 
-procedure makeNonTerminalsSet(nonTerminalsList)
-#  creates and suspends each NonTerminal in the nonTerminalsList
+procedure makeNonTerminalsSet(nonTerminalWords)
+#  creates and suspends each NonTerminal in the nonTerminalWords
 # in the order they appear in the grammar
 
    local x, result, thisNonTerminal
-   every result := !nonTerminalsList do {
+   every result := !nonTerminalWords do {
       thisNonTerminal := NonTerminal()
       thisNonTerminal.setResult(result)
       suspend thisNonTerminal
@@ -118,16 +121,16 @@ procedure makeTerminalsSet(terminalsList)
    }
 end
 
-procedure getTerminals(wordList, nonTerminals)
+procedure getTerminals(wordList, nonTerminalsList)
 #  finds all the Terminals in the list and creates and suspends
 #  each terminal
 
    local x
    x := 1
    #write(list[x])
-   #every write(!nonTerminals)
+   #every write(!nonTerminalsList)
    while wordList[x] do {
-      if not member(nonTerminals, wordList[x]) then {
+      if not member(nonTerminalsList, wordList[x]) then {
          if not (wordList[x] == (":"|";"|"|")) then
 	    suspend wordList[x]
       }

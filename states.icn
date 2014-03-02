@@ -6,7 +6,7 @@ package states
 import rawGrammar
 import production
 
-procedure createStates(args, nonTerminalsSet, TerminalsSet)
+procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet)
 #  is a work in progress
 #  creates the states for compiling the Item for this tool
 
@@ -55,7 +55,8 @@ procedure createStates(args, nonTerminalsSet, TerminalsSet)
    
    if *args > 0 then if member(args, "s") then {
       outfile := &output
-      if member(args, "o") then outfile := open("y-states.txt", "c")
+      outfileName := fileName || "-states.txt"
+      if member(args, "o") then outfile := open(outfileName, "c")
       write("\nStates: " || *statesList || "\n") 
       if outfile ~=== &output then every state := !statesList do write(outfile, state.getTxt())
       every state := !statesList do write(state.getTxt())
@@ -97,6 +98,9 @@ procedure makeItems(myState, B, itemSet)
 end
 
 procedure makeAllStates(statesList, state)
+# generates all states or goto operations as described in
+# pages 224 through 227 of the Dragon Book
+
    local 
       stateNumber, 
       thisState,
@@ -114,13 +118,18 @@ procedure makeAllStates(statesList, state)
       if stateNumber = 0 then thisState := state
       if stateNumber > 0 then thisState := statesList[count]
       count +:= 1   
-      shifts := []
+      shifts := [] 
+      #shifts are the most recent element shifted over in an
+      #item or the most recent alpha element
       every thisItem := thisState.getItems() do {
-         newItem := thisItem.getShift()
+         newItem := thisItem.getShift() 
+         #moves the current location to the right one element
+         #in the item
          shiftElement := newItem.getLastAlpha()
          put(shifts, shiftElement)
          element := newItem.getLeft()
          if element.getType() == ("1" | "2") then {
+         #checks to see if the element is a non-terminal or a prime
             if not member(shifts, element) then {
                ItemList := []
                stateNumber +:= 1
@@ -141,6 +150,8 @@ procedure makeAllStates(statesList, state)
 end
 
 procedure makeAllItems(statesList, oldState, thisState, shiftElement)
+# makes all remaining items for the state by implementing the closure function
+# as depicted in Figure 4.33 of the Dragon Book
    local 
       newItem,
       thisItem,
@@ -202,7 +213,7 @@ procedure duplicateStateLabel(statesList, thisLabel)
 end
 
 class State(name, items)
-#  this class defines a state for compiling the Item
+#  this class defines a state
 
    method setName(newName)
       name := newName
@@ -243,6 +254,8 @@ initially(newName, thisPrime, initialItem)
 
    name := newName
    items := []
+   
+   #set up initialItem
    newItem := Item()
    newItem.setLeft(thisPrime)
    every newAlpha := initialItem.getAlpha() do {
@@ -254,20 +267,17 @@ initially(newName, thisPrime, initialItem)
 end
 
 class Item(left, alpha, beta)
-#  this class defines a a Item process for the current state
+#  this class defines an Item for a state
 
    method setLeft(newLeft)
-      #write(newLeft.getResult())
       left := newLeft
    end
    
    method addAlpha(newAlpha)
-   #write("adding: " || newAlpha.getResult())
       put(alpha, newAlpha)
    end
    
    method addBeta(newBeta)
-     # write(newItemElement.getTxt())
          put(beta, newBeta)
    end
    
@@ -290,13 +300,9 @@ class Item(left, alpha, beta)
    
    method getLastAlpha()
       local element, thisElement
-      #write("getting shift")
-      #write("+ " || *getAlphaList())
       every thisElement := getAlpha() do {
-         #write("+" || thisElement.getResult())
          element := thisElement
       }
-      #write(element.getResult())
       return element
    end
    
@@ -335,6 +341,7 @@ class Item(left, alpha, beta)
    end
    
    method getTxt()
+   #prepares the textual representation of the Item
       local txt, p, g, element
       txt := "\t" || left.getResult() || " -> "
       p := 1

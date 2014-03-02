@@ -6,6 +6,7 @@ package production
 import states
 
 procedure createProductionRules(
+         fileName,
          args,
          rawGrammar, 
          nonTerminalCheckSet, 
@@ -33,7 +34,8 @@ procedure createProductionRules(
 
    if *args > 0 then if member(args, "p") then {
       outfile := &output
-      if member(args, "o") then outfile := open("y-productionRules.txt", "c")
+      outfileName := fileName || "-productionRules.txt"
+      if member(args, "o") then outfile := open(outfileName, "c")
       write("\nCreated a grammar with the following production rules:")
       if outfile ~=== &output then{
          every output := !nonTerminalsSet do {
@@ -46,7 +48,7 @@ procedure createProductionRules(
       write("\n(press ENTER to continue)\n")
       getch()
    }
-   states::createStates(args, nonTerminalsSet, terminalsSet)
+   states::createStates(fileName, args, nonTerminalsSet, terminalsSet)
    
 end
 
