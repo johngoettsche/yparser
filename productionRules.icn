@@ -21,7 +21,8 @@ procedure createProductionRules(
    local 
       grammar, 
       output,
-      outfile
+      outfile,
+      outfileName
       
    grammar := makeProductionRules(
          rawGrammar, 

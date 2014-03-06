@@ -16,7 +16,9 @@ procedure createNonTerminals(fileName, args, rawGrammar)
       nonTerminalWords, 
       nonTerminalsSet, 
       nonTerminalCheckSet,
-      outfile
+      nonTerminalsList,
+      outfile,
+      outfileName
       
    nonTerminalWords := []
    nonTerminalCheckSet := set()
@@ -52,7 +54,8 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       terminalsSet, 
       terminalCheckSet, 
       terminal,
-      outfile
+      outfile,
+      outfileName
       
    terminalsList := []
    terminalCheckSet := set()

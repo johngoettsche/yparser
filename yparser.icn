@@ -24,7 +24,18 @@ procedure main(args)
 #     in the 'Dragon Book' or "Compilers - Principles, Techniques, and Tools"
 #     by Alfred V. Aho, Ravi Sethi and Jeffery D. Ullman
 
-   local x, y, arguments, file, allwords, wordset, rawGrammar, outfile
+   local 
+      x, 
+      y, 
+      arguments, 
+      file, 
+      allwords, 
+      wordset, 
+      rawGrammar, 
+      outfile, 
+      fileName, 
+      outfileName
+      
    x := 1
    arguments := '' #set up cset for options
    y := *args[x]
