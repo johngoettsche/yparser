@@ -60,6 +60,13 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet)
       write("\nStates: " || *statesList || "\n") 
       if outfile ~=== &output then every state := !statesList do write(outfile, state.getTxt())
       every state := !statesList do write(state.getTxt())
+      time := &time
+      h := time / 3600000
+      time := time % 3600000
+      m := time / 60000
+      time := time % 60000
+      seconds := time / 1000.0
+      write("\nTime elapsed: " || h || ":" || m || ":" || seconds)
       write("\n(press ENTER to continue)\n")
       getch()
    }   
@@ -82,6 +89,7 @@ procedure makeItems(myState, B, itemSet)
          newItem.addBeta(newB)
       }
       if not duplicateItem(myState.getItemsList(), newItem) then {
+         newItem.setTxt()
          myState.addItem(newItem)
       }
    }
@@ -123,6 +131,7 @@ procedure makeAllStates(statesList, state)
       #item or the most recent alpha element
       every thisItem := thisState.getItems() do {
          newItem := thisItem.getShift() 
+         newItem.setTxt()
          #moves the current location to the right one element
          #in the item
          shiftElement := newItem.getLastAlpha()
@@ -161,6 +170,7 @@ procedure makeAllItems(statesList, oldState, thisState, shiftElement)
    every thisItem := oldState.getItems() do {
       newItem := thisItem.getShift()
 		if \newItem then {
+         newItem.setTxt()
 			if not duplicateStateLabel(statesList, newItem) then {
 				if newItem.getLastAlpha() === shiftElement then {
 					if not duplicateItem(thisState.getItemsList(), newItem) then {
@@ -180,6 +190,10 @@ procedure duplicateItem(itemList, item)
 #  the Item is suspended
 
    local thisItem
+   if /item.getTxt() then {
+      item.setTxt()
+      write("set: " || item.getTxt())
+   } 
    every thisItem := !itemList do {
       if thisItem.getTxt() == item.getTxt() then {
          suspend item
@@ -263,10 +277,11 @@ initially(newName, thisPrime, initialItem)
    }
    every element := initialItem.getBetas() do
       newItem.addBeta(element)
+   newItem.setTxt()
    put(items, newItem)
 end
 
-class Item(left, alpha, beta)
+class Item(left, alpha, beta, label)
 #  this class defines an Item for a state
 
    method setLeft(newLeft)
@@ -336,13 +351,14 @@ class Item(left, alpha, beta)
             }
             count +:= 1
          }
+         newItem.setTxt()
          return newItem
       }   
    end
    
-   method getTxt()
+   method setTxt()
    #prepares the textual representation of the Item
-      local txt, p, g, element
+      local p, g, element
       txt := "\t" || left.getResult() || " -> "
       p := 1
       while p <= *alpha do {
@@ -357,10 +373,15 @@ class Item(left, alpha, beta)
          g +:= 1
       }
       txt := txt || "\n"
-      return txt
+      label := txt
+   end
+   
+   method getTxt()
+      return label
    end
    
 initially()
+   label := ""
    alpha := []
    beta := []
 end

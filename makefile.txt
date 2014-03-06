@@ -1,0 +1,17 @@
+yparser : yparser.u grammars.u productionRules.u states.u
+   unicon yparser.u grammars.u productionRules.u states.u
+
+states.u : states.icn
+   unicon -c states.icn
+   
+productionRules.u : productionRules.icn
+   unicon -c productionRules.icn
+   
+grammars.u : grammars.icn
+   unicon -c grammars.icn
+   
+yparser.u : yparser.icn
+   unicon -c yparser.icn
+   
+clean:
+	rm -rf *u hello
