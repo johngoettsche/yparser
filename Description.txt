@@ -1,0 +1,13 @@
+This directed study will produce a software tool that reads in YACC/Bison .y
+files, constructs a data structure representing the context free grammar,
+and uses it to generate a set of example syntax error fragments in Merr
+format that exercise the entire grammar.
+
+The tool will be applied to the Unicon grammar, and to test generality,
+also the RTL language grammar from the Unicon implementation. For the
+Unicon grammar, the student will construct error diagnostic messages for
+each fragment in consultation with the instructor.
+
+The directed study will be completed with an electronic submission of the
+stub generator and generated fragment files, and a written report that
+describes the tool and its use.

@@ -3,8 +3,8 @@
 #  University of Idaho
 
 package states
-import rawGrammar
-import production
+import grammars
+import productionRules
 
 procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet)
 #  is a work in progress
@@ -44,7 +44,7 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet)
    thisNonTerminal := nonTerminalsSet[1]
    stateName := "I" || stateNumber
    thisResult := thisNonTerminal.getResult() || "'"
-   thisPrime := rawGrammar::Terminal(2)
+   thisPrime := grammars::Terminal(2)
    thisPrime.setResult(thisResult)
    initialItem := Item()
    initialItem.addBeta(thisNonTerminal)
@@ -149,7 +149,7 @@ procedure makeAllStates(statesList, state)
       #item or the most recent alpha element
       every thisItem := thisState.getItems() do {
          newItem := thisItem.getShift() 
-         newItem.setTxt()
+         #newItem.setTxt()
          #moves the current location to the right one element
          #in the item
          shiftElement := newItem.getLastAlpha()
@@ -213,7 +213,7 @@ procedure duplicateItem(itemList, item)
       thisItem      
  
    every thisItem := !itemList do {
-      if thisItem.getTxt() == item.getTxt() then {
+      if thisItem.label == item.label then {
          suspend item
       }
    }
@@ -236,7 +236,7 @@ procedure duplicateState(statesList, state)
    every testState := !statesList do {
       testItems := testState.getItemsList()
       every testItem := !testItems do  
-			if testItem.getTxt() == item.getTxt() then return state
+			if testItem.label == item.label then return state
    }
 end
 
@@ -247,7 +247,7 @@ procedure duplicateStateLabel(statesList, thisLabel)
       
 	every thisState := !statesList do {
 		labelsList := thisState.getItemsList()
-		if thisLabel.getTxt() == labelsList[1].getTxt() then return thisLabel
+		if thisLabel.label == labelsList[1].label then return thisLabel
 	}
 end
 
@@ -282,7 +282,7 @@ class State(name, items, label)
    method setTxt()
       local txt, line
       txt := name || "\n"
-      every line := !items do txt := txt || line.getTxt()
+      every line := !items do txt := txt || line.label
       label := txt
    end
    

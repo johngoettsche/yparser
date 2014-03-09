@@ -2,7 +2,7 @@
 #  under the direction of Clinton Jeffery
 #  University of Idaho
 
-package production
+package productionRules
 import states
 
 procedure createProductionRules(

@@ -1,5 +1,5 @@
 yparser : yparser.u grammars.u productionRules.u states.u
-   unicon yparser.u grammars.u productionRules.u states.u
+   unicon -o yparser.u grammars.u productionRules.u states.u
 
 states.u : states.icn
    unicon -c states.icn

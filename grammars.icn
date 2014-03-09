@@ -3,8 +3,8 @@
 #  University of Idaho
 
 #grammars.icn
-package rawGrammar
-import production
+package grammars
+import productionRules
 
 procedure createNonTerminals(fileName, args, rawGrammar)  
 #  from the rawGrammar it creates the NonTerminals and
@@ -78,7 +78,7 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       getch()
    }  
    #write(production)
-   production::createProductionRules(
+   productionRules::createProductionRules(
          fileName,
          args,
          rawGrammar, 

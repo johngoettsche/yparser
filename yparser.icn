@@ -62,7 +62,7 @@ procedure main(args)
       write("\n(press ENTER to continue)\n")
       getch()
    }
-   rawGrammar::createNonTerminals(fileName, arguments, rawGrammar)
+   grammars::createNonTerminals(fileName, arguments, rawGrammar)
 end
 
 procedure duplicateGrammar(grammarList, grammar)
