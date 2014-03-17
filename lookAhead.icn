@@ -11,33 +11,77 @@ procedure createLookAheads(fileName, args, statesList)
 		state,
 		item,
 		count,
-		newTransition
+		newTransition,
+		thisState,
+		searchLabel,
+		compareLabel,
+		goto,
+		inputTokens,
+		sigma,
+		searchItem,
+		thisItem,
+		transitionType,
+		checkLength,
+		checkString,
+		transitions,
+		transition,
+		outfile,
+		outfileName
 		
 	write("\nCreating actions...\n")
    every state := !statesList do {
+		inputTokens := set()
       every item := !state.getItemsList() do {
-			newTransition := Transition(state, item, statesList)
-			state.addTransition(newTransition)
-			
-			#######################
-			#
-			#  this is where the initially section of transition belongs
-			#
-			#######################
+			sigma := &null
+			sigma := item.getBeta(1)
+			#write("lookAhead: " || state.name || ":" || sigma.result)
+			#if sigma.result ~== "" then { 
+			if \sigma then { #Conditions #2a or 3 of Algorithm 4.8 of Dragon Book
+				searchItem := item.getShift()
+				searchItem.setTxt()			
+				searchLabel := searchItem.label
+				every thisState := !statesList do{
+					thisItem := thisState.getItemsList()[1] 
+					if thisItem.left === searchItem.left then {
+						compareLabel := thisItem.label
+						if searchLabel == compareLabel then goto := thisState
+					}
+				}
+				if \goto then {
+					transitionType := "shift"
+				} else write("unable to find: " || searchLabel)
+			} else { #Condition #2b of Algorithm 4.8 in Dragon Book
+				transitionType := "reduce" 
+				checkLength := *item.left.result
+				checkString := item.left.result[1:checkLength]
+				if \item.getLastAlpha() then { #Condition #2c of Algorithm 4.8 of Dragon Book
+					if item.left.getType() == "prime" & item.getLastAlpha().getResult() == checkString then {
+						transitionType := "accept"
+						goto := &null
+					}	
+				}
+			}
+			if not member(inputTokens, sigma) then {
+				insert(inputTokens, sigma)
+				newTransition := Transition(state, item, transitionType, sigma, goto)
+				state.addTransition(newTransition)
+			} else { # select goto state with the shortest Beta, this is my assumption it may have to be removed.
+				if \transitions then 
+					every transition := !transitions do {
+						if transition.sigma === sigma then # select goto state with the shortest Beta
+							if *transition.item.beta > item.beta then transition.goto := goto
+					}
+			}
 		}
    }
 
 	if *args > 0 then if member(args, "a") then {
-		write("lookAhead test")
       outfile := &output
       outfileName := fileName || "-states.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
-		
 		write("\nState Transitions:\n") 
       if outfile ~=== &output then every state := !statesList do write(outfile, state.getTxt())
-      
 		every state := !statesList do write(state.getActionTxt())
-		
       classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()

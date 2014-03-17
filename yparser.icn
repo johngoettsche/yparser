@@ -61,6 +61,7 @@ procedure main(args)
          every write(outfile, "\t" || !rawGrammar)
       }
       every write("\t" || !rawGrammar)
+		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }

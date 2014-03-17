@@ -48,6 +48,7 @@ procedure createProductionRules(
       every output := !nonTerminalsSet do {
          every write("\t" || output.getTxt())
       }
+		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }

@@ -41,6 +41,7 @@ procedure createNonTerminals(fileName, args, rawGrammar)
       write("\nNon Terminals\n") 
       if outfile ~=== &output then every write(outfile, !nonTerminalWords)
       every write("\t" || !nonTerminalWords)
+		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }  
@@ -58,7 +59,8 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       terminalCheckSet, 
       terminal,
       outfile,
-      outfileName
+      outfileName,
+		terminalsWordList
       
 	write("Creating Terminals...\n")
    terminalsWordList := []
@@ -78,6 +80,7 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       write("\nTerminals\n") 
       if outfile ~=== &output then every write(outfile, !terminalsList)
       every terminal := !terminalsList do write("\t" || terminal.result)
+		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }  

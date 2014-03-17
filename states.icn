@@ -70,7 +70,6 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet)
       write("\nStates:\n") 
       if outfile ~=== &output then every state := !statesList do write(outfile, state.label)
       every state := !statesList do write(state.label)
-		
       classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()

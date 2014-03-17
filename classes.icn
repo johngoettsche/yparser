@@ -305,53 +305,21 @@ initially()
    beta := []
 end
 
-class Transition(type, sigma, label)
+class Transition(transitionType, state, item, sigma, label, goto)
 	method getLabel()
 		return label
 	end
 
-initially(state, item, statesList)
+initially(newState, newItem, newType, newSigma, newGoto)
 # creates transitions based upon algorithm 4.8 on page 227
 # of the Dragon Book
-
-	local 
-		thisState,
-		searchLabel,
-		compareLabel,
-		goto
-		
-	type := "error" 
-	label := type || "\n"
-	sigma := item.getBeta(1)
-	if \sigma then {
-		searchItem := item.getShift()
-		searchItem.setTxt()			
-		searchLabel := searchItem.label
-		every thisState := !statesList do{
-			thisItem := thisState.getItemsList()[1] 
-			#every thisItem := !thisState.getItemsList() do {
-				if thisItem.left === searchItem.left then {
-					compareLabel := thisItem.label
-					if searchLabel == compareLabel then goto := thisState
-				}
-			#}
-		}
-		if \goto then {
-			type := "shift"
-			label := "\tgoto(" || state.name || ", " || sigma.getResult() || ") = " || goto.name || "\n"
-		}
-		else write("unable to find: " || searchLabel)
-	} else { #2b
-		type := "reduce" 
-		label := "\t" || type || item.label		
-		checkLength := *item.left.result
-		checkString := item.left.result[1:checkLength]
-		if \item.getLastAlpha() then { #
-			if item.left.type == "prime" & item.getLastAlpha().result == checkString then {
-				type := "accept"
-				goto := &null
-				label := "\t" || type || "\n"
-			}	
-		}
-	}
+	state := newState
+	item := newItem
+	goto := newGoto
+	transitionType := newType
+	sigma := newSigma
+	if transitionType == "accept" then label := "\t" || transitionType || "\n"
+	else if transitionType == "shift" then label := "\tgoto(" || state.name || ", " || sigma.getResult() || ") = " || goto.name || "\n"
+	else if transitionType == "reduce" then label := "\t" || transitionType || item.label		
+	else transitionType := "error"
 end
