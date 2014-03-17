@@ -3,6 +3,8 @@
 #  University of Idaho
 
 package productionRules
+
+import classes
 import states
 
 procedure createProductionRules(
@@ -23,7 +25,8 @@ procedure createProductionRules(
       output,
       outfile,
       outfileName
-      
+
+	write("Creating Production Rules...\n")
    grammar := makeProductionRules(
          rawGrammar, 
          nonTerminalCheckSet, 
@@ -32,7 +35,6 @@ procedure createProductionRules(
          terminalsSet)
 
    #print results
-
    if *args > 0 then if member(args, "p") then {
       outfile := &output
       outfileName := fileName || "-productionRules.txt"
@@ -49,8 +51,8 @@ procedure createProductionRules(
       write("\n(press ENTER to continue)\n")
       getch()
    }
-   states::createStates(fileName, args, nonTerminalsSet, terminalsSet)
    
+   states::createStates(fileName, args, nonTerminalsSet, terminalsSet)  
 end
 
 procedure makeProductionRules(
@@ -58,7 +60,7 @@ procedure makeProductionRules(
       nonTerminalCheckSet, 
       nonTerminalsSet, 
       terminalCheckSet, 
-      terminalsSet)
+      terminalsList)
 #  generates grammar rules from the rawGrammar, 
 #  nonTerminalCheckSet, nonTerminalSet, terminalCheckSet
 #  terminalsSet and populates each rule with the appropriate
@@ -79,8 +81,7 @@ procedure makeProductionRules(
                if \nonTerm then {
                   if nonTerm.getResult() == rawGrammar[x] then { 
                      nonTerminal := nonTerm
-                     productionRule := ProductionRule()
-                     #write(nonTerminal.getResult() || ":")
+                     productionRule := classes::ProductionRule()
                      x := x + 1
                   }
                }
@@ -89,7 +90,6 @@ procedure makeProductionRules(
             every nonTerm := !nonTerminalsSet do {
                if \nonTerm then {
                   if nonTerm.getResult() == rawGrammar[x] then {
-                     #write("adding non terminal to grammar")
                      productionRule.addVariable(nonTerm)
                   }
                }
@@ -99,7 +99,7 @@ procedure makeProductionRules(
 
       #is a terminal?
       if member(terminalCheckSet, rawGrammar[x]) & rawGrammar[x] ~== "|" then {
-         every term := !terminalsSet do {
+         every term := !terminalsList do {
             if \term then {
                if term.getResult() == rawGrammar[x] then productionRule.addVariable(term)
             }
@@ -108,58 +108,18 @@ procedure makeProductionRules(
 
       #is an or?
       if rawGrammar[x] == "|" then {
-         #write(productionRule.getTxt())
          nonTerminal.addProductionRule(productionRule)
-         productionRule := ProductionRule()
+         productionRule := classes::ProductionRule()
       }
 
       #is end of nonTerminal?
       if rawGrammar[x] == ";" then {
-        # write(productionRule.getTxt() || "\n")
          nonTerminal.addProductionRule(productionRule)
          if rawGrammar[x + 1] == "|" then {
-            productionRule := ProductionRule()
+            productionRule := classes::ProductionRule()
             x +:= 1
          }
       }
-      #write("\t\t" || rawGrammar[x])
       x +:= 1
    }
-end
-
-class ProductionRule(variables)
-#  used to hold all the inputs for each grammar rule
-# the stuff that gets converted over into a non-terminal, a RHS.
-   
-   method addVariable(newVariable) 
-      put(variables, newVariable)
-   end
-
-   method getVariables()
-      local variable
-      every variable := !variables do suspend variable
-   end
-
-   method getVariableList()
-      return variables
-   end
-   
-   method getVariable(v)
-      return variables[v]
-   end
-
-   method getTxt()
-      local x, str
-      str := ""
-      x := 1
-      while x <= *variables do {
-         #write(variables[x].getResult())
-         str := str || variables[x].getResult() || " "
-         x +:= 1
-      }
-      return str
-   end
-
-initially
-   variables := []
 end

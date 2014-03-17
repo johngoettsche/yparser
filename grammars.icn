@@ -4,6 +4,8 @@
 
 #grammars.icn
 package grammars
+
+import classes
 import productionRules
 
 procedure createNonTerminals(fileName, args, rawGrammar)  
@@ -19,7 +21,8 @@ procedure createNonTerminals(fileName, args, rawGrammar)
       nonTerminalsList,
       outfile,
       outfileName
-      
+   
+	write("Creating Non-Terminals...\n")
    nonTerminalWords := []
    nonTerminalCheckSet := set()
    every nonTerminal := getNonTerminals(rawGrammar) do 
@@ -57,15 +60,16 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       outfile,
       outfileName
       
-   terminalsList := []
+	write("Creating Terminals...\n")
+   terminalsWordList := []
    terminalCheckSet := set()
    every terminal := getTerminals(rawGrammar, nonTerminalCheckSet) do 
       if not member(terminalCheckSet, terminal) then { 
-         put(terminalsList, terminal)
+         put(terminalsWordList, terminal)
          insert(terminalCheckSet, terminal)
       }
-   terminalsSet := []
-   every put(terminalsSet, makeTerminalsSet(terminalsList))
+   terminalsList := []
+   every put(terminalsList, makeTerminalsSet(terminalsWordList))
 
    if *args > 0 then if member(args, "t") then {
       outfile := &output
@@ -73,7 +77,7 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       if member(args, "o") then outfile := open(outfileName, "c")
       write("\nTerminals\n") 
       if outfile ~=== &output then every write(outfile, !terminalsList)
-      every write("\t" || !terminalsList)
+      every terminal := !terminalsList do write("\t" || terminal.result)
       write("\n(press ENTER to continue)\n")
       getch()
    }  
@@ -85,7 +89,7 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
          nonTerminalCheckSet, 
          nonTerminalsSet, 
          terminalCheckSet, 
-         terminalsSet)
+         terminalsList)
 end
 
 procedure getNonTerminals(wordList)
@@ -107,7 +111,7 @@ procedure makeNonTerminalsSet(nonTerminalWords)
 
    local x, result, thisNonTerminal
    every result := !nonTerminalWords do {
-      thisNonTerminal := NonTerminal()
+      thisNonTerminal := classes::NonTerminal()
       thisNonTerminal.setResult(result)
       suspend thisNonTerminal
    }
@@ -118,7 +122,7 @@ procedure makeTerminalsSet(terminalsList)
 
    local result, thisTerminal
    every result := !terminalsList do {
-      thisTerminal := Terminal(0)
+      thisTerminal := classes::Terminal("terminal")
       thisTerminal.setResult(result)
       suspend thisTerminal
    }
@@ -130,8 +134,6 @@ procedure getTerminals(wordList, nonTerminalsList)
 
    local x
    x := 1
-   #write(list[x])
-   #every write(!nonTerminalsList)
    while wordList[x] do {
       if not member(nonTerminalsList, wordList[x]) then {
          if not (wordList[x] == (":"|";"|"|")) then
@@ -139,70 +141,4 @@ procedure getTerminals(wordList, nonTerminalsList)
       }
       x := x + 1
    }
-end
-
-class Terminal(type, result)
-#  used to hold a single terminal
-
-   method setResult(newResult)
-      result := newResult
-   end
-
-   method getType()
-      return type
-   end
-
-   method getResult()
-      return result
-   end   
-
-initially (thisType)
-   type := thisType
-end
-
-class NonTerminal(type, result, productionRules)
-#  used to hold a single non terminal
-
-   method setResult(newResult)
-      result := newResult
-   end
-
-   method addProductionRule(newProductionRule)
-      put(productionRules, newProductionRule)
-   end
-
-   method getType()
-      return type
-   end
-
-   method getResult()
-      return result
-   end
-
-   method findRule(matchRule)
-      local productionRule
-      every productionRule := !productionRules do
-         if productionRule == matchRule then return productionRule
-   end
-      
-   method getProductionRule(r)
-      return productionRules[r]
-   end
-
-   method getProductionRules()
-      local productionRule
-      every productionRule := !productionRules do suspend productionRule
-   end
-
-   method getTxt()      
-      local productionRule, thisString
-      every productionRule := !productionRules do {
-         thisString := result || " <- " || productionRule.getTxt()
-         suspend thisString
-      }
-   end
-   
-initially
-   type := 1
-   productionRules := []
 end

@@ -7,11 +7,12 @@ import grammars
 procedure main(args)
 #  this tool is executed as follows:
 #  yparser-states [-options] filename
-#     -r   shows the raw grammar
-#     -n  shows all the non terminals
-#     -t   shows all the terminals
-#     -p  shows production rules
-#     -s  shows states
+#     -r		shows the raw grammar
+#     -n  	shows all the non terminals
+#     -t   	shows all the terminals
+#     -p  	shows production rules
+#     -s  	shows states
+#		-a  	shows actions: accept, shift/goto, reduce
 #
 #     -o  to write to the youtput.txt file
 #
@@ -35,7 +36,8 @@ procedure main(args)
       outfile, 
       fileName, 
       outfileName
-      
+		
+	write("Running yparser...\n\n") 
    x := 1
    arguments := '' #set up cset for options
    y := *args[x]
@@ -92,7 +94,7 @@ procedure makeSubStateGrammars(thisRule, thisNonTerminal)
    every thisVariable := thisRule.getVariables() do 
    {
       mySubGrammar.addPossible(thisVariable)
-      if thisVariable.getType() == 1 then 
+      if thisVariable.getType() == "terminal" then 
       {
          while \newProductionRule := thisVariable.getProductionRule(1) do 
          {

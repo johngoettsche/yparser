@@ -1,0 +1,357 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+package classes
+#  Contains the classes associated with yparser
+
+procedure printTime()
+	local 
+		time,
+		h,
+		m,
+		seconds
+		
+	time := &time
+   h := time / 3600000
+   time := time % 3600000
+   m := time / 60000
+   time := time % 60000
+   seconds := time / 1000.0
+   write("\nTime elapsed: " || h || ":" || m || ":" || seconds)
+end
+
+class Terminal(type, result)
+#  used to hold a single terminal
+
+   method setResult(newResult)
+      result := newResult
+   end
+
+   method getType()
+      return type
+   end
+
+   method getResult()
+      return result
+   end   
+
+initially (thisType)
+   type := thisType
+end
+
+class NonTerminal(type, result, productionRules)
+#  used to hold a single non terminal
+
+   method setResult(newResult)
+      result := newResult
+   end
+
+   method addProductionRule(newProductionRule)
+      put(productionRules, newProductionRule)
+   end
+
+   method getType()
+      return type
+   end
+
+   method getResult()
+      return result
+   end
+
+   method findRule(matchRule)
+      local productionRule
+      every productionRule := !productionRules do
+         if productionRule == matchRule then return productionRule
+   end
+      
+   method getProductionRule(r)
+      return productionRules[r]
+   end
+
+   method getProductionRules()
+      local productionRule
+      every productionRule := !productionRules do suspend productionRule
+   end
+
+   method getTxt()      
+      local productionRule, thisString
+      every productionRule := !productionRules do {
+         thisString := result || " <- " || productionRule.getTxt()
+         suspend thisString
+      }
+   end
+   
+initially
+   type := "nonTerminal"
+   productionRules := []
+end
+
+class ProductionRule(variables)
+#  used to hold all the inputs for each grammar rule
+# the stuff that gets converted over into a non-terminal, a RHS.
+   
+   method addVariable(newVariable) 
+      put(variables, newVariable)
+   end
+
+   method getVariables()
+      local variable
+      every variable := !variables do suspend variable
+   end
+
+   method getVariableList()
+      return variables
+   end
+   
+   method getVariable(v)
+      return variables[v]
+   end
+
+   method getTxt()
+      local x, str
+      str := ""
+      x := 1
+      while x <= *variables do {
+         #write(variables[x].getResult())
+         str := str || variables[x].getResult() || " "
+         x +:= 1
+      }
+      return str
+   end
+
+initially
+   variables := []
+end
+
+class State(name, items, label, transitions)
+#  this class defines a state
+
+   method setName(newName)
+      name := newName
+   end
+
+   method addItem(itemProduction)
+      put(items, itemProduction)
+   end
+   
+   method addAlpha(newAlpha, ItemNumber)
+      items[ItemNumber].addAlpha(newAlpha)
+   end
+	
+	method addTransition(transition)
+		put(transitions, transition)
+	end
+	
+   method getName()
+      return name
+   end
+
+   method getItems()
+      local itemProduction
+      every itemProduction := !items do suspend itemProduction
+   end
+
+   method getItemsList()
+      return items
+   end
+
+   method setTxt()
+      local txt, line
+      txt := name || "\n"
+      every line := !items do txt := txt || line.label
+      label := txt
+   end
+	
+	method getActionTxt()
+		local txt, line
+		txt := name || "\n"
+		every line := !transitions do txt := txt || line.getLabel()
+		label := txt
+		return label
+	end
+
+initially(newName, thisPrime, initialItem)
+   local 
+      result,
+      element,
+      newItem,
+      newAlpha
+   
+   label :=""
+   name := newName
+   items := []
+	transitions := []
+   
+   #set up initialItem
+   newItem := Item()
+   newItem.setLeft(thisPrime)
+   every newAlpha := initialItem.getAlpha() do {
+      newItem.addAlpha(newAlpha)
+   }
+   every element := initialItem.getBetas() do
+      newItem.addBeta(element)
+   newItem.setTxt()
+   put(items, newItem)
+   setTxt()
+end
+
+class Item(left, alpha, beta, label)
+#  this class defines an Item for a state
+
+   method setLeft(newLeft)
+      left := newLeft
+   end
+   
+   method addAlpha(newAlpha)
+      put(alpha, newAlpha)
+   end
+   
+   method addBeta(newBeta)
+         put(beta, newBeta)
+   end
+   
+   method setBetaList(newBetaList)
+      beta := newBetaList
+   end
+   
+   method getLeft()
+      return left
+   end
+   
+   method getAlpha()
+      local element
+      every element := !alpha do suspend element
+   end
+   
+   method getAlphaList()
+      return alpha
+   end
+   
+   method getLastAlpha()
+      local element, thisElement
+      every thisElement := getAlpha() do {
+         element := thisElement
+      }
+      return element
+   end
+   
+   method getBetas()
+      local thisBeta
+      every thisBeta := !beta do suspend thisBeta
+   end
+   
+   method getBetaList()
+      return beta
+   end
+   
+   method getBeta(v)
+      return beta[v]
+   end
+   
+   method getShift()
+      local 
+         newItem, 
+         element, 
+         count
+      
+      if *beta > 0 then {
+         newItem := Item()
+         newItem.setLeft(left)
+         every element := getAlpha() do newItem.addAlpha(element)
+         count := 1
+         every element := getBetas() do {
+            if count = 1 then {
+               newItem.addAlpha(element)
+            }   
+            if count > 1 then {
+               newItem.addBeta(element)
+            }
+            count +:= 1
+         }
+         newItem.setTxt()
+         return newItem
+      }   
+   end
+   
+   method setTxt()
+   #prepares the textual representation of the Item
+      local 
+         p, 
+         g, 
+         element,
+         txt
+         
+      txt := "\t" || left.getResult() || " -> "
+      p := 1
+      while p <= *alpha do {
+         txt := txt || " " || alpha[p].getResult()
+         p +:= 1
+      }      
+      txt := txt || "."
+      g := 1
+      while g <= *beta do {
+         element := beta[g]
+         if \element then txt := txt || element.getResult() || " "
+         g +:= 1
+      }
+      txt := txt || "\n"
+      label := txt
+   end
+   
+initially()
+   label := ""
+   alpha := []
+   beta := []
+end
+
+class Transition(type, sigma, label)
+	method getLabel()
+		return label
+	end
+
+initially(state, item, statesList)
+# creates transitions based upon algorithm 4.8 on page 227
+# of the Dragon Book
+
+	local 
+		thisState,
+		searchLabel,
+		compareLabel,
+		goto
+		
+	type := "error" 
+	label := type || "\n"
+	sigma := item.getBeta(1)
+	if \sigma then {
+		searchItem := item.getShift()
+		searchItem.setTxt()			
+		searchLabel := searchItem.label
+		every thisState := !statesList do{
+			thisItem := thisState.getItemsList()[1] 
+			#every thisItem := !thisState.getItemsList() do {
+				if thisItem.left === searchItem.left then {
+					compareLabel := thisItem.label
+					if searchLabel == compareLabel then goto := thisState
+				}
+			#}
+		}
+		if \goto then {
+			type := "shift"
+			label := "\tgoto(" || state.name || ", " || sigma.getResult() || ") = " || goto.name || "\n"
+		}
+		else write("unable to find: " || searchLabel)
+	} else { #2b
+		type := "reduce" 
+		label := "\t" || type || item.label		
+		checkLength := *item.left.result
+		checkString := item.left.result[1:checkLength]
+		if \item.getLastAlpha() then { #
+			if item.left.type == "prime" & item.getLastAlpha().result == checkString then {
+				type := "accept"
+				goto := &null
+				label := "\t" || type || "\n"
+			}	
+		}
+	}
+end

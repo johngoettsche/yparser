@@ -4,5 +4,8 @@
         <File name="productionRules.icn" />
         <File name="states.icn" />
         <File name="yparser.icn" />
+        <File name="lookAhead.icn" />
+        <File name="Classes.icn" />
+        <File name="makefile" />
     </Project>
 </NotepadPlus>
