@@ -1,0 +1,243 @@
+I0
+	goto(I0, data) = I1
+	goto(I0, cards) = I2
+	goto(I0, error) = I3
+	goto(I0, CLASS) = I4
+	goto(I0, responsibilities) = I5
+	goto(I0, RESPONSIBILITY) = I6
+	goto(I0, attributes) = I7
+	goto(I0, CHAR) = I8
+	goto(I0, INT) = I9
+	goto(I0, colabrations) = I10
+	goto(I0, COLABRATION) = I11
+	goto(I0, HAS_A) = I12
+	goto(I0, KIND_OF) = I13
+	goto(I0, USING) = I14
+
+I1
+	accept
+
+I2
+	goto(I2, cards) = I15
+	goto(I2, crc) = I16
+
+I3
+	goto(I3, crc) = I17
+	goto(I3, responsibility) = I18
+	goto(I3, STRING) = I19
+	goto(I3, PTR) = I20
+	goto(I3, class) = I21
+
+I4
+	goto(I4, error) = I22
+
+I5
+	goto(I5, responsibility) = I23
+
+I6
+	goto(I6, error) = I24
+
+I7
+	goto(I7, attribute) = I25
+
+I8
+	goto(I8, VARIABLE) = I26
+	goto(I8, PTR) = I27
+	goto(I8, error) = I28
+
+I9
+	goto(I9, PTR) = I29
+	goto(I9, error) = I30
+
+I10
+	goto(I10, colabration) = I31
+
+I11
+	goto(I11, error) = I32
+
+I12
+	goto(I12, class) = I33
+	goto(I12, error) = I34
+
+I13
+	goto(I13, class) = I35
+
+I14
+	goto(I14, error) = I36
+
+I15
+	goto(I15, crc) = I37
+
+I16
+	reduce	data ->  cards crc.
+
+I17
+	goto(I17, CRC) = I38
+
+I18
+	goto(I18, RESPONSIBILITY) = I39
+
+I19
+	reduce	data ->  error STRING.
+
+I20
+	goto(I20, STRING) = I40
+
+I21
+	reduce	data ->  error class.
+
+I22
+	goto(I22, className) = I41
+
+I23
+	reduce	data ->  responsibilities responsibility.
+
+I24
+	goto(I24, attributes) = I42
+
+I25
+	goto(I25, attribute) = I43
+
+I26
+	reduce	data ->  CHAR VARIABLE.
+
+I27
+	goto(I27, VARIABLE) = I44
+	goto(I27, error) = I45
+
+I28
+	reduce	data ->  CHAR error.
+
+I29
+	goto(I29, VARIABLE) = I46
+	goto(I29, error) = I47
+
+I30
+	reduce	data ->  INT error.
+
+I31
+	goto(I31, colabration) = I48
+
+I32
+	goto(I32, END) = I49
+
+I33
+	reduce	data ->  HAS_A class.
+
+I34
+	reduce	data ->  HAS_A error.
+
+I35
+	reduce	data ->  KIND_OF class.
+
+I36
+	reduce	data ->  USING error.
+
+I37
+	reduce	data ->  cards cards crc.
+
+I38
+	goto(I38, class) = I50
+
+I39
+	goto(I39, methodName) = I51
+
+I40
+	reduce	data ->  error PTR STRING.
+
+I41
+	goto(I41, CLASSNAME) = I52
+
+I42
+	goto(I42, END) = I53
+
+I43
+	goto(I43, INT) = I54
+
+I44
+	reduce	data ->  CHAR PTR VARIABLE.
+
+I45
+	goto(I45, colabrations) = I55
+
+I46
+	reduce	data ->  INT PTR VARIABLE.
+
+I47
+	reduce	data ->  INT PTR error.
+
+I48
+	goto(I48, COLABRATION) = I56
+
+I49
+	goto(I49, colabrationType) = I57
+
+I50
+	goto(I50, responsibilities) = I58
+
+I51
+	goto(I51, attributes) = I59
+
+I52
+	goto(I52, responsibilities) = I60
+
+I53
+	goto(I53, methodName) = I61
+
+I54
+	goto(I54, VARIABLE) = I62
+
+I55
+	reduce	data ->  CHAR PTR error colabrations.
+
+I56
+	goto(I56, colabrationType) = I63
+
+I57
+	goto(I57, USING) = I64
+
+I58
+	goto(I58, colabrations) = I65
+
+I59
+	goto(I59, END) = I66
+
+I60
+	goto(I60, responsibility) = I67
+
+I61
+	goto(I61, METHODNAME) = I68
+
+I62
+	reduce	data ->  attributes attribute attribute INT VARIABLE.
+
+I63
+	goto(I63, END) = I69
+
+I64
+	goto(I64, class) = I70
+
+I65
+	goto(I65, END) = I71
+
+I66
+	reduce	data ->  error responsibility RESPONSIBILITY methodName attributes END.
+
+I67
+	reduce	data ->  CLASS error className CLASSNAME responsibilities responsibility.
+
+I68
+	goto(I68, attributes) = I72
+
+I69
+	reduce	data ->  colabrations colabration colabration COLABRATION colabrationType END.
+
+I70
+	reduce	data ->  COLABRATION error END colabrationType USING class.
+
+I71
+	goto(I71, class) = I72
+
+I72
+	reduce	data ->  RESPONSIBILITY error attributes END methodName METHODNAME attributes.
+

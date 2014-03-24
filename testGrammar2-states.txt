@@ -1,0 +1,256 @@
+I0
+	data' -> .data 
+	data -> .cards cards crc 
+	data -> .cards crc 
+	data -> .error crc CRC class responsibilities colabrations END class CLASS className 
+	data -> .CLASS error className CLASSNAME responsibilities responsibility 
+	data -> .responsibilities responsibility 
+	data -> .error responsibility RESPONSIBILITY methodName attributes END 
+	data -> .RESPONSIBILITY error attributes END methodName METHODNAME attributes 
+	data -> .attributes attribute attribute INT VARIABLE 
+	data -> .CHAR VARIABLE 
+	data -> .INT PTR VARIABLE 
+	data -> .CHAR PTR VARIABLE 
+	data -> .error STRING 
+	data -> .error PTR STRING 
+	data -> .INT error 
+	data -> .CHAR error 
+	data -> .INT PTR error 
+	data -> .CHAR PTR error colabrations 
+	data -> .colabrations colabration colabration COLABRATION colabrationType END 
+	data -> .COLABRATION error END colabrationType USING class 
+	data -> .HAS_A class 
+	data -> .KIND_OF class 
+	data -> .error class 
+	data -> .USING error 
+	data -> .HAS_A error 
+
+I1
+	data' ->  data.
+
+I2
+	data ->  cards.cards crc 
+	data ->  cards.crc 
+
+I3
+	data ->  error.crc CRC class responsibilities colabrations END class CLASS className 
+	data ->  error.responsibility RESPONSIBILITY methodName attributes END 
+	data ->  error.STRING 
+	data ->  error.PTR STRING 
+	data ->  error.class 
+
+I4
+	data ->  CLASS.error className CLASSNAME responsibilities responsibility 
+
+I5
+	data ->  responsibilities.responsibility 
+
+I6
+	data ->  RESPONSIBILITY.error attributes END methodName METHODNAME attributes 
+
+I7
+	data ->  attributes.attribute attribute INT VARIABLE 
+
+I8
+	data ->  CHAR.VARIABLE 
+	data ->  CHAR.PTR VARIABLE 
+	data ->  CHAR.error 
+	data ->  CHAR.PTR error colabrations 
+
+I9
+	data ->  INT.PTR VARIABLE 
+	data ->  INT.error 
+	data ->  INT.PTR error 
+
+I10
+	data ->  colabrations.colabration colabration COLABRATION colabrationType END 
+
+I11
+	data ->  COLABRATION.error END colabrationType USING class 
+
+I12
+	data ->  HAS_A.class 
+	data ->  HAS_A.error 
+
+I13
+	data ->  KIND_OF.class 
+
+I14
+	data ->  USING.error 
+
+I15
+	data ->  cards cards.crc 
+
+I16
+	data ->  cards crc.
+
+I17
+	data ->  error crc.CRC class responsibilities colabrations END class CLASS className 
+
+I18
+	data ->  error responsibility.RESPONSIBILITY methodName attributes END 
+
+I19
+	data ->  error STRING.
+
+I20
+	data ->  error PTR.STRING 
+
+I21
+	data ->  error class.
+
+I22
+	data ->  CLASS error.className CLASSNAME responsibilities responsibility 
+
+I23
+	data ->  responsibilities responsibility.
+
+I24
+	data ->  RESPONSIBILITY error.attributes END methodName METHODNAME attributes 
+
+I25
+	data ->  attributes attribute.attribute INT VARIABLE 
+
+I26
+	data ->  CHAR VARIABLE.
+
+I27
+	data ->  CHAR PTR.VARIABLE 
+	data ->  CHAR PTR.error colabrations 
+
+I28
+	data ->  CHAR error.
+
+I29
+	data ->  INT PTR.VARIABLE 
+	data ->  INT PTR.error 
+
+I30
+	data ->  INT error.
+
+I31
+	data ->  colabrations colabration.colabration COLABRATION colabrationType END 
+
+I32
+	data ->  COLABRATION error.END colabrationType USING class 
+
+I33
+	data ->  HAS_A class.
+
+I34
+	data ->  HAS_A error.
+
+I35
+	data ->  KIND_OF class.
+
+I36
+	data ->  USING error.
+
+I37
+	data ->  cards cards crc.
+
+I38
+	data ->  error crc CRC.class responsibilities colabrations END class CLASS className 
+
+I39
+	data ->  error responsibility RESPONSIBILITY.methodName attributes END 
+
+I40
+	data ->  error PTR STRING.
+
+I41
+	data ->  CLASS error className.CLASSNAME responsibilities responsibility 
+
+I42
+	data ->  RESPONSIBILITY error attributes.END methodName METHODNAME attributes 
+
+I43
+	data ->  attributes attribute attribute.INT VARIABLE 
+
+I44
+	data ->  CHAR PTR VARIABLE.
+
+I45
+	data ->  CHAR PTR error.colabrations 
+
+I46
+	data ->  INT PTR VARIABLE.
+
+I47
+	data ->  INT PTR error.
+
+I48
+	data ->  colabrations colabration colabration.COLABRATION colabrationType END 
+
+I49
+	data ->  COLABRATION error END.colabrationType USING class 
+
+I50
+	data ->  error crc CRC class.responsibilities colabrations END class CLASS className 
+
+I51
+	data ->  error responsibility RESPONSIBILITY methodName.attributes END 
+
+I52
+	data ->  CLASS error className CLASSNAME.responsibilities responsibility 
+
+I53
+	data ->  RESPONSIBILITY error attributes END.methodName METHODNAME attributes 
+
+I54
+	data ->  attributes attribute attribute INT.VARIABLE 
+
+I55
+	data ->  CHAR PTR error colabrations.
+
+I56
+	data ->  colabrations colabration colabration COLABRATION.colabrationType END 
+
+I57
+	data ->  COLABRATION error END colabrationType.USING class 
+
+I58
+	data ->  error crc CRC class responsibilities.colabrations END class CLASS className 
+
+I59
+	data ->  error responsibility RESPONSIBILITY methodName attributes.END 
+
+I60
+	data ->  CLASS error className CLASSNAME responsibilities.responsibility 
+
+I61
+	data ->  RESPONSIBILITY error attributes END methodName.METHODNAME attributes 
+
+I62
+	data ->  attributes attribute attribute INT VARIABLE.
+
+I63
+	data ->  colabrations colabration colabration COLABRATION colabrationType.END 
+
+I64
+	data ->  COLABRATION error END colabrationType USING.class 
+
+I65
+	data ->  error crc CRC class responsibilities colabrations.END class CLASS className 
+
+I66
+	data ->  error responsibility RESPONSIBILITY methodName attributes END.
+
+I67
+	data ->  CLASS error className CLASSNAME responsibilities responsibility.
+
+I68
+	data ->  RESPONSIBILITY error attributes END methodName METHODNAME.attributes 
+
+I69
+	data ->  colabrations colabration colabration COLABRATION colabrationType END.
+
+I70
+	data ->  COLABRATION error END colabrationType USING class.
+
+I71
+	data ->  error crc CRC class responsibilities colabrations END.class CLASS className 
+
+I72
+	data ->  RESPONSIBILITY error attributes END methodName METHODNAME attributes.
+
