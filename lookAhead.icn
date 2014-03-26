@@ -5,13 +5,14 @@
 package lookAhead
 
 import classes
+import stateAnalysis
 
 procedure createLookAheads(fileName, args, statesList)
 	local
 		state,
 		item,
 		count,
-		newTransition,
+		newAction,
 		thisState,
 		searchLabel,
 		compareLabel,
@@ -20,11 +21,11 @@ procedure createLookAheads(fileName, args, statesList)
 		sigma,
 		searchItem,
 		thisItem,
-		transitionType,
+		actionType,
 		checkLength,
 		checkString,
-		transitions,
-		transition,
+		actions,
+		action,
 		outfile,
 		outfileName
 		
@@ -48,28 +49,28 @@ procedure createLookAheads(fileName, args, statesList)
 					}
 				}
 				if \goto then {
-					transitionType := "shift"
+					actionType := "shift"
 				} else write("unable to find: " || searchLabel)
 			} else { #Condition #2b of Algorithm 4.8 in Dragon Book
-				transitionType := "reduce" 
+				actionType := "reduce" 
 				checkLength := *item.left.result
 				checkString := item.left.result[1:checkLength]
 				if \item.getLastAlpha() then { #Condition #2c of Algorithm 4.8 of Dragon Book
 					if item.left.getType() == "prime" & item.getLastAlpha().getResult() == checkString then {
-						transitionType := "accept"
+						actionType := "accept"
 						goto := &null
 					}	
 				}
 			}
 			if not member(inputTokens, sigma) then {
 				insert(inputTokens, sigma)
-				newTransition := Transition(state, item, transitionType, sigma, goto)
-				state.addTransition(newTransition)
+				newAction := Action(state, item, actionType, sigma, goto)
+				state.addAction(newAction)
 			} else { # select goto state with the shortest Beta, this is my assumption it may have to be removed.
-				if \transitions then 
-					every transition := !transitions do {
-						if transition.sigma === sigma then # select goto state with the shortest Beta
-							if *transition.item.beta > item.beta then transition.goto := goto
+				if \actions then 
+					every action := !actions do {
+						if action.sigma === sigma then # select goto state with the shortest Beta
+							if *action.item.beta > item.beta then action.goto := goto
 					}
 			}
 		}
@@ -79,13 +80,21 @@ procedure createLookAheads(fileName, args, statesList)
       outfile := &output
       outfileName := fileName || "-lookAhead.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
-		write("\nState Transitions:\n") 
-      if outfile ~=== &output then every state := !statesList do write(outfile, state.getActionTxt())
-		every state := !statesList do write(state.getActionTxt())
+		write("\nState Actions:\n") 
+      if outfile ~=== &output then every state := !statesList do {
+			write(outfile, state.name || "\n")
+			write(outfile, state.getActionTxt())
+		}
+		every state := !statesList do {
+			write("\n" || state.name)
+			write(state.getActionTxt())
+		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }   
+	
+	stateAnalysis::createStateAnalysis(fileName, args, statesList)
 end
 
 

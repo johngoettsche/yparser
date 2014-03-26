@@ -1,0 +1,1019 @@
+version	U12.1.00
+uid	lookAhead.u1-1395852161-0
+impl	local
+link	C:/Users/John/Documents/GitHub/yparser/Classes.u
+link	C:/Users/John/Documents/GitHub/yparser/classes.u
+link	C:/Users/John/Documents/GitHub/yparser/stateAnalysis.u
+global	1
+	0,000005,lookAhead__createLookAheads,3
+
+proc lookAhead__createLookAheads
+	local	0,001000,fileName
+	local	1,001000,args
+	local	2,001000,statesList
+	local	3,000020,state
+	local	4,000020,item
+	local	5,000020,count
+	local	6,000020,newAction
+	local	7,000020,thisState
+	local	8,000020,searchLabel
+	local	9,000020,compareLabel
+	local	10,000020,goto
+	local	11,000020,inputTokens
+	local	12,000020,sigma
+	local	13,000020,searchItem
+	local	14,000020,thisItem
+	local	15,000020,actionType
+	local	16,000020,checkLength
+	local	17,000020,checkString
+	local	18,000020,actions
+	local	19,000020,action
+	local	20,000020,outfile
+	local	21,000020,outfileName
+	local	22,000000,write
+	local	23,000000,set
+	local	24,000000,member
+	local	25,000000,insert
+	local	26,000000,classes__Action
+	local	27,000000,open
+	local	28,000000,classes__printTime
+	local	29,000000,getch
+	local	30,000000,stateAnalysis__createStateAnalysis
+	con	0,010000,21,012,103,162,145,141,164,151,156,147,040,141,143,164,151,157,156,163,056,056,056,012
+	con	1,002000,1,1
+	con	2,010000,5,163,150,151,146,164
+	con	3,010000,16,165,156,141,142,154,145,040,164,157,040,146,151,156,144,072,040
+	con	4,010000,6,162,145,144,165,143,145
+	con	5,010000,5,160,162,151,155,145
+	con	6,010000,6,141,143,143,145,160,164
+	con	7,002000,1,0
+	con	8,010000,1,141
+	con	9,010000,14,055,154,157,157,153,101,150,145,141,144,056,164,170,164
+	con	10,010000,1,157
+	con	11,010000,1,143
+	con	12,010000,16,012,123,164,141,164,145,040,101,143,164,151,157,156,163,072,012
+	con	13,010000,1,012
+	con	14,010000,27,012,050,160,162,145,163,163,040,105,116,124,105,122,040,164,157,040,143,157,156,164,151,156,165,145,051,012
+	declend
+	filen	lookAhead.icn
+	line	10
+	colm	11
+	synt	any
+	mark	L1
+	var	22
+	str	0
+	line	32
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	line	33
+	colm	4
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	var	2
+	line	33
+	colm	19
+	synt	any
+	bang
+	line	33
+	colm	16
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L5
+	pnull
+	var	11
+	var	23
+	line	34
+	colm	35
+	synt	any
+	invoke	0
+	line	34
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L5
+	line	35
+	colm	7
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	var	3
+	line	35
+	colm	27
+	synt	any
+	field	getItemsList
+	line	35
+	colm	40
+	synt	any
+	invoke	0
+	line	35
+	colm	21
+	synt	any
+	bang
+	line	35
+	colm	18
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L8
+	pnull
+	var	12
+	line	36
+	colm	34
+	synt	any
+	keywd	null
+	line	36
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	var	12
+	pnull
+	var	4
+	line	37
+	colm	38
+	synt	any
+	field	getBeta
+	int	1
+	line	37
+	colm	46
+	synt	any
+	invoke	1
+	line	37
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	line	40
+	colm	25
+	synt	ifelse
+	mark	L11
+	pnull
+	var	12
+	line	40
+	colm	28
+	synt	any
+	nonnull
+	unmark
+	mark	L13
+	pnull
+	var	13
+	pnull
+	var	4
+	line	41
+	colm	51
+	synt	any
+	field	getShift
+	line	41
+	colm	60
+	synt	any
+	invoke	0
+	line	41
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	var	13
+	line	42
+	colm	43
+	synt	any
+	field	setTxt
+	line	42
+	colm	50
+	synt	any
+	invoke	0
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	8
+	pnull
+	var	13
+	line	43
+	colm	58
+	synt	any
+	field	label
+	line	43
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	line	44
+	colm	33
+	synt	every
+	mark0
+	pnull
+	var	7
+	pnull
+	var	2
+	line	44
+	colm	52
+	synt	any
+	bang
+	line	44
+	colm	49
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L19
+	pnull
+	var	14
+	pnull
+	pnull
+	var	7
+	line	45
+	colm	62
+	synt	any
+	field	getItemsList
+	line	45
+	colm	75
+	synt	any
+	invoke	0
+	int	1
+	line	45
+	colm	77
+	synt	any
+	subsc
+	line	45
+	colm	50
+	synt	any
+	asgn
+	unmark
+lab L19
+	line	46
+	colm	41
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	14
+	line	46
+	colm	52
+	synt	any
+	field	left
+	pnull
+	var	13
+	line	46
+	colm	72
+	synt	any
+	field	left
+	line	46
+	colm	58
+	synt	any
+	eqv
+	unmark
+	mark	L20
+	pnull
+	var	9
+	pnull
+	var	14
+	line	47
+	colm	73
+	synt	any
+	field	label
+	line	47
+	colm	62
+	synt	any
+	asgn
+	unmark
+lab L20
+	line	48
+	colm	49
+	synt	if
+	mark0
+	pnull
+	var	8
+	var	9
+	line	48
+	colm	64
+	synt	any
+	lexeq
+	unmark
+	pnull
+	var	10
+	var	7
+	line	48
+	colm	90
+	synt	any
+	asgn
+	line	48
+	colm	49
+	synt	endif
+	line	46
+	colm	41
+	synt	endif
+	unmark
+lab L17
+	efail
+lab L18
+	line	44
+	colm	33
+	synt	endevery
+	unmark
+lab L16
+	line	51
+	colm	33
+	synt	ifelse
+	mark	L21
+	pnull
+	var	10
+	line	51
+	colm	36
+	synt	any
+	nonnull
+	unmark
+	pnull
+	var	15
+	str	2
+	line	52
+	colm	52
+	synt	any
+	asgn
+	goto	L22
+lab L21
+	var	22
+	pnull
+	str	3
+	var	8
+	line	53
+	colm	65
+	synt	any
+	cat
+	line	53
+	colm	45
+	synt	any
+	invoke	1
+lab L22
+	line	51
+	colm	33
+	synt	endifelse
+	goto	L12
+lab L11
+	mark	L23
+	pnull
+	var	15
+	str	4
+	line	55
+	colm	44
+	synt	any
+	asgn
+	unmark
+lab L23
+	mark	L24
+	pnull
+	var	16
+	pnull
+	pnull
+	pnull
+	var	4
+	line	56
+	colm	53
+	synt	any
+	field	left
+	line	56
+	colm	58
+	synt	any
+	field	result
+	line	56
+	colm	48
+	synt	any
+	size
+	line	56
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L24
+	mark	L25
+	pnull
+	var	17
+	pnull
+	pnull
+	pnull
+	var	4
+	line	57
+	colm	52
+	synt	any
+	field	left
+	line	57
+	colm	57
+	synt	any
+	field	result
+	int	1
+	var	16
+	line	57
+	colm	66
+	synt	any
+	synt	any
+	sect
+	line	57
+	colm	45
+	synt	any
+	asgn
+	unmark
+lab L25
+	line	58
+	colm	33
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	58
+	colm	41
+	synt	any
+	field	getLastAlpha
+	line	58
+	colm	54
+	synt	any
+	invoke	0
+	line	58
+	colm	36
+	synt	any
+	nonnull
+	unmark
+	line	59
+	colm	41
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	4
+	line	59
+	colm	48
+	synt	any
+	field	left
+	line	59
+	colm	53
+	synt	any
+	field	getType
+	line	59
+	colm	61
+	synt	any
+	invoke	0
+	str	5
+	line	59
+	colm	64
+	synt	any
+	lexeq
+	pop
+	pnull
+	pnull
+	pnull
+	var	4
+	line	59
+	colm	81
+	synt	any
+	field	getLastAlpha
+	line	59
+	colm	94
+	synt	any
+	invoke	0
+	line	59
+	colm	96
+	synt	any
+	field	getResult
+	line	59
+	colm	106
+	synt	any
+	invoke	0
+	var	17
+	line	59
+	colm	109
+	synt	any
+	lexeq
+	unmark
+	mark	L26
+	pnull
+	var	15
+	str	6
+	line	60
+	colm	60
+	synt	any
+	asgn
+	unmark
+lab L26
+	pnull
+	var	10
+	line	61
+	colm	57
+	synt	any
+	keywd	null
+	line	61
+	colm	54
+	synt	any
+	asgn
+	line	59
+	colm	41
+	synt	endif
+	line	58
+	colm	33
+	synt	endif
+lab L12
+	line	40
+	colm	25
+	synt	endifelse
+	unmark
+lab L10
+	line	65
+	colm	25
+	synt	ifelse
+	mark	L27
+	mark	L29
+	var	24
+	var	11
+	var	12
+	line	65
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L29
+	pnull
+	unmark
+	mark	L30
+	var	25
+	var	11
+	var	12
+	line	66
+	colm	39
+	synt	any
+	invoke	2
+	unmark
+lab L30
+	mark	L31
+	pnull
+	var	6
+	var	26
+	var	3
+	var	4
+	var	15
+	var	12
+	var	10
+	line	67
+	colm	61
+	synt	any
+	invoke	5
+	line	67
+	colm	43
+	synt	any
+	asgn
+	unmark
+lab L31
+	pnull
+	var	3
+	line	68
+	colm	38
+	synt	any
+	field	addAction
+	var	6
+	line	68
+	colm	48
+	synt	any
+	invoke	1
+	goto	L28
+lab L27
+	line	70
+	colm	33
+	synt	if
+	mark0
+	pnull
+	var	18
+	line	70
+	colm	36
+	synt	any
+	nonnull
+	unmark
+	line	71
+	colm	41
+	synt	every
+	mark0
+	pnull
+	var	19
+	pnull
+	var	18
+	line	71
+	colm	57
+	synt	any
+	bang
+	line	71
+	colm	54
+	synt	any
+	asgn
+	pop
+	mark0
+	line	72
+	colm	49
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	19
+	line	72
+	colm	58
+	synt	any
+	field	sigma
+	var	12
+	line	72
+	colm	65
+	synt	any
+	eqv
+	unmark
+	line	73
+	colm	57
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	pnull
+	var	19
+	line	73
+	colm	67
+	synt	any
+	field	item
+	line	73
+	colm	72
+	synt	any
+	field	beta
+	line	73
+	colm	60
+	synt	any
+	size
+	pnull
+	var	4
+	line	73
+	colm	84
+	synt	any
+	field	beta
+	line	73
+	colm	78
+	synt	any
+	numgt
+	unmark
+	pnull
+	pnull
+	var	19
+	line	73
+	colm	101
+	synt	any
+	field	goto
+	var	10
+	line	73
+	colm	107
+	synt	any
+	asgn
+	line	73
+	colm	57
+	synt	endif
+	line	72
+	colm	49
+	synt	endif
+	unmark
+lab L32
+	efail
+lab L33
+	line	71
+	colm	41
+	synt	endevery
+	line	70
+	colm	33
+	synt	endif
+lab L28
+	line	65
+	colm	25
+	synt	endifelse
+	unmark
+lab L6
+	efail
+lab L7
+	line	35
+	colm	7
+	synt	endevery
+	unmark
+lab L3
+	efail
+lab L4
+	line	33
+	colm	4
+	synt	endevery
+	unmark
+lab L2
+	mark	L34
+	line	79
+	colm	9
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	79
+	colm	12
+	synt	any
+	size
+	int	7
+	line	79
+	colm	18
+	synt	any
+	numgt
+	unmark
+	line	79
+	colm	27
+	synt	if
+	mark0
+	var	24
+	var	1
+	str	8
+	line	79
+	colm	36
+	synt	any
+	invoke	2
+	unmark
+	mark	L35
+	pnull
+	var	20
+	line	80
+	colm	18
+	synt	any
+	keywd	output
+	line	80
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L35
+	mark	L36
+	pnull
+	var	21
+	pnull
+	var	0
+	str	9
+	line	81
+	colm	31
+	synt	any
+	cat
+	line	81
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L36
+	mark	L37
+	line	82
+	colm	7
+	synt	if
+	mark0
+	var	24
+	var	1
+	str	10
+	line	82
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	20
+	var	27
+	var	21
+	str	11
+	line	82
+	colm	48
+	synt	any
+	invoke	2
+	line	82
+	colm	41
+	synt	any
+	asgn
+	line	82
+	colm	7
+	synt	endif
+	unmark
+lab L37
+	mark	L38
+	var	22
+	str	12
+	line	83
+	colm	22
+	synt	any
+	invoke	1
+	unmark
+lab L38
+	mark	L39
+	line	84
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	20
+	line	84
+	colm	23
+	synt	any
+	keywd	output
+	line	84
+	colm	18
+	synt	any
+	neqv
+	unmark
+	line	84
+	colm	36
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	var	2
+	line	84
+	colm	51
+	synt	any
+	bang
+	line	84
+	colm	48
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L42
+	var	22
+	var	20
+	pnull
+	pnull
+	var	3
+	line	85
+	colm	45
+	synt	any
+	field	name
+	str	13
+	line	85
+	colm	51
+	synt	any
+	cat
+	line	85
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L42
+	var	22
+	var	20
+	pnull
+	var	3
+	line	86
+	colm	45
+	synt	any
+	field	getActionTxt
+	line	86
+	colm	58
+	synt	any
+	invoke	0
+	line	86
+	colm	30
+	synt	any
+	invoke	2
+	unmark
+lab L40
+	efail
+lab L41
+	line	84
+	colm	36
+	synt	endevery
+	line	84
+	colm	7
+	synt	endif
+	unmark
+lab L39
+	mark	L43
+	line	88
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	var	2
+	line	88
+	colm	32
+	synt	any
+	bang
+	line	88
+	colm	29
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L46
+	var	22
+	pnull
+	str	13
+	pnull
+	var	3
+	line	89
+	colm	44
+	synt	any
+	field	name
+	line	89
+	colm	36
+	synt	any
+	cat
+	line	89
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L46
+	var	22
+	pnull
+	var	3
+	line	90
+	colm	36
+	synt	any
+	field	getActionTxt
+	line	90
+	colm	49
+	synt	any
+	invoke	0
+	line	90
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L44
+	efail
+lab L45
+	line	88
+	colm	17
+	synt	endevery
+	unmark
+lab L43
+	mark	L47
+	var	28
+	line	92
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L47
+	mark	L48
+	var	22
+	str	14
+	line	93
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L48
+	var	29
+	line	94
+	colm	12
+	synt	any
+	invoke	0
+	line	79
+	colm	27
+	synt	endif
+	line	79
+	colm	9
+	synt	endif
+	unmark
+lab L34
+	mark	L49
+	var	30
+	var	0
+	var	1
+	var	2
+	line	97
+	colm	43
+	synt	any
+	invoke	3
+	unmark
+lab L49
+	pnull
+	line	98
+	colm	1
+	synt	any
+	pfail
+	end

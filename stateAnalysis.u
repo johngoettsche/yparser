@@ -1,0 +1,622 @@
+version	U12.1.00
+uid	stateAnalysis.u1-1395852210-0
+impl	local
+link	C:/Users/John/Documents/GitHub/yparser/Classes.u
+link	C:/Users/John/Documents/GitHub/yparser/classes.u
+global	5
+	0,000005,stateAnalysis__createStateAnalysis,3
+	1,000005,stateAnalysis__determineAllSources,1
+	2,000005,stateAnalysis__duplicate,2
+	3,000005,stateAnalysis__getSourceStates,1
+	4,000005,stateAnalysis__determineAcceptableInputs,0
+
+proc stateAnalysis__createStateAnalysis
+	local	0,001000,fileName
+	local	1,001000,args
+	local	2,001000,statesList
+	local	3,000000,write
+	local	4,000000,stateAnalysis__determineAllSources
+	local	5,000000,member
+	local	6,000000,outfile
+	local	7,000000,outfileName
+	local	8,000000,open
+	local	9,000000,state
+	local	10,000000,classes__printTime
+	local	11,000000,getch
+	con	0,010000,27,012,103,150,145,143,153,151,156,147,040,163,164,141,164,145,040,163,157,165,162,143,145,163,056,056,056,012
+	con	1,002000,1,0
+	con	2,010000,1,123
+	con	3,010000,17,055,123,164,141,164,145,123,157,165,162,143,145,163,056,164,170,164
+	con	4,010000,1,157
+	con	5,010000,1,143
+	con	6,010000,16,012,123,164,141,164,145,040,123,157,165,162,143,145,163,072,012
+	con	7,010000,1,012
+	con	8,010000,27,012,050,160,162,145,163,163,040,105,116,124,105,122,040,164,157,040,143,157,156,164,151,156,165,145,051,012
+	declend
+	filen	stateAnalysis.icn
+	line	11
+	colm	11
+	synt	any
+	mark	L1
+	var	3
+	str	0
+	line	15
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	var	4
+	var	2
+	line	16
+	colm	43
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	line	18
+	colm	1
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	18
+	colm	4
+	synt	any
+	size
+	int	1
+	line	18
+	colm	10
+	synt	any
+	numgt
+	unmark
+	line	18
+	colm	19
+	synt	if
+	mark0
+	var	5
+	var	1
+	str	2
+	line	18
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+	mark	L4
+	pnull
+	var	6
+	line	19
+	colm	18
+	synt	any
+	keywd	output
+	line	19
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	7
+	pnull
+	var	0
+	str	3
+	line	20
+	colm	31
+	synt	any
+	cat
+	line	20
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	21
+	colm	7
+	synt	if
+	mark0
+	var	5
+	var	1
+	str	4
+	line	21
+	colm	16
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	6
+	var	8
+	var	7
+	str	5
+	line	21
+	colm	48
+	synt	any
+	invoke	2
+	line	21
+	colm	41
+	synt	any
+	asgn
+	line	21
+	colm	7
+	synt	endif
+	unmark
+lab L6
+	mark	L7
+	var	3
+	str	6
+	line	22
+	colm	22
+	synt	any
+	invoke	1
+	unmark
+lab L7
+	mark	L8
+	line	23
+	colm	7
+	synt	if
+	mark0
+	pnull
+	var	6
+	line	23
+	colm	23
+	synt	any
+	keywd	output
+	line	23
+	colm	18
+	synt	any
+	neqv
+	unmark
+	line	23
+	colm	36
+	synt	every
+	mark0
+	pnull
+	var	9
+	pnull
+	var	2
+	line	23
+	colm	51
+	synt	any
+	bang
+	line	23
+	colm	48
+	synt	any
+	asgn
+	pop
+	mark0
+	var	3
+	var	6
+	pnull
+	var	9
+	line	23
+	colm	86
+	synt	any
+	field	getSourceTxt
+	line	23
+	colm	99
+	synt	any
+	invoke	0
+	line	23
+	colm	71
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	efail
+lab L10
+	line	23
+	colm	36
+	synt	endevery
+	line	23
+	colm	7
+	synt	endif
+	unmark
+lab L8
+	mark	L11
+	line	24
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	9
+	pnull
+	var	2
+	line	24
+	colm	32
+	synt	any
+	bang
+	line	24
+	colm	29
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L14
+	var	3
+	pnull
+	str	7
+	pnull
+	var	9
+	line	25
+	colm	44
+	synt	any
+	field	name
+	line	25
+	colm	36
+	synt	any
+	cat
+	line	25
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L14
+	mark	L15
+	var	3
+	pnull
+	var	9
+	line	26
+	colm	36
+	synt	any
+	field	getSourceTxt
+	line	26
+	colm	49
+	synt	any
+	invoke	0
+	line	26
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L15
+	var	3
+	pnull
+	var	9
+	line	27
+	colm	36
+	synt	any
+	field	getSourceInputTxt
+	line	27
+	colm	54
+	synt	any
+	invoke	0
+	line	27
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L12
+	efail
+lab L13
+	line	24
+	colm	17
+	synt	endevery
+	unmark
+lab L11
+	mark	L16
+	var	10
+	line	29
+	colm	25
+	synt	any
+	invoke	0
+	unmark
+lab L16
+	mark	L17
+	var	3
+	str	8
+	line	30
+	colm	12
+	synt	any
+	invoke	1
+	unmark
+lab L17
+	var	11
+	line	31
+	colm	12
+	synt	any
+	invoke	0
+	line	18
+	colm	19
+	synt	endif
+	line	18
+	colm	1
+	synt	endif
+	unmark
+lab L3
+	pnull
+	line	33
+	colm	1
+	synt	any
+	pfail
+	end
+proc stateAnalysis__determineAllSources
+	local	0,001000,statesList
+	local	1,000000,state
+	local	2,000000,action
+	local	3,000000,gotoState
+	local	4,000000,stateAnalysis__duplicate
+	con	0,010000,5,163,150,151,146,164
+	declend
+	line	35
+	colm	12
+	synt	any
+	mark	L1
+	line	38
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	1
+	pnull
+	var	0
+	line	38
+	colm	24
+	synt	any
+	bang
+	line	38
+	colm	21
+	synt	any
+	asgn
+	pop
+	mark0
+	line	39
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	pnull
+	var	1
+	line	39
+	colm	39
+	synt	any
+	field	actions
+	line	39
+	colm	33
+	synt	any
+	bang
+	line	39
+	colm	30
+	synt	any
+	asgn
+	pop
+	mark0
+	line	40
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	line	40
+	colm	34
+	synt	any
+	field	actionType
+	str	0
+	line	40
+	colm	46
+	synt	any
+	lexeq
+	unmark
+	line	41
+	colm	33
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	var	0
+	line	41
+	colm	52
+	synt	any
+	bang
+	line	41
+	colm	49
+	synt	any
+	asgn
+	pop
+	mark0
+	line	42
+	colm	41
+	synt	if
+	mark0
+	pnull
+	var	3
+	pnull
+	var	2
+	line	42
+	colm	64
+	synt	any
+	field	goto
+	line	42
+	colm	54
+	synt	any
+	eqv
+	unmark
+	mark	L8
+	pnull
+	var	3
+	line	43
+	colm	58
+	synt	any
+	field	addSource
+	var	1
+	line	43
+	colm	68
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	line	44
+	colm	49
+	synt	if
+	mark0
+	mark	L9
+	var	4
+	pnull
+	var	3
+	line	44
+	colm	90
+	synt	any
+	field	sourceInputs
+	pnull
+	var	2
+	line	44
+	colm	110
+	synt	any
+	field	sigma
+	line	44
+	colm	80
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L9
+	pnull
+	unmark
+	pnull
+	var	3
+	line	45
+	colm	66
+	synt	any
+	field	addSourceInput
+	pnull
+	var	2
+	line	45
+	colm	88
+	synt	any
+	field	sigma
+	line	45
+	colm	81
+	synt	any
+	invoke	1
+	line	44
+	colm	49
+	synt	endif
+	line	42
+	colm	41
+	synt	endif
+	unmark
+lab L6
+	efail
+lab L7
+	line	41
+	colm	33
+	synt	endevery
+	line	40
+	colm	25
+	synt	endif
+	unmark
+lab L4
+	efail
+lab L5
+	line	39
+	colm	17
+	synt	endevery
+	unmark
+lab L2
+	efail
+lab L3
+	line	38
+	colm	9
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	51
+	colm	1
+	synt	any
+	pfail
+	end
+proc stateAnalysis__duplicate
+	local	0,001000,sourceList
+	local	1,001000,item
+	local	2,000000,testItem
+	declend
+	line	53
+	colm	12
+	synt	any
+	mark	L1
+	line	54
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	var	0
+	line	54
+	colm	27
+	synt	any
+	bang
+	line	54
+	colm	24
+	synt	any
+	asgn
+	pop
+	mark0
+	line	55
+	colm	17
+	synt	if
+	mark0
+	pnull
+	var	2
+	var	1
+	line	55
+	colm	29
+	synt	any
+	eqv
+	unmark
+	mark	L4
+	var	1
+	line	55
+	colm	43
+	synt	any
+	pret
+lab L4
+	synt	any
+	pfail
+	line	55
+	colm	17
+	synt	endif
+	unmark
+lab L2
+	efail
+lab L3
+	line	54
+	colm	9
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	57
+	colm	1
+	synt	any
+	pfail
+	end
+proc stateAnalysis__getSourceStates
+	local	0,001000,thisState
+	declend
+	line	59
+	colm	12
+	synt	any
+	line	62
+	colm	1
+	synt	any
+	pfail
+	end
+proc stateAnalysis__determineAcceptableInputs
+	declend
+	line	64
+	colm	12
+	synt	any
+	line	67
+	colm	1
+	synt	any
+	pfail
+	end

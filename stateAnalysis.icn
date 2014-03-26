@@ -8,28 +8,52 @@ package stateAnalysis
 
 import classes
 
-procedure createAnalysis(states)
+procedure createStateAnalysis(fileName, args, statesList)
 # performs an analysis of each state to determine how it can be
 # reached and what are acceptable inputs
 
-	determineAllSources()
+	write("\nChecking state sources...\n")
+	determineAllSources(statesList)
 
-#if *args > 0 then if member(args, "a") then {
-      #outfile := &output
-      #outfileName := fileName || "-lookAhead.txt"
+if *args > 0 then if member(args, "S") then {
+      outfile := &output
+      outfileName := fileName || "-StateSources.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
-		#write("\nState Transitions:\n") 
-      #if outfile ~=== &output then every state := !statesList do write(outfile, state.getActionTxt())
-		#every state := !statesList do write(state.getActionTxt())
+		write("\nState Sources:\n") 
+      if outfile ~=== &output then every state := !statesList do write(outfile, state.getSourceTxt())
+		every state := !statesList do {
+			write("\n" || state.name)
+			write(state.getSourceTxt())
+			write(state.getSourceInputTxt())
+		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }
 end
 
-procedure determineAllSources()
+procedure determineAllSources(statesList)
 # finds the possible routs to get to each state
 
+	every state := !statesList do {
+		every action := !state.actions do {
+			if action.actionType == "shift" then{
+				every gotoState := !statesList do {
+					if gotoState === action.goto then {
+						gotoState.addSource(state)
+						if not duplicate(gotoState.sourceInputs, action.sigma) then 
+							gotoState.addSourceInput(action.sigma)
+					}
+				}
+			}
+		}
+	}
+end
+
+procedure duplicate(sourceList, item)
+	every testItem := !sourceList do {
+		if testItem === item then return item
+	}
 end
 
 procedure getSourceStates(thisState)

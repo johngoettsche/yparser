@@ -124,7 +124,7 @@ initially
    variables := []
 end
 
-class State(name, items, label, transitions, sources)
+class State(name, items, label, actions, sources, sourceInputs)
 #  this class defines a state
 
    method setName(newName)
@@ -139,12 +139,16 @@ class State(name, items, label, transitions, sources)
       items[ItemNumber].addAlpha(newAlpha)
    end
 	
-	method addTransition(transition)
-		put(transitions, transition)
+	method addAction(action)
+		put(actions, action)
 	end
 	
 	method addSource(source)
 		put(sources, source)
+	end
+	
+	method addSourceInput(sourceInput)
+		put(sourceInputs, sourceInput)
 	end
 	
    method getName()
@@ -169,10 +173,35 @@ class State(name, items, label, transitions, sources)
 	
 	method getActionTxt()
 		local txt, line
-		txt := name || "\n"
-		every line := !transitions do txt := txt || line.getLabel()
-		label := txt
-		return label
+		txt := ""
+		every line := !actions do txt := txt || line.label
+		return txt
+	end
+	
+	method getSourceTxt()
+		local txt, source, count
+		count := 0
+		txt := "\t{"
+		every source := !sources do {
+			if count > 0 then txt := txt || ", "
+			txt := txt || source.name
+			count +:= 1
+		}
+		txt := txt || "}\n"
+		return txt
+	end
+	
+	method getSourceInputTxt()
+		local txt, source, count
+		count := 0
+		txt := "\t["
+		every sourceInput := !sourceInputs do {
+			if count > 0 then txt := txt || ", "
+			txt := txt || sourceInput.result
+			count +:= 1
+		}
+		txt := txt || "]\n"
+		return txt
 	end
 
 initially(newName, thisPrime, initialItem)
@@ -185,8 +214,9 @@ initially(newName, thisPrime, initialItem)
    label :=""
    name := newName
    items := []
-	transitions := []
+	actions := []
 	sources := []
+	sourceInputs := []
    
    #set up initialItem
    newItem := Item()
@@ -310,7 +340,7 @@ initially()
    beta := []
 end
 
-class Transition(transitionType, state, item, sigma, label, goto)
+class Action(actionType, state, item, sigma, label, goto)
 	method getLabel()
 		return label
 	end
@@ -321,10 +351,10 @@ initially(newState, newItem, newType, newSigma, newGoto)
 	state := newState
 	item := newItem
 	goto := newGoto
-	transitionType := newType
+	actionType := newType
 	sigma := newSigma
-	if transitionType == "accept" then label := "\t" || transitionType || "\n"
-	else if transitionType == "shift" then label := "\tgoto(" || state.name || ", " || sigma.getResult() || ") = " || goto.name || "\n"
-	else if transitionType == "reduce" then label := "\t" || transitionType || item.label		
-	else transitionType := "error"
+	if actionType == "accept" then label := "\t" || actionType || "\n"
+	else if actionType == "shift" then label := "\tgoto(" || state.name || ", " || sigma.getResult() || ") = " || goto.name || "\n"
+	else if actionType == "reduce" then label := "\t" || actionType || item.label
+	else actionType := "error"
 end

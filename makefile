@@ -1,8 +1,11 @@
-yparser : classes.u lookAhead.u states.u productionRules.u grammars.u yparser.u 
-	unicon -o classes.u lookAhead.u states.u productionRules.u grammars.u yparser.u 
+yparser : classes.u stateAnalysis.u lookAhead.u states.u productionRules.u grammars.u yparser.u 
+	unicon -o yparser classes.u stateAnalysis.u lookAhead.u states.u productionRules.u grammars.u yparser.u 
    
 classes.u : classes.icn
 	unicon -c classes.icn
+	
+stateAnalysis.u : stateAnalysis.icn
+	unicon -c stateAnalysis.icn
 	
 lookAhead.u : lookAhead.icn
 	unicon -c lookAhead.icn
@@ -20,4 +23,4 @@ yparser.u : yparser.icn
 	unicon -c yparser.icn
    
 clean:
-	rm -rf *u hello
+	rm -rf *u
