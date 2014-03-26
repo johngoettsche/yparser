@@ -11,6 +11,9 @@
 		-s  	shows states
 		
 		-a  	shows actions: accept, shift/goto, reduce
+		-S		shows the source input for the states 
+					{} as a set of states
+					[] as a set of inputs
 
 		-o  to write to filename-Option.txt file
 
