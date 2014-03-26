@@ -6,7 +6,38 @@ package stateAnalysis
 #  dose an analysis of the state to see how each state can be 
 #  reached and what terminals are acceptable at that state.
 
+import classes
+
 procedure createAnalysis(states)
+# performs an analysis of each state to determine how it can be
+# reached and what are acceptable inputs
+
+	determineAllSources()
+
+#if *args > 0 then if member(args, "a") then {
+      #outfile := &output
+      #outfileName := fileName || "-lookAhead.txt"
+      if member(args, "o") then outfile := open(outfileName, "c")
+		#write("\nState Transitions:\n") 
+      #if outfile ~=== &output then every state := !statesList do write(outfile, state.getActionTxt())
+		#every state := !statesList do write(state.getActionTxt())
+      classes::printTime()
+      write("\n(press ENTER to continue)\n")
+      getch()
+   }
+end
+
+procedure determineAllSources()
+# finds the possible routs to get to each state
 
 end
 
+procedure getSourceStates(thisState)
+# find the possible previous states of the current state
+
+end
+
+procedure determineAcceptableInputs()
+# finds all possible acceptable terminals.
+
+end

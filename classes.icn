@@ -124,7 +124,7 @@ initially
    variables := []
 end
 
-class State(name, items, label, transitions)
+class State(name, items, label, transitions, sources)
 #  this class defines a state
 
    method setName(newName)
@@ -141,6 +141,10 @@ class State(name, items, label, transitions)
 	
 	method addTransition(transition)
 		put(transitions, transition)
+	end
+	
+	method addSource(source)
+		put(sources, source)
 	end
 	
    method getName()
@@ -182,6 +186,7 @@ initially(newName, thisPrime, initialItem)
    name := newName
    items := []
 	transitions := []
+	sources := []
    
    #set up initialItem
    newItem := Item()
