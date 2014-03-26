@@ -1,0 +1,12 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+package stateAnalysis
+#  dose an analysis of the state to see how each state can be 
+#  reached and what terminals are acceptable at that state.
+
+procedure createAnalysis(states)
+
+end
+
