@@ -1,18 +1,19 @@
 <div>How to use:</div>
-
-	<p>yparser [-options] filename</p>
+<div>
+	yparser [-options] filename
 	
-	<p>	-n  	shows all the non terminals</p>
+		-n  	shows all the non terminals
 		
-	<p>	-t   	shows all the terminals</p>
+		-t   	shows all the terminals
 		
-	<p>	-p  	shows production rules</p>
+		-p  	shows production rules
 		
-	<p>	-s  	shows states</p>
+		-s  	shows states
 		
-	<p>	-a  	shows actions: accept, shift/goto, reduce</p>
+		-a  	shows actions: accept, shift/goto, reduce
 
-	<p>	-o  to write to filename-Option.txt file</p>
-	
+		-o  to write to filename-Option.txt file
+</div>
+
 ------------------
 3/25/2014 - User defined language for Notepad++ is: UniconNPpp.xml.  The user will have to: Language -> define user language. Then select import and then select the xml file.  If they open a unicon file they will be able to set the language to Unicon.
