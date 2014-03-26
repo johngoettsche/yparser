@@ -1,5 +1,5 @@
-How to use:<br>
-	yparser [-options] filename<br>
+How to use:<\br>
+	<p>yparser [-options] filename<\br>
 		-r		shows the raw grammar
 		-n  	shows all the non terminals
 		-t   	shows all the terminals
