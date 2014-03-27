@@ -53,7 +53,7 @@ procedure createProductionRules(
       getch()
    }
    
-   states::createStates(fileName, args, nonTerminalsSet, terminalsSet)  
+   states::createStates(fileName, args, nonTerminalsSet, terminalsSet, terminalsSet)  
 end
 
 procedure makeProductionRules(

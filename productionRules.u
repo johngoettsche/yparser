@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	productionRules.u1-1395848590-0
+uid	productionRules.u1-1395890473-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/Classes.u
 link	C:/Users/John/Documents/GitHub/yparser/classes.u
@@ -337,10 +337,11 @@ lab L3
 	var	1
 	var	4
 	var	6
+	var	6
 	line	56
 	colm	24
 	synt	any
-	invoke	4
+	invoke	5
 	unmark
 lab L20
 	pnull

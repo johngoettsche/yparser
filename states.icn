@@ -7,7 +7,7 @@ package states
 #import classes
 import lookAhead
 
-procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet)
+procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet, terminalsList)
 #  is a work in progress
 #  creates the states for compiling the Item for this tool
 
@@ -75,7 +75,7 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet)
       getch()
    }  
 
-	createLookAheads(fileName, args, statesList)
+	createLookAheads(fileName, args, statesList, terminalsList)
 end
    
 procedure makeItems(myState, B, itemSet)

@@ -7,7 +7,7 @@ package lookAhead
 import classes
 import stateAnalysis
 
-procedure createLookAheads(fileName, args, statesList)
+procedure createLookAheads(fileName, args, statesList, terminalsList)
 	local
 		state,
 		item,
@@ -93,8 +93,7 @@ procedure createLookAheads(fileName, args, statesList)
       write("\n(press ENTER to continue)\n")
       getch()
    }   
-	
-	stateAnalysis::createStateAnalysis(fileName, args, statesList)
+	stateAnalysis::createStateAnalysis(fileName, args, statesList, terminalsList)
 end
 
 

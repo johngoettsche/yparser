@@ -19,3 +19,6 @@
 
 ------------------
 3/26/2014 - started adding the source information for the states, as in what immediate inputs are required to reach each state.  
+
+------------------
+3/26/2014 - created an initial process to determine what is acceptable, and what is not acceptable (errors).  I am shure it will need to be changed as I think about this probem more.

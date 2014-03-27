@@ -1,0 +1,152 @@
+
+I0
+	{}
+
+	[]
+
+	--- Acceptable ---
+	LPAREN
+	ID
+
+	----- Error ------
+	PLUS
+	TIMES
+	RPAREN
+	------------------
+
+
+I1
+	{I0}
+
+	[e]
+
+	--- Acceptable ---
+	PLUS
+
+	----- Error ------
+	TIMES
+	LPAREN
+	RPAREN
+	ID
+	------------------
+
+
+I2
+	{I0, I4}
+
+	[t]
+
+	--- Acceptable ---
+	TIMES
+
+	----- Error ------
+	PLUS
+	LPAREN
+	RPAREN
+	ID
+	------------------
+
+
+I3
+	{I0, I4, I6}
+
+	[f]
+
+
+I4
+	{I0, I4, I6, I7}
+
+	[LPAREN]
+
+	--- Acceptable ---
+	LPAREN
+	ID
+
+	----- Error ------
+	PLUS
+	TIMES
+	RPAREN
+	------------------
+
+
+I5
+	{I0, I4, I6, I7}
+
+	[ID]
+
+
+I6
+	{I1, I8}
+
+	[PLUS]
+
+	--- Acceptable ---
+	LPAREN
+	ID
+
+	----- Error ------
+	PLUS
+	TIMES
+	RPAREN
+	------------------
+
+
+I7
+	{I2, I9}
+
+	[TIMES]
+
+	--- Acceptable ---
+	LPAREN
+	ID
+
+	----- Error ------
+	PLUS
+	TIMES
+	RPAREN
+	------------------
+
+
+I8
+	{I4}
+
+	[e]
+
+	--- Acceptable ---
+	RPAREN
+	PLUS
+
+	----- Error ------
+	TIMES
+	LPAREN
+	ID
+	------------------
+
+
+I9
+	{I6}
+
+	[t]
+
+	--- Acceptable ---
+	TIMES
+
+	----- Error ------
+	PLUS
+	LPAREN
+	RPAREN
+	ID
+	------------------
+
+
+I10
+	{I7}
+
+	[f]
+
+
+I11
+	{I8}
+
+	[RPAREN]
+

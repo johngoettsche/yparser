@@ -21,6 +21,12 @@ procedure printTime()
    write("\nTime elapsed: " || h || ":" || m || ":" || seconds)
 end
 
+procedure duplicate(sourceList, item)
+	every testItem := !sourceList do {
+		if testItem === item then return item
+	}
+end
+
 class Terminal(type, result)
 #  used to hold a single terminal
 
@@ -212,11 +218,22 @@ class State(name, items, label, actions, sources, sourceInputs, acceptable, nonT
 		return txt
 	end
 	
-	method getAcceptableTxt()
+	method getAcceptableTxt(terminalList)
 		local txt
-		txt := "\t--- Acceptable ---\n"
-		every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.result || "\n"
-		return txt || "\t------------------\n"
+		
+		#write("classes::" || terminalList[1].result)
+		if *acceptable > 0 then {
+			txt := "\t--- Acceptable ---\n"
+			every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.result ||"\n"
+#			txt := txt || "\t---- Error -----\n"
+#			every terminal := !terminalList do {
+#				write(terminal.result)
+#				if not duplicate(acceptable, terminal) then {
+#					txt := txt || "\t" || terminal.result || "\n"
+#				}
+#			}
+			return txt # || "\t------------------\n"
+		}
 	end
 
 initially(newName, thisPrime, initialItem)

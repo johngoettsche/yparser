@@ -8,7 +8,7 @@ package stateAnalysis
 
 import classes
 
-procedure createStateAnalysis(fileName, args, statesList)
+procedure createStateAnalysis(fileName, args, statesList, terminalsList)
 # performs an analysis of each state to determine how it can be
 # reached and what are acceptable inputs
 
@@ -16,22 +16,43 @@ procedure createStateAnalysis(fileName, args, statesList)
 	determineAllSources(statesList)
 	every state := !statesList do determineAcceptableInputsFromNonTerminals(state)
 	
-if *args > 0 then if member(args, "S") then {
+	if *args > 0 then if member(args, "S") then {
       outfile := &output
       outfileName := fileName || "-StateSources.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
 		write("\nState Sources:\n") 
-      if outfile ~=== &output then every state := !statesList do write(outfile, state.getSourceTxt())
+      if outfile ~=== &output then every state := !statesList do {
+			write(outfile, "\n" || state.name)
+			write(outfile, state.getSourceTxt())
+			write(outfile, state.getSourceInputTxt())
+			write(outfile, state.getAcceptableTxt())
+			if *state.acceptable > 0 then write(outfile, makeErrors(state, terminalsList))
+		}
 		every state := !statesList do {
 			write("\n" || state.name)
 			write(state.getSourceTxt())
 			write(state.getSourceInputTxt())
-			write(state.getAcceptableTxt())
+			write(state.getAcceptableTxt(terminalsList))
+			if *state.acceptable > 0 then write(makeErrors(state, terminalsList))
 		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }
+end
+
+procedure makeErrors(state, terminalsList)
+	local
+		txt
+		
+	txt := "\t----- Error ------\n"
+	every terminal := !terminalsList do {
+		#write(terminal.result)
+		if not duplicate(state.acceptable, terminal) then {
+			txt := txt || "\t" || terminal.result || "\n"
+		}
+	}
+	return txt || "\t------------------\n"
 end
 
 procedure determineAllSources(statesList)
@@ -75,23 +96,45 @@ procedure determineAcceptableInputsFromNonTerminals(state)
 			}
 		}
 	}
-#	every action := !state.actions do {
-#		if action.actionType == "shift" then {		
-#			if action.sigma.type == "nonTerminal" then {
-#				if not duplicate(state.nonTerminalShifts, action.sigma) then {
-#					state.addNonTerminalShift(action.sigma)
-#					determineAcceptableInputsFromNonTerminals(action.goto)
-#					every gotoAction := !action.goto.actions do {
-#						if gotoAction.actionType == "shift" then {
-#							if gotoAction.sigma.type == "terminal" then {
-#								if not duplicate(state.acceptable, gotoAction.sigma) then {
-#									state.addAcceptable(gotoAction.sigma)
-#								}
-#							}
-#						}
-#					}
-#				}
-#			}
-#		}
-#	}
+	every action := !state.actions do {
+		if action.actionType == "shift" then {		
+			if action.sigma.type == "nonTerminal" then {
+				if not duplicate(state.nonTerminalShifts, action.sigma) then {
+					state.addNonTerminalShift(action.sigma)
+					every productionRule := !action.sigma.productionRules do {
+						if \productionRule then
+							if productionRule.variables[1].type == "terminal" then {
+								if not duplicate(state.acceptable, productionRule.variables[1]) then {
+									state.addAcceptable(productionRule.variables[1])
+								}
+							}
+					}
+				}
+			}
+		}
+		#I'm not shure this section will add anything...
+		if action.actionType == "redude" then {
+			thisItem := action.item.left
+			if action.item.left.type == "terminal" then {
+				if not duplicate(state.acceptable, action.item.left) then {
+					state.addAcceptable(action.item.left)
+				}
+			}
+			if action.item.left.type == "nonTerminal" then {
+				if not duplicate(state.nonTerminalShifts, action.item.left) then {
+					state.addNonTerminalShift(action.item.left)
+					every productionRule := !action.item.left.productionRules do {
+						if \productionRule then
+							if productionRule.variables[1].type == "terminal" then {
+								if not duplicate(state.acceptable, productionRule.variables[1]) then {
+									state.addAcceptable(productionRule.variables[1])
+								}
+							}
+					}
+				}
+			}
+		}
+	}
+	
+	
 end
