@@ -124,7 +124,7 @@ initially
    variables := []
 end
 
-class State(name, items, label, actions, sources, sourceInputs)
+class State(name, items, label, actions, sources, sourceInputs, acceptable, nonTerminalShifts)
 #  this class defines a state
 
    method setName(newName)
@@ -149,6 +149,14 @@ class State(name, items, label, actions, sources, sourceInputs)
 	
 	method addSourceInput(sourceInput)
 		put(sourceInputs, sourceInput)
+	end
+	
+	method addAcceptable(input)
+		put(acceptable, input)
+	end
+	
+	method addNonTerminalShift(nonTerminal)
+		put(nonTerminalShifts, nonTerminal)
 	end
 	
    method getName()
@@ -203,6 +211,13 @@ class State(name, items, label, actions, sources, sourceInputs)
 		txt := txt || "]\n"
 		return txt
 	end
+	
+	method getAcceptableTxt()
+		local txt
+		txt := "\t--- Acceptable ---\n"
+		every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.result || "\n"
+		return txt || "\t------------------\n"
+	end
 
 initially(newName, thisPrime, initialItem)
    local 
@@ -217,6 +232,8 @@ initially(newName, thisPrime, initialItem)
 	actions := []
 	sources := []
 	sourceInputs := []
+	acceptable := []
+	nonTerminalShifts := []
    
    #set up initialItem
    newItem := Item()

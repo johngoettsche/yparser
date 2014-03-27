@@ -14,7 +14,8 @@ procedure createStateAnalysis(fileName, args, statesList)
 
 	write("\nChecking state sources...\n")
 	determineAllSources(statesList)
-
+	every state := !statesList do determineAcceptableInputsFromNonTerminals(state)
+	
 if *args > 0 then if member(args, "S") then {
       outfile := &output
       outfileName := fileName || "-StateSources.txt"
@@ -25,6 +26,7 @@ if *args > 0 then if member(args, "S") then {
 			write("\n" || state.name)
 			write(state.getSourceTxt())
 			write(state.getSourceInputTxt())
+			write(state.getAcceptableTxt())
 		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
@@ -34,6 +36,11 @@ end
 
 procedure determineAllSources(statesList)
 # finds the possible routs to get to each state
+	
+	local 
+		state,
+		action,
+		gotoState
 
 	every state := !statesList do {
 		every action := !state.actions do {
@@ -44,7 +51,7 @@ procedure determineAllSources(statesList)
 						if not duplicate(gotoState.sourceInputs, action.sigma) then 
 							gotoState.addSourceInput(action.sigma)
 					}
-				}
+				} 
 			}
 		}
 	}
@@ -56,12 +63,35 @@ procedure duplicate(sourceList, item)
 	}
 end
 
-procedure getSourceStates(thisState)
-# find the possible previous states of the current state
-
-end
-
-procedure determineAcceptableInputs()
-# finds all possible acceptable terminals.
-
+procedure determineAcceptableInputsFromNonTerminals(state)
+# finds all possible acceptable for the state.
+	
+	every action := !state.actions do {
+		if action.actionType == "shift" then {
+			if action.sigma.type == "terminal" then {
+				if not duplicate(state.acceptable, action.sigma) then {
+					state.addAcceptable(action.sigma)
+				}
+			}
+		}
+	}
+#	every action := !state.actions do {
+#		if action.actionType == "shift" then {		
+#			if action.sigma.type == "nonTerminal" then {
+#				if not duplicate(state.nonTerminalShifts, action.sigma) then {
+#					state.addNonTerminalShift(action.sigma)
+#					determineAcceptableInputsFromNonTerminals(action.goto)
+#					every gotoAction := !action.goto.actions do {
+#						if gotoAction.actionType == "shift" then {
+#							if gotoAction.sigma.type == "terminal" then {
+#								if not duplicate(state.acceptable, gotoAction.sigma) then {
+#									state.addAcceptable(gotoAction.sigma)
+#								}
+#							}
+#						}
+#					}
+#				}
+#			}
+#		}
+#	}
 end
