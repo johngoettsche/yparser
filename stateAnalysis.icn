@@ -23,17 +23,25 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList)
 		write("\nState Sources:\n") 
       if outfile ~=== &output then every state := !statesList do {
 			write(outfile, "\n" || state.name)
+			write(outfile, "\tSources:")
+			write(outfile, state.getSourceChainTxt())
+			write(outfile, "\tMost recent states:")
 			write(outfile, state.getSourceTxt())
+			write(outfile, "\tMost recent inputs:")
 			write(outfile, state.getSourceInputTxt())
 			write(outfile, state.getAcceptableTxt())
-			if *state.acceptable > 0 then write(outfile, makeErrors(state, terminalsList))
+			if *state.acceptable > 0 then write(outfile, makeNotAcceptable(state, terminalsList))
 		}
 		every state := !statesList do {
 			write("\n" || state.name)
+			write("\tSources:")
+			write(state.getSourceChainTxt())
+			write("\tMost recent states:")
 			write(state.getSourceTxt())
+			write("\tMost recent inputs:")
 			write(state.getSourceInputTxt())
 			write(state.getAcceptableTxt(terminalsList))
-			if *state.acceptable > 0 then write(makeErrors(state, terminalsList))
+			if *state.acceptable > 0 then write(makeNotAcceptable(state, terminalsList))
 		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
@@ -41,18 +49,18 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList)
    }
 end
 
-procedure makeErrors(state, terminalsList)
+procedure makeNotAcceptable(state, terminalsList)
 	local
 		txt
 		
-	txt := "\t----- Error ------\n"
+	txt := "\t-- Not Acceptable Input --\n"
 	every terminal := !terminalsList do {
 		#write(terminal.result)
 		if not duplicate(state.acceptable, terminal) then {
 			txt := txt || "\t" || terminal.result || "\n"
 		}
 	}
-	return txt || "\t------------------\n"
+	return txt || "\t--------------------------\n"
 end
 
 procedure determineAllSources(statesList)
@@ -62,8 +70,20 @@ procedure determineAllSources(statesList)
 		state,
 		action,
 		gotoState
-
+		
 	every state := !statesList do {
+		#add alpha from each item to the states sourceChains
+		every thisItem := !state.items do{
+			if *thisItem.alpha > 0 then {
+				thisAlpha := []
+				every element := !thisItem.alpha do {
+					put(thisAlpha, element)
+				}
+				if not duplicateChains(state.sourceChains, thisAlpha) then 	
+					state.addSourceChain(thisAlpha)
+			}
+		}
+	
 		every action := !state.actions do {
 			if action.actionType == "shift" then{
 				every gotoState := !statesList do {
@@ -81,6 +101,20 @@ end
 procedure duplicate(sourceList, item)
 	every testItem := !sourceList do {
 		if testItem === item then return item
+	}
+end
+
+procedure duplicateChains(chainList, chain)
+	chainTxt := ""
+	every element := !chain do {
+		chainTxt := chainTxt || element.result
+	}
+	every testChain := !chainList do {
+		testChainTxt := ""
+		every element := !testChain do {
+			testChainTxt := testChainTxt || element.result
+		}
+		if chainTxt == testChainTxt then return chainTxt
 	}
 end
 

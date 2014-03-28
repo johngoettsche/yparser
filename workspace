@@ -7,5 +7,6 @@
         <File name="lookAhead.icn" />
         <File name="makefile" />
         <File name="classes.icn" />
+        <File name="stateAnalysis.icn" />
     </Project>
 </NotepadPlus>

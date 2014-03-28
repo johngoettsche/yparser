@@ -130,7 +130,7 @@ initially
    variables := []
 end
 
-class State(name, items, label, actions, sources, sourceInputs, acceptable, nonTerminalShifts)
+class State(name, items, label, actions, sources, sourceChains, sourceInputs, acceptable, nonTerminalShifts)
 #  this class defines a state
 
    method setName(newName)
@@ -192,10 +192,28 @@ class State(name, items, label, actions, sources, sourceInputs, acceptable, nonT
 		return txt
 	end
 	
+	method addSourceChain(newSourceChain)
+		put(sourceChains, newSourceChain)
+	end
+	
+	method getSourceChainTxt()
+		local txt, thisItem, element
+		
+		txt := ""
+		every thisSourceChain := !sourceChains do{
+			txt := txt || "\t\t"
+			every element := !thisSourceChain do {
+				txt := txt || element.result || " "
+			}
+			txt := txt || "\n"
+		}
+		return txt
+	end
+	
 	method getSourceTxt()
 		local txt, source, count
 		count := 0
-		txt := "\t{"
+		txt := "\t\t{"
 		every source := !sources do {
 			if count > 0 then txt := txt || ", "
 			txt := txt || source.name
@@ -208,7 +226,7 @@ class State(name, items, label, actions, sources, sourceInputs, acceptable, nonT
 	method getSourceInputTxt()
 		local txt, source, count
 		count := 0
-		txt := "\t["
+		txt := "\t\t["
 		every sourceInput := !sourceInputs do {
 			if count > 0 then txt := txt || ", "
 			txt := txt || sourceInput.result
@@ -221,17 +239,9 @@ class State(name, items, label, actions, sources, sourceInputs, acceptable, nonT
 	method getAcceptableTxt(terminalList)
 		local txt
 		
-		#write("classes::" || terminalList[1].result)
 		if *acceptable > 0 then {
-			txt := "\t--- Acceptable ---\n"
+			txt := "\t---- Acceptable Input ----\n"
 			every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.result ||"\n"
-#			txt := txt || "\t---- Error -----\n"
-#			every terminal := !terminalList do {
-#				write(terminal.result)
-#				if not duplicate(acceptable, terminal) then {
-#					txt := txt || "\t" || terminal.result || "\n"
-#				}
-#			}
 			return txt # || "\t------------------\n"
 		}
 	end
@@ -248,6 +258,7 @@ initially(newName, thisPrime, initialItem)
    items := []
 	actions := []
 	sources := []
+	sourceChains := []
 	sourceInputs := []
 	acceptable := []
 	nonTerminalShifts := []
