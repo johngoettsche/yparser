@@ -130,7 +130,7 @@ initially
    variables := []
 end
 
-class State(name, items, label, actions, sources, sourceChains, sourceStateChains, sourceInputs, acceptable, nonTerminalShifts)
+class State(name, items, label, actions, sources, sourceChains, sourceStateChain, sourceStateChains, sourceInputs, acceptable, nonTerminalShifts)
 #  this class defines a state
 
    method setName(newName)
@@ -221,13 +221,27 @@ class State(name, items, label, actions, sources, sourceChains, sourceStateChain
 	method getSourceStateChainTxt()
 		local txt, thisItem, element
 		
+		if *sourceStateChain > 0 then {
+			txt := "\t\t"
+			every thisState := !sourceStateChain do {
+				if \thisState then txt := txt || thisState.name || " "
+			}
+			txt := txt || "\n"
+
+			return txt
+		}
+	end
+	
+	method getSourceStateChainsTxt()
+		local txt, thisItem, element
+		
 		if *sourceStateChains > 0 then {
 			txt := ""
 			every thisSourceStateChain := !sourceStateChains do{
 				txt := txt || "\t\t"
 				if *thisSourceStateChain > 0 then
 					every thisState := !thisSourceStateChain do {
-						txt := txt || thisState.name || " "
+						if \thisState then txt := txt || thisState.name || " "
 					}
 				txt := txt || "\n"
 			}
@@ -271,7 +285,7 @@ class State(name, items, label, actions, sources, sourceChains, sourceStateChain
 		}
 	end
 
-initially(newName, thisPrime, initialItem, theseStateChains, sourceState)
+initially(newName, thisPrime, initialItem, thisStateChain, sourceState)
    local 
       result,
       element,
@@ -284,25 +298,20 @@ initially(newName, thisPrime, initialItem, theseStateChains, sourceState)
 	actions := []
 	sources := []
 	sourceChains := []
+	sourceStateChain := []
 	sourceStateChains := []
 	sourceInputs := []
 	acceptable := []
 	nonTerminalShifts := []
    
 	#source states
-	sourceStateChain := []
-	if *theseStateChains > 0 then {
-		every thisSourceStates := !theseStateChains do {
-			if \thisSourceStates then {
-				every thisState := !thisSourceStates do {
-					put(sourceStateChain, thisState)
-				}
-			}
+	if *thisStateChain > 0 then {
+		every thisState := !thisStateChain do {
+			put(sourceStateChain, thisState)
 		}
 	}
 	
 	if \sourceState then put(sourceStateChain, sourceState)
-	put(sourceStateChains, sourceStateChain)
 	
    #set up initialItem
    newItem := Item()

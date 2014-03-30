@@ -25,24 +25,31 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList)
 			write(outfile, "\n" || state.name)
 			write(outfile, "\tSources:")
 			write(outfile, state.getSourceChainTxt())
-			write(outfile, "\tSource State Chain:")
+			write(outfile, "\tConstructed Source State Chain:")
 			write(outfile, state.getSourceStateChainTxt())
-
-			write(outfile, state.getAcceptableTxt())
+			write(outfile, "\tMost recent states:")
+			write(outfile, state.getSourceTxt())
+			write(outfile, "\tSource State Chains:")
+			write(outfile, state.getSourceStateChainsTxt())
+#			write(outfile, "\tMost recent inputs:")
+#			write(outfile, state.getSourceInputTxt())
+			write(outfile, state.getAcceptableTxt(terminalsList))
 #			if *state.acceptable > 0 then write(outfile, makeNotAcceptable(state, terminalsList))
 		}
 		every state := !statesList do {
 			write("\n" || state.name)
 			write("\tSources:")
 			write(state.getSourceChainTxt())
-			write("\tSource States:")
+			write("\tConstructed Source State Chain:")
 			write(state.getSourceStateChainTxt())
-#			write("\tMost recent states:")
-#			write(state.getSourceTxt())
+			write("\tMost recent states:")
+			write(state.getSourceTxt())
+			write("\tSource State Chains:")
+			write(state.getSourceStateChainsTxt())
 #			write("\tMost recent inputs:")
 #			write(state.getSourceInputTxt())
 			write(state.getAcceptableTxt(terminalsList))
-#			if *state.acceptable > 0 then 
+#			if *state.acceptable > 0 then write(makeNotAcceptable(state, terminalsList))
 		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
@@ -97,6 +104,21 @@ procedure determineAllSources(statesList)
 			}
 		}
 	}
+	every state := !statesList do {
+		if *state.sources > 0 then {
+			every thisSource := !state.sources do {
+				thisSourceStateChain := []
+				if \thisSource then {
+					every thisState := !thisSource.sourceStateChain do {
+						put(thisSourceStateChain, thisState)
+					}
+					put(thisSourceStateChain, thisSource)
+					put(state.sourceStateChains, thisSourceStateChain)
+				}
+			}
+		}
+	}
+	
 end
 
 procedure duplicate(sourceList, item)

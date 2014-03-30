@@ -156,30 +156,9 @@ procedure makeAllStates(statesList, state)
                ItemList := []
                stateNumber +:= 1
                stateName := "I" || stateNumber
-					
-#############################################################################################################
-               newState := classes::State(stateName, element, newItem, thisState.sourceStateChains, thisState)
+               newState := classes::State(stateName, element, newItem, thisState.sourceStateChain, thisState)
                makeAllItems(statesList, thisState, newState, shiftElement)
-					
-#					originalState := duplicateState(statesList, newState)
-#					if \orginalState then write("States::originalState: " || originalState.name)
                if duplicateState(statesList, newState) then {
-
-####################
-# this makes an endless loop even on the simplest of grammars
-#					
-#						sourceStateChain := []
-#						if *originalState.sourceStateChains > 0 then {
-#							every thisSourceStates := !originalState.sourceStateChains do {
-#								if \thisSourceStates then {
-#									every thisState := !thisSourceStates do {
-#										put(sourceStateChain, thisState)
-#									}
-#								}
-#								put(originalState.sourceStateChains, sourceStateChain)
-#							}
-#						}
-						
                   stateNumber -:= 1
                } else {
 						if not duplicateState(statesList, newState) then {

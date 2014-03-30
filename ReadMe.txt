@@ -22,3 +22,6 @@
 
 ------------------
 3/26/2014 - created an initial process to determine what is acceptable, and what is not acceptable (errors).  I am shure it will need to be changed as I think about this probem more.
+
+------------------
+3/30/2014 - added a 'Source State Chain' routine to identify the possibles paths of which it could take to get to each state.  This is obviously incomplete, but makes an effort to show some of the options on how it got to each state.
