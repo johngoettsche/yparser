@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	states.u1-1395890473-0
+uid	states.u1-1396212715-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/lookAhead.u
 global	7
@@ -40,16 +40,17 @@ proc states__createStates
 	local	25,000000,set
 	local	26,000000,classes__Terminal
 	local	27,000000,classes__Item
-	local	28,000000,classes__State
-	local	29,000000,member
-	local	30,000000,states__makeItems
-	local	31,000000,insert
-	local	32,000000,put
-	local	33,000000,states__makeAllStates
-	local	34,000000,open
-	local	35,000000,classes__printTime
-	local	36,000000,getch
-	local	37,000000,lookAhead__createLookAheads
+	local	28,000000,sourceStateChain
+	local	29,000000,classes__State
+	local	30,000000,member
+	local	31,000000,states__makeItems
+	local	32,000000,insert
+	local	33,000000,put
+	local	34,000000,states__makeAllStates
+	local	35,000000,open
+	local	36,000000,classes__printTime
+	local	37,000000,getch
+	local	38,000000,lookAhead__createLookAheads
 	con	0,010000,19,103,162,145,141,164,151,156,147,040,123,164,141,164,145,163,056,056,056,012
 	con	1,002000,1,0
 	con	2,002000,1,1
@@ -231,23 +232,42 @@ lab L10
 lab L11
 	mark	L12
 	pnull
-	var	7
 	var	28
-	var	19
-	var	20
-	var	21
+	pnull
 	line	48
 	colm	29
 	synt	any
-	invoke	3
+	llist	0
 	line	48
-	colm	12
+	colm	26
 	synt	any
 	asgn
 	unmark
 lab L12
 	mark	L13
-	line	52
+	pnull
+	var	7
+	var	29
+	var	19
+	var	20
+	var	21
+	var	28
+	line	49
+	colm	83
+	synt	any
+	keywd	null
+	line	49
+	colm	29
+	synt	any
+	invoke	5
+	line	49
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	line	53
 	colm	4
 	synt	every
 	mark0
@@ -255,260 +275,260 @@ lab L12
 	var	22
 	pnull
 	var	7
-	line	52
+	line	53
 	colm	29
 	synt	any
 	field	getItems
-	line	52
+	line	53
 	colm	38
 	synt	any
 	invoke	0
-	line	52
+	line	53
 	colm	19
 	synt	any
 	asgn
 	pop
 	mark0
-	mark	L16
+	mark	L17
 	pnull
 	var	10
 	pnull
 	var	22
-	line	53
+	line	54
 	colm	20
 	synt	any
 	field	getBeta
 	int	2
-	line	53
+	line	54
 	colm	28
 	synt	any
 	invoke	1
-	line	53
+	line	54
 	colm	9
 	synt	any
 	asgn
 	unmark
-lab L16
-	line	54
+lab L17
+	line	55
 	colm	7
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	10
-	line	54
+	line	55
 	colm	11
 	synt	any
 	field	getType
-	line	54
+	line	55
 	colm	19
 	synt	any
 	invoke	0
 	str	6
-	line	54
+	line	55
 	colm	22
 	synt	any
 	lexeq
 	unmark
-	line	55
+	line	56
 	colm	10
 	synt	if
 	mark0
-	mark	L17
-	var	29
+	mark	L18
+	var	30
 	var	18
 	var	10
-	line	55
+	line	56
 	colm	23
 	synt	any
 	invoke	2
 	unmark
 	efail
-lab L17
+lab L18
 	pnull
 	unmark
-	mark	L18
-	var	30
+	mark	L19
+	var	31
 	var	7
 	var	10
 	var	18
-	line	56
+	line	57
 	colm	30
 	synt	any
 	invoke	3
 	unmark
-lab L18
-	var	31
+lab L19
+	var	32
 	var	18
 	var	10
-	line	57
+	line	58
 	colm	19
 	synt	any
 	invoke	2
-	line	55
+	line	56
 	colm	10
 	synt	endif
-	line	54
+	line	55
 	colm	7
 	synt	endif
 	unmark
-lab L14
-	efail
 lab L15
-	line	52
+	efail
+lab L16
+	line	53
 	colm	4
 	synt	endevery
 	unmark
-lab L13
-	mark	L19
+lab L14
+	mark	L20
 	pnull
 	var	7
-	line	61
+	line	62
 	colm	11
 	synt	any
 	field	setTxt
-	line	61
+	line	62
 	colm	18
 	synt	any
 	invoke	0
-	unmark
-lab L19
-	mark	L20
-	var	32
-	var	5
-	var	7
-	line	62
-	colm	7
-	synt	any
-	invoke	2
 	unmark
 lab L20
 	mark	L21
 	var	33
 	var	5
 	var	7
-	line	64
-	colm	25
+	line	63
+	colm	7
 	synt	any
 	invoke	2
 	unmark
 lab L21
 	mark	L22
-	line	66
+	var	34
+	var	5
+	var	7
+	line	65
+	colm	25
+	synt	any
+	invoke	2
+	unmark
+lab L22
+	mark	L23
+	line	67
 	colm	4
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	1
-	line	66
+	line	67
 	colm	7
 	synt	any
 	size
 	int	1
-	line	66
+	line	67
 	colm	13
 	synt	any
 	numgt
 	unmark
-	line	66
+	line	67
 	colm	22
 	synt	if
 	mark0
-	var	29
+	var	30
 	var	1
 	str	7
-	line	66
+	line	67
 	colm	31
 	synt	any
 	invoke	2
 	unmark
-	mark	L23
+	mark	L24
 	pnull
 	var	16
-	line	67
+	line	68
 	colm	18
 	synt	any
 	keywd	output
-	line	67
+	line	68
 	colm	15
-	synt	any
-	asgn
-	unmark
-lab L23
-	mark	L24
-	pnull
-	var	23
-	pnull
-	var	0
-	str	8
-	line	68
-	colm	31
-	synt	any
-	cat
-	line	68
-	colm	19
 	synt	any
 	asgn
 	unmark
 lab L24
 	mark	L25
+	pnull
+	var	23
+	pnull
+	var	0
+	str	8
 	line	69
+	colm	31
+	synt	any
+	cat
+	line	69
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	line	70
 	colm	7
 	synt	if
 	mark0
-	var	29
+	var	30
 	var	1
 	str	9
-	line	69
+	line	70
 	colm	16
 	synt	any
 	invoke	2
 	unmark
 	pnull
 	var	16
-	var	34
+	var	35
 	var	23
 	str	10
-	line	69
+	line	70
 	colm	48
 	synt	any
 	invoke	2
-	line	69
+	line	70
 	colm	41
 	synt	any
 	asgn
-	line	69
+	line	70
 	colm	7
 	synt	endif
 	unmark
-lab L25
-	mark	L26
+lab L26
+	mark	L27
 	var	24
 	str	11
-	line	70
+	line	71
 	colm	12
 	synt	any
 	invoke	1
 	unmark
-lab L26
-	mark	L27
-	line	71
+lab L27
+	mark	L28
+	line	72
 	colm	7
 	synt	if
 	mark0
 	pnull
 	var	16
-	line	71
+	line	72
 	colm	23
 	synt	any
 	keywd	output
-	line	71
+	line	72
 	colm	18
 	synt	any
 	neqv
 	unmark
-	line	71
+	line	72
 	colm	36
 	synt	every
 	mark0
@@ -516,11 +536,11 @@ lab L26
 	var	13
 	pnull
 	var	5
-	line	71
+	line	72
 	colm	51
 	synt	any
 	bang
-	line	71
+	line	72
 	colm	48
 	synt	any
 	asgn
@@ -530,28 +550,28 @@ lab L26
 	var	16
 	pnull
 	var	13
-	line	71
+	line	72
 	colm	86
 	synt	any
 	field	label
-	line	71
+	line	72
 	colm	71
 	synt	any
 	invoke	2
 	unmark
-lab L28
-	efail
 lab L29
-	line	71
+	efail
+lab L30
+	line	72
 	colm	36
 	synt	endevery
-	line	71
+	line	72
 	colm	7
 	synt	endif
 	unmark
-lab L27
-	mark	L30
-	line	72
+lab L28
+	mark	L31
+	line	73
 	colm	7
 	synt	every
 	mark0
@@ -559,11 +579,11 @@ lab L27
 	var	13
 	pnull
 	var	5
-	line	72
+	line	73
 	colm	22
 	synt	any
 	bang
-	line	72
+	line	73
 	colm	19
 	synt	any
 	asgn
@@ -572,67 +592,67 @@ lab L27
 	var	24
 	pnull
 	var	13
-	line	72
+	line	73
 	colm	48
 	synt	any
 	field	label
-	line	72
+	line	73
 	colm	42
 	synt	any
 	invoke	1
 	unmark
-lab L31
-	efail
 lab L32
-	line	72
+	efail
+lab L33
+	line	73
 	colm	7
 	synt	endevery
 	unmark
-lab L30
-	mark	L33
-	var	35
-	line	73
+lab L31
+	mark	L34
+	var	36
+	line	74
 	colm	25
 	synt	any
 	invoke	0
 	unmark
-lab L33
-	mark	L34
+lab L34
+	mark	L35
 	var	24
 	str	12
-	line	74
+	line	75
 	colm	12
 	synt	any
 	invoke	1
 	unmark
-lab L34
-	var	36
-	line	75
+lab L35
+	var	37
+	line	76
 	colm	12
 	synt	any
 	invoke	0
-	line	66
+	line	67
 	colm	22
 	synt	endif
-	line	66
+	line	67
 	colm	4
 	synt	endif
 	unmark
-lab L22
-	mark	L35
-	var	37
+lab L23
+	mark	L36
+	var	38
 	var	0
 	var	1
 	var	5
 	var	4
-	line	78
+	line	79
 	colm	36
 	synt	any
 	invoke	4
 	unmark
-lab L35
+lab L36
 	pnull
-	line	79
+	line	80
 	colm	1
 	synt	any
 	pfail
@@ -657,11 +677,11 @@ proc states__makeItems
 	con	0,002000,1,1
 	con	1,010000,11,156,157,156,124,145,162,155,151,156,141,154
 	declend
-	line	81
+	line	82
 	colm	12
 	synt	any
 	mark	L1
-	line	94
+	line	95
 	colm	4
 	synt	every
 	mark0
@@ -669,15 +689,15 @@ proc states__makeItems
 	var	8
 	pnull
 	var	1
-	line	94
+	line	95
 	colm	33
 	synt	any
 	field	getProductionRules
-	line	94
+	line	95
 	colm	52
 	synt	any
 	invoke	0
-	line	94
+	line	95
 	colm	29
 	synt	any
 	asgn
@@ -687,11 +707,11 @@ proc states__makeItems
 	pnull
 	var	9
 	var	11
-	line	95
+	line	96
 	colm	31
 	synt	any
 	invoke	0
-	line	95
+	line	96
 	colm	15
 	synt	any
 	asgn
@@ -700,19 +720,19 @@ lab L4
 	mark	L5
 	pnull
 	var	9
-	line	96
+	line	97
 	colm	14
 	synt	any
 	field	setLeft
 	var	1
-	line	96
+	line	97
 	colm	22
 	synt	any
 	invoke	1
 	unmark
 lab L5
 	mark	L6
-	line	97
+	line	98
 	colm	7
 	synt	every
 	mark0
@@ -720,15 +740,15 @@ lab L5
 	var	10
 	pnull
 	var	8
-	line	97
+	line	98
 	colm	39
 	synt	any
 	field	getVariables
-	line	97
+	line	98
 	colm	52
 	synt	any
 	invoke	0
-	line	97
+	line	98
 	colm	18
 	synt	any
 	asgn
@@ -736,12 +756,12 @@ lab L5
 	mark0
 	pnull
 	var	9
-	line	98
+	line	99
 	colm	17
 	synt	any
 	field	addBeta
 	var	10
-	line	98
+	line	99
 	colm	25
 	synt	any
 	invoke	1
@@ -749,7 +769,7 @@ lab L5
 lab L7
 	efail
 lab L8
-	line	97
+	line	98
 	colm	7
 	synt	endevery
 	unmark
@@ -757,17 +777,17 @@ lab L6
 	mark	L9
 	pnull
 	var	9
-	line	100
+	line	101
 	colm	14
 	synt	any
 	field	setTxt
-	line	100
+	line	101
 	colm	21
 	synt	any
 	invoke	0
 	unmark
 lab L9
-	line	101
+	line	102
 	colm	7
 	synt	if
 	mark0
@@ -775,16 +795,16 @@ lab L9
 	var	12
 	pnull
 	var	0
-	line	101
+	line	102
 	colm	43
 	synt	any
 	field	getItemsList
-	line	101
+	line	102
 	colm	56
 	synt	any
 	invoke	0
 	var	9
-	line	101
+	line	102
 	colm	35
 	synt	any
 	invoke	2
@@ -795,29 +815,29 @@ lab L10
 	unmark
 	pnull
 	var	0
-	line	102
+	line	103
 	colm	17
 	synt	any
 	field	addItem
 	var	9
-	line	102
+	line	103
 	colm	25
 	synt	any
 	invoke	1
-	line	101
+	line	102
 	colm	7
 	synt	endif
 	unmark
 lab L2
 	efail
 lab L3
-	line	94
+	line	95
 	colm	4
 	synt	endevery
 	unmark
 lab L1
 	mark	L11
-	line	106
+	line	107
 	colm	4
 	synt	every
 	mark0
@@ -825,15 +845,15 @@ lab L1
 	var	8
 	pnull
 	var	1
-	line	106
+	line	107
 	colm	33
 	synt	any
 	field	getProductionRules
-	line	106
+	line	107
 	colm	52
 	synt	any
 	invoke	0
-	line	106
+	line	107
 	colm	29
 	synt	any
 	asgn
@@ -844,43 +864,43 @@ lab L1
 	var	10
 	pnull
 	var	8
-	line	107
+	line	108
 	colm	33
 	synt	any
 	field	getVariable
 	int	0
-	line	107
+	line	108
 	colm	45
 	synt	any
 	invoke	1
-	line	107
+	line	108
 	colm	12
 	synt	any
 	asgn
 	unmark
 lab L14
-	line	108
+	line	109
 	colm	7
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	10
-	line	108
+	line	109
 	colm	14
 	synt	any
 	field	getType
-	line	108
+	line	109
 	colm	22
 	synt	any
 	invoke	0
 	str	1
-	line	108
+	line	109
 	colm	25
 	synt	any
 	lexeq
 	unmark
-	line	109
+	line	110
 	colm	10
 	synt	if
 	mark0
@@ -888,7 +908,7 @@ lab L14
 	var	13
 	var	2
 	var	10
-	line	109
+	line	110
 	colm	23
 	synt	any
 	invoke	2
@@ -901,7 +921,7 @@ lab L15
 	var	14
 	var	2
 	var	10
-	line	110
+	line	111
 	colm	39
 	synt	any
 	invoke	2
@@ -911,27 +931,27 @@ lab L16
 	var	0
 	var	10
 	var	2
-	line	111
+	line	112
 	colm	30
 	synt	any
 	invoke	3
-	line	109
+	line	110
 	colm	10
 	synt	endif
-	line	108
+	line	109
 	colm	7
 	synt	endif
 	unmark
 lab L12
 	efail
 lab L13
-	line	106
+	line	107
 	colm	4
 	synt	endevery
 	unmark
 lab L11
 	pnull
-	line	115
+	line	116
 	colm	1
 	synt	any
 	pfail
@@ -964,14 +984,14 @@ proc states__makeAllStates
 	con	4,010000,5,160,162,151,155,145
 	con	5,010000,1,111
 	declend
-	line	117
+	line	118
 	colm	12
 	synt	any
 	mark	L1
 	pnull
 	var	2
 	int	0
-	line	135
+	line	136
 	colm	16
 	synt	any
 	asgn
@@ -981,7 +1001,7 @@ lab L1
 	pnull
 	var	9
 	int	1
-	line	136
+	line	137
 	colm	10
 	synt	any
 	asgn
@@ -989,7 +1009,7 @@ lab L1
 lab L2
 	mark	L3
 lab L4
-	line	137
+	line	138
 	colm	4
 	synt	while
 	mark0
@@ -997,11 +1017,11 @@ lab L4
 	pnull
 	var	2
 	int	0
-	line	137
+	line	138
 	colm	22
 	synt	any
 	numeq
-	line	137
+	line	138
 	colm	26
 	synt	any
 	esusp
@@ -1010,7 +1030,7 @@ lab L7
 	pnull
 	var	9
 	var	2
-	line	137
+	line	138
 	colm	34
 	synt	any
 	numlt
@@ -1024,35 +1044,35 @@ lab L8
 	pnull
 	var	9
 	int	1
-	line	138
+	line	139
 	colm	19
 	synt	any
 	minus
 	str	2
-	line	138
+	line	139
 	colm	23
 	synt	any
 	cat
 	var	2
-	line	138
+	line	139
 	colm	33
 	synt	any
 	cat
-	line	138
+	line	139
 	colm	12
 	synt	any
 	invoke	1
 	unmark
 lab L9
 	mark	L10
-	line	139
+	line	140
 	colm	7
 	synt	if
 	mark0
 	pnull
 	var	2
 	int	0
-	line	139
+	line	140
 	colm	22
 	synt	any
 	numeq
@@ -1060,24 +1080,24 @@ lab L9
 	pnull
 	var	3
 	var	1
-	line	139
+	line	140
 	colm	41
 	synt	any
 	asgn
-	line	139
+	line	140
 	colm	7
 	synt	endif
 	unmark
 lab L10
 	mark	L11
-	line	140
+	line	141
 	colm	7
 	synt	if
 	mark0
 	pnull
 	var	2
 	int	0
-	line	140
+	line	141
 	colm	22
 	synt	any
 	numgt
@@ -1087,15 +1107,15 @@ lab L10
 	pnull
 	var	0
 	var	9
-	line	140
+	line	141
 	colm	54
 	synt	any
 	subsc
-	line	140
+	line	141
 	colm	41
 	synt	any
 	asgn
-	line	140
+	line	141
 	colm	7
 	synt	endif
 	unmark
@@ -1105,7 +1125,7 @@ lab L11
 	var	9
 	dup
 	int	1
-	line	141
+	line	142
 	colm	13
 	synt	any
 	plus
@@ -1116,17 +1136,17 @@ lab L12
 	pnull
 	var	8
 	pnull
-	line	142
+	line	143
 	colm	17
 	synt	any
 	llist	0
-	line	142
+	line	143
 	colm	14
 	synt	any
 	asgn
 	unmark
 lab L13
-	line	145
+	line	146
 	colm	7
 	synt	every
 	mark0
@@ -1134,15 +1154,15 @@ lab L13
 	var	10
 	pnull
 	var	3
-	line	145
+	line	146
 	colm	34
 	synt	any
 	field	getItems
-	line	145
+	line	146
 	colm	43
 	synt	any
 	invoke	0
-	line	145
+	line	146
 	colm	22
 	synt	any
 	asgn
@@ -1153,15 +1173,15 @@ lab L13
 	var	6
 	pnull
 	var	10
-	line	146
+	line	147
 	colm	29
 	synt	any
 	field	getShift
-	line	146
+	line	147
 	colm	38
 	synt	any
 	invoke	0
-	line	146
+	line	147
 	colm	18
 	synt	any
 	asgn
@@ -1172,15 +1192,15 @@ lab L16
 	var	11
 	pnull
 	var	6
-	line	149
+	line	150
 	colm	33
 	synt	any
 	field	getLastAlpha
-	line	149
+	line	150
 	colm	46
 	synt	any
 	invoke	0
-	line	149
+	line	150
 	colm	23
 	synt	any
 	asgn
@@ -1190,7 +1210,7 @@ lab L17
 	var	15
 	var	8
 	var	11
-	line	150
+	line	151
 	colm	13
 	synt	any
 	invoke	2
@@ -1201,38 +1221,38 @@ lab L18
 	var	12
 	pnull
 	var	6
-	line	151
+	line	152
 	colm	28
 	synt	any
 	field	getLeft
-	line	151
+	line	152
 	colm	36
 	synt	any
 	invoke	0
-	line	151
+	line	152
 	colm	18
 	synt	any
 	asgn
 	unmark
 lab L19
-	line	152
+	line	153
 	colm	10
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	12
-	line	152
+	line	153
 	colm	20
 	synt	any
 	field	getType
-	line	152
+	line	153
 	colm	28
 	synt	any
 	invoke	0
 	mark	L20
 	str	3
-	line	152
+	line	153
 	colm	49
 	synt	any
 	esusp
@@ -1240,12 +1260,12 @@ lab L19
 lab L20
 	str	4
 lab L21
-	line	152
+	line	153
 	colm	31
 	synt	any
 	lexeq
 	unmark
-	line	154
+	line	155
 	colm	13
 	synt	if
 	mark0
@@ -1253,7 +1273,7 @@ lab L21
 	var	16
 	var	8
 	var	12
-	line	154
+	line	155
 	colm	26
 	synt	any
 	invoke	2
@@ -1266,11 +1286,11 @@ lab L22
 	pnull
 	var	7
 	pnull
-	line	155
+	line	156
 	colm	28
 	synt	any
 	llist	0
-	line	155
+	line	156
 	colm	25
 	synt	any
 	asgn
@@ -1281,7 +1301,7 @@ lab L23
 	var	2
 	dup
 	int	1
-	line	156
+	line	157
 	colm	28
 	synt	any
 	plus
@@ -1294,11 +1314,11 @@ lab L24
 	pnull
 	str	5
 	var	2
-	line	157
+	line	158
 	colm	33
 	synt	any
 	cat
-	line	157
+	line	158
 	colm	26
 	synt	any
 	asgn
@@ -1311,11 +1331,18 @@ lab L25
 	var	13
 	var	12
 	var	6
-	line	158
+	pnull
+	var	3
+	line	161
+	colm	81
+	synt	any
+	field	sourceStateChains
+	var	3
+	line	161
 	colm	42
 	synt	any
-	invoke	3
-	line	158
+	invoke	5
+	line	161
 	colm	25
 	synt	any
 	asgn
@@ -1327,20 +1354,20 @@ lab L26
 	var	3
 	var	4
 	var	11
-	line	159
+	line	162
 	colm	36
 	synt	any
 	invoke	4
 	unmark
 lab L27
-	line	160
+	line	166
 	colm	16
 	synt	ifelse
 	mark	L28
 	var	19
 	var	0
 	var	4
-	line	160
+	line	166
 	colm	41
 	synt	any
 	invoke	2
@@ -1349,14 +1376,14 @@ lab L27
 	var	2
 	dup
 	int	1
-	line	161
+	line	183
 	colm	31
 	synt	any
 	minus
 	asgn
 	goto	L29
 lab L28
-	line	163
+	line	185
 	colm	49
 	synt	if
 	mark0
@@ -1364,7 +1391,7 @@ lab L28
 	var	19
 	var	0
 	var	4
-	line	163
+	line	185
 	colm	78
 	synt	any
 	invoke	2
@@ -1376,11 +1403,11 @@ lab L30
 	mark	L31
 	pnull
 	var	4
-	line	164
+	line	186
 	colm	30
 	synt	any
 	field	setTxt
-	line	164
+	line	186
 	colm	37
 	synt	any
 	invoke	0
@@ -1389,41 +1416,41 @@ lab L31
 	var	15
 	var	0
 	var	4
-	line	165
+	line	187
 	colm	60
 	synt	any
 	invoke	2
-	line	163
+	line	185
 	colm	49
 	synt	endif
 lab L29
-	line	160
+	line	166
 	colm	16
 	synt	endifelse
-	line	154
+	line	155
 	colm	13
 	synt	endif
-	line	152
+	line	153
 	colm	10
 	synt	endif
 	unmark
 lab L14
 	efail
 lab L15
-	line	145
+	line	146
 	colm	7
 	synt	endevery
 lab L5
 	unmark
 	goto	L4
 lab L6
-	line	137
+	line	138
 	colm	4
 	synt	endwhile
 	unmark
 lab L3
 	pnull
-	line	172
+	line	194
 	colm	1
 	synt	any
 	pfail
@@ -1444,25 +1471,25 @@ proc states__makeAllItems
 	con	0,002000,1,1
 	con	1,010000,11,156,157,156,124,145,162,155,151,156,141,154
 	declend
-	line	174
+	line	196
 	colm	12
 	synt	any
 	mark	L1
 	pnull
 	var	6
 	var	8
-	line	183
+	line	205
 	colm	18
 	synt	any
 	invoke	0
-	line	183
+	line	205
 	colm	12
 	synt	any
 	asgn
 	unmark
 lab L1
 	mark	L2
-	line	184
+	line	206
 	colm	4
 	synt	every
 	mark0
@@ -1470,15 +1497,15 @@ lab L1
 	var	5
 	pnull
 	var	1
-	line	184
+	line	206
 	colm	30
 	synt	any
 	field	getItems
-	line	184
+	line	206
 	colm	39
 	synt	any
 	invoke	0
-	line	184
+	line	206
 	colm	19
 	synt	any
 	asgn
@@ -1489,27 +1516,27 @@ lab L1
 	var	4
 	pnull
 	var	5
-	line	185
+	line	207
 	colm	26
 	synt	any
 	field	getShift
-	line	185
+	line	207
 	colm	35
 	synt	any
 	invoke	0
-	line	185
+	line	207
 	colm	15
 	synt	any
 	asgn
 	unmark
 lab L5
-	line	186
+	line	208
 	colm	17
 	synt	if
 	mark0
 	pnull
 	var	4
-	line	186
+	line	208
 	colm	20
 	synt	any
 	nonnull
@@ -1517,17 +1544,17 @@ lab L5
 	mark	L6
 	pnull
 	var	4
-	line	187
+	line	209
 	colm	17
 	synt	any
 	field	setTxt
-	line	187
+	line	209
 	colm	24
 	synt	any
 	invoke	0
 	unmark
 lab L6
-	line	188
+	line	210
 	colm	25
 	synt	if
 	mark0
@@ -1535,7 +1562,7 @@ lab L6
 	var	9
 	var	0
 	var	4
-	line	188
+	line	210
 	colm	59
 	synt	any
 	invoke	2
@@ -1544,29 +1571,29 @@ lab L6
 lab L7
 	pnull
 	unmark
-	line	189
+	line	211
 	colm	33
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	4
-	line	189
+	line	211
 	colm	43
 	synt	any
 	field	getLastAlpha
-	line	189
+	line	211
 	colm	56
 	synt	any
 	invoke	0
 	var	3
-	line	189
+	line	211
 	colm	59
 	synt	any
 	eqv
 	unmark
 	mark	L8
-	line	190
+	line	212
 	colm	41
 	synt	if
 	mark0
@@ -1574,16 +1601,16 @@ lab L7
 	var	10
 	pnull
 	var	2
-	line	190
+	line	212
 	colm	79
 	synt	any
 	field	getItemsList
-	line	190
+	line	212
 	colm	92
 	synt	any
 	invoke	0
 	var	4
-	line	190
+	line	212
 	colm	69
 	synt	any
 	invoke	2
@@ -1594,16 +1621,16 @@ lab L9
 	unmark
 	pnull
 	var	2
-	line	191
+	line	213
 	colm	58
 	synt	any
 	field	addItem
 	var	4
-	line	191
+	line	213
 	colm	66
 	synt	any
 	invoke	1
-	line	190
+	line	212
 	colm	41
 	synt	endif
 	unmark
@@ -1613,49 +1640,49 @@ lab L8
 	var	7
 	pnull
 	var	4
-	line	193
+	line	215
 	colm	53
 	synt	any
 	field	getBeta
 	int	0
-	line	193
+	line	215
 	colm	61
 	synt	any
 	invoke	1
-	line	193
+	line	215
 	colm	43
 	synt	any
 	asgn
 	unmark
 lab L10
-	line	194
+	line	216
 	colm	41
 	synt	if
 	mark0
 	pnull
 	var	7
-	line	194
+	line	216
 	colm	44
 	synt	any
 	nonnull
 	unmark
-	line	194
+	line	216
 	colm	52
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	7
-	line	194
+	line	216
 	colm	56
 	synt	any
 	field	getType
-	line	194
+	line	216
 	colm	64
 	synt	any
 	invoke	0
 	str	1
-	line	194
+	line	216
 	colm	67
 	synt	any
 	lexeq
@@ -1664,36 +1691,36 @@ lab L10
 	var	2
 	var	7
 	var	6
-	line	195
+	line	217
 	colm	66
 	synt	any
 	invoke	3
-	line	194
+	line	216
 	colm	52
 	synt	endif
-	line	194
+	line	216
 	colm	41
 	synt	endif
-	line	189
+	line	211
 	colm	33
 	synt	endif
-	line	188
+	line	210
 	colm	25
 	synt	endif
-	line	186
+	line	208
 	colm	17
 	synt	endif
 	unmark
 lab L3
 	efail
 lab L4
-	line	184
+	line	206
 	colm	4
 	synt	endevery
 	unmark
 lab L2
 	pnull
-	line	200
+	line	222
 	colm	1
 	synt	any
 	pfail
@@ -1703,11 +1730,11 @@ proc states__duplicateItem
 	local	1,001000,item
 	local	2,000020,thisItem
 	declend
-	line	202
+	line	224
 	colm	12
 	synt	any
 	mark	L1
-	line	209
+	line	231
 	colm	4
 	synt	every
 	mark0
@@ -1715,39 +1742,39 @@ proc states__duplicateItem
 	var	2
 	pnull
 	var	0
-	line	209
+	line	231
 	colm	22
 	synt	any
 	bang
-	line	209
+	line	231
 	colm	19
 	synt	any
 	asgn
 	pop
 	mark0
-	line	210
+	line	232
 	colm	7
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	2
-	line	210
+	line	232
 	colm	18
 	synt	any
 	field	label
 	pnull
 	var	1
-	line	210
+	line	232
 	colm	32
 	synt	any
 	field	label
-	line	210
+	line	232
 	colm	25
 	synt	any
 	lexeq
 	unmark
-	line	211
+	line	233
 	colm	10
 	synt	suspend
 	mark0
@@ -1758,23 +1785,23 @@ proc states__duplicateItem
 lab L4
 	efail
 lab L5
-	line	211
+	line	233
 	colm	10
 	synt	endsuspend
-	line	210
+	line	232
 	colm	7
 	synt	endif
 	unmark
 lab L2
 	efail
 lab L3
-	line	209
+	line	231
 	colm	4
 	synt	endevery
 	unmark
 lab L1
 	pnull
-	line	214
+	line	236
 	colm	1
 	synt	any
 	pfail
@@ -1789,7 +1816,7 @@ proc states__duplicateState
 	local	6,000020,testState
 	con	0,002000,1,1
 	declend
-	line	216
+	line	238
 	colm	12
 	synt	any
 	mark	L1
@@ -1797,15 +1824,15 @@ proc states__duplicateState
 	var	2
 	pnull
 	var	1
-	line	228
+	line	250
 	colm	18
 	synt	any
 	field	getItemsList
-	line	228
+	line	250
 	colm	31
 	synt	any
 	invoke	0
-	line	228
+	line	250
 	colm	10
 	synt	any
 	asgn
@@ -1817,18 +1844,18 @@ lab L1
 	pnull
 	var	2
 	int	0
-	line	229
+	line	251
 	colm	17
 	synt	any
 	subsc
-	line	229
+	line	251
 	colm	9
 	synt	any
 	asgn
 	unmark
 lab L2
 	mark	L3
-	line	230
+	line	252
 	colm	4
 	synt	every
 	mark0
@@ -1836,11 +1863,11 @@ lab L2
 	var	6
 	pnull
 	var	0
-	line	230
+	line	252
 	colm	23
 	synt	any
 	bang
-	line	230
+	line	252
 	colm	20
 	synt	any
 	asgn
@@ -1851,21 +1878,21 @@ lab L2
 	var	5
 	pnull
 	var	6
-	line	231
+	line	253
 	colm	29
 	synt	any
 	field	getItemsList
-	line	231
+	line	253
 	colm	42
 	synt	any
 	invoke	0
-	line	231
+	line	253
 	colm	17
 	synt	any
 	asgn
 	unmark
 lab L6
-	line	232
+	line	254
 	colm	7
 	synt	every
 	mark0
@@ -1873,68 +1900,68 @@ lab L6
 	var	4
 	pnull
 	var	5
-	line	232
+	line	254
 	colm	25
 	synt	any
 	bang
-	line	232
+	line	254
 	colm	22
 	synt	any
 	asgn
 	pop
 	mark0
-	line	233
+	line	255
 	colm	25
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	4
-	line	233
+	line	255
 	colm	36
 	synt	any
 	field	label
 	pnull
 	var	3
-	line	233
+	line	255
 	colm	50
 	synt	any
 	field	label
-	line	233
+	line	255
 	colm	43
 	synt	any
 	lexeq
 	unmark
 	mark	L9
-	var	1
-	line	233
+	var	6
+	line	255
 	colm	62
 	synt	any
 	pret
 lab L9
 	synt	any
 	pfail
-	line	233
+	line	255
 	colm	25
 	synt	endif
 	unmark
 lab L7
 	efail
 lab L8
-	line	232
+	line	254
 	colm	7
 	synt	endevery
 	unmark
 lab L4
 	efail
 lab L5
-	line	230
+	line	252
 	colm	4
 	synt	endevery
 	unmark
 lab L3
 	pnull
-	line	235
+	line	257
 	colm	1
 	synt	any
 	pfail
@@ -1946,11 +1973,11 @@ proc states__duplicateStateLabel
 	local	3,000020,labelsList
 	con	0,002000,1,1
 	declend
-	line	237
+	line	259
 	colm	12
 	synt	any
 	mark	L1
-	line	246
+	line	268
 	colm	9
 	synt	every
 	mark0
@@ -1958,11 +1985,11 @@ proc states__duplicateStateLabel
 	var	2
 	pnull
 	var	0
-	line	246
+	line	268
 	colm	28
 	synt	any
 	bang
-	line	246
+	line	268
 	colm	25
 	synt	any
 	asgn
@@ -1973,28 +2000,28 @@ proc states__duplicateStateLabel
 	var	3
 	pnull
 	var	2
-	line	247
+	line	269
 	colm	40
 	synt	any
 	field	getItemsList
-	line	247
+	line	269
 	colm	53
 	synt	any
 	invoke	0
-	line	247
+	line	269
 	colm	28
 	synt	any
 	asgn
 	unmark
 lab L4
-	line	248
+	line	270
 	colm	17
 	synt	if
 	mark0
 	pnull
 	pnull
 	var	1
-	line	248
+	line	270
 	colm	29
 	synt	any
 	field	label
@@ -2002,42 +2029,42 @@ lab L4
 	pnull
 	var	3
 	int	0
-	line	248
+	line	270
 	colm	49
 	synt	any
 	subsc
-	line	248
+	line	270
 	colm	52
 	synt	any
 	field	label
-	line	248
+	line	270
 	colm	36
 	synt	any
 	lexeq
 	unmark
 	mark	L5
 	var	1
-	line	248
+	line	270
 	colm	64
 	synt	any
 	pret
 lab L5
 	synt	any
 	pfail
-	line	248
+	line	270
 	colm	17
 	synt	endif
 	unmark
 lab L2
 	efail
 lab L3
-	line	246
+	line	268
 	colm	9
 	synt	endevery
 	unmark
 lab L1
 	pnull
-	line	250
+	line	272
 	colm	1
 	synt	any
 	pfail

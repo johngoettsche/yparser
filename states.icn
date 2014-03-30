@@ -45,7 +45,8 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet, terminalsL
    thisPrime.setResult(thisResult)
    initialItem := classes::Item()
    initialItem.addBeta(thisNonTerminal)
-   myState := classes::State(stateName, thisPrime, initialItem) #create new state
+	sourceStateChain := []
+   myState := classes::State(stateName, thisPrime, initialItem, sourceStateChain, &null) #create new state
    
 	
 	
@@ -150,14 +151,35 @@ procedure makeAllStates(statesList, state)
          put(shifts, shiftElement)
          element := newItem.getLeft()
          if element.getType() == ("nonTerminal" | "prime") then {
-         #checks to see if the element is a non-terminal or a prime
+				#checks to see if the element is a non-terminal or a prime
             if not member(shifts, element) then {
                ItemList := []
                stateNumber +:= 1
                stateName := "I" || stateNumber
-               newState := classes::State(stateName, element, newItem)
+					
+#############################################################################################################
+               newState := classes::State(stateName, element, newItem, thisState.sourceStateChains, thisState)
                makeAllItems(statesList, thisState, newState, shiftElement)
+					
+#					originalState := duplicateState(statesList, newState)
+#					if \orginalState then write("States::originalState: " || originalState.name)
                if duplicateState(statesList, newState) then {
+
+####################
+# this makes an endless loop even on the simplest of grammars
+#					
+#						sourceStateChain := []
+#						if *originalState.sourceStateChains > 0 then {
+#							every thisSourceStates := !originalState.sourceStateChains do {
+#								if \thisSourceStates then {
+#									every thisState := !thisSourceStates do {
+#										put(sourceStateChain, thisState)
+#									}
+#								}
+#								put(originalState.sourceStateChains, sourceStateChain)
+#							}
+#						}
+						
                   stateNumber -:= 1
                } else {
 						if not duplicateState(statesList, newState) then {
@@ -230,7 +252,7 @@ procedure duplicateState(statesList, state)
    every testState := !statesList do {
       testItems := testState.getItemsList()
       every testItem := !testItems do  
-			if testItem.label == item.label then return state
+			if testItem.label == item.label then return testState
    }
 end
 

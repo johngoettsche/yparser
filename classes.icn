@@ -130,7 +130,7 @@ initially
    variables := []
 end
 
-class State(name, items, label, actions, sources, sourceChains, sourceInputs, acceptable, nonTerminalShifts)
+class State(name, items, label, actions, sources, sourceChains, sourceStateChains, sourceInputs, acceptable, nonTerminalShifts)
 #  this class defines a state
 
    method setName(newName)
@@ -151,6 +151,14 @@ class State(name, items, label, actions, sources, sourceChains, sourceInputs, ac
 	
 	method addSource(source)
 		put(sources, source)
+	end
+	
+	method addSourceChain(newSourceChain)
+		put(sourceChains, newSourceChain)
+	end
+	
+	method addSourceStateChain(newSourceStateChain)
+		put(sourceStateChains, newSourceStateChain)
 	end
 	
 	method addSourceInput(sourceInput)
@@ -177,6 +185,10 @@ class State(name, items, label, actions, sources, sourceChains, sourceInputs, ac
    method getItemsList()
       return items
    end
+	
+	method getStateChains()
+		every stateChain := !sourceStateChains do suspend stateChain
+	end
 
    method setTxt()
       local txt, line
@@ -192,10 +204,6 @@ class State(name, items, label, actions, sources, sourceChains, sourceInputs, ac
 		return txt
 	end
 	
-	method addSourceChain(newSourceChain)
-		put(sourceChains, newSourceChain)
-	end
-	
 	method getSourceChainTxt()
 		local txt, thisItem, element
 		
@@ -208,6 +216,23 @@ class State(name, items, label, actions, sources, sourceChains, sourceInputs, ac
 			txt := txt || "\n"
 		}
 		return txt
+	end
+	
+	method getSourceStateChainTxt()
+		local txt, thisItem, element
+		
+		if *sourceStateChains > 0 then {
+			txt := ""
+			every thisSourceStateChain := !sourceStateChains do{
+				txt := txt || "\t\t"
+				if *thisSourceStateChain > 0 then
+					every thisState := !thisSourceStateChain do {
+						txt := txt || thisState.name || " "
+					}
+				txt := txt || "\n"
+			}
+			return txt
+		}
 	end
 	
 	method getSourceTxt()
@@ -242,11 +267,11 @@ class State(name, items, label, actions, sources, sourceChains, sourceInputs, ac
 		if *acceptable > 0 then {
 			txt := "\t---- Acceptable Input ----\n"
 			every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.result ||"\n"
-			return txt # || "\t------------------\n"
+			return txt  || "\t--------------------------\n"
 		}
 	end
 
-initially(newName, thisPrime, initialItem)
+initially(newName, thisPrime, initialItem, theseStateChains, sourceState)
    local 
       result,
       element,
@@ -259,10 +284,26 @@ initially(newName, thisPrime, initialItem)
 	actions := []
 	sources := []
 	sourceChains := []
+	sourceStateChains := []
 	sourceInputs := []
 	acceptable := []
 	nonTerminalShifts := []
    
+	#source states
+	sourceStateChain := []
+	if *theseStateChains > 0 then {
+		every thisSourceStates := !theseStateChains do {
+			if \thisSourceStates then {
+				every thisState := !thisSourceStates do {
+					put(sourceStateChain, thisState)
+				}
+			}
+		}
+	}
+	
+	if \sourceState then put(sourceStateChain, sourceState)
+	put(sourceStateChains, sourceStateChain)
+	
    #set up initialItem
    newItem := Item()
    newItem.setLeft(thisPrime)

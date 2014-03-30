@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	classes.u1-1395983953-0
+uid	classes.u1-1396211422-0
 record	classes__Terminal__state,4
 	0,__s
 	1,__m
@@ -37,7 +37,7 @@ record	classes__ProductionRule__methods,6
 	3,getVariable
 	4,getTxt
 	5,initially
-record	classes__State__state,11
+record	classes__State__state,12
 	0,__s
 	1,__m
 	2,name
@@ -46,29 +46,33 @@ record	classes__State__state,11
 	5,actions
 	6,sources
 	7,sourceChains
-	8,sourceInputs
-	9,acceptable
-	10,nonTerminalShifts
-record	classes__State__methods,19
+	8,sourceStateChains
+	9,sourceInputs
+	10,acceptable
+	11,nonTerminalShifts
+record	classes__State__methods,22
 	0,setName
 	1,addItem
 	2,addAlpha
 	3,addAction
 	4,addSource
-	5,addSourceInput
-	6,addAcceptable
-	7,addNonTerminalShift
-	8,getName
-	9,getItems
-	10,getItemsList
-	11,setTxt
-	12,getActionTxt
-	13,addSourceChain
-	14,getSourceChainTxt
-	15,getSourceTxt
-	16,getSourceInputTxt
-	17,getAcceptableTxt
-	18,initially
+	5,addSourceChain
+	6,addSourceStateChain
+	7,addSourceInput
+	8,addAcceptable
+	9,addNonTerminalShift
+	10,getName
+	11,getItems
+	12,getItemsList
+	13,getStateChains
+	14,setTxt
+	15,getActionTxt
+	16,getSourceChainTxt
+	17,getSourceStateChainTxt
+	18,getSourceTxt
+	19,getSourceInputTxt
+	20,getAcceptableTxt
+	21,initially
 record	classes__Item__state,6
 	0,__s
 	1,__m
@@ -104,7 +108,7 @@ record	classes__Action__methods,2
 	0,getLabel
 	1,initially
 impl	local
-global	86
+global	89
 	0,000005,classes__printTime,0
 	1,000005,classes__duplicate,2
 	2,000005,classes__Terminal_setResult,2
@@ -146,51 +150,54 @@ global	86
 	38,000005,classes__State_addAlpha,3
 	39,000005,classes__State_addAction,2
 	40,000005,classes__State_addSource,2
-	41,000005,classes__State_addSourceInput,2
-	42,000005,classes__State_addAcceptable,2
-	43,000005,classes__State_addNonTerminalShift,2
-	44,000005,classes__State_getName,1
-	45,000005,classes__State_getItems,1
-	46,000005,classes__State_getItemsList,1
-	47,000005,classes__State_setTxt,1
-	48,000005,classes__State_getActionTxt,1
-	49,000005,classes__State_addSourceChain,2
-	50,000005,classes__State_getSourceChainTxt,1
-	51,000005,classes__State_getSourceTxt,1
-	52,000005,classes__State_getSourceInputTxt,1
-	53,000005,classes__State_getAcceptableTxt,2
-	54,000005,classes__State_initially,4
-	55,000011,classes__State__state,11
-	56,000011,classes__State__methods,19
-	57,000001,classes__State__oprec,0
-	58,000005,classes__State,3
-	59,000005,classes__Stateinitialize,0
-	60,000005,classes__Item_setLeft,2
-	61,000005,classes__Item_addAlpha,2
-	62,000005,classes__Item_addBeta,2
-	63,000005,classes__Item_setBetaList,2
-	64,000005,classes__Item_getLeft,1
-	65,000005,classes__Item_getAlpha,1
-	66,000005,classes__Item_getAlphaList,1
-	67,000005,classes__Item_getLastAlpha,1
-	68,000005,classes__Item_getBetas,1
-	69,000005,classes__Item_getBetaList,1
-	70,000005,classes__Item_getBeta,2
-	71,000005,classes__Item_getShift,1
-	72,000005,classes__Item_setTxt,1
-	73,000005,classes__Item_initially,1
-	74,000011,classes__Item__state,6
-	75,000011,classes__Item__methods,14
-	76,000001,classes__Item__oprec,0
-	77,000005,classes__Item,0
-	78,000005,classes__Iteminitialize,0
-	79,000005,classes__Action_getLabel,1
-	80,000005,classes__Action_initially,6
-	81,000011,classes__Action__state,8
-	82,000011,classes__Action__methods,2
-	83,000001,classes__Action__oprec,0
-	84,000005,classes__Action,5
-	85,000005,classes__Actioninitialize,0
+	41,000005,classes__State_addSourceChain,2
+	42,000005,classes__State_addSourceStateChain,2
+	43,000005,classes__State_addSourceInput,2
+	44,000005,classes__State_addAcceptable,2
+	45,000005,classes__State_addNonTerminalShift,2
+	46,000005,classes__State_getName,1
+	47,000005,classes__State_getItems,1
+	48,000005,classes__State_getItemsList,1
+	49,000005,classes__State_getStateChains,1
+	50,000005,classes__State_setTxt,1
+	51,000005,classes__State_getActionTxt,1
+	52,000005,classes__State_getSourceChainTxt,1
+	53,000005,classes__State_getSourceStateChainTxt,1
+	54,000005,classes__State_getSourceTxt,1
+	55,000005,classes__State_getSourceInputTxt,1
+	56,000005,classes__State_getAcceptableTxt,2
+	57,000005,classes__State_initially,6
+	58,000011,classes__State__state,12
+	59,000011,classes__State__methods,22
+	60,000001,classes__State__oprec,0
+	61,000005,classes__State,5
+	62,000005,classes__Stateinitialize,0
+	63,000005,classes__Item_setLeft,2
+	64,000005,classes__Item_addAlpha,2
+	65,000005,classes__Item_addBeta,2
+	66,000005,classes__Item_setBetaList,2
+	67,000005,classes__Item_getLeft,1
+	68,000005,classes__Item_getAlpha,1
+	69,000005,classes__Item_getAlphaList,1
+	70,000005,classes__Item_getLastAlpha,1
+	71,000005,classes__Item_getBetas,1
+	72,000005,classes__Item_getBetaList,1
+	73,000005,classes__Item_getBeta,2
+	74,000005,classes__Item_getShift,1
+	75,000005,classes__Item_setTxt,1
+	76,000005,classes__Item_initially,1
+	77,000011,classes__Item__state,6
+	78,000011,classes__Item__methods,14
+	79,000001,classes__Item__oprec,0
+	80,000005,classes__Item,0
+	81,000005,classes__Iteminitialize,0
+	82,000005,classes__Action_getLabel,1
+	83,000005,classes__Action_initially,6
+	84,000011,classes__Action__state,8
+	85,000011,classes__Action__methods,2
+	86,000001,classes__Action__oprec,0
+	87,000005,classes__Action,5
+	88,000005,classes__Actioninitialize,0
 
 proc classes__printTime
 	local	0,000020,time
@@ -1957,9 +1964,9 @@ lab L1
 	synt	any
 	pfail
 	end
-proc classes__State_addSourceInput
+proc classes__State_addSourceChain
 	local	0,001000,self
-	local	1,001000,sourceInput
+	local	1,001000,newSourceChain
 	local	2,000000,put
 	declend
 	line	156
@@ -1972,7 +1979,7 @@ proc classes__State_addSourceInput
 	line	157
 	colm	25
 	synt	any
-	field	sourceInputs
+	field	sourceChains
 	var	1
 	line	157
 	colm	20
@@ -1986,9 +1993,9 @@ lab L1
 	synt	any
 	pfail
 	end
-proc classes__State_addAcceptable
+proc classes__State_addSourceStateChain
 	local	0,001000,self
-	local	1,001000,input
+	local	1,001000,newSourceStateChain
 	local	2,000000,put
 	declend
 	line	160
@@ -2001,7 +2008,7 @@ proc classes__State_addAcceptable
 	line	161
 	colm	25
 	synt	any
-	field	acceptable
+	field	sourceStateChains
 	var	1
 	line	161
 	colm	20
@@ -2015,9 +2022,9 @@ lab L1
 	synt	any
 	pfail
 	end
-proc classes__State_addNonTerminalShift
+proc classes__State_addSourceInput
 	local	0,001000,self
-	local	1,001000,nonTerminal
+	local	1,001000,sourceInput
 	local	2,000000,put
 	declend
 	line	164
@@ -2030,7 +2037,7 @@ proc classes__State_addNonTerminalShift
 	line	165
 	colm	25
 	synt	any
-	field	nonTerminalShifts
+	field	sourceInputs
 	var	1
 	line	165
 	colm	20
@@ -2044,21 +2051,79 @@ lab L1
 	synt	any
 	pfail
 	end
+proc classes__State_addAcceptable
+	local	0,001000,self
+	local	1,001000,input
+	local	2,000000,put
+	declend
+	line	168
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	pnull
+	var	0
+	line	169
+	colm	25
+	synt	any
+	field	acceptable
+	var	1
+	line	169
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	pnull
+	line	170
+	colm	1
+	synt	any
+	pfail
+	end
+proc classes__State_addNonTerminalShift
+	local	0,001000,self
+	local	1,001000,nonTerminal
+	local	2,000000,put
+	declend
+	line	172
+	colm	11
+	synt	any
+	mark	L1
+	var	2
+	pnull
+	var	0
+	line	173
+	colm	25
+	synt	any
+	field	nonTerminalShifts
+	var	1
+	line	173
+	colm	20
+	synt	any
+	invoke	2
+	unmark
+lab L1
+	pnull
+	line	174
+	colm	1
+	synt	any
+	pfail
+	end
 proc classes__State_getName
 	local	0,001000,self
 	declend
-	line	168
+	line	176
 	colm	11
 	synt	any
 	mark	L1
 	mark	L2
 	pnull
 	var	0
-	line	169
+	line	177
 	colm	18
 	synt	any
 	field	name
-	line	169
+	line	177
 	colm	7
 	synt	any
 	pret
@@ -2068,7 +2133,7 @@ lab L2
 	unmark
 lab L1
 	pnull
-	line	170
+	line	178
 	colm	1
 	synt	any
 	pfail
@@ -2077,11 +2142,11 @@ proc classes__State_getItems
 	local	0,001000,self
 	local	1,000020,itemProduction
 	declend
-	line	172
+	line	180
 	colm	11
 	synt	any
 	mark	L1
-	line	174
+	line	182
 	colm	7
 	synt	every
 	mark0
@@ -2090,21 +2155,21 @@ proc classes__State_getItems
 	pnull
 	pnull
 	var	0
-	line	174
+	line	182
 	colm	36
 	synt	any
 	field	items
-	line	174
+	line	182
 	colm	31
 	synt	any
 	bang
-	line	174
+	line	182
 	colm	28
 	synt	any
 	asgn
 	pop
 	mark0
-	line	174
+	line	182
 	colm	46
 	synt	suspend
 	mark0
@@ -2115,20 +2180,20 @@ proc classes__State_getItems
 lab L4
 	efail
 lab L5
-	line	174
+	line	182
 	colm	46
 	synt	endsuspend
 	unmark
 lab L2
 	efail
 lab L3
-	line	174
+	line	182
 	colm	7
 	synt	endevery
 	unmark
 lab L1
 	pnull
-	line	175
+	line	183
 	colm	1
 	synt	any
 	pfail
@@ -2136,18 +2201,18 @@ lab L1
 proc classes__State_getItemsList
 	local	0,001000,self
 	declend
-	line	177
+	line	185
 	colm	11
 	synt	any
 	mark	L1
 	mark	L2
 	pnull
 	var	0
-	line	178
+	line	186
 	colm	18
 	synt	any
 	field	items
-	line	178
+	line	186
 	colm	7
 	synt	any
 	pret
@@ -2157,7 +2222,67 @@ lab L2
 	unmark
 lab L1
 	pnull
-	line	179
+	line	187
+	colm	1
+	synt	any
+	pfail
+	end
+proc classes__State_getStateChains
+	local	0,001000,self
+	local	1,000000,stateChain
+	declend
+	line	189
+	colm	11
+	synt	any
+	mark	L1
+	line	190
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	0
+	line	190
+	colm	42
+	synt	any
+	field	sourceStateChains
+	line	190
+	colm	37
+	synt	any
+	bang
+	line	190
+	colm	34
+	synt	any
+	asgn
+	pop
+	mark0
+	line	190
+	colm	64
+	synt	suspend
+	mark0
+	var	1
+	synt	any
+	psusp
+	pop
+lab L4
+	efail
+lab L5
+	line	190
+	colm	64
+	synt	endsuspend
+	unmark
+lab L2
+	efail
+lab L3
+	line	190
+	colm	17
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	191
 	colm	1
 	synt	any
 	pfail
@@ -2168,7 +2293,7 @@ proc classes__State_setTxt
 	local	2,000020,line
 	con	0,010000,1,012
 	declend
-	line	181
+	line	193
 	colm	11
 	synt	any
 	mark	L1
@@ -2177,23 +2302,23 @@ proc classes__State_setTxt
 	pnull
 	pnull
 	var	0
-	line	183
+	line	195
 	colm	18
 	synt	any
 	field	name
 	str	0
-	line	183
+	line	195
 	colm	23
 	synt	any
 	cat
-	line	183
+	line	195
 	colm	11
 	synt	any
 	asgn
 	unmark
 lab L1
 	mark	L2
-	line	184
+	line	196
 	colm	7
 	synt	every
 	mark0
@@ -2202,15 +2327,15 @@ lab L1
 	pnull
 	pnull
 	var	0
-	line	184
+	line	196
 	colm	26
 	synt	any
 	field	items
-	line	184
+	line	196
 	colm	21
 	synt	any
 	bang
-	line	184
+	line	196
 	colm	18
 	synt	any
 	asgn
@@ -2222,15 +2347,15 @@ lab L1
 	var	1
 	pnull
 	var	2
-	line	184
+	line	196
 	colm	51
 	synt	any
 	field	label
-	line	184
+	line	196
 	colm	44
 	synt	any
 	cat
-	line	184
+	line	196
 	colm	39
 	synt	any
 	asgn
@@ -2238,7 +2363,7 @@ lab L1
 lab L3
 	efail
 lab L4
-	line	184
+	line	196
 	colm	7
 	synt	endevery
 	unmark
@@ -2247,19 +2372,19 @@ lab L2
 	pnull
 	pnull
 	var	0
-	line	185
+	line	197
 	colm	11
 	synt	any
 	field	label
 	var	1
-	line	185
+	line	197
 	colm	17
 	synt	any
 	asgn
 	unmark
 lab L5
 	pnull
-	line	186
+	line	198
 	colm	1
 	synt	any
 	pfail
@@ -2270,129 +2395,7 @@ proc classes__State_getActionTxt
 	local	2,000020,line
 	con	0,010000,0
 	declend
-	line	188
-	colm	11
-	synt	any
-	mark	L1
-	pnull
-	var	1
-	str	0
-	line	190
-	colm	21
-	synt	any
-	asgn
-	unmark
-lab L1
-	mark	L2
-	line	191
-	colm	17
-	synt	every
-	mark0
-	pnull
-	var	2
-	pnull
-	pnull
-	var	0
-	line	191
-	colm	36
-	synt	any
-	field	actions
-	line	191
-	colm	31
-	synt	any
-	bang
-	line	191
-	colm	28
-	synt	any
-	asgn
-	pop
-	mark0
-	pnull
-	var	1
-	pnull
-	var	1
-	pnull
-	var	2
-	line	191
-	colm	63
-	synt	any
-	field	label
-	line	191
-	colm	56
-	synt	any
-	cat
-	line	191
-	colm	51
-	synt	any
-	asgn
-	unmark
-lab L3
-	efail
-lab L4
-	line	191
-	colm	17
-	synt	endevery
-	unmark
-lab L2
-	mark	L5
-	mark	L6
-	var	1
-	line	192
-	colm	17
-	synt	any
-	pret
-lab L6
-	synt	any
-	pfail
-	unmark
-lab L5
-	pnull
-	line	193
-	colm	1
-	synt	any
-	pfail
-	end
-proc classes__State_addSourceChain
-	local	0,001000,self
-	local	1,001000,newSourceChain
-	local	2,000000,put
-	declend
-	line	195
-	colm	11
-	synt	any
-	mark	L1
-	var	2
-	pnull
-	var	0
-	line	196
-	colm	25
-	synt	any
-	field	sourceChains
-	var	1
-	line	196
-	colm	20
-	synt	any
-	invoke	2
-	unmark
-lab L1
-	pnull
-	line	197
-	colm	1
-	synt	any
-	pfail
-	end
-proc classes__State_getSourceChainTxt
-	local	0,001000,self
-	local	1,000020,txt
-	local	2,000020,thisItem
-	local	3,000020,element
-	local	4,000000,thisSourceChain
-	con	0,010000,0
-	con	1,010000,2,011,011
-	con	2,010000,1,040
-	con	3,010000,1,012
-	declend
-	line	199
+	line	200
 	colm	11
 	synt	any
 	mark	L1
@@ -2411,55 +2414,20 @@ lab L1
 	synt	every
 	mark0
 	pnull
-	var	4
+	var	2
 	pnull
 	pnull
 	var	0
 	line	203
-	colm	47
-	synt	any
-	field	sourceChains
-	line	203
-	colm	42
-	synt	any
-	bang
-	line	203
-	colm	39
-	synt	any
-	asgn
-	pop
-	mark0
-	mark	L5
-	pnull
-	var	1
-	pnull
-	var	1
-	str	1
-	line	204
 	colm	36
 	synt	any
-	cat
-	line	204
-	colm	29
-	synt	any
-	asgn
-	unmark
-lab L5
-	mark	L6
-	line	205
-	colm	25
-	synt	every
-	mark0
-	pnull
-	var	3
-	pnull
-	var	4
-	line	205
-	colm	42
+	field	actions
+	line	203
+	colm	31
 	synt	any
 	bang
-	line	205
-	colm	39
+	line	203
+	colm	28
 	synt	any
 	asgn
 	pop
@@ -2467,47 +2435,19 @@ lab L5
 	pnull
 	var	1
 	pnull
-	pnull
 	var	1
 	pnull
-	var	3
-	line	206
-	colm	54
+	var	2
+	line	203
+	colm	63
 	synt	any
-	field	result
-	line	206
-	colm	44
-	synt	any
-	cat
-	str	2
-	line	206
-	colm	62
+	field	label
+	line	203
+	colm	56
 	synt	any
 	cat
-	line	206
-	colm	37
-	synt	any
-	asgn
-	unmark
-lab L7
-	efail
-lab L8
-	line	205
-	colm	25
-	synt	endevery
-	unmark
-lab L6
-	pnull
-	var	1
-	pnull
-	var	1
-	str	3
-	line	208
-	colm	36
-	synt	any
-	cat
-	line	208
-	colm	29
+	line	203
+	colm	51
 	synt	any
 	asgn
 	unmark
@@ -2519,10 +2459,166 @@ lab L4
 	synt	endevery
 	unmark
 lab L2
+	mark	L5
+	mark	L6
+	var	1
+	line	204
+	colm	17
+	synt	any
+	pret
+lab L6
+	synt	any
+	pfail
+	unmark
+lab L5
+	pnull
+	line	205
+	colm	1
+	synt	any
+	pfail
+	end
+proc classes__State_getSourceChainTxt
+	local	0,001000,self
+	local	1,000020,txt
+	local	2,000020,thisItem
+	local	3,000020,element
+	local	4,000000,thisSourceChain
+	con	0,010000,0
+	con	1,010000,2,011,011
+	con	2,010000,1,040
+	con	3,010000,1,012
+	declend
+	line	207
+	colm	11
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	str	0
+	line	210
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	211
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	var	0
+	line	211
+	colm	47
+	synt	any
+	field	sourceChains
+	line	211
+	colm	42
+	synt	any
+	bang
+	line	211
+	colm	39
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L5
+	pnull
+	var	1
+	pnull
+	var	1
+	str	1
+	line	212
+	colm	36
+	synt	any
+	cat
+	line	212
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	line	213
+	colm	25
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	var	4
+	line	213
+	colm	42
+	synt	any
+	bang
+	line	213
+	colm	39
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	1
+	pnull
+	var	3
+	line	214
+	colm	54
+	synt	any
+	field	result
+	line	214
+	colm	44
+	synt	any
+	cat
+	str	2
+	line	214
+	colm	62
+	synt	any
+	cat
+	line	214
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L7
+	efail
+lab L8
+	line	213
+	colm	25
+	synt	endevery
+	unmark
+lab L6
+	pnull
+	var	1
+	pnull
+	var	1
+	str	3
+	line	216
+	colm	36
+	synt	any
+	cat
+	line	216
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L3
+	efail
+lab L4
+	line	211
+	colm	17
+	synt	endevery
+	unmark
+lab L2
 	mark	L9
 	mark	L10
 	var	1
-	line	210
+	line	218
 	colm	17
 	synt	any
 	pret
@@ -2532,7 +2628,210 @@ lab L10
 	unmark
 lab L9
 	pnull
-	line	211
+	line	219
+	colm	1
+	synt	any
+	pfail
+	end
+proc classes__State_getSourceStateChainTxt
+	local	0,001000,self
+	local	1,000020,txt
+	local	2,000020,thisItem
+	local	3,000020,element
+	local	4,000000,thisSourceStateChain
+	local	5,000000,thisState
+	con	0,002000,1,0
+	con	1,010000,0
+	con	2,010000,2,011,011
+	con	3,010000,1,040
+	con	4,010000,1,012
+	declend
+	line	221
+	colm	11
+	synt	any
+	mark	L1
+	line	224
+	colm	17
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	0
+	line	224
+	colm	25
+	synt	any
+	field	sourceStateChains
+	line	224
+	colm	20
+	synt	any
+	size
+	int	0
+	line	224
+	colm	43
+	synt	any
+	numgt
+	unmark
+	mark	L2
+	pnull
+	var	1
+	str	1
+	line	225
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	226
+	colm	25
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	pnull
+	var	0
+	line	226
+	colm	60
+	synt	any
+	field	sourceStateChains
+	line	226
+	colm	55
+	synt	any
+	bang
+	line	226
+	colm	52
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L6
+	pnull
+	var	1
+	pnull
+	var	1
+	str	2
+	line	227
+	colm	44
+	synt	any
+	cat
+	line	227
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	line	228
+	colm	33
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	228
+	colm	36
+	synt	any
+	size
+	int	0
+	line	228
+	colm	58
+	synt	any
+	numgt
+	unmark
+	line	229
+	colm	41
+	synt	every
+	mark0
+	pnull
+	var	5
+	pnull
+	var	4
+	line	229
+	colm	60
+	synt	any
+	bang
+	line	229
+	colm	57
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	1
+	pnull
+	pnull
+	var	1
+	pnull
+	var	5
+	line	230
+	colm	72
+	synt	any
+	field	name
+	line	230
+	colm	60
+	synt	any
+	cat
+	str	3
+	line	230
+	colm	78
+	synt	any
+	cat
+	line	230
+	colm	53
+	synt	any
+	asgn
+	unmark
+lab L8
+	efail
+lab L9
+	line	229
+	colm	41
+	synt	endevery
+	line	228
+	colm	33
+	synt	endif
+	unmark
+lab L7
+	pnull
+	var	1
+	pnull
+	var	1
+	str	4
+	line	232
+	colm	44
+	synt	any
+	cat
+	line	232
+	colm	37
+	synt	any
+	asgn
+	unmark
+lab L4
+	efail
+lab L5
+	line	226
+	colm	25
+	synt	endevery
+	unmark
+lab L3
+	mark	L10
+	var	1
+	line	234
+	colm	25
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	line	224
+	colm	17
+	synt	endif
+	unmark
+lab L1
+	pnull
+	line	236
 	colm	1
 	synt	any
 	pfail
@@ -2548,14 +2847,14 @@ proc classes__State_getSourceTxt
 	con	3,002000,1,1
 	con	4,010000,2,175,012
 	declend
-	line	213
+	line	238
 	colm	11
 	synt	any
 	mark	L1
 	pnull
 	var	3
 	int	0
-	line	215
+	line	240
 	colm	23
 	synt	any
 	asgn
@@ -2565,14 +2864,14 @@ lab L1
 	pnull
 	var	1
 	str	1
-	line	216
+	line	241
 	colm	21
 	synt	any
 	asgn
 	unmark
 lab L2
 	mark	L3
-	line	217
+	line	242
 	colm	17
 	synt	every
 	mark0
@@ -2581,29 +2880,29 @@ lab L2
 	pnull
 	pnull
 	var	0
-	line	217
+	line	242
 	colm	38
 	synt	any
 	field	sources
-	line	217
+	line	242
 	colm	33
 	synt	any
 	bang
-	line	217
+	line	242
 	colm	30
 	synt	any
 	asgn
 	pop
 	mark0
 	mark	L6
-	line	218
+	line	243
 	colm	25
 	synt	if
 	mark0
 	pnull
 	var	3
 	int	0
-	line	218
+	line	243
 	colm	34
 	synt	any
 	numgt
@@ -2613,15 +2912,15 @@ lab L2
 	pnull
 	var	1
 	str	2
-	line	218
+	line	243
 	colm	54
 	synt	any
 	cat
-	line	218
+	line	243
 	colm	47
 	synt	any
 	asgn
-	line	218
+	line	243
 	colm	25
 	synt	endif
 	unmark
@@ -2633,15 +2932,15 @@ lab L6
 	var	1
 	pnull
 	var	2
-	line	219
+	line	244
 	colm	45
 	synt	any
 	field	name
-	line	219
+	line	244
 	colm	36
 	synt	any
 	cat
-	line	219
+	line	244
 	colm	29
 	synt	any
 	asgn
@@ -2651,7 +2950,7 @@ lab L7
 	var	3
 	dup
 	int	3
-	line	220
+	line	245
 	colm	31
 	synt	any
 	plus
@@ -2660,7 +2959,7 @@ lab L7
 lab L4
 	efail
 lab L5
-	line	217
+	line	242
 	colm	17
 	synt	endevery
 	unmark
@@ -2671,11 +2970,11 @@ lab L3
 	pnull
 	var	1
 	str	4
-	line	222
+	line	247
 	colm	28
 	synt	any
 	cat
-	line	222
+	line	247
 	colm	21
 	synt	any
 	asgn
@@ -2684,7 +2983,7 @@ lab L8
 	mark	L9
 	mark	L10
 	var	1
-	line	223
+	line	248
 	colm	17
 	synt	any
 	pret
@@ -2694,7 +2993,7 @@ lab L10
 	unmark
 lab L9
 	pnull
-	line	224
+	line	249
 	colm	1
 	synt	any
 	pfail
@@ -2711,14 +3010,14 @@ proc classes__State_getSourceInputTxt
 	con	3,002000,1,1
 	con	4,010000,2,135,012
 	declend
-	line	226
+	line	251
 	colm	11
 	synt	any
 	mark	L1
 	pnull
 	var	3
 	int	0
-	line	228
+	line	253
 	colm	23
 	synt	any
 	asgn
@@ -2728,14 +3027,14 @@ lab L1
 	pnull
 	var	1
 	str	1
-	line	229
+	line	254
 	colm	21
 	synt	any
 	asgn
 	unmark
 lab L2
 	mark	L3
-	line	230
+	line	255
 	colm	17
 	synt	every
 	mark0
@@ -2744,29 +3043,29 @@ lab L2
 	pnull
 	pnull
 	var	0
-	line	230
+	line	255
 	colm	43
 	synt	any
 	field	sourceInputs
-	line	230
+	line	255
 	colm	38
 	synt	any
 	bang
-	line	230
+	line	255
 	colm	35
 	synt	any
 	asgn
 	pop
 	mark0
 	mark	L6
-	line	231
+	line	256
 	colm	25
 	synt	if
 	mark0
 	pnull
 	var	3
 	int	0
-	line	231
+	line	256
 	colm	34
 	synt	any
 	numgt
@@ -2776,15 +3075,15 @@ lab L2
 	pnull
 	var	1
 	str	2
-	line	231
+	line	256
 	colm	54
 	synt	any
 	cat
-	line	231
+	line	256
 	colm	47
 	synt	any
 	asgn
-	line	231
+	line	256
 	colm	25
 	synt	endif
 	unmark
@@ -2796,15 +3095,15 @@ lab L6
 	var	1
 	pnull
 	var	4
-	line	232
+	line	257
 	colm	50
 	synt	any
 	field	result
-	line	232
+	line	257
 	colm	36
 	synt	any
 	cat
-	line	232
+	line	257
 	colm	29
 	synt	any
 	asgn
@@ -2814,7 +3113,7 @@ lab L7
 	var	3
 	dup
 	int	3
-	line	233
+	line	258
 	colm	31
 	synt	any
 	plus
@@ -2823,7 +3122,7 @@ lab L7
 lab L4
 	efail
 lab L5
-	line	230
+	line	255
 	colm	17
 	synt	endevery
 	unmark
@@ -2834,11 +3133,11 @@ lab L3
 	pnull
 	var	1
 	str	4
-	line	235
+	line	260
 	colm	28
 	synt	any
 	cat
-	line	235
+	line	260
 	colm	21
 	synt	any
 	asgn
@@ -2847,7 +3146,7 @@ lab L8
 	mark	L9
 	mark	L10
 	var	1
-	line	236
+	line	261
 	colm	17
 	synt	any
 	pret
@@ -2857,7 +3156,7 @@ lab L10
 	unmark
 lab L9
 	pnull
-	line	237
+	line	262
 	colm	1
 	synt	any
 	pfail
@@ -2871,12 +3170,13 @@ proc classes__State_getAcceptableTxt
 	con	1,010000,28,011,055,055,055,055,040,101,143,143,145,160,164,141,142,154,145,040,111,156,160,165,164,040,055,055,055,055,012
 	con	2,010000,1,011
 	con	3,010000,1,012
+	con	4,010000,28,011,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,012
 	declend
-	line	239
+	line	264
 	colm	11
 	synt	any
 	mark	L1
-	line	242
+	line	267
 	colm	17
 	synt	if
 	mark0
@@ -2884,16 +3184,16 @@ proc classes__State_getAcceptableTxt
 	pnull
 	pnull
 	var	0
-	line	242
+	line	267
 	colm	25
 	synt	any
 	field	acceptable
-	line	242
+	line	267
 	colm	20
 	synt	any
 	size
 	int	0
-	line	242
+	line	267
 	colm	36
 	synt	any
 	numgt
@@ -2902,14 +3202,14 @@ proc classes__State_getAcceptableTxt
 	pnull
 	var	2
 	str	1
-	line	243
+	line	268
 	colm	29
 	synt	any
 	asgn
 	unmark
 lab L2
 	mark	L3
-	line	244
+	line	269
 	colm	25
 	synt	every
 	mark0
@@ -2918,15 +3218,15 @@ lab L2
 	pnull
 	pnull
 	var	0
-	line	244
+	line	269
 	colm	55
 	synt	any
 	field	acceptable
-	line	244
+	line	269
 	colm	50
 	synt	any
 	bang
-	line	244
+	line	269
 	colm	47
 	synt	any
 	asgn
@@ -2939,26 +3239,26 @@ lab L2
 	pnull
 	var	2
 	str	2
-	line	244
+	line	269
 	colm	78
 	synt	any
 	cat
 	pnull
 	var	3
-	line	244
+	line	269
 	colm	104
 	synt	any
 	field	result
-	line	244
+	line	269
 	colm	86
 	synt	any
 	cat
 	str	3
-	line	244
+	line	269
 	colm	112
 	synt	any
 	cat
-	line	244
+	line	269
 	colm	73
 	synt	any
 	asgn
@@ -2966,27 +3266,33 @@ lab L2
 lab L4
 	efail
 lab L5
-	line	244
+	line	269
 	colm	25
 	synt	endevery
 	unmark
 lab L3
 	mark	L6
+	pnull
 	var	2
-	line	245
+	str	4
+	line	270
+	colm	37
+	synt	any
+	cat
+	line	270
 	colm	25
 	synt	any
 	pret
 lab L6
 	synt	any
 	pfail
-	line	242
+	line	267
 	colm	17
 	synt	endif
 	unmark
 lab L1
 	pnull
-	line	247
+	line	272
 	colm	1
 	synt	any
 	pfail
@@ -2996,27 +3302,33 @@ proc classes__State_initially
 	local	1,001000,newName
 	local	2,001000,thisPrime
 	local	3,001000,initialItem
-	local	4,000020,result
-	local	5,000020,element
-	local	6,000020,newItem
-	local	7,000020,newAlpha
-	local	8,000000,classes__Item
-	local	9,000000,put
+	local	4,001000,theseStateChains
+	local	5,001000,sourceState
+	local	6,000020,result
+	local	7,000020,element
+	local	8,000020,newItem
+	local	9,000020,newAlpha
+	local	10,000000,sourceStateChain
+	local	11,000000,thisSourceStates
+	local	12,000000,thisState
+	local	13,000000,put
+	local	14,000000,classes__Item
 	con	0,010000,0
+	con	1,002000,1,0
 	declend
-	line	249
+	line	274
 	colm	11
 	synt	any
 	mark	L1
 	pnull
 	pnull
 	var	0
-	line	256
+	line	281
 	colm	8
 	synt	any
 	field	label
 	str	0
-	line	256
+	line	281
 	colm	14
 	synt	any
 	asgn
@@ -3026,12 +3338,12 @@ lab L1
 	pnull
 	pnull
 	var	0
-	line	257
+	line	282
 	colm	8
 	synt	any
 	field	name
 	var	1
-	line	257
+	line	282
 	colm	13
 	synt	any
 	asgn
@@ -3041,16 +3353,16 @@ lab L2
 	pnull
 	pnull
 	var	0
-	line	258
+	line	283
 	colm	8
 	synt	any
 	field	items
 	pnull
-	line	258
+	line	283
 	colm	16
 	synt	any
 	llist	0
-	line	258
+	line	283
 	colm	14
 	synt	any
 	asgn
@@ -3060,16 +3372,16 @@ lab L3
 	pnull
 	pnull
 	var	0
-	line	259
+	line	284
 	colm	13
 	synt	any
 	field	actions
 	pnull
-	line	259
+	line	284
 	colm	23
 	synt	any
 	llist	0
-	line	259
+	line	284
 	colm	21
 	synt	any
 	asgn
@@ -3079,16 +3391,16 @@ lab L4
 	pnull
 	pnull
 	var	0
-	line	260
+	line	285
 	colm	13
 	synt	any
 	field	sources
 	pnull
-	line	260
+	line	285
 	colm	23
 	synt	any
 	llist	0
-	line	260
+	line	285
 	colm	21
 	synt	any
 	asgn
@@ -3098,16 +3410,16 @@ lab L5
 	pnull
 	pnull
 	var	0
-	line	261
+	line	286
 	colm	13
 	synt	any
 	field	sourceChains
 	pnull
-	line	261
+	line	286
 	colm	28
 	synt	any
 	llist	0
-	line	261
+	line	286
 	colm	26
 	synt	any
 	asgn
@@ -3117,17 +3429,17 @@ lab L6
 	pnull
 	pnull
 	var	0
-	line	262
+	line	287
 	colm	13
 	synt	any
-	field	sourceInputs
+	field	sourceStateChains
 	pnull
-	line	262
-	colm	28
+	line	287
+	colm	33
 	synt	any
 	llist	0
-	line	262
-	colm	26
+	line	287
+	colm	31
 	synt	any
 	asgn
 	unmark
@@ -3136,17 +3448,17 @@ lab L7
 	pnull
 	pnull
 	var	0
-	line	263
+	line	288
 	colm	13
 	synt	any
-	field	acceptable
+	field	sourceInputs
 	pnull
-	line	263
-	colm	26
+	line	288
+	colm	28
 	synt	any
 	llist	0
-	line	263
-	colm	24
+	line	288
+	colm	26
 	synt	any
 	asgn
 	unmark
@@ -3155,190 +3467,356 @@ lab L8
 	pnull
 	pnull
 	var	0
-	line	264
+	line	289
 	colm	13
 	synt	any
-	field	nonTerminalShifts
+	field	acceptable
 	pnull
-	line	264
-	colm	33
+	line	289
+	colm	26
 	synt	any
 	llist	0
-	line	264
-	colm	31
+	line	289
+	colm	24
 	synt	any
 	asgn
 	unmark
 lab L9
 	mark	L10
 	pnull
-	var	6
-	var	8
-	line	267
-	colm	28
+	pnull
+	var	0
+	line	290
+	colm	13
 	synt	any
-	invoke	0
-	line	267
-	colm	12
+	field	nonTerminalShifts
+	pnull
+	line	290
+	colm	33
+	synt	any
+	llist	0
+	line	290
+	colm	31
 	synt	any
 	asgn
 	unmark
 lab L10
 	mark	L11
 	pnull
-	var	6
-	line	268
-	colm	11
+	var	10
+	pnull
+	line	293
+	colm	29
 	synt	any
-	field	setLeft
-	var	2
-	line	268
-	colm	19
+	llist	0
+	line	293
+	colm	26
 	synt	any
-	invoke	1
+	asgn
 	unmark
 lab L11
 	mark	L12
-	line	269
-	colm	4
+	line	294
+	colm	9
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	294
+	colm	12
+	synt	any
+	size
+	int	1
+	line	294
+	colm	30
+	synt	any
+	numgt
+	unmark
+	line	295
+	colm	17
 	synt	every
 	mark0
 	pnull
-	var	7
+	var	11
 	pnull
-	var	3
-	line	269
-	colm	33
+	var	4
+	line	295
+	colm	43
 	synt	any
-	field	getAlpha
-	line	269
-	colm	42
-	synt	any
-	invoke	0
-	line	269
-	colm	19
+	bang
+	line	295
+	colm	40
 	synt	any
 	asgn
 	pop
 	mark0
+	line	296
+	colm	25
+	synt	if
+	mark0
 	pnull
-	var	6
-	line	270
-	colm	14
+	var	11
+	line	296
+	colm	28
 	synt	any
-	field	addAlpha
-	var	7
-	line	270
-	colm	23
+	nonnull
+	unmark
+	line	297
+	colm	33
+	synt	every
+	mark0
+	pnull
+	var	12
+	pnull
+	var	11
+	line	297
+	colm	52
 	synt	any
-	invoke	1
+	bang
+	line	297
+	colm	49
+	synt	any
+	asgn
+	pop
+	mark0
+	var	13
+	var	10
+	var	12
+	line	298
+	colm	44
+	synt	any
+	invoke	2
+	unmark
+lab L15
+	efail
+lab L16
+	line	297
+	colm	33
+	synt	endevery
+	line	296
+	colm	25
+	synt	endif
 	unmark
 lab L13
 	efail
 lab L14
-	line	269
-	colm	4
+	line	295
+	colm	17
 	synt	endevery
+	line	294
+	colm	9
+	synt	endif
 	unmark
 lab L12
-	mark	L15
-	line	272
+	mark	L17
+	line	304
+	colm	9
+	synt	if
+	mark0
+	pnull
+	var	5
+	line	304
+	colm	12
+	synt	any
+	nonnull
+	unmark
+	var	13
+	var	10
+	var	5
+	line	304
+	colm	33
+	synt	any
+	invoke	2
+	line	304
+	colm	9
+	synt	endif
+	unmark
+lab L17
+	mark	L18
+	var	13
+	pnull
+	var	0
+	line	305
+	colm	17
+	synt	any
+	field	sourceStateChains
+	var	10
+	line	305
+	colm	12
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	8
+	var	14
+	line	308
+	colm	28
+	synt	any
+	invoke	0
+	line	308
+	colm	12
+	synt	any
+	asgn
+	unmark
+lab L19
+	mark	L20
+	pnull
+	var	8
+	line	309
+	colm	11
+	synt	any
+	field	setLeft
+	var	2
+	line	309
+	colm	19
+	synt	any
+	invoke	1
+	unmark
+lab L20
+	mark	L21
+	line	310
 	colm	4
 	synt	every
 	mark0
 	pnull
-	var	5
+	var	9
 	pnull
 	var	3
-	line	272
+	line	310
+	colm	33
+	synt	any
+	field	getAlpha
+	line	310
+	colm	42
+	synt	any
+	invoke	0
+	line	310
+	colm	19
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	8
+	line	311
+	colm	14
+	synt	any
+	field	addAlpha
+	var	9
+	line	311
+	colm	23
+	synt	any
+	invoke	1
+	unmark
+lab L22
+	efail
+lab L23
+	line	310
+	colm	4
+	synt	endevery
+	unmark
+lab L21
+	mark	L24
+	line	313
+	colm	4
+	synt	every
+	mark0
+	pnull
+	var	7
+	pnull
+	var	3
+	line	313
 	colm	32
 	synt	any
 	field	getBetas
-	line	272
+	line	313
 	colm	41
 	synt	any
 	invoke	0
-	line	272
+	line	313
 	colm	18
 	synt	any
 	asgn
 	pop
 	mark0
 	pnull
-	var	6
-	line	273
+	var	8
+	line	314
 	colm	14
 	synt	any
 	field	addBeta
-	var	5
-	line	273
+	var	7
+	line	314
 	colm	22
 	synt	any
 	invoke	1
 	unmark
-lab L16
+lab L25
 	efail
-lab L17
-	line	272
+lab L26
+	line	313
 	colm	4
 	synt	endevery
 	unmark
-lab L15
-	mark	L18
+lab L24
+	mark	L27
 	pnull
-	var	6
-	line	274
+	var	8
+	line	315
 	colm	11
 	synt	any
 	field	setTxt
-	line	274
+	line	315
 	colm	18
 	synt	any
 	invoke	0
 	unmark
-lab L18
-	mark	L19
-	var	9
+lab L27
+	mark	L28
+	var	13
 	pnull
 	var	0
-	line	275
+	line	316
 	colm	12
 	synt	any
 	field	items
-	var	6
-	line	275
+	var	8
+	line	316
 	colm	7
 	synt	any
 	invoke	2
 	unmark
-lab L19
-	mark	L20
+lab L28
+	mark	L29
 	pnull
 	var	0
-	line	276
+	line	317
 	colm	8
 	synt	any
 	field	setTxt
-	line	276
+	line	317
 	colm	15
 	synt	any
 	invoke	0
 	unmark
-lab L20
-	mark	L21
-	mark	L22
+lab L29
+	mark	L30
+	mark	L31
 	pnull
-	line	277
+	line	318
 	colm	7
 	synt	any
 	pret
-lab L22
+lab L31
 	synt	any
 	pfail
 	unmark
-lab L21
+lab L30
 	pnull
-	line	278
+	line	319
 	colm	1
 	synt	any
 	pfail
@@ -3347,35 +3825,37 @@ proc classes__State
 	local	0,001000,newName
 	local	1,001000,thisPrime
 	local	2,001000,initialItem
-	local	3,000020,self
-	local	4,000020,clone
-	local	5,000000,classes__State__oprec
-	local	6,000000,classes__Stateinitialize
-	local	7,000000,classes__State__state
+	local	3,001000,theseStateChains
+	local	4,001000,sourceState
+	local	5,000020,self
+	local	6,000020,clone
+	local	7,000000,classes__State__oprec
+	local	8,000000,classes__Stateinitialize
+	local	9,000000,classes__State__state
 	declend
-	line	282
+	line	323
 	colm	11
 	synt	any
 lab L1
 	init	L3
 	mark	L2
-	line	285
+	line	326
 	colm	3
 	synt	if
 	mark0
 	pnull
-	var	5
-	line	285
+	var	7
+	line	326
 	colm	6
 	synt	any
 	null
 	unmark
-	var	6
-	line	285
+	var	8
+	line	326
 	colm	58
 	synt	any
 	invoke	0
-	line	285
+	line	326
 	colm	3
 	synt	endif
 	unmark
@@ -3384,18 +3864,18 @@ lab L2
 lab L3
 	mark	L4
 	pnull
-	var	3
-	var	7
-	line	287
+	var	5
+	var	9
+	line	328
 	colm	33
 	synt	any
 	keywd	null
-	var	5
-	line	287
+	var	7
+	line	328
 	colm	32
 	synt	any
 	invoke	2
-	line	287
+	line	328
 	colm	8
 	synt	any
 	asgn
@@ -3404,13 +3884,13 @@ lab L4
 	mark	L5
 	pnull
 	pnull
-	var	3
-	line	288
+	var	5
+	line	329
 	colm	7
 	synt	any
 	field	__s
-	var	3
-	line	288
+	var	5
+	line	329
 	colm	12
 	synt	any
 	asgn
@@ -3420,31 +3900,33 @@ lab L5
 	mark	L7
 	pnull
 	pnull
-	var	3
-	line	289
+	var	5
+	line	330
 	colm	7
 	synt	any
 	field	__m
-	line	289
+	line	330
 	colm	11
 	synt	any
 	field	initially
-	var	3
+	var	5
 	var	0
 	var	1
 	var	2
-	line	289
+	var	3
+	var	4
+	line	330
 	colm	21
 	synt	any
-	invoke	4
-	line	289
-	colm	58
+	invoke	6
+	line	330
+	colm	87
 	synt	any
 	esusp
 	goto	L8
 lab L7
-	line	289
-	colm	60
+	line	330
+	colm	89
 	synt	any
 	pfail
 lab L8
@@ -3452,8 +3934,8 @@ lab L8
 lab L6
 	mark	L9
 	mark	L10
-	var	3
-	line	290
+	var	5
+	line	331
 	colm	3
 	synt	any
 	pret
@@ -3463,7 +3945,7 @@ lab L10
 	unmark
 lab L9
 	pnull
-	line	291
+	line	332
 	colm	1
 	synt	any
 	pfail
@@ -3476,22 +3958,25 @@ proc classes__Stateinitialize
 	local	4,000000,classes__State_addAlpha
 	local	5,000000,classes__State_addAction
 	local	6,000000,classes__State_addSource
-	local	7,000000,classes__State_addSourceInput
-	local	8,000000,classes__State_addAcceptable
-	local	9,000000,classes__State_addNonTerminalShift
-	local	10,000000,classes__State_getName
-	local	11,000000,classes__State_getItems
-	local	12,000000,classes__State_getItemsList
-	local	13,000000,classes__State_setTxt
-	local	14,000000,classes__State_getActionTxt
-	local	15,000000,classes__State_addSourceChain
-	local	16,000000,classes__State_getSourceChainTxt
-	local	17,000000,classes__State_getSourceTxt
-	local	18,000000,classes__State_getSourceInputTxt
-	local	19,000000,classes__State_getAcceptableTxt
-	local	20,000000,classes__State_initially
+	local	7,000000,classes__State_addSourceChain
+	local	8,000000,classes__State_addSourceStateChain
+	local	9,000000,classes__State_addSourceInput
+	local	10,000000,classes__State_addAcceptable
+	local	11,000000,classes__State_addNonTerminalShift
+	local	12,000000,classes__State_getName
+	local	13,000000,classes__State_getItems
+	local	14,000000,classes__State_getItemsList
+	local	15,000000,classes__State_getStateChains
+	local	16,000000,classes__State_setTxt
+	local	17,000000,classes__State_getActionTxt
+	local	18,000000,classes__State_getSourceChainTxt
+	local	19,000000,classes__State_getSourceStateChainTxt
+	local	20,000000,classes__State_getSourceTxt
+	local	21,000000,classes__State_getSourceInputTxt
+	local	22,000000,classes__State_getAcceptableTxt
+	local	23,000000,classes__State_initially
 	declend
-	line	293
+	line	334
 	colm	11
 	synt	any
 lab L1
@@ -3519,11 +4004,14 @@ lab L1
 	var	18
 	var	19
 	var	20
-	line	294
+	var	21
+	var	22
+	var	23
+	line	335
 	colm	59
 	synt	any
-	invoke	19
-	line	294
+	invoke	22
+	line	335
 	colm	33
 	synt	any
 	asgn
@@ -3531,7 +4019,7 @@ lab L1
 lab L2
 	einit	L1
 lab L3
-	line	295
+	line	336
 	colm	1
 	synt	any
 	pfail
@@ -3540,26 +4028,26 @@ proc classes__Item_setLeft
 	local	0,001000,self
 	local	1,001000,newLeft
 	declend
-	line	282
+	line	323
 	colm	11
 	synt	any
 	mark	L1
 	pnull
 	pnull
 	var	0
-	line	283
+	line	324
 	colm	11
 	synt	any
 	field	left
 	var	1
-	line	283
+	line	324
 	colm	16
 	synt	any
 	asgn
 	unmark
 lab L1
 	pnull
-	line	284
+	line	325
 	colm	1
 	synt	any
 	pfail
@@ -3569,26 +4057,26 @@ proc classes__Item_addAlpha
 	local	1,001000,newAlpha
 	local	2,000000,put
 	declend
-	line	286
+	line	327
 	colm	11
 	synt	any
 	mark	L1
 	var	2
 	pnull
 	var	0
-	line	287
+	line	328
 	colm	15
 	synt	any
 	field	alpha
 	var	1
-	line	287
+	line	328
 	colm	10
 	synt	any
 	invoke	2
 	unmark
 lab L1
 	pnull
-	line	288
+	line	329
 	colm	1
 	synt	any
 	pfail
@@ -3598,26 +4086,26 @@ proc classes__Item_addBeta
 	local	1,001000,newBeta
 	local	2,000000,put
 	declend
-	line	290
+	line	331
 	colm	11
 	synt	any
 	mark	L1
 	var	2
 	pnull
 	var	0
-	line	291
+	line	332
 	colm	18
 	synt	any
 	field	beta
 	var	1
-	line	291
+	line	332
 	colm	13
 	synt	any
 	invoke	2
 	unmark
 lab L1
 	pnull
-	line	292
+	line	333
 	colm	1
 	synt	any
 	pfail
@@ -3626,26 +4114,26 @@ proc classes__Item_setBetaList
 	local	0,001000,self
 	local	1,001000,newBetaList
 	declend
-	line	294
+	line	335
 	colm	11
 	synt	any
 	mark	L1
 	pnull
 	pnull
 	var	0
-	line	295
+	line	336
 	colm	11
 	synt	any
 	field	beta
 	var	1
-	line	295
+	line	336
 	colm	16
 	synt	any
 	asgn
 	unmark
 lab L1
 	pnull
-	line	296
+	line	337
 	colm	1
 	synt	any
 	pfail
@@ -3653,18 +4141,18 @@ lab L1
 proc classes__Item_getLeft
 	local	0,001000,self
 	declend
-	line	298
+	line	339
 	colm	11
 	synt	any
 	mark	L1
 	mark	L2
 	pnull
 	var	0
-	line	299
+	line	340
 	colm	18
 	synt	any
 	field	left
-	line	299
+	line	340
 	colm	7
 	synt	any
 	pret
@@ -3674,7 +4162,7 @@ lab L2
 	unmark
 lab L1
 	pnull
-	line	300
+	line	341
 	colm	1
 	synt	any
 	pfail
@@ -3683,11 +4171,11 @@ proc classes__Item_getAlpha
 	local	0,001000,self
 	local	1,000020,element
 	declend
-	line	302
+	line	343
 	colm	11
 	synt	any
 	mark	L1
-	line	304
+	line	345
 	colm	7
 	synt	every
 	mark0
@@ -3696,21 +4184,21 @@ proc classes__Item_getAlpha
 	pnull
 	pnull
 	var	0
-	line	304
+	line	345
 	colm	29
 	synt	any
 	field	alpha
-	line	304
+	line	345
 	colm	24
 	synt	any
 	bang
-	line	304
+	line	345
 	colm	21
 	synt	any
 	asgn
 	pop
 	mark0
-	line	304
+	line	345
 	colm	39
 	synt	suspend
 	mark0
@@ -3721,20 +4209,20 @@ proc classes__Item_getAlpha
 lab L4
 	efail
 lab L5
-	line	304
+	line	345
 	colm	39
 	synt	endsuspend
 	unmark
 lab L2
 	efail
 lab L3
-	line	304
+	line	345
 	colm	7
 	synt	endevery
 	unmark
 lab L1
 	pnull
-	line	305
+	line	346
 	colm	1
 	synt	any
 	pfail
@@ -3742,18 +4230,18 @@ lab L1
 proc classes__Item_getAlphaList
 	local	0,001000,self
 	declend
-	line	307
+	line	348
 	colm	11
 	synt	any
 	mark	L1
 	mark	L2
 	pnull
 	var	0
-	line	308
+	line	349
 	colm	18
 	synt	any
 	field	alpha
-	line	308
+	line	349
 	colm	7
 	synt	any
 	pret
@@ -3763,7 +4251,7 @@ lab L2
 	unmark
 lab L1
 	pnull
-	line	309
+	line	350
 	colm	1
 	synt	any
 	pfail
@@ -3773,11 +4261,11 @@ proc classes__Item_getLastAlpha
 	local	1,000020,element
 	local	2,000020,thisElement
 	declend
-	line	311
+	line	352
 	colm	11
 	synt	any
 	mark	L1
-	line	313
+	line	354
 	colm	7
 	synt	every
 	mark0
@@ -3785,15 +4273,15 @@ proc classes__Item_getLastAlpha
 	var	2
 	pnull
 	var	0
-	line	313
+	line	354
 	colm	32
 	synt	any
 	field	getAlpha
-	line	313
+	line	354
 	colm	41
 	synt	any
 	invoke	0
-	line	313
+	line	354
 	colm	25
 	synt	any
 	asgn
@@ -3802,7 +4290,7 @@ proc classes__Item_getLastAlpha
 	pnull
 	var	1
 	var	2
-	line	314
+	line	355
 	colm	18
 	synt	any
 	asgn
@@ -3810,7 +4298,7 @@ proc classes__Item_getLastAlpha
 lab L2
 	efail
 lab L3
-	line	313
+	line	354
 	colm	7
 	synt	endevery
 	unmark
@@ -3818,7 +4306,7 @@ lab L1
 	mark	L4
 	mark	L5
 	var	1
-	line	316
+	line	357
 	colm	7
 	synt	any
 	pret
@@ -3828,7 +4316,7 @@ lab L5
 	unmark
 lab L4
 	pnull
-	line	317
+	line	358
 	colm	1
 	synt	any
 	pfail
@@ -3837,11 +4325,11 @@ proc classes__Item_getBetas
 	local	0,001000,self
 	local	1,000020,thisBeta
 	declend
-	line	319
+	line	360
 	colm	11
 	synt	any
 	mark	L1
-	line	321
+	line	362
 	colm	7
 	synt	every
 	mark0
@@ -3850,21 +4338,21 @@ proc classes__Item_getBetas
 	pnull
 	pnull
 	var	0
-	line	321
+	line	362
 	colm	30
 	synt	any
 	field	beta
-	line	321
+	line	362
 	colm	25
 	synt	any
 	bang
-	line	321
+	line	362
 	colm	22
 	synt	any
 	asgn
 	pop
 	mark0
-	line	321
+	line	362
 	colm	39
 	synt	suspend
 	mark0
@@ -3875,20 +4363,20 @@ proc classes__Item_getBetas
 lab L4
 	efail
 lab L5
-	line	321
+	line	362
 	colm	39
 	synt	endsuspend
 	unmark
 lab L2
 	efail
 lab L3
-	line	321
+	line	362
 	colm	7
 	synt	endevery
 	unmark
 lab L1
 	pnull
-	line	322
+	line	363
 	colm	1
 	synt	any
 	pfail
@@ -3896,18 +4384,18 @@ lab L1
 proc classes__Item_getBetaList
 	local	0,001000,self
 	declend
-	line	324
+	line	365
 	colm	11
 	synt	any
 	mark	L1
 	mark	L2
 	pnull
 	var	0
-	line	325
+	line	366
 	colm	18
 	synt	any
 	field	beta
-	line	325
+	line	366
 	colm	7
 	synt	any
 	pret
@@ -3917,7 +4405,7 @@ lab L2
 	unmark
 lab L1
 	pnull
-	line	326
+	line	367
 	colm	1
 	synt	any
 	pfail
@@ -3926,7 +4414,7 @@ proc classes__Item_getBeta
 	local	0,001000,self
 	local	1,001000,v
 	declend
-	line	328
+	line	369
 	colm	11
 	synt	any
 	mark	L1
@@ -3934,16 +4422,16 @@ proc classes__Item_getBeta
 	pnull
 	pnull
 	var	0
-	line	329
+	line	370
 	colm	18
 	synt	any
 	field	beta
 	var	1
-	line	329
+	line	370
 	colm	23
 	synt	any
 	subsc
-	line	329
+	line	370
 	colm	7
 	synt	any
 	pret
@@ -3953,7 +4441,7 @@ lab L2
 	unmark
 lab L1
 	pnull
-	line	330
+	line	371
 	colm	1
 	synt	any
 	pfail
@@ -3967,11 +4455,11 @@ proc classes__Item_getShift
 	con	0,002000,1,0
 	con	1,002000,1,1
 	declend
-	line	332
+	line	373
 	colm	11
 	synt	any
 	mark	L1
-	line	338
+	line	379
 	colm	7
 	synt	if
 	mark0
@@ -3979,16 +4467,16 @@ proc classes__Item_getShift
 	pnull
 	pnull
 	var	0
-	line	338
+	line	379
 	colm	15
 	synt	any
 	field	beta
-	line	338
+	line	379
 	colm	10
 	synt	any
 	size
 	int	0
-	line	338
+	line	379
 	colm	20
 	synt	any
 	numgt
@@ -3997,11 +4485,11 @@ proc classes__Item_getShift
 	pnull
 	var	1
 	var	4
-	line	339
+	line	380
 	colm	34
 	synt	any
 	invoke	0
-	line	339
+	line	380
 	colm	18
 	synt	any
 	asgn
@@ -4010,24 +4498,24 @@ lab L2
 	mark	L3
 	pnull
 	var	1
-	line	340
+	line	381
 	colm	17
 	synt	any
 	field	setLeft
 	pnull
 	var	0
-	line	340
+	line	381
 	colm	30
 	synt	any
 	field	left
-	line	340
+	line	381
 	colm	25
 	synt	any
 	invoke	1
 	unmark
 lab L3
 	mark	L4
-	line	341
+	line	382
 	colm	10
 	synt	every
 	mark0
@@ -4035,15 +4523,15 @@ lab L3
 	var	2
 	pnull
 	var	0
-	line	341
+	line	382
 	colm	31
 	synt	any
 	field	getAlpha
-	line	341
+	line	382
 	colm	40
 	synt	any
 	invoke	0
-	line	341
+	line	382
 	colm	24
 	synt	any
 	asgn
@@ -4051,12 +4539,12 @@ lab L3
 	mark0
 	pnull
 	var	1
-	line	341
+	line	382
 	colm	52
 	synt	any
 	field	addAlpha
 	var	2
-	line	341
+	line	382
 	colm	61
 	synt	any
 	invoke	1
@@ -4064,7 +4552,7 @@ lab L3
 lab L5
 	efail
 lab L6
-	line	341
+	line	382
 	colm	10
 	synt	endevery
 	unmark
@@ -4073,14 +4561,14 @@ lab L4
 	pnull
 	var	3
 	int	1
-	line	342
+	line	383
 	colm	16
 	synt	any
 	asgn
 	unmark
 lab L7
 	mark	L8
-	line	343
+	line	384
 	colm	10
 	synt	every
 	mark0
@@ -4088,74 +4576,74 @@ lab L7
 	var	2
 	pnull
 	var	0
-	line	343
+	line	384
 	colm	31
 	synt	any
 	field	getBetas
-	line	343
+	line	384
 	colm	40
 	synt	any
 	invoke	0
-	line	343
+	line	384
 	colm	24
 	synt	any
 	asgn
 	pop
 	mark0
 	mark	L11
-	line	344
+	line	385
 	colm	13
 	synt	if
 	mark0
 	pnull
 	var	3
 	int	1
-	line	344
+	line	385
 	colm	22
 	synt	any
 	numeq
 	unmark
 	pnull
 	var	1
-	line	345
+	line	386
 	colm	23
 	synt	any
 	field	addAlpha
 	var	2
-	line	345
+	line	386
 	colm	32
 	synt	any
 	invoke	1
-	line	344
+	line	385
 	colm	13
 	synt	endif
 	unmark
 lab L11
 	mark	L12
-	line	347
+	line	388
 	colm	13
 	synt	if
 	mark0
 	pnull
 	var	3
 	int	1
-	line	347
+	line	388
 	colm	22
 	synt	any
 	numgt
 	unmark
 	pnull
 	var	1
-	line	348
+	line	389
 	colm	23
 	synt	any
 	field	addBeta
 	var	2
-	line	348
+	line	389
 	colm	31
 	synt	any
 	invoke	1
-	line	347
+	line	388
 	colm	13
 	synt	endif
 	unmark
@@ -4164,7 +4652,7 @@ lab L12
 	var	3
 	dup
 	int	1
-	line	350
+	line	391
 	colm	19
 	synt	any
 	plus
@@ -4173,7 +4661,7 @@ lab L12
 lab L9
 	efail
 lab L10
-	line	343
+	line	384
 	colm	10
 	synt	endevery
 	unmark
@@ -4181,11 +4669,11 @@ lab L8
 	mark	L13
 	pnull
 	var	1
-	line	352
+	line	393
 	colm	17
 	synt	any
 	field	setTxt
-	line	352
+	line	393
 	colm	24
 	synt	any
 	invoke	0
@@ -4193,20 +4681,20 @@ lab L8
 lab L13
 	mark	L14
 	var	1
-	line	353
+	line	394
 	colm	10
 	synt	any
 	pret
 lab L14
 	synt	any
 	pfail
-	line	338
+	line	379
 	colm	7
 	synt	endif
 	unmark
 lab L1
 	pnull
-	line	355
+	line	396
 	colm	1
 	synt	any
 	pfail
@@ -4224,7 +4712,7 @@ proc classes__Item_setTxt
 	con	4,010000,1,056
 	con	5,010000,1,012
 	declend
-	line	357
+	line	398
 	colm	11
 	synt	any
 	mark	L1
@@ -4236,28 +4724,28 @@ proc classes__Item_setTxt
 	pnull
 	pnull
 	var	0
-	line	365
+	line	406
 	colm	26
 	synt	any
 	field	left
-	line	365
+	line	406
 	colm	31
 	synt	any
 	field	getResult
-	line	365
+	line	406
 	colm	41
 	synt	any
 	invoke	0
-	line	365
+	line	406
 	colm	19
 	synt	any
 	cat
 	str	1
-	line	365
+	line	406
 	colm	43
 	synt	any
 	cat
-	line	365
+	line	406
 	colm	11
 	synt	any
 	asgn
@@ -4267,7 +4755,7 @@ lab L1
 	pnull
 	var	1
 	int	2
-	line	366
+	line	407
 	colm	9
 	synt	any
 	asgn
@@ -4275,7 +4763,7 @@ lab L1
 lab L2
 	mark	L3
 lab L4
-	line	367
+	line	408
 	colm	7
 	synt	while
 	mark0
@@ -4284,15 +4772,15 @@ lab L4
 	pnull
 	pnull
 	var	0
-	line	367
+	line	408
 	colm	23
 	synt	any
 	field	alpha
-	line	367
+	line	408
 	colm	18
 	synt	any
 	size
-	line	367
+	line	408
 	colm	15
 	synt	any
 	numle
@@ -4305,7 +4793,7 @@ lab L4
 	pnull
 	var	4
 	str	3
-	line	368
+	line	409
 	colm	21
 	synt	any
 	cat
@@ -4313,28 +4801,28 @@ lab L4
 	pnull
 	pnull
 	var	0
-	line	368
+	line	409
 	colm	35
 	synt	any
 	field	alpha
 	var	1
-	line	368
+	line	409
 	colm	41
 	synt	any
 	subsc
-	line	368
+	line	409
 	colm	44
 	synt	any
 	field	getResult
-	line	368
+	line	409
 	colm	54
 	synt	any
 	invoke	0
-	line	368
+	line	409
 	colm	28
 	synt	any
 	cat
-	line	368
+	line	409
 	colm	14
 	synt	any
 	asgn
@@ -4344,7 +4832,7 @@ lab L7
 	var	1
 	dup
 	int	2
-	line	369
+	line	410
 	colm	12
 	synt	any
 	plus
@@ -4353,7 +4841,7 @@ lab L5
 	unmark
 	goto	L4
 lab L6
-	line	367
+	line	408
 	colm	7
 	synt	endwhile
 	unmark
@@ -4364,11 +4852,11 @@ lab L3
 	pnull
 	var	4
 	str	4
-	line	371
+	line	412
 	colm	18
 	synt	any
 	cat
-	line	371
+	line	412
 	colm	11
 	synt	any
 	asgn
@@ -4378,7 +4866,7 @@ lab L8
 	pnull
 	var	2
 	int	2
-	line	372
+	line	413
 	colm	9
 	synt	any
 	asgn
@@ -4386,7 +4874,7 @@ lab L8
 lab L9
 	mark	L10
 lab L11
-	line	373
+	line	414
 	colm	7
 	synt	while
 	mark0
@@ -4395,15 +4883,15 @@ lab L11
 	pnull
 	pnull
 	var	0
-	line	373
+	line	414
 	colm	23
 	synt	any
 	field	beta
-	line	373
+	line	414
 	colm	18
 	synt	any
 	size
-	line	373
+	line	414
 	colm	15
 	synt	any
 	numle
@@ -4415,29 +4903,29 @@ lab L11
 	pnull
 	pnull
 	var	0
-	line	374
+	line	415
 	colm	25
 	synt	any
 	field	beta
 	var	2
-	line	374
+	line	415
 	colm	30
 	synt	any
 	subsc
-	line	374
+	line	415
 	colm	18
 	synt	any
 	asgn
 	unmark
 lab L14
 	mark	L15
-	line	375
+	line	416
 	colm	10
 	synt	if
 	mark0
 	pnull
 	var	3
-	line	375
+	line	416
 	colm	13
 	synt	any
 	nonnull
@@ -4449,28 +4937,28 @@ lab L14
 	var	4
 	pnull
 	var	3
-	line	375
+	line	416
 	colm	48
 	synt	any
 	field	getResult
-	line	375
+	line	416
 	colm	58
 	synt	any
 	invoke	0
-	line	375
+	line	416
 	colm	38
 	synt	any
 	cat
 	str	3
-	line	375
+	line	416
 	colm	61
 	synt	any
 	cat
-	line	375
+	line	416
 	colm	31
 	synt	any
 	asgn
-	line	375
+	line	416
 	colm	10
 	synt	endif
 	unmark
@@ -4479,7 +4967,7 @@ lab L15
 	var	2
 	dup
 	int	2
-	line	376
+	line	417
 	colm	12
 	synt	any
 	plus
@@ -4488,7 +4976,7 @@ lab L12
 	unmark
 	goto	L11
 lab L13
-	line	373
+	line	414
 	colm	7
 	synt	endwhile
 	unmark
@@ -4499,11 +4987,11 @@ lab L10
 	pnull
 	var	4
 	str	5
-	line	378
+	line	419
 	colm	18
 	synt	any
 	cat
-	line	378
+	line	419
 	colm	11
 	synt	any
 	asgn
@@ -4513,19 +5001,19 @@ lab L16
 	pnull
 	pnull
 	var	0
-	line	379
+	line	420
 	colm	11
 	synt	any
 	field	label
 	var	4
-	line	379
+	line	420
 	colm	17
 	synt	any
 	asgn
 	unmark
 lab L17
 	pnull
-	line	380
+	line	421
 	colm	1
 	synt	any
 	pfail
@@ -4534,19 +5022,19 @@ proc classes__Item_initially
 	local	0,001000,self
 	con	0,010000,0
 	declend
-	line	382
+	line	423
 	colm	11
 	synt	any
 	mark	L1
 	pnull
 	pnull
 	var	0
-	line	383
+	line	424
 	colm	8
 	synt	any
 	field	label
 	str	0
-	line	383
+	line	424
 	colm	14
 	synt	any
 	asgn
@@ -4556,16 +5044,16 @@ lab L1
 	pnull
 	pnull
 	var	0
-	line	384
+	line	425
 	colm	8
 	synt	any
 	field	alpha
 	pnull
-	line	384
+	line	425
 	colm	16
 	synt	any
 	llist	0
-	line	384
+	line	425
 	colm	14
 	synt	any
 	asgn
@@ -4575,16 +5063,16 @@ lab L2
 	pnull
 	pnull
 	var	0
-	line	385
+	line	426
 	colm	8
 	synt	any
 	field	beta
 	pnull
-	line	385
+	line	426
 	colm	15
 	synt	any
 	llist	0
-	line	385
+	line	426
 	colm	13
 	synt	any
 	asgn
@@ -4593,7 +5081,7 @@ lab L3
 	mark	L4
 	mark	L5
 	pnull
-	line	386
+	line	427
 	colm	7
 	synt	any
 	pret
@@ -4603,7 +5091,7 @@ lab L5
 	unmark
 lab L4
 	pnull
-	line	387
+	line	428
 	colm	1
 	synt	any
 	pfail
@@ -4615,29 +5103,29 @@ proc classes__Item
 	local	3,000000,classes__Iteminitialize
 	local	4,000000,classes__Item__state
 	declend
-	line	391
+	line	432
 	colm	11
 	synt	any
 lab L1
 	init	L3
 	mark	L2
-	line	394
+	line	435
 	colm	3
 	synt	if
 	mark0
 	pnull
 	var	2
-	line	394
+	line	435
 	colm	6
 	synt	any
 	null
 	unmark
 	var	3
-	line	394
+	line	435
 	colm	56
 	synt	any
 	invoke	0
-	line	394
+	line	435
 	colm	3
 	synt	endif
 	unmark
@@ -4648,16 +5136,16 @@ lab L3
 	pnull
 	var	0
 	var	4
-	line	396
+	line	437
 	colm	32
 	synt	any
 	keywd	null
 	var	2
-	line	396
+	line	437
 	colm	31
 	synt	any
 	invoke	2
-	line	396
+	line	437
 	colm	8
 	synt	any
 	asgn
@@ -4667,12 +5155,12 @@ lab L4
 	pnull
 	pnull
 	var	0
-	line	397
+	line	438
 	colm	7
 	synt	any
 	field	__s
 	var	0
-	line	397
+	line	438
 	colm	12
 	synt	any
 	asgn
@@ -4683,27 +5171,27 @@ lab L5
 	pnull
 	pnull
 	var	0
-	line	398
+	line	439
 	colm	7
 	synt	any
 	field	__m
-	line	398
+	line	439
 	colm	11
 	synt	any
 	field	initially
 	var	0
 	pnull
-	line	398
+	line	439
 	colm	21
 	synt	any
 	invoke	2
-	line	398
+	line	439
 	colm	29
 	synt	any
 	esusp
 	goto	L8
 lab L7
-	line	398
+	line	439
 	colm	31
 	synt	any
 	pfail
@@ -4713,7 +5201,7 @@ lab L6
 	mark	L9
 	mark	L10
 	var	0
-	line	399
+	line	440
 	colm	3
 	synt	any
 	pret
@@ -4723,7 +5211,7 @@ lab L10
 	unmark
 lab L9
 	pnull
-	line	400
+	line	441
 	colm	1
 	synt	any
 	pfail
@@ -4746,7 +5234,7 @@ proc classes__Iteminitialize
 	local	14,000000,classes__Item_setTxt
 	local	15,000000,classes__Item_initially
 	declend
-	line	402
+	line	443
 	colm	11
 	synt	any
 lab L1
@@ -4769,11 +5257,11 @@ lab L1
 	var	13
 	var	14
 	var	15
-	line	403
+	line	444
 	colm	57
 	synt	any
 	invoke	14
-	line	403
+	line	444
 	colm	32
 	synt	any
 	asgn
@@ -4781,7 +5269,7 @@ lab L1
 lab L2
 	einit	L1
 lab L3
-	line	404
+	line	445
 	colm	1
 	synt	any
 	pfail
@@ -4789,18 +5277,18 @@ lab L3
 proc classes__Action_getLabel
 	local	0,001000,self
 	declend
-	line	389
+	line	430
 	colm	11
 	synt	any
 	mark	L1
 	mark	L2
 	pnull
 	var	0
-	line	390
+	line	431
 	colm	28
 	synt	any
 	field	label
-	line	390
+	line	431
 	colm	17
 	synt	any
 	pret
@@ -4810,7 +5298,7 @@ lab L2
 	unmark
 lab L1
 	pnull
-	line	391
+	line	432
 	colm	1
 	synt	any
 	pfail
@@ -4832,19 +5320,19 @@ proc classes__Action_initially
 	con	7,010000,6,162,145,144,165,143,145
 	con	8,010000,5,145,162,162,157,162
 	declend
-	line	393
+	line	434
 	colm	11
 	synt	any
 	mark	L1
 	pnull
 	pnull
 	var	0
-	line	396
+	line	437
 	colm	13
 	synt	any
 	field	state
 	var	1
-	line	396
+	line	437
 	colm	19
 	synt	any
 	asgn
@@ -4854,12 +5342,12 @@ lab L1
 	pnull
 	pnull
 	var	0
-	line	397
+	line	438
 	colm	13
 	synt	any
 	field	item
 	var	2
-	line	397
+	line	438
 	colm	18
 	synt	any
 	asgn
@@ -4869,12 +5357,12 @@ lab L2
 	pnull
 	pnull
 	var	0
-	line	398
+	line	439
 	colm	13
 	synt	any
 	field	goto
 	var	5
-	line	398
+	line	439
 	colm	18
 	synt	any
 	asgn
@@ -4884,12 +5372,12 @@ lab L3
 	pnull
 	pnull
 	var	0
-	line	399
+	line	440
 	colm	13
 	synt	any
 	field	actionType
 	var	3
-	line	399
+	line	440
 	colm	24
 	synt	any
 	asgn
@@ -4899,31 +5387,31 @@ lab L4
 	pnull
 	pnull
 	var	0
-	line	400
+	line	441
 	colm	13
 	synt	any
 	field	sigma
 	var	4
-	line	400
+	line	441
 	colm	19
 	synt	any
 	asgn
 	unmark
 lab L5
 	mark	L6
-	line	401
+	line	442
 	colm	9
 	synt	ifelse
 	mark	L7
 	pnull
 	pnull
 	var	0
-	line	401
+	line	442
 	colm	16
 	synt	any
 	field	actionType
 	str	0
-	line	401
+	line	442
 	colm	27
 	synt	any
 	lexeq
@@ -4931,7 +5419,7 @@ lab L5
 	pnull
 	pnull
 	var	0
-	line	401
+	line	442
 	colm	46
 	synt	any
 	field	label
@@ -4940,38 +5428,38 @@ lab L5
 	str	1
 	pnull
 	var	0
-	line	401
+	line	442
 	colm	64
 	synt	any
 	field	actionType
-	line	401
+	line	442
 	colm	58
 	synt	any
 	cat
 	str	2
-	line	401
+	line	442
 	colm	75
 	synt	any
 	cat
-	line	401
+	line	442
 	colm	52
 	synt	any
 	asgn
 	goto	L8
 lab L7
-	line	402
+	line	443
 	colm	14
 	synt	ifelse
 	mark	L9
 	pnull
 	pnull
 	var	0
-	line	402
+	line	443
 	colm	21
 	synt	any
 	field	actionType
 	str	3
-	line	402
+	line	443
 	colm	32
 	synt	any
 	lexeq
@@ -4979,7 +5467,7 @@ lab L7
 	pnull
 	pnull
 	var	0
-	line	402
+	line	443
 	colm	50
 	synt	any
 	field	label
@@ -4993,86 +5481,86 @@ lab L7
 	pnull
 	pnull
 	var	0
-	line	402
+	line	443
 	colm	73
 	synt	any
 	field	state
-	line	402
+	line	443
 	colm	79
 	synt	any
 	field	name
-	line	402
+	line	443
 	colm	67
 	synt	any
 	cat
 	str	5
-	line	402
+	line	443
 	colm	84
 	synt	any
 	cat
 	pnull
 	pnull
 	var	0
-	line	402
+	line	443
 	colm	96
 	synt	any
 	field	sigma
-	line	402
+	line	443
 	colm	102
 	synt	any
 	field	getResult
-	line	402
+	line	443
 	colm	112
 	synt	any
 	invoke	0
-	line	402
+	line	443
 	colm	90
 	synt	any
 	cat
 	str	6
-	line	402
+	line	443
 	colm	114
 	synt	any
 	cat
 	pnull
 	pnull
 	var	0
-	line	402
+	line	443
 	colm	128
 	synt	any
 	field	goto
-	line	402
+	line	443
 	colm	133
 	synt	any
 	field	name
-	line	402
+	line	443
 	colm	122
 	synt	any
 	cat
 	str	2
-	line	402
+	line	443
 	colm	138
 	synt	any
 	cat
-	line	402
+	line	443
 	colm	56
 	synt	any
 	asgn
 	goto	L10
 lab L9
-	line	403
+	line	444
 	colm	14
 	synt	ifelse
 	mark	L11
 	pnull
 	pnull
 	var	0
-	line	403
+	line	444
 	colm	21
 	synt	any
 	field	actionType
 	str	7
-	line	403
+	line	444
 	colm	32
 	synt	any
 	lexeq
@@ -5080,7 +5568,7 @@ lab L9
 	pnull
 	pnull
 	var	0
-	line	403
+	line	444
 	colm	51
 	synt	any
 	field	label
@@ -5089,30 +5577,30 @@ lab L9
 	str	1
 	pnull
 	var	0
-	line	403
+	line	444
 	colm	69
 	synt	any
 	field	actionType
-	line	403
+	line	444
 	colm	63
 	synt	any
 	cat
 	pnull
 	pnull
 	var	0
-	line	403
+	line	444
 	colm	86
 	synt	any
 	field	item
-	line	403
+	line	444
 	colm	91
 	synt	any
 	field	label
-	line	403
+	line	444
 	colm	80
 	synt	any
 	cat
-	line	403
+	line	444
 	colm	57
 	synt	any
 	asgn
@@ -5121,25 +5609,25 @@ lab L11
 	pnull
 	pnull
 	var	0
-	line	404
+	line	445
 	colm	18
 	synt	any
 	field	actionType
 	str	8
-	line	404
+	line	445
 	colm	29
 	synt	any
 	asgn
 lab L12
-	line	403
+	line	444
 	colm	14
 	synt	endifelse
 lab L10
-	line	402
+	line	443
 	colm	14
 	synt	endifelse
 lab L8
-	line	401
+	line	442
 	colm	9
 	synt	endifelse
 	unmark
@@ -5147,7 +5635,7 @@ lab L6
 	mark	L13
 	mark	L14
 	pnull
-	line	405
+	line	446
 	colm	7
 	synt	any
 	pret
@@ -5157,7 +5645,7 @@ lab L14
 	unmark
 lab L13
 	pnull
-	line	406
+	line	447
 	colm	1
 	synt	any
 	pfail
@@ -5174,29 +5662,29 @@ proc classes__Action
 	local	8,000000,classes__Actioninitialize
 	local	9,000000,classes__Action__state
 	declend
-	line	410
+	line	451
 	colm	11
 	synt	any
 lab L1
 	init	L3
 	mark	L2
-	line	413
+	line	454
 	colm	3
 	synt	if
 	mark0
 	pnull
 	var	7
-	line	413
+	line	454
 	colm	6
 	synt	any
 	null
 	unmark
 	var	8
-	line	413
+	line	454
 	colm	60
 	synt	any
 	invoke	0
-	line	413
+	line	454
 	colm	3
 	synt	endif
 	unmark
@@ -5207,16 +5695,16 @@ lab L3
 	pnull
 	var	5
 	var	9
-	line	415
+	line	456
 	colm	34
 	synt	any
 	keywd	null
 	var	7
-	line	415
+	line	456
 	colm	33
 	synt	any
 	invoke	2
-	line	415
+	line	456
 	colm	8
 	synt	any
 	asgn
@@ -5226,12 +5714,12 @@ lab L4
 	pnull
 	pnull
 	var	5
-	line	416
+	line	457
 	colm	7
 	synt	any
 	field	__s
 	var	5
-	line	416
+	line	457
 	colm	12
 	synt	any
 	asgn
@@ -5242,11 +5730,11 @@ lab L5
 	pnull
 	pnull
 	var	5
-	line	417
+	line	458
 	colm	7
 	synt	any
 	field	__m
-	line	417
+	line	458
 	colm	11
 	synt	any
 	field	initially
@@ -5256,17 +5744,17 @@ lab L5
 	var	2
 	var	3
 	var	4
-	line	417
+	line	458
 	colm	21
 	synt	any
 	invoke	6
-	line	417
+	line	458
 	colm	70
 	synt	any
 	esusp
 	goto	L8
 lab L7
-	line	417
+	line	458
 	colm	72
 	synt	any
 	pfail
@@ -5276,7 +5764,7 @@ lab L6
 	mark	L9
 	mark	L10
 	var	5
-	line	418
+	line	459
 	colm	3
 	synt	any
 	pret
@@ -5286,7 +5774,7 @@ lab L10
 	unmark
 lab L9
 	pnull
-	line	419
+	line	460
 	colm	1
 	synt	any
 	pfail
@@ -5297,7 +5785,7 @@ proc classes__Actioninitialize
 	local	2,000000,classes__Action_getLabel
 	local	3,000000,classes__Action_initially
 	declend
-	line	421
+	line	462
 	colm	11
 	synt	any
 lab L1
@@ -5308,11 +5796,11 @@ lab L1
 	var	1
 	var	2
 	var	3
-	line	422
+	line	463
 	colm	61
 	synt	any
 	invoke	2
-	line	422
+	line	463
 	colm	34
 	synt	any
 	asgn
@@ -5320,7 +5808,7 @@ lab L1
 lab L2
 	einit	L1
 lab L3
-	line	423
+	line	464
 	colm	1
 	synt	any
 	pfail
