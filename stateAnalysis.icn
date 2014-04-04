@@ -25,31 +25,35 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList)
 			write(outfile, "\n" || state.name)
 			write(outfile, "\tSources:")
 			write(outfile, state.getSourceChainTxt())
+			write(outfile, "\tMost recent states:")
+			write(outfile, state.getSourcesTxt())
+			write(outfile, "\tMost recent inputs:")
+			write(outfile, state.getSourceInputTxt())
 			write(outfile, "\tConstructed Source State Chain:")
 			write(outfile, state.getSourceStateChainTxt())
-			write(outfile, "\tMost recent states:")
-			write(outfile, state.getSourceTxt())
 			write(outfile, "\tSource State Chains:")
 			write(outfile, state.getSourceStateChainsTxt())
-#			write(outfile, "\tMost recent inputs:")
-#			write(outfile, state.getSourceInputTxt())
+			write(outfile, "\tInput chain:")
+			write(outfile, state.getSourceChainTxt())			
 			write(outfile, state.getAcceptableTxt(terminalsList))
-#			if *state.acceptable > 0 then write(outfile, makeNotAcceptable(state, terminalsList))
+			if *state.acceptable > 0 then write(outfile, makeNotAcceptable(state, terminalsList))
 		}
 		every state := !statesList do {
 			write("\n" || state.name)
 			write("\tSources:")
-			write(state.getSourceChainTxt())
+			write(state.getSourceChainsTxt())
+			write("\tMost recent states:")
+			write(state.getSourcesTxt())
+			write("\tMost recent inputs:")
+			write(state.getSourceInputTxt())			
 			write("\tConstructed Source State Chain:")
 			write(state.getSourceStateChainTxt())
-			write("\tMost recent states:")
-			write(state.getSourceTxt())
 			write("\tSource State Chains:")
 			write(state.getSourceStateChainsTxt())
-#			write("\tMost recent inputs:")
-#			write(state.getSourceInputTxt())
+			write("\tInput chain:")
+			write(state.getSourceChainTxt())
 			write(state.getAcceptableTxt(terminalsList))
-#			if *state.acceptable > 0 then write(makeNotAcceptable(state, terminalsList))
+			if *state.acceptable > 0 then write(makeNotAcceptable(state, terminalsList))
 		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
@@ -76,6 +80,8 @@ procedure determineAllSources(statesList)
 	
 	local 
 		state,
+		thisItem,
+		thisAlpha,
 		action,
 		gotoState
 		
@@ -91,12 +97,12 @@ procedure determineAllSources(statesList)
 					state.addSourceChain(thisAlpha)
 			}
 		}
-	
 		every action := !state.actions do {
 			if action.actionType == "shift" then{
 				every gotoState := !statesList do {
 					if gotoState === action.goto then {
 						gotoState.addSource(state)
+#						gotoState.addSourceToChain(action.sigma)
 						if not duplicate(gotoState.sourceInputs, action.sigma) then 
 							gotoState.addSourceInput(action.sigma)
 					}
@@ -118,7 +124,12 @@ procedure determineAllSources(statesList)
 			}
 		}
 	}
-	
+	every state := !statesList do{
+		every thisSource := !state.sourceStateChain do {
+			if \thisSource.sourceInputs[1] then state.addSourceToChain(thisSource.sourceInputs[1])
+		}
+		if \state.sourceInputs[1] then state.addSourceToChain(state.sourceInputs[1])
+	}
 end
 
 procedure duplicate(sourceList, item)

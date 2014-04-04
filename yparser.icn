@@ -71,19 +71,6 @@ procedure main(args)
    grammars::createNonTerminals(fileName, arguments, rawGrammar)
 end
 
-procedure duplicateGrammar(grammarList, grammar)
-#  checks to see if grammar is in the grammarList, if it is
-#  the grammar is suspended
-
-   local thisGrammar
-   every thisGrammar := !grammarList do{
-      if thisGrammar.getTxt() == grammar.getTxt() then {
-         #write(grammar.getTxt())
-         suspend grammar
-      }
-   }
-end
-
 procedure makeSubStateGrammars(thisRule, thisNonTerminal)
 #
 
@@ -93,7 +80,6 @@ procedure makeSubStateGrammars(thisRule, thisNonTerminal)
       newProductionRule,
       newVariable
    mySubGrammar := StateGrammar()
-#write(thisNonTerminal.getResult())
    mySubGrammar.setLeft(thisNonTerminal)
    every thisVariable := thisRule.getVariables() do 
    {

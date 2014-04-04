@@ -130,8 +130,32 @@ initially
    variables := []
 end
 
-class State(name, items, label, actions, sources, sourceChains, sourceStateChain, sourceStateChains, sourceInputs, acceptable, nonTerminalShifts)
+class State(
+	name, 
+	items, 
+	label,
+	actions, 
+	sources, 
+	sourceChain,
+	sourceChains, 
+	sourceStateChain, 
+	sourceStateChains, 
+	sourceInputs, 
+	acceptable, 
+	nonTerminalShifts)
 #  this class defines a state
+#	name: I#
+#	items:  a list of items
+#	label:  the name plus the first item
+#  actions:
+#	sources: most recent states
+#	sourceChain: the chain of inputs that bring you to this state by construction
+#	sourceChains: a list of chains of inputs that bring you to this state 
+#	sourceStateChain: the chain of states that brings you to this state by construction
+#	sourceStateChains:  a list of possible chains that bring you to this state
+#	sourceInputs: most recent input that brings you to this state
+#	acceptable: list of acceptable inputs
+#	nonTerminalShifts
 
    method setName(newName)
       name := newName
@@ -151,6 +175,10 @@ class State(name, items, label, actions, sources, sourceChains, sourceStateChain
 	
 	method addSource(source)
 		put(sources, source)
+	end
+	
+	method addSourceToChain(newSource)
+		put(sourceChain, newSource)
 	end
 	
 	method addSourceChain(newSourceChain)
@@ -201,10 +229,21 @@ class State(name, items, label, actions, sources, sourceChains, sourceStateChain
 		local txt, line
 		txt := ""
 		every line := !actions do txt := txt || line.label
+		
 		return txt
 	end
-	
+
 	method getSourceChainTxt()
+		local txt, thisSource
+		txt := "\t\t"
+		every thisSource := !sourceChain do {
+			txt := txt || thisSource.result || " "
+		}
+		txt := txt || "\n"
+		return txt
+	end
+
+	method getSourceChainsTxt()
 		local txt, thisItem, element
 		
 		txt := ""
@@ -249,7 +288,7 @@ class State(name, items, label, actions, sources, sourceChains, sourceStateChain
 		}
 	end
 	
-	method getSourceTxt()
+	method getSourcesTxt()
 		local txt, source, count
 		count := 0
 		txt := "\t\t{"
@@ -297,6 +336,7 @@ initially(newName, thisPrime, initialItem, thisStateChain, sourceState)
    items := []
 	actions := []
 	sources := []
+	sourceChain := []
 	sourceChains := []
 	sourceStateChain := []
 	sourceStateChains := []
@@ -311,7 +351,9 @@ initially(newName, thisPrime, initialItem, thisStateChain, sourceState)
 		}
 	}
 	
-	if \sourceState then put(sourceStateChain, sourceState)
+	if \sourceState then { 
+		put(sourceStateChain, sourceState)
+	}
 	
    #set up initialItem
    newItem := Item()

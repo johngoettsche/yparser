@@ -1,12 +1,13 @@
 <NotepadPlus>
     <Project name="yparser">
+        <File name="classes.icn" />
+        <File name="yparser.icn" />
         <File name="grammars.icn" />
         <File name="productionRules.icn" />
         <File name="states.icn" />
-        <File name="yparser.icn" />
         <File name="lookAhead.icn" />
-        <File name="makefile" />
-        <File name="classes.icn" />
         <File name="stateAnalysis.icn" />
+        <File name="makefile" />
+        <File name="Readme.txt" />
     </Project>
 </NotepadPlus>

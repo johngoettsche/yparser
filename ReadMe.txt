@@ -25,3 +25,6 @@
 
 ------------------
 3/30/2014 - added a 'Source State Chain' routine to identify the possibles paths of which it could take to get to each state.  This is obviously incomplete, but makes an effort to show some of the options on how it got to each state.
+
+------------------
+4/4/2014 - added a 'Input Chain' that identifies the chain of inputs that was required to create the state
