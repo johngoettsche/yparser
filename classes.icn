@@ -22,10 +22,20 @@ procedure printTime()
 end
 
 procedure duplicate(sourceList, item)
+	local testItem
+
 	every testItem := !sourceList do {
 		if testItem === item then return item
 	}
 end
+
+procedure countListItems(sourceList)
+	local count, testItem
+	
+	count := 0
+	every testItem := !sourceList do	count +:= 1
+	return count
+end	
 
 class Terminal(type, result)
 #  used to hold a single terminal
@@ -179,6 +189,10 @@ class State(
 	
 	method addSourceToChain(newSource)
 		put(sourceChain, newSource)
+	end
+	
+	method setSourceChain(newSourceChain)
+		sourceChain := newSourceChain
 	end
 	
 	method addSourceChain(newSourceChain)

@@ -1,45 +1,46 @@
 version	U12.1.00
-uid	lookAhead.u1-1395891181-0
+uid	lookAhead.u1-1397086796-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/Classes.u
 link	C:/Users/John/Documents/GitHub/yparser/classes.u
 link	C:/Users/John/Documents/GitHub/yparser/stateAnalysis.u
 global	1
-	0,000005,lookAhead__createLookAheads,4
+	0,000005,lookAhead__createLookAheads,5
 
 proc lookAhead__createLookAheads
 	local	0,001000,fileName
 	local	1,001000,args
 	local	2,001000,statesList
 	local	3,001000,terminalsList
-	local	4,000020,state
-	local	5,000020,item
-	local	6,000020,count
-	local	7,000020,newAction
-	local	8,000020,thisState
-	local	9,000020,searchLabel
-	local	10,000020,compareLabel
-	local	11,000020,goto
-	local	12,000020,inputTokens
-	local	13,000020,sigma
-	local	14,000020,searchItem
-	local	15,000020,thisItem
-	local	16,000020,actionType
-	local	17,000020,checkLength
-	local	18,000020,checkString
-	local	19,000020,actions
-	local	20,000020,action
-	local	21,000020,outfile
-	local	22,000020,outfileName
-	local	23,000000,write
-	local	24,000000,set
-	local	25,000000,member
-	local	26,000000,insert
-	local	27,000000,classes__Action
-	local	28,000000,open
-	local	29,000000,classes__printTime
-	local	30,000000,getch
-	local	31,000000,stateAnalysis__createStateAnalysis
+	local	4,001000,nonTerminalsSet
+	local	5,000020,state
+	local	6,000020,item
+	local	7,000020,count
+	local	8,000020,newAction
+	local	9,000020,thisState
+	local	10,000020,searchLabel
+	local	11,000020,compareLabel
+	local	12,000020,goto
+	local	13,000020,inputTokens
+	local	14,000020,sigma
+	local	15,000020,searchItem
+	local	16,000020,thisItem
+	local	17,000020,actionType
+	local	18,000020,checkLength
+	local	19,000020,checkString
+	local	20,000020,actions
+	local	21,000020,action
+	local	22,000020,outfile
+	local	23,000020,outfileName
+	local	24,000000,write
+	local	25,000000,set
+	local	26,000000,member
+	local	27,000000,insert
+	local	28,000000,classes__Action
+	local	29,000000,open
+	local	30,000000,classes__printTime
+	local	31,000000,getch
+	local	32,000000,stateAnalysis__createStateAnalysis
 	con	0,010000,21,012,103,162,145,141,164,151,156,147,040,141,143,164,151,157,156,163,056,056,056,012
 	con	1,002000,1,1
 	con	2,010000,5,163,150,151,146,164
@@ -61,7 +62,7 @@ proc lookAhead__createLookAheads
 	colm	11
 	synt	any
 	mark	L1
-	var	23
+	var	24
 	str	0
 	line	32
 	colm	14
@@ -75,7 +76,7 @@ lab L1
 	synt	every
 	mark0
 	pnull
-	var	4
+	var	5
 	pnull
 	var	2
 	line	33
@@ -90,8 +91,8 @@ lab L1
 	mark0
 	mark	L5
 	pnull
-	var	12
-	var	24
+	var	13
+	var	25
 	line	34
 	colm	35
 	synt	any
@@ -107,10 +108,10 @@ lab L5
 	synt	every
 	mark0
 	pnull
+	var	6
+	pnull
+	pnull
 	var	5
-	pnull
-	pnull
-	var	4
 	line	35
 	colm	27
 	synt	any
@@ -131,7 +132,7 @@ lab L5
 	mark0
 	mark	L8
 	pnull
-	var	13
+	var	14
 	line	36
 	colm	34
 	synt	any
@@ -144,9 +145,9 @@ lab L5
 lab L8
 	mark	L9
 	pnull
-	var	13
+	var	14
 	pnull
-	var	5
+	var	6
 	line	37
 	colm	38
 	synt	any
@@ -168,7 +169,7 @@ lab L9
 	synt	ifelse
 	mark	L11
 	pnull
-	var	13
+	var	14
 	line	40
 	colm	28
 	synt	any
@@ -176,9 +177,9 @@ lab L9
 	unmark
 	mark	L13
 	pnull
-	var	14
+	var	15
 	pnull
-	var	5
+	var	6
 	line	41
 	colm	51
 	synt	any
@@ -195,7 +196,7 @@ lab L9
 lab L13
 	mark	L14
 	pnull
-	var	14
+	var	15
 	line	42
 	colm	43
 	synt	any
@@ -208,9 +209,9 @@ lab L13
 lab L14
 	mark	L15
 	pnull
-	var	9
+	var	10
 	pnull
-	var	14
+	var	15
 	line	43
 	colm	58
 	synt	any
@@ -227,7 +228,7 @@ lab L15
 	synt	every
 	mark0
 	pnull
-	var	8
+	var	9
 	pnull
 	var	2
 	line	44
@@ -242,10 +243,10 @@ lab L15
 	mark0
 	mark	L19
 	pnull
-	var	15
+	var	16
 	pnull
 	pnull
-	var	8
+	var	9
 	line	45
 	colm	62
 	synt	any
@@ -271,13 +272,13 @@ lab L19
 	mark0
 	pnull
 	pnull
-	var	15
+	var	16
 	line	46
 	colm	52
 	synt	any
 	field	left
 	pnull
-	var	14
+	var	15
 	line	46
 	colm	72
 	synt	any
@@ -289,9 +290,9 @@ lab L19
 	unmark
 	mark	L20
 	pnull
-	var	10
+	var	11
 	pnull
-	var	15
+	var	16
 	line	47
 	colm	73
 	synt	any
@@ -307,16 +308,16 @@ lab L20
 	synt	if
 	mark0
 	pnull
-	var	9
 	var	10
+	var	11
 	line	48
 	colm	64
 	synt	any
 	lexeq
 	unmark
 	pnull
-	var	11
-	var	8
+	var	12
+	var	9
 	line	48
 	colm	90
 	synt	any
@@ -341,14 +342,14 @@ lab L16
 	synt	ifelse
 	mark	L21
 	pnull
-	var	11
+	var	12
 	line	51
 	colm	36
 	synt	any
 	nonnull
 	unmark
 	pnull
-	var	16
+	var	17
 	str	2
 	line	52
 	colm	52
@@ -356,10 +357,10 @@ lab L16
 	asgn
 	goto	L22
 lab L21
-	var	23
+	var	24
 	pnull
 	str	3
-	var	9
+	var	10
 	line	53
 	colm	65
 	synt	any
@@ -376,7 +377,7 @@ lab L22
 lab L11
 	mark	L23
 	pnull
-	var	16
+	var	17
 	str	4
 	line	55
 	colm	44
@@ -386,11 +387,11 @@ lab L11
 lab L23
 	mark	L24
 	pnull
-	var	17
+	var	18
 	pnull
 	pnull
 	pnull
-	var	5
+	var	6
 	line	56
 	colm	53
 	synt	any
@@ -411,11 +412,11 @@ lab L23
 lab L24
 	mark	L25
 	pnull
-	var	18
+	var	19
 	pnull
 	pnull
 	pnull
-	var	5
+	var	6
 	line	57
 	colm	52
 	synt	any
@@ -425,7 +426,7 @@ lab L24
 	synt	any
 	field	result
 	int	1
-	var	17
+	var	18
 	line	57
 	colm	66
 	synt	any
@@ -443,7 +444,7 @@ lab L25
 	mark0
 	pnull
 	pnull
-	var	5
+	var	6
 	line	58
 	colm	41
 	synt	any
@@ -464,7 +465,7 @@ lab L25
 	pnull
 	pnull
 	pnull
-	var	5
+	var	6
 	line	59
 	colm	48
 	synt	any
@@ -486,7 +487,7 @@ lab L25
 	pnull
 	pnull
 	pnull
-	var	5
+	var	6
 	line	59
 	colm	81
 	synt	any
@@ -503,7 +504,7 @@ lab L25
 	colm	106
 	synt	any
 	invoke	0
-	var	18
+	var	19
 	line	59
 	colm	109
 	synt	any
@@ -511,7 +512,7 @@ lab L25
 	unmark
 	mark	L26
 	pnull
-	var	16
+	var	17
 	str	6
 	line	60
 	colm	60
@@ -520,7 +521,7 @@ lab L25
 	unmark
 lab L26
 	pnull
-	var	11
+	var	12
 	line	61
 	colm	57
 	synt	any
@@ -546,9 +547,9 @@ lab L10
 	synt	ifelse
 	mark	L27
 	mark	L29
-	var	25
-	var	12
+	var	26
 	var	13
+	var	14
 	line	65
 	colm	38
 	synt	any
@@ -559,9 +560,9 @@ lab L29
 	pnull
 	unmark
 	mark	L30
-	var	26
-	var	12
+	var	27
 	var	13
+	var	14
 	line	66
 	colm	39
 	synt	any
@@ -570,13 +571,13 @@ lab L29
 lab L30
 	mark	L31
 	pnull
-	var	7
-	var	27
-	var	4
+	var	8
+	var	28
 	var	5
-	var	16
-	var	13
-	var	11
+	var	6
+	var	17
+	var	14
+	var	12
 	line	67
 	colm	61
 	synt	any
@@ -588,12 +589,12 @@ lab L30
 	unmark
 lab L31
 	pnull
-	var	4
+	var	5
 	line	68
 	colm	38
 	synt	any
 	field	addAction
-	var	7
+	var	8
 	line	68
 	colm	48
 	synt	any
@@ -605,7 +606,7 @@ lab L27
 	synt	if
 	mark0
 	pnull
-	var	19
+	var	20
 	line	70
 	colm	36
 	synt	any
@@ -616,9 +617,9 @@ lab L27
 	synt	every
 	mark0
 	pnull
-	var	20
+	var	21
 	pnull
-	var	19
+	var	20
 	line	71
 	colm	57
 	synt	any
@@ -635,12 +636,12 @@ lab L27
 	mark0
 	pnull
 	pnull
-	var	20
+	var	21
 	line	72
 	colm	58
 	synt	any
 	field	sigma
-	var	13
+	var	14
 	line	72
 	colm	65
 	synt	any
@@ -654,7 +655,7 @@ lab L27
 	pnull
 	pnull
 	pnull
-	var	20
+	var	21
 	line	73
 	colm	67
 	synt	any
@@ -668,7 +669,7 @@ lab L27
 	synt	any
 	size
 	pnull
-	var	5
+	var	6
 	line	73
 	colm	84
 	synt	any
@@ -680,12 +681,12 @@ lab L27
 	unmark
 	pnull
 	pnull
-	var	20
+	var	21
 	line	73
 	colm	101
 	synt	any
 	field	goto
-	var	11
+	var	12
 	line	73
 	colm	107
 	synt	any
@@ -748,7 +749,7 @@ lab L2
 	colm	27
 	synt	if
 	mark0
-	var	25
+	var	26
 	var	1
 	str	8
 	line	79
@@ -758,7 +759,7 @@ lab L2
 	unmark
 	mark	L35
 	pnull
-	var	21
+	var	22
 	line	80
 	colm	18
 	synt	any
@@ -771,7 +772,7 @@ lab L2
 lab L35
 	mark	L36
 	pnull
-	var	22
+	var	23
 	pnull
 	var	0
 	str	9
@@ -790,7 +791,7 @@ lab L36
 	colm	7
 	synt	if
 	mark0
-	var	25
+	var	26
 	var	1
 	str	10
 	line	82
@@ -799,9 +800,9 @@ lab L36
 	invoke	2
 	unmark
 	pnull
-	var	21
-	var	28
 	var	22
+	var	29
+	var	23
 	str	11
 	line	82
 	colm	48
@@ -817,7 +818,7 @@ lab L36
 	unmark
 lab L37
 	mark	L38
-	var	23
+	var	24
 	str	12
 	line	83
 	colm	22
@@ -831,7 +832,7 @@ lab L38
 	synt	if
 	mark0
 	pnull
-	var	21
+	var	22
 	line	84
 	colm	23
 	synt	any
@@ -846,7 +847,7 @@ lab L38
 	synt	every
 	mark0
 	pnull
-	var	4
+	var	5
 	pnull
 	var	2
 	line	84
@@ -860,11 +861,11 @@ lab L38
 	pop
 	mark0
 	mark	L42
-	var	23
-	var	21
+	var	24
+	var	22
 	pnull
 	pnull
-	var	4
+	var	5
 	line	85
 	colm	45
 	synt	any
@@ -880,10 +881,10 @@ lab L38
 	invoke	2
 	unmark
 lab L42
-	var	23
-	var	21
+	var	24
+	var	22
 	pnull
-	var	4
+	var	5
 	line	86
 	colm	45
 	synt	any
@@ -914,7 +915,7 @@ lab L39
 	synt	every
 	mark0
 	pnull
-	var	4
+	var	5
 	pnull
 	var	2
 	line	88
@@ -928,11 +929,11 @@ lab L39
 	pop
 	mark0
 	mark	L46
-	var	23
+	var	24
 	pnull
 	str	13
 	pnull
-	var	4
+	var	5
 	line	89
 	colm	44
 	synt	any
@@ -947,9 +948,9 @@ lab L39
 	invoke	1
 	unmark
 lab L46
-	var	23
+	var	24
 	pnull
-	var	4
+	var	5
 	line	90
 	colm	36
 	synt	any
@@ -972,7 +973,7 @@ lab L45
 	unmark
 lab L43
 	mark	L47
-	var	29
+	var	30
 	line	92
 	colm	25
 	synt	any
@@ -980,7 +981,7 @@ lab L43
 	unmark
 lab L47
 	mark	L48
-	var	23
+	var	24
 	str	14
 	line	93
 	colm	12
@@ -988,7 +989,7 @@ lab L47
 	invoke	1
 	unmark
 lab L48
-	var	30
+	var	31
 	line	94
 	colm	12
 	synt	any
@@ -1002,15 +1003,16 @@ lab L48
 	unmark
 lab L34
 	mark	L49
-	var	31
+	var	32
 	var	0
 	var	1
 	var	2
 	var	3
+	var	4
 	line	96
 	colm	43
 	synt	any
-	invoke	4
+	invoke	5
 	unmark
 lab L49
 	pnull

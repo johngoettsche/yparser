@@ -76,7 +76,7 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet, terminalsL
       getch()
    }  
 
-	createLookAheads(fileName, args, statesList, terminalsList)
+	createLookAheads(fileName, args, statesList, terminalsList, nonTerminalsSet)
 end
    
 procedure makeItems(myState, B, itemSet)

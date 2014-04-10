@@ -1,15 +1,14 @@
 
 I0
-	Sources:
-
-	Constructed Source State Chain:
-	Most recent states:
-		{}
-
-	Source State Chains:
 	---- Acceptable Input ----
 	LPAREN
 	ID
+	--------------------------
+
+	-- Not Acceptable Input --
+	PLUS
+	TIMES
+	RPAREN
 	--------------------------
 
 
@@ -17,17 +16,30 @@ I1
 	Sources:
 		e 
 
-	Constructed Source State Chain:
-		I0 
-
 	Most recent states:
 		{I0}
+
+	Most recent inputs:
+		[e]
+
+	Constructed Source State Chain:
+		I0 
 
 	Source State Chains:
 		I0 
 
+	Input chain:
+		e 
+
 	---- Acceptable Input ----
 	PLUS
+	--------------------------
+
+	-- Not Acceptable Input --
+	TIMES
+	LPAREN
+	RPAREN
+	ID
 	--------------------------
 
 
@@ -35,18 +47,31 @@ I2
 	Sources:
 		t 
 
-	Constructed Source State Chain:
-		I0 
-
 	Most recent states:
 		{I0, I4}
+
+	Most recent inputs:
+		[t]
+
+	Constructed Source State Chain:
+		I0 
 
 	Source State Chains:
 		I0 
 		I0 I4 
 
+	Input chain:
+		t 
+
 	---- Acceptable Input ----
 	TIMES
+	--------------------------
+
+	-- Not Acceptable Input --
+	PLUS
+	LPAREN
+	RPAREN
+	ID
 	--------------------------
 
 
@@ -54,27 +79,36 @@ I3
 	Sources:
 		f 
 
-	Constructed Source State Chain:
-		I0 
-
 	Most recent states:
 		{I0, I4, I6}
+
+	Most recent inputs:
+		[f]
+
+	Constructed Source State Chain:
+		I0 
 
 	Source State Chains:
 		I0 
 		I0 I4 
 		I0 I1 I6 
 
+	Input chain:
+		f 
+
 
 I4
 	Sources:
 		LPAREN 
 
-	Constructed Source State Chain:
-		I0 
-
 	Most recent states:
 		{I0, I4, I6, I7}
+
+	Most recent inputs:
+		[LPAREN]
+
+	Constructed Source State Chain:
+		I0 
 
 	Source State Chains:
 		I0 
@@ -82,9 +116,18 @@ I4
 		I0 I1 I6 
 		I0 I2 I7 
 
+	Input chain:
+		LPAREN 
+
 	---- Acceptable Input ----
 	LPAREN
 	ID
+	--------------------------
+
+	-- Not Acceptable Input --
+	PLUS
+	TIMES
+	RPAREN
 	--------------------------
 
 
@@ -92,11 +135,14 @@ I5
 	Sources:
 		ID 
 
-	Constructed Source State Chain:
-		I0 
-
 	Most recent states:
 		{I0, I4, I6, I7}
+
+	Most recent inputs:
+		[ID]
+
+	Constructed Source State Chain:
+		I0 
 
 	Source State Chains:
 		I0 
@@ -104,24 +150,39 @@ I5
 		I0 I1 I6 
 		I0 I2 I7 
 
+	Input chain:
+		ID 
+
 
 I6
 	Sources:
 		e PLUS 
 
-	Constructed Source State Chain:
-		I0 I1 
-
 	Most recent states:
 		{I1, I8}
+
+	Most recent inputs:
+		[PLUS]
+
+	Constructed Source State Chain:
+		I0 I1 
 
 	Source State Chains:
 		I0 I1 
 		I0 I4 I8 
 
+	Input chain:
+		e PLUS 
+
 	---- Acceptable Input ----
 	LPAREN
 	ID
+	--------------------------
+
+	-- Not Acceptable Input --
+	PLUS
+	TIMES
+	RPAREN
 	--------------------------
 
 
@@ -129,58 +190,93 @@ I7
 	Sources:
 		t TIMES 
 
-	Constructed Source State Chain:
-		I0 I2 
-
 	Most recent states:
 		{I2, I9}
+
+	Most recent inputs:
+		[TIMES]
+
+	Constructed Source State Chain:
+		I0 I2 
 
 	Source State Chains:
 		I0 I2 
 		I0 I1 I6 I9 
+
+	Input chain:
+		t TIMES 
 
 	---- Acceptable Input ----
 	LPAREN
 	ID
 	--------------------------
 
+	-- Not Acceptable Input --
+	PLUS
+	TIMES
+	RPAREN
+	--------------------------
+
 
 I8
 	Sources:
 		LPAREN e 
-		e 
-
-	Constructed Source State Chain:
-		I0 I4 
 
 	Most recent states:
 		{I4}
 
+	Most recent inputs:
+		[e]
+
+	Constructed Source State Chain:
+		I0 I4 
+
 	Source State Chains:
 		I0 I4 
+
+	Input chain:
+		LPAREN e 
 
 	---- Acceptable Input ----
 	RPAREN
 	PLUS
 	--------------------------
 
+	-- Not Acceptable Input --
+	TIMES
+	LPAREN
+	ID
+	--------------------------
+
 
 I9
 	Sources:
 		e PLUS t 
-		t 
-
-	Constructed Source State Chain:
-		I0 I1 I6 
 
 	Most recent states:
 		{I6}
 
+	Most recent inputs:
+		[t]
+
+	Constructed Source State Chain:
+		I0 I1 I6 
+
 	Source State Chains:
 		I0 I1 I6 
 
+	Input chain:
+		e PLUS t 
+
 	---- Acceptable Input ----
 	TIMES
+	--------------------------
+
+	-- Not Acceptable Input --
+	PLUS
+	LPAREN
+	RPAREN
+	ID
 	--------------------------
 
 
@@ -188,26 +284,38 @@ I10
 	Sources:
 		t TIMES f 
 
-	Constructed Source State Chain:
-		I0 I2 I7 
-
 	Most recent states:
 		{I7}
 
+	Most recent inputs:
+		[f]
+
+	Constructed Source State Chain:
+		I0 I2 I7 
+
 	Source State Chains:
 		I0 I2 I7 
+
+	Input chain:
+		t TIMES f 
 
 
 I11
 	Sources:
-		LPAREN e RPAREN 
-
-	Constructed Source State Chain:
-		I0 I4 I8 
+		LPAREN t RPAREN 
 
 	Most recent states:
 		{I8}
 
+	Most recent inputs:
+		[RPAREN]
+
+	Constructed Source State Chain:
+		I0 I4 I8 
+
 	Source State Chains:
 		I0 I4 I8 
+
+	Input chain:
+		LPAREN t RPAREN 
 

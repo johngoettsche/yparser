@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	states.u1-1396217359-0
+uid	states.u1-1397086797-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/lookAhead.u
 global	7
@@ -645,10 +645,11 @@ lab L23
 	var	1
 	var	5
 	var	4
+	var	2
 	line	79
 	colm	36
 	synt	any
-	invoke	4
+	invoke	5
 	unmark
 lab L36
 	pnull

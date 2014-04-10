@@ -28,3 +28,6 @@
 
 ------------------
 4/4/2014 - added a 'Input Chain' that identifies the chain of inputs that was required to create the state
+
+------------------
+4/10/2014 - the input chain has been changed to show an ordered set of inputs the source code used to get to the current state.
