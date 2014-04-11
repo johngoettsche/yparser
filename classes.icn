@@ -37,73 +37,49 @@ procedure countListItems(sourceList)
 	return count
 end	
 
-class Terminal(type, result)
+class Terminal(tokenType, token, pattern)
 #  used to hold a single terminal
 
-   method setResult(newResult)
-      result := newResult
-   end
-
-   method getType()
-      return type
-   end
-
-   method getResult()
-      return result
-   end   
-
 initially (thisType)
-   type := thisType
+   tokenType := thisType
 end
 
-class NonTerminal(type, result, productionRules)
+class NonTerminal(tokenType, token, productions)
 #  used to hold a single non terminal
 
-   method setResult(newResult)
-      result := newResult
-   end
-
-   method addProductionRule(newProductionRule)
-      put(productionRules, newProductionRule)
-   end
-
-   method getType()
-      return type
-   end
-
-   method getResult()
-      return result
+   method addProductionRule(newProduction)
+      put(productions, newProduction)
    end
 
    method findRule(matchRule)
-      local productionRule
-      every productionRule := !productionRules do
-         if productionRule == matchRule then return productionRule
+      local production
+      every production := !productions do
+         if production == matchRule then return production
    end
       
-   method getProductionRule(r)
-      return productionRules[r]
+   method getProduction(r)
+      return productions[r]
    end
 
    method getProductionRules()
-      local productionRule
-      every productionRule := !productionRules do suspend productionRule
+      local production
+      every production := !productions do suspend production
    end
 
    method getTxt()      
-      local productionRule, thisString
-      every productionRule := !productionRules do {
-         thisString := result || " <- " || productionRule.getTxt()
+      local production, thisString
+      every production := !productions do {
+         thisString := token || " <- " || production.getTxt()
          suspend thisString
       }
    end
    
 initially
-   type := "nonTerminal"
-   productionRules := []
+   tokenType := "nonTerminal"
+   productions := []
 end
 
-class ProductionRule(variables)
+class Production(variables)
 #  used to hold all the inputs for each grammar rule
 # the stuff that gets converted over into a non-terminal, a RHS.
    
@@ -129,7 +105,6 @@ class ProductionRule(variables)
       str := ""
       x := 1
       while x <= *variables do {
-         #write(variables[x].getResult())
          str := str || variables[x].getResult() || " "
          x +:= 1
       }
@@ -251,7 +226,17 @@ class State(
 		local txt, thisSource
 		txt := "\t\t"
 		every thisSource := !sourceChain do {
-			txt := txt || thisSource.result || " "
+			txt := txt || thisSource.token || " "
+		}
+		txt := txt || "\n"
+		return txt
+	end
+	
+	method getPatternChainTxt()
+		local txt, thisSource
+		txt := "\t\t"
+		every thisSource := !sourceChain do {
+			txt := txt || thisSource.pattern || " "
 		}
 		txt := txt || "\n"
 		return txt
@@ -264,7 +249,7 @@ class State(
 		every thisSourceChain := !sourceChains do{
 			txt := txt || "\t\t"
 			every element := !thisSourceChain do {
-				txt := txt || element.result || " "
+				txt := txt || element.token || " "
 			}
 			txt := txt || "\n"
 		}
@@ -321,7 +306,7 @@ class State(
 		txt := "\t\t["
 		every sourceInput := !sourceInputs do {
 			if count > 0 then txt := txt || ", "
-			txt := txt || sourceInput.result
+			txt := txt || sourceInput.token
 			count +:= 1
 		}
 		txt := txt || "]\n"
@@ -333,7 +318,7 @@ class State(
 		
 		if *acceptable > 0 then {
 			txt := "\t---- Acceptable Input ----\n"
-			every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.result ||"\n"
+			every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.token ||"\n"
 			return txt  || "\t--------------------------\n"
 		}
 	end
@@ -468,17 +453,17 @@ class Item(left, alpha, beta, label)
          element,
          txt
          
-      txt := "\t" || left.getResult() || " -> "
+      txt := "\t" || left.token || " -> "
       p := 1
       while p <= *alpha do {
-         txt := txt || " " || alpha[p].getResult()
+         txt := txt || " " || alpha[p].token
          p +:= 1
       }      
       txt := txt || "."
       g := 1
       while g <= *beta do {
          element := beta[g]
-         if \element then txt := txt || element.getResult() || " "
+         if \element then txt := txt || element.token || " "
          g +:= 1
       }
       txt := txt || "\n"
@@ -505,7 +490,7 @@ initially(newState, newItem, newType, newSigma, newGoto)
 	actionType := newType
 	sigma := newSigma
 	if actionType == "accept" then label := "\t" || actionType || "\n"
-	else if actionType == "shift" then label := "\tgoto(" || state.name || ", " || sigma.getResult() || ") = " || goto.name || "\n"
+	else if actionType == "shift" then label := "\tgoto(" || state.name || ", " || sigma.token || ") = " || goto.name || "\n"
 	else if actionType == "reduce" then label := "\t" || actionType || item.label
 	else actionType := "error"
 end

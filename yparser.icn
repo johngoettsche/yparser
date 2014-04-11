@@ -10,6 +10,7 @@ procedure main(args)
 #     -r		shows the raw grammar
 #     -n  	shows all the non terminals
 #     -t   	shows all the terminals
+#		-T		creates a .tk file with a list of terminals and default tokens
 #     -p  	shows production rules
 #     -s  	shows states
 #		-a  	shows actions: accept, shift/goto, reduce
@@ -48,10 +49,10 @@ procedure main(args)
       arguments := arguments ++ args[x][2: *args[x] + 1]
       x +:= 1
    }
-   file := open(args[x], "r") | stop("ERROR: trouble reading " || args[x])
+   yfile := open(args[x], "r") | stop("ERROR: trouble reading " || args[x])
    args[x] ? fileName := tab(upto('.'))
    #Begin parsing file
-   allwords := getAllWords(file)
+   allwords := getAllWords(yfile)
    allwords := purgeComments(allwords)
    rawGrammar := purgeC(allwords)
    
@@ -68,6 +69,7 @@ procedure main(args)
       write("\n(press ENTER to continue)\n")
       getch()
    }
+	
    grammars::createNonTerminals(fileName, arguments, rawGrammar)
 end
 
@@ -96,14 +98,18 @@ procedure makeSubStateGrammars(thisRule, thisNonTerminal)
   return mySubGrammar
 end
 
-procedure getAllWords(file)
+procedure getAllWords(yfile)
 # produces a list of allwords generated from the source file
 #  by sending each line of the file to the getWord procedure
-
-   local word, line, allwords, wordset
+   local 
+		word, 
+		line, 
+		allwords, 
+		wordset
+		
    allwords := []
-   every put(allwords, word := getWord(line:=!file))
-   close(file)
+   every put(allwords, word := getWord(line:=!yfile))
+   close(yfile)
    allwords := purgeHeaderAndSub(allwords)
    return allwords
 end

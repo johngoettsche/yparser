@@ -71,19 +71,31 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
          insert(terminalCheckSet, terminal)
       }
    terminalsList := []
-   every put(terminalsList, makeTerminalsSet(terminalsWordList))
+	every put(terminalsList, makeTerminalsList(fileName, args, terminalsWordList))
 
    if *args > 0 then if member(args, "t") then {
       outfile := &output
       outfileName := fileName || "-terminals.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
       write("\nTerminals\n") 
-      if outfile ~=== &output then every write(outfile, !terminalsList)
-      every terminal := !terminalsList do write("\t" || terminal.result)
+      if outfile ~=== &output then every write(outfile, !terminalsWordList)
+      every terminal := !terminalsList do write("\t" || terminal.token)
 		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
    }  
+	
+	if *args > 0 then if member(args, "T") then {
+      outfileName := fileName || ".tk"
+      outfile := open(outfileName, "c")
+      if outfile ~=== &output then {
+         every terminal := !terminalsList do write(outfile, terminal.token || "\t\t\t#" || terminal.token)
+      }
+      every write("\t" || !rawGrammar)
+		classes::printTime()
+      stop("\nCreated " || outfileName || "\n")
+   }
+	
    #write(production)
    productionRules::createProductionRules(
          fileName,
@@ -111,24 +123,63 @@ end
 procedure makeNonTerminalsSet(nonTerminalWords)
 #  creates and suspends each NonTerminal in the nonTerminalWords
 # in the order they appear in the grammar
-
-   local x, result, thisNonTerminal
-   every result := !nonTerminalWords do {
+   local 
+		x, 
+		token, 
+		thisNonTerminal
+	
+   every token := !nonTerminalWords do {
       thisNonTerminal := classes::NonTerminal()
-      thisNonTerminal.setResult(result)
+      thisNonTerminal.token := token
       suspend thisNonTerminal
    }
 end
 
-procedure makeTerminalsSet(terminalsList)
+procedure makeTerminalsList(fileName, args, terminalsList)
 # creates and susends each Terminal in the terminalsList
-
-   local result, thisTerminal
-   every result := !terminalsList do {
-      thisTerminal := classes::Terminal("terminal")
-      thisTerminal.setResult(result)
+   local 
+		token, 
+		thisTerminal,
+		pattern,
+		thisPattern
+	
+	fileN := fileName || ".tk"
+	wordDef := &letters++&digits++'_*/%{}|:;+-$#@!&()[]<>,.~`'	
+   every token := !terminalsList do {
+		thisTerminal := classes::Terminal("terminal")
+		thisTerminal.token := token
+		if *args > 0 then if not member(args, "T") then {
+			tkfile := open(fileN, "r") | stop("ERROR: trouble reading " || fileN)
+			pattern := getPattern(tkfile, token)
+			close(tkfile)
+			write(pattern)
+			thisTerminal.pattern := pattern
+		}
       suspend thisTerminal
    }
+	
+end
+
+procedure getPattern(tkfile, token)
+	write("getting pattern: " || token)
+	pattern := "#"
+	every line := !tkfile do {
+	
+		#windows file lines are as follows:&null, line contents, &null, &null
+		
+		line ? every not tab(many(&null)) do {
+			while tab(upto(wordDef)) do {
+				if tokenString := tab(many(wordDef)) then {
+					tab(upto(wordDef))
+					thisPattern := tab(many(wordDef))
+					write(token || ":" || thisPattern)
+					if *thisPattern < 1 then thisPattern := "#"
+					if tokenString := token then pattern := thisPattern
+				}
+			}
+		}
+	}
+	return pattern
 end
 
 procedure getTerminals(wordList, nonTerminalsList)

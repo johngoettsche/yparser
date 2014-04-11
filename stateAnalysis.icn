@@ -77,6 +77,7 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList, nonTerm
 			if *state.sourceChain > 0 then {			
 				write("\tInput chain:")
 				write(state.getSourceChainTxt())
+				write(state.getPatternChainTxt())
 			}
 			if *state.acceptable > 0 then {
 				write(state.getAcceptableTxt(terminalsList))
@@ -95,9 +96,9 @@ procedure makeNotAcceptable(state, terminalsList)
 		
 	txt := "\t-- Not Acceptable Input --\n"
 	every terminal := !terminalsList do {
-		#write(terminal.result)
+		#write(terminal.token)
 		if not classes::duplicate(state.acceptable, terminal) then {
-			txt := txt || "\t" || terminal.result || "\n"
+			txt := txt || "\t" || terminal.token || "\n"
 		}
 	}
 	return txt || "\t--------------------------\n"
@@ -159,7 +160,7 @@ procedure determineAllSources(nonTerminalsSet, statesList)
 		if \state.sourceInputs[1] then state.addSourceToChain(state.sourceInputs[1])
 	}
 	every state := !statesList do {
-		write("*** " || state.name || " ***")
+	#	write("*** " || state.name || " ***")
 		analyizeSourceChain(nonTerminalsSet, state)
 	}
 end
@@ -174,11 +175,11 @@ procedure analyizeSourceChain(nonTerminalsSet, state)
 	while containsNonTerminal(nonTerminalsSet, state.sourceChain) === state.sourceChain do {
 		thisResult := []
 		every source := !state.sourceChain do {
-			if source.type == "terminal" then put(thisResult, source)
-			if source.type == "nonTerminal" then {
+			if source.tokenType == "terminal" then put(thisResult, source)
+			if source.tokenType == "nonTerminal" then {
 				#select the production rule that is the shortest
 				variableCount := 10000
-				every rule := !source.productionRules do
+				every rule := !source.productions do
 					if *rule.variables < variableCount then{
 						thisRule := rule
 						variableCount := *rule.variables
@@ -186,7 +187,7 @@ procedure analyizeSourceChain(nonTerminalsSet, state)
 				#insert the variables from the smallest rule in to the resulting chain
 				every thisVariable := !thisRule.variables do {
 					put(thisResult, thisVariable)
-					write("changed: " || source.result || " to " || thisVariable.result || " from " || state.getSourceChainTxt())
+				#	write("changed: " || source.token || " to " || thisVariable.token || " from " || state.getSourceChainTxt())
 				}
 			}
 		}
@@ -196,18 +197,18 @@ end
 
 procedure containsNonTerminal(nonTerminalsSet, chain)
 	every element := !chain do
-		if element.type == "nonTerminal" then return chain
+		if element.tokenType == "nonTerminal" then return chain
 end
 
 procedure duplicateChains(chainList, chain)
 	chainTxt := ""
 	every element := !chain do {
-		chainTxt := chainTxt || element.result
+		chainTxt := chainTxt || element.token
 	}
 	every testChain := !chainList do {
 		testChainTxt := ""
 		every element := !testChain do {
-			testChainTxt := testChainTxt || element.result
+			testChainTxt := testChainTxt || element.token
 		}
 		if chainTxt == testChainTxt then return chainTxt
 	}
@@ -218,7 +219,7 @@ procedure determineAcceptableInputsFromNonTerminals(state)
 	
 	every action := !state.actions do {
 		if action.actionType == "shift" then {
-			if action.sigma.type == "terminal" then {
+			if action.sigma.tokenType == "terminal" then {
 				if not classes::duplicate(state.acceptable, action.sigma) then {
 					state.addAcceptable(action.sigma)
 				}
@@ -227,13 +228,13 @@ procedure determineAcceptableInputsFromNonTerminals(state)
 	}
 	every action := !state.actions do {
 		if action.actionType == "shift" then {		
-			if action.sigma.type == "nonTerminal" then {
+			if action.sigma.tokenType == "nonTerminal" then {
 				if not classes::duplicate(state.nonTerminalShifts, action.sigma) then {
 					state.addNonTerminalShift(action.sigma)
-					every productionRule := !action.sigma.productionRules do {
-						if \productionRule then
-							if productionRule.variables[1].type == "terminal" then {
-								if not classes::duplicate(state.acceptable, productionRule.variables[1]) then {
+					every production := !action.sigma.productions do {
+						if \production then
+							if production.variables[1].tokenType == "terminal" then {
+								if not classes::duplicate(state.acceptable, production.variables[1]) then {
 									state.addAcceptable(productionRule.variables[1])
 								}
 							}

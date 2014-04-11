@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	productionRules.u1-1397086797-0
+uid	productionRules.u1-1397187625-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/Classes.u
 link	C:/Users/John/Documents/GitHub/yparser/classes.u
@@ -362,7 +362,8 @@ proc productionRules__makeProductionRules
 	local	8,000020,productionRule
 	local	9,000020,term
 	local	10,000000,member
-	local	11,000000,classes__ProductionRule
+	local	11,000000,classes__Production
+	local	12,000000,classes__ProductionRule
 	con	0,002000,1,1
 	con	1,010000,1,072
 	con	2,010000,1,174
@@ -478,20 +479,16 @@ lab L3
 	line	83
 	colm	29
 	synt	any
-	field	getResult
-	line	83
-	colm	39
-	synt	any
-	invoke	0
+	field	token
 	pnull
 	var	0
 	var	5
 	line	83
-	colm	55
+	colm	49
 	synt	any
 	subsc
 	line	83
-	colm	42
+	colm	36
 	synt	any
 	lexeq
 	unmark
@@ -510,7 +507,7 @@ lab L11
 	var	8
 	var	11
 	line	85
-	colm	63
+	colm	59
 	synt	any
 	invoke	0
 	line	85
@@ -586,20 +583,16 @@ lab L7
 	line	93
 	colm	29
 	synt	any
-	field	getResult
-	line	93
-	colm	39
-	synt	any
-	invoke	0
+	field	token
 	pnull
 	var	0
 	var	5
 	line	93
-	colm	55
+	colm	49
 	synt	any
 	subsc
 	line	93
-	colm	42
+	colm	36
 	synt	any
 	lexeq
 	unmark
@@ -708,32 +701,28 @@ lab L6
 	line	105
 	colm	23
 	synt	any
-	field	getResult
-	line	105
-	colm	33
-	synt	any
-	invoke	0
+	field	token
 	pnull
 	var	0
 	var	5
 	line	105
-	colm	49
+	colm	43
 	synt	any
 	subsc
 	line	105
-	colm	36
+	colm	30
 	synt	any
 	lexeq
 	unmark
 	pnull
 	var	8
 	line	105
-	colm	72
+	colm	66
 	synt	any
 	field	addVariable
 	var	9
 	line	105
-	colm	84
+	colm	78
 	synt	any
 	invoke	1
 	line	105
@@ -791,7 +780,7 @@ lab L19
 	var	8
 	var	11
 	line	113
-	colm	51
+	colm	47
 	synt	any
 	invoke	0
 	line	113
@@ -863,7 +852,7 @@ lab L21
 	mark	L22
 	pnull
 	var	8
-	var	11
+	var	12
 	line	120
 	colm	54
 	synt	any

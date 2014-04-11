@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	states.u1-1397086797-0
+uid	states.u1-1397187381-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/lookAhead.u
 global	7
@@ -29,7 +29,7 @@ proc states__createStates
 	local	14,000020,stateNumber
 	local	15,000020,ItemList
 	local	16,000020,outfile
-	local	17,000020,thisResult
+	local	17,000020,thisToken
 	local	18,000020,itemSet
 	local	19,000020,stateName
 	local	20,000020,thisPrime
@@ -155,20 +155,16 @@ lab L6
 	pnull
 	var	6
 	line	43
-	colm	33
+	colm	32
 	synt	any
-	field	getResult
-	line	43
-	colm	43
-	synt	any
-	invoke	0
+	field	token
 	str	4
 	line	43
-	colm	46
+	colm	39
 	synt	any
 	cat
 	line	43
-	colm	15
+	colm	14
 	synt	any
 	asgn
 	unmark
@@ -190,16 +186,17 @@ lab L7
 lab L8
 	mark	L9
 	pnull
+	pnull
 	var	20
 	line	45
 	colm	13
 	synt	any
-	field	setResult
+	field	token
 	var	17
 	line	45
-	colm	23
+	colm	20
 	synt	any
-	invoke	1
+	asgn
 	unmark
 lab L9
 	mark	L10
@@ -319,11 +316,7 @@ lab L17
 	line	55
 	colm	11
 	synt	any
-	field	getType
-	line	55
-	colm	19
-	synt	any
-	invoke	0
+	field	tokenType
 	str	6
 	line	55
 	colm	22
@@ -890,11 +883,7 @@ lab L14
 	line	109
 	colm	14
 	synt	any
-	field	getType
-	line	109
-	colm	22
-	synt	any
-	invoke	0
+	field	tokenType
 	str	1
 	line	109
 	colm	25
@@ -963,7 +952,7 @@ proc states__makeAllStates
 	local	2,000020,stateNumber
 	local	3,000020,thisState
 	local	4,000020,newState
-	local	5,000020,thisResult
+	local	5,000020,thisToken
 	local	6,000020,newItem
 	local	7,000020,ItemList
 	local	8,000020,shifts
@@ -1246,11 +1235,7 @@ lab L19
 	line	153
 	colm	20
 	synt	any
-	field	getType
-	line	153
-	colm	28
-	synt	any
-	invoke	0
+	field	tokenType
 	mark	L20
 	str	3
 	line	153
@@ -1677,11 +1662,7 @@ lab L10
 	line	195
 	colm	56
 	synt	any
-	field	getType
-	line	195
-	colm	64
-	synt	any
-	invoke	0
+	field	tokenType
 	str	1
 	line	195
 	colm	67

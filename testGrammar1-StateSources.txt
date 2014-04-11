@@ -14,7 +14,7 @@ I0
 
 I1
 	Sources:
-		e 
+		ID 
 
 	Most recent states:
 		{I0}
@@ -29,7 +29,7 @@ I1
 		I0 
 
 	Input chain:
-		e 
+		ID 
 
 	---- Acceptable Input ----
 	PLUS
@@ -45,7 +45,7 @@ I1
 
 I2
 	Sources:
-		t 
+		ID 
 
 	Most recent states:
 		{I0, I4}
@@ -61,7 +61,7 @@ I2
 		I0 I4 
 
 	Input chain:
-		t 
+		ID 
 
 	---- Acceptable Input ----
 	TIMES
@@ -77,7 +77,7 @@ I2
 
 I3
 	Sources:
-		f 
+		ID 
 
 	Most recent states:
 		{I0, I4, I6}
@@ -94,7 +94,7 @@ I3
 		I0 I1 I6 
 
 	Input chain:
-		f 
+		ID 
 
 
 I4
@@ -156,7 +156,7 @@ I5
 
 I6
 	Sources:
-		e PLUS 
+		ID PLUS 
 
 	Most recent states:
 		{I1, I8}
@@ -172,7 +172,7 @@ I6
 		I0 I4 I8 
 
 	Input chain:
-		e PLUS 
+		ID PLUS 
 
 	---- Acceptable Input ----
 	LPAREN
@@ -188,7 +188,7 @@ I6
 
 I7
 	Sources:
-		t TIMES 
+		ID TIMES 
 
 	Most recent states:
 		{I2, I9}
@@ -204,7 +204,7 @@ I7
 		I0 I1 I6 I9 
 
 	Input chain:
-		t TIMES 
+		ID TIMES 
 
 	---- Acceptable Input ----
 	LPAREN
@@ -220,7 +220,7 @@ I7
 
 I8
 	Sources:
-		LPAREN e 
+		LPAREN ID 
 
 	Most recent states:
 		{I4}
@@ -235,7 +235,7 @@ I8
 		I0 I4 
 
 	Input chain:
-		LPAREN e 
+		LPAREN ID 
 
 	---- Acceptable Input ----
 	RPAREN
@@ -251,7 +251,7 @@ I8
 
 I9
 	Sources:
-		e PLUS t 
+		ID PLUS ID 
 
 	Most recent states:
 		{I6}
@@ -266,7 +266,7 @@ I9
 		I0 I1 I6 
 
 	Input chain:
-		e PLUS t 
+		ID PLUS ID 
 
 	---- Acceptable Input ----
 	TIMES
@@ -282,7 +282,7 @@ I9
 
 I10
 	Sources:
-		t TIMES f 
+		ID TIMES ID 
 
 	Most recent states:
 		{I7}
@@ -297,12 +297,12 @@ I10
 		I0 I2 I7 
 
 	Input chain:
-		t TIMES f 
+		ID TIMES ID 
 
 
 I11
 	Sources:
-		LPAREN t RPAREN 
+		LPAREN ID RPAREN 
 
 	Most recent states:
 		{I8}
@@ -317,5 +317,5 @@ I11
 		I0 I4 I8 
 
 	Input chain:
-		LPAREN t RPAREN 
+		LPAREN ID RPAREN 
 

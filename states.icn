@@ -24,7 +24,7 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet, terminalsL
       stateNumber,
       ItemList,
       outfile,
-      thisResult,
+      thisToken,
       itemSet,
       stateName,
       thisPrime,
@@ -40,9 +40,9 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet, terminalsL
    #make item 0
    thisNonTerminal := nonTerminalsSet[1]
    stateName := "I" || stateNumber
-   thisResult := thisNonTerminal.getResult() || "'"
+   thisToken := thisNonTerminal.token || "'"
    thisPrime := classes::Terminal("prime")
-   thisPrime.setResult(thisResult)
+   thisPrime.token := thisToken
    initialItem := classes::Item()
    initialItem.addBeta(thisNonTerminal)
 	sourceStateChain := []
@@ -52,7 +52,7 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet, terminalsL
 	
    every thisItem := myState.getItems() do {
       B := thisItem.getBeta(1)
-      if B.getType() == "nonTerminal" then {
+      if B.tokenType == "nonTerminal" then {
          if not member(itemSet, B) then {
             makeItems(myState, B, itemSet)
             insert(itemSet, B)
@@ -106,7 +106,7 @@ procedure makeItems(myState, B, itemSet)
    
    every thisProductionRule := B.getProductionRules() do {
       newB := thisProductionRule.getVariable(1)
-      if newB.getType() == "nonTerminal" then {
+      if newB.tokenType == "nonTerminal" then {
          if not member(itemSet, newB) then { 
 				insert(itemSet, newB)
             makeItems(myState, newB, itemSet)
@@ -123,7 +123,7 @@ procedure makeAllStates(statesList, state)
       stateNumber, 
       thisState,
       newState,
-      thisResult,
+      thisToken,
       newItem,
       ItemList,
       shifts,
@@ -150,7 +150,7 @@ procedure makeAllStates(statesList, state)
          shiftElement := newItem.getLastAlpha()
          put(shifts, shiftElement)
          element := newItem.getLeft()
-         if element.getType() == ("nonTerminal" | "prime") then {
+         if element.tokenType == ("nonTerminal" | "prime") then {
 				#checks to see if the element is a non-terminal or a prime
             if not member(shifts, element) then {
                ItemList := []
@@ -192,7 +192,7 @@ procedure makeAllItems(statesList, oldState, thisState, shiftElement)
 						thisState.addItem(newItem)
 					}
 					B := newItem.getBeta(1)
-					if \B then if B.getType() == "nonTerminal" then
+					if \B then if B.tokenType == "nonTerminal" then
 						makeItems(thisState, B, itemSet)
 				}
 			}

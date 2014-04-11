@@ -4,6 +4,7 @@
 	
 		-n  	shows all the non terminals
 		-t   	shows all the terminals
+		-T		creates a .tk file with a list of terminals and default tokens
 		-p  	shows production rules
 		-s  	shows states
 		-a  	shows actions: accept, shift/goto, reduce

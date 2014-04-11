@@ -34,7 +34,7 @@ procedure createProductionRules(
          terminalCheckSet, 
          terminalsSet)
 
-   #print results
+   #print tokens
    if *args > 0 then if member(args, "p") then {
       outfile := &output
       outfileName := fileName || "-productionRules.txt"
@@ -80,9 +80,9 @@ procedure makeProductionRules(
          if rawGrammar[x + 1] == ":" then { #is a grammar rule ?
             every nonTerm := !nonTerminalsSet do {
                if \nonTerm then {
-                  if nonTerm.getResult() == rawGrammar[x] then { 
+                  if nonTerm.token == rawGrammar[x] then { 
                      nonTerminal := nonTerm
-                     productionRule := classes::ProductionRule()
+                     productionRule := classes::Production()
                      x := x + 1
                   }
                }
@@ -90,7 +90,7 @@ procedure makeProductionRules(
          } else {
             every nonTerm := !nonTerminalsSet do {
                if \nonTerm then {
-                  if nonTerm.getResult() == rawGrammar[x] then {
+                  if nonTerm.token == rawGrammar[x] then {
                      productionRule.addVariable(nonTerm)
                   }
                }
@@ -102,7 +102,7 @@ procedure makeProductionRules(
       if member(terminalCheckSet, rawGrammar[x]) & rawGrammar[x] ~== "|" then {
          every term := !terminalsList do {
             if \term then {
-               if term.getResult() == rawGrammar[x] then productionRule.addVariable(term)
+               if term.token == rawGrammar[x] then productionRule.addVariable(term)
             }
          }
       }
@@ -110,7 +110,7 @@ procedure makeProductionRules(
       #is an or?
       if rawGrammar[x] == "|" then {
          nonTerminal.addProductionRule(productionRule)
-         productionRule := classes::ProductionRule()
+         productionRule := classes::Production()
       }
 
       #is end of nonTerminal?

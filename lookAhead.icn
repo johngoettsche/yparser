@@ -35,8 +35,8 @@ procedure createLookAheads(fileName, args, statesList, terminalsList, nonTermina
       every item := !state.getItemsList() do {
 			sigma := &null
 			sigma := item.getBeta(1)
-			#write("lookAhead: " || state.name || ":" || sigma.result)
-			#if sigma.result ~== "" then { 
+			#write("lookAhead: " || state.name || ":" || sigma.token)
+			#if sigma.token ~== "" then { 
 			if \sigma then { #Conditions #2a or 3 of Algorithm 4.8 of Dragon Book
 				searchItem := item.getShift()
 				searchItem.setTxt()			
@@ -53,10 +53,10 @@ procedure createLookAheads(fileName, args, statesList, terminalsList, nonTermina
 				} else write("unable to find: " || searchLabel)
 			} else { #Condition #2b of Algorithm 4.8 in Dragon Book
 				actionType := "reduce" 
-				checkLength := *item.left.result
-				checkString := item.left.result[1:checkLength]
+				checkLength := *item.left.token
+				checkString := item.left.token[1:checkLength]
 				if \item.getLastAlpha() then { #Condition #2c of Algorithm 4.8 of Dragon Book
-					if item.left.getType() == "prime" & item.getLastAlpha().getResult() == checkString then {
+					if item.left.tokenType == "prime" & item.getLastAlpha().token == checkString then {
 						actionType := "accept"
 						goto := &null
 					}	

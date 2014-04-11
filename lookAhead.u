@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	lookAhead.u1-1397086796-0
+uid	lookAhead.u1-1397187415-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/Classes.u
 link	C:/Users/John/Documents/GitHub/yparser/classes.u
@@ -399,7 +399,7 @@ lab L23
 	line	56
 	colm	58
 	synt	any
-	field	result
+	field	token
 	line	56
 	colm	48
 	synt	any
@@ -424,11 +424,11 @@ lab L24
 	line	57
 	colm	57
 	synt	any
-	field	result
+	field	token
 	int	1
 	var	18
 	line	57
-	colm	66
+	colm	65
 	synt	any
 	synt	any
 	sect
@@ -473,11 +473,7 @@ lab L25
 	line	59
 	colm	53
 	synt	any
-	field	getType
-	line	59
-	colm	61
-	synt	any
-	invoke	0
+	field	tokenType
 	str	5
 	line	59
 	colm	64
@@ -499,14 +495,10 @@ lab L25
 	line	59
 	colm	96
 	synt	any
-	field	getResult
-	line	59
-	colm	106
-	synt	any
-	invoke	0
+	field	token
 	var	19
 	line	59
-	colm	109
+	colm	103
 	synt	any
 	lexeq
 	unmark
