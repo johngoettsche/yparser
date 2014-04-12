@@ -11,6 +11,7 @@
 		-S		shows the source input for the states 
 					{} as a set of states
 					[] as a set of inputs
+		-E		shows a list of potiential error snippits
 
 		-o  to write to filename-Option.txt file
 
@@ -32,3 +33,6 @@
 
 ------------------
 4/10/2014 - the input chain has been changed to show an ordered set of inputs the source code used to get to the current state.
+
+------------------
+4/12/2014 - added a method to define a 'textual pattern' for each terminal token.  Also added a printout of potential error strings using the token patterns.

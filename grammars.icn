@@ -144,7 +144,7 @@ procedure makeTerminalsList(fileName, args, terminalsList)
 		thisPattern
 	
 	fileN := fileName || ".tk"
-	wordDef := &letters++&digits++'_*/%{}|:;+-$#@!&()[]<>,.~`'	
+	#wordDef := &letters++&digits++'_*/%{}|:;+-$#@!&()[]<>,.~`'	
    every token := !terminalsList do {
 		thisTerminal := classes::Terminal("terminal")
 		thisTerminal.token := token
@@ -152,7 +152,6 @@ procedure makeTerminalsList(fileName, args, terminalsList)
 			tkfile := open(fileN, "r") | stop("ERROR: trouble reading " || fileN)
 			pattern := getPattern(tkfile, token)
 			close(tkfile)
-			write(pattern)
 			thisTerminal.pattern := pattern
 		}
       suspend thisTerminal
@@ -161,21 +160,16 @@ procedure makeTerminalsList(fileName, args, terminalsList)
 end
 
 procedure getPattern(tkfile, token)
-	write("getting pattern: " || token)
 	pattern := "#"
+	wordDef := &letters++&digits++'_*/%{}|:;+-$#@!&()[]<>,.~`'	
 	every line := !tkfile do {
-	
-		#windows file lines are as follows:&null, line contents, &null, &null
-		
-		line ? every not tab(many(&null)) do {
-			while tab(upto(wordDef)) do {
-				if tokenString := tab(many(wordDef)) then {
-					tab(upto(wordDef))
-					thisPattern := tab(many(wordDef))
-					write(token || ":" || thisPattern)
-					if *thisPattern < 1 then thisPattern := "#"
-					if tokenString := token then pattern := thisPattern
-				}
+		line ? while tab(upto(wordDef)) do {
+			tokenString := tab(many(wordDef))
+			tab(upto(wordDef))
+			thisPattern := tab(many(wordDef))
+			if *thisPattern < 1 then thisPattern := "#"
+			if tokenString == token then {
+				pattern := thisPattern
 			}
 		}
 	}

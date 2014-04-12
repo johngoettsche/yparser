@@ -117,7 +117,7 @@ procedure makeProductionRules(
       if rawGrammar[x] == ";" then {
          nonTerminal.addProductionRule(productionRule)
          if rawGrammar[x + 1] == "|" then {
-            productionRule := classes::ProductionRule()
+            productionRule := classes::Production()
             x +:= 1
          }
       }

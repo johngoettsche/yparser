@@ -7,18 +7,18 @@ import grammars
 procedure main(args)
 #  this tool is executed as follows:
 #  yparser-states [-options] filename
-#     -r		shows the raw grammar
-#     -n  	shows all the non terminals
-#     -t   	shows all the terminals
+#		-n  	shows all the non terminals
+#		-t   	shows all the terminals
 #		-T		creates a .tk file with a list of terminals and default tokens
-#     -p  	shows production rules
-#     -s  	shows states
+#		-p  	shows production rules
+#		-s  	shows states
 #		-a  	shows actions: accept, shift/goto, reduce
 #		-S		shows the source input for the states 
 #					{} as a set of states
 #					[] as a set of inputs
+#		-E		shows a list of potiential error snippits
 #
-#     -o  to write to the youtput.txt file
+#		-o  to write to filename-Option.txt file
 #
 # yparser parses a yakk file to dissect its grammar and produces a 
 #  - a raw grammar list which is a list of individual tokens and symbols 

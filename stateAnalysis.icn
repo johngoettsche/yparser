@@ -15,6 +15,30 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList, nonTerm
 	write("\nChecking state sources...\n")
 	determineAllSources(nonTerminalsSet, statesList)
 	every state := !statesList do determineAcceptableInputsFromNonTerminals(state)
+	errorSnippits := []
+	every state := !statesList do {
+		write(state.name)
+		###############################
+		#put(errorSnippits, state.name)
+		###############################
+		every errorSnippit := getErrorSnippits(state, terminalsList) do
+			if not classes::duplicate(errorSnippits, errorSnippit) then {
+				put(errorSnippits, errorSnippit)
+			}
+	}			
+	
+	if *args > 0 then if member(args, "E") then {
+		outfile := &output
+      outfileName := fileName || "-Errors.txt"
+		if member(args, "o") then outfile := open(outfileName, "c")
+		write("\nPotential Error Snippits:\n") 
+		if outfile ~=== &output then every state := !statesList do {
+			every errorSnippit := !errorSnippits do 
+				write(outfile, errorSnippit)
+		}
+		every errorSnippit := !errorSnippits do 
+			write(errorSnippit)
+	}
 	
 	if *args > 0 then if member(args, "S") then {
       outfile := &output
@@ -76,12 +100,12 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList, nonTerm
 			}
 			if *state.sourceChain > 0 then {			
 				write("\tInput chain:")
-				write(state.getSourceChainTxt())
-				write(state.getPatternChainTxt())
+				write(state.sourceChainTxt)
+				write(state.patternChainTxt)
 			}
 			if *state.acceptable > 0 then {
 				write(state.getAcceptableTxt(terminalsList))
-				write(makeNotAcceptable(state, terminalsList))
+				every notAcceptable := getNotAcceptable(state, terminalsList) do write(notAcceptable.token)
 			}
 		}
       classes::printTime()
@@ -90,18 +114,24 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList, nonTerm
    }
 end
 
-procedure makeNotAcceptable(state, terminalsList)
-	local
+procedure getErrorSnippits(state, terminalsList)
+	local 
+		notAcceptable,
 		txt
 		
-	txt := "\t-- Not Acceptable Input --\n"
+	every notAcceptable := getNotAcceptable(state, terminalsList) do 
+		if \state.patternChainTxt then suspend state.patternChainTxt || notAcceptable.pattern
+		else suspend notAcceptable.pattern
+end
+
+procedure getNotAcceptable(state, terminalsList)
+	local
+		terminal
+		
 	every terminal := !terminalsList do {
 		#write(terminal.token)
-		if not classes::duplicate(state.acceptable, terminal) then {
-			txt := txt || "\t" || terminal.token || "\n"
-		}
+		if not classes::duplicate(state.acceptable, terminal) then suspend terminal
 	}
-	return txt || "\t--------------------------\n"
 end
 
 procedure determineAllSources(nonTerminalsSet, statesList)
@@ -192,6 +222,8 @@ procedure analyizeSourceChain(nonTerminalsSet, state)
 			}
 		}
 		state.setSourceChain(thisResult)
+		state.setSourceChainTxt()
+		state.setPatternChainTxt()
 	}
 end
 

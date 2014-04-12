@@ -44,7 +44,7 @@ initially (thisType)
    tokenType := thisType
 end
 
-class NonTerminal(tokenType, token, productions)
+class NonTerminal(tokenType, token, productions, pattern)
 #  used to hold a single non terminal
 
    method addProductionRule(newProduction)
@@ -75,6 +75,7 @@ class NonTerminal(tokenType, token, productions)
    end
    
 initially
+	pattern := "nonTerminal"
    tokenType := "nonTerminal"
    productions := []
 end
@@ -127,7 +128,9 @@ class State(
 	sourceStateChains, 
 	sourceInputs, 
 	acceptable, 
-	nonTerminalShifts)
+	nonTerminalShifts,
+	sourceChainTxt,
+	patternChainTxt)
 #  this class defines a state
 #	name: I#
 #	items:  a list of items
@@ -222,24 +225,24 @@ class State(
 		return txt
 	end
 
-	method getSourceChainTxt()
+	method setSourceChainTxt()
 		local txt, thisSource
 		txt := "\t\t"
 		every thisSource := !sourceChain do {
 			txt := txt || thisSource.token || " "
 		}
 		txt := txt || "\n"
-		return txt
+		sourceChainTxt := txt
 	end
 	
-	method getPatternChainTxt()
+	method setPatternChainTxt()
 		local txt, thisSource
-		txt := "\t\t"
+		txt := ""
 		every thisSource := !sourceChain do {
 			txt := txt || thisSource.pattern || " "
 		}
-		txt := txt || "\n"
-		return txt
+		#txt := txt || "\n"
+		patternChainTxt := txt
 	end
 
 	method getSourceChainsTxt()

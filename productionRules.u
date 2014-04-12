@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	productionRules.u1-1397187625-0
+uid	productionRules.u1-1397339313-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/Classes.u
 link	C:/Users/John/Documents/GitHub/yparser/classes.u
@@ -363,7 +363,6 @@ proc productionRules__makeProductionRules
 	local	9,000020,term
 	local	10,000000,member
 	local	11,000000,classes__Production
-	local	12,000000,classes__ProductionRule
 	con	0,002000,1,1
 	con	1,010000,1,072
 	con	2,010000,1,174
@@ -852,9 +851,9 @@ lab L21
 	mark	L22
 	pnull
 	var	8
-	var	12
+	var	11
 	line	120
-	colm	54
+	colm	50
 	synt	any
 	invoke	0
 	line	120
