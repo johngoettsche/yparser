@@ -39,8 +39,14 @@ procedure createNonTerminals(fileName, args, rawGrammar)
       outfileName := fileName || "-nonTerminals.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
       write("\nNon Terminals\n") 
-      if outfile ~=== &output then every write(outfile, !nonTerminalWords)
+      if outfile ~=== &output then {
+			every write(outfile, !nonTerminalWords)
+		}
       every write("\t" || !nonTerminalWords)
+		if outfile ~=== &output then {
+			write("\ncreated file: " || outfileName)
+			close(outfile)
+		}
 		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
@@ -78,8 +84,14 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       outfileName := fileName || "-terminals.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
       write("\nTerminals\n") 
-      if outfile ~=== &output then every write(outfile, !terminalsWordList)
+      if outfile ~=== &output then {
+			every write(outfile, !terminalsWordList)
+		}
       every terminal := !terminalsList do write("\t" || terminal.token)
+		if outfile ~=== &output then {
+			write("\ncreated file: " || outfileName)
+			close(outfile)
+		}
 		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()
@@ -90,6 +102,7 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
       outfile := open(outfileName, "c")
       if outfile ~=== &output then {
          every terminal := !terminalsList do write(outfile, terminal.token || "\t\t\t#" || terminal.token)
+			close(outfile)
       }
       every write("\t" || !rawGrammar)
 		classes::printTime()

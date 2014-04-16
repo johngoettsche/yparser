@@ -1,4 +1,5 @@
 I0
+
 	goto(I0, program) = I1
 	goto(I0, decls) = I2
 	goto(I0, error) = I3
@@ -23,9 +24,11 @@ I0
 	goto(I0, CLASS) = I21
 
 I1
+
 	accept
 
 I2
+
 	goto(I2, EOFX) = I22
 	goto(I2, decl) = I23
 	goto(I2, record) = I4
@@ -48,6 +51,7 @@ I2
 	goto(I2, CLASS) = I21
 
 I3
+
 	goto(I3, decls) = I24
 	reduce	decls -> .
 	goto(I3, record) = I4
@@ -70,81 +74,102 @@ I3
 	goto(I3, CLASS) = I21
 
 I4
+
 	reduce	decl ->  record.
 
 I5
+
 	reduce	decl ->  proc.
 
 I6
+
 	reduce	decl ->  global.
 
 I7
+
 	reduce	decl ->  link.
 
 I8
+
 	reduce	decl ->  package.
 
 I9
+
 	reduce	decl ->  import.
 
 I10
+
 	reduce	decl ->  invocable.
 
 I11
+
 	reduce	decl ->  cl.
 
 I12
+
 	goto(I12, IDENT) = I25
 
 I13
+
 	goto(I13, SEMICOL) = I26
 	goto(I13, error) = I27
 
 I14
+
 	goto(I14, IDENT) = I28
 
 I15
+
 	goto(I15, idlist) = I29
 	goto(I15, IDENT) = I30
 
 I16
+
 	goto(I16, lnklist) = I31
 	goto(I16, lnkfile) = I32
 	goto(I16, IDENT) = I33
 	goto(I16, STRINGLIT) = I34
 
 I17
+
 	goto(I17, lnkfile) = I35
 	goto(I17, IDENT) = I33
 	goto(I17, STRINGLIT) = I34
 
 I18
+
 	goto(I18, implist) = I36
 	goto(I18, lnkfile) = I37
 	goto(I18, IDENT) = I33
 	goto(I18, STRINGLIT) = I34
 
 I19
+
 	goto(I19, invoclist) = I38
 	goto(I19, invocop) = I39
 	goto(I19, IDENT) = I40
 	goto(I19, STRINGLIT) = I41
 
 I20
+
 	goto(I20, SEMICOL) = I42
 	goto(I20, optsemi) = I43
 	reduce	optsemi -> .
 
 I21
+
 	goto(I21, IDENT) = I44
 
 I22
+
 	reduce	program ->  decls EOFX.
 
 I23
+
 	reduce	decls ->  decls decl.
 
 I24
+
 	goto(I24, EOFX) = I45
 	goto(I24, decl) = I23
 	goto(I24, record) = I4
@@ -167,13 +192,16 @@ I24
 	goto(I24, CLASS) = I21
 
 I25
+
 	goto(I25, LPAREN) = I46
 
 I26
+
 	goto(I26, locals) = I47
 	reduce	locals -> .
 
 I27
+
 	goto(I27, procbody) = I48
 	reduce	procbody -> .
 	goto(I27, nexpr) = I49
@@ -259,76 +287,96 @@ I27
 	goto(I27, COLONCOLON) = I129
 
 I28
+
 	goto(I28, LPAREN) = I130
 
 I29
+
 	reduce	global ->  GLOBAL idlist.
 	goto(I29, COMMA) = I131
 
 I30
+
 	reduce	idlist ->  IDENT.
 
 I31
+
 	reduce	link ->  LINK lnklist.
 	goto(I31, COMMA) = I132
 
 I32
+
 	reduce	lnklist ->  lnkfile.
 
 I33
+
 	reduce	lnkfile ->  IDENT.
 
 I34
+
 	reduce	lnkfile ->  STRINGLIT.
 
 I35
+
 	reduce	package ->  PACKAGE lnkfile.
 
 I36
+
 	reduce	import ->  IMPORT implist.
 	goto(I36, COMMA) = I133
 
 I37
+
 	reduce	implist ->  lnkfile.
 
 I38
+
 	reduce	invocable ->  INVOCABLE invoclist.
 	goto(I38, COMMA) = I134
 
 I39
+
 	reduce	invoclist ->  invocop.
 
 I40
+
 	reduce	invocop ->  IDENT.
 
 I41
+
 	reduce	invocop ->  STRINGLIT.
 	goto(I41, COLON) = I135
 
 I42
+
 	goto(I42, END) = I136
 	reduce	optsemi ->  SEMICOL.
 
 I43
+
 	goto(I43, clocals) = I137
 	reduce	clocals -> .
 	goto(I43, SEMICOL) = I137
 
 I44
+
 	goto(I44, supers) = I138
 	reduce	supers -> .
 	goto(I44, COLON) = I139
 
 I45
+
 	reduce	program ->  error decls EOFX.
 
 I46
+
 	goto(I46, fldlist) = I140
 	reduce	fldlist -> .
 	goto(I46, idlist) = I141
 	goto(I46, IDENT) = I30
 
 I47
+
 	goto(I47, initial) = I142
 	reduce	initial -> .
 	goto(I47, iconINITIAL) = I143
@@ -336,26 +384,33 @@ I47
 	goto(I47, STATIC) = I145
 
 I48
+
 	goto(I48, END) = I146
 
 I49
+
 	goto(I49, SEMICOL) = I147
 
 I50
+
 	reduce	nexpr ->  expr.
 	goto(I50, AND) = I148
 
 I51
+
 	reduce	expr ->  expr1a.
 	goto(I51, QMARK) = I149
 
 I52
+
 	reduce	expr ->  error.
 
 I53
+
 	reduce	expr1a ->  expr1.
 
 I54
+
 	reduce	expr1 ->  expr2a.
 	goto(I54, SWAP) = I150
 	goto(I54, ASSIGN) = I151
@@ -392,14 +447,17 @@ I54
 	goto(I54, PMATCH) = I182
 
 I55
+
 	reduce	expr2a ->  expr2.
 	goto(I55, TO) = I183
 	goto(I55, POR) = I184
 
 I56
+
 	reduce	expr2 ->  expr3.
 
 I57
+
 	reduce	expr3 ->  expr4.
 	goto(I57, PAND) = I185
 	goto(I57, BAR) = I186
@@ -421,11 +479,13 @@ I57
 	goto(I57, NEQUIV) = I202
 
 I58
+
 	reduce	expr4 ->  expr5.
 	goto(I58, CONCAT) = I203
 	goto(I58, LCONCAT) = I204
 
 I59
+
 	reduce	expr5 ->  expr6.
 	goto(I59, PLUS) = I205
 	goto(I59, DIFF) = I206
@@ -433,6 +493,7 @@ I59
 	goto(I59, MINUS) = I208
 
 I60
+
 	reduce	expr6 ->  expr7.
 	goto(I60, STAR) = I209
 	goto(I60, INTER) = I210
@@ -440,9 +501,11 @@ I60
 	goto(I60, MOD) = I212
 
 I61
+
 	reduce	expr7 ->  expr8.
 
 I62
+
 	reduce	expr8 ->  expr9.
 	goto(I62, CARET) = I213
 	goto(I62, BACKSLASH) = I214
@@ -454,12 +517,15 @@ I62
 	goto(I62, BANG) = I220
 
 I63
+
 	reduce	expr8 ->  postfixthreadop.
 
 I64
+
 	reduce	expr9 ->  expr10.
 
 I65
+
 	reduce	expr10 ->  expr11.
 	goto(I65, LBRACK) = I221
 	goto(I65, LBRACE) = I222
@@ -468,6 +534,7 @@ I65
 	goto(I65, DOT) = I225
 
 I66
+
 	goto(I66, expr10) = I226
 	goto(I66, expr11) = I65
 	goto(I66, AT) = I66
@@ -536,6 +603,7 @@ I66
 	goto(I66, COLONCOLON) = I129
 
 I67
+
 	goto(I67, expr10) = I227
 	goto(I67, expr11) = I65
 	goto(I67, AT) = I66
@@ -605,6 +673,7 @@ I67
 	reduce	expr11 ->  SND.
 
 I68
+
 	goto(I68, expr10) = I228
 	goto(I68, expr11) = I65
 	goto(I68, AT) = I66
@@ -674,6 +743,7 @@ I68
 	reduce	expr11 ->  SNDBK.
 
 I69
+
 	goto(I69, expr10) = I229
 	goto(I69, expr11) = I65
 	goto(I69, AT) = I66
@@ -743,6 +813,7 @@ I69
 	reduce	expr11 ->  RCV.
 
 I70
+
 	goto(I70, expr10) = I230
 	goto(I70, expr11) = I65
 	goto(I70, AT) = I66
@@ -812,6 +883,7 @@ I70
 	reduce	expr11 ->  RCVBK.
 
 I71
+
 	goto(I71, expr10) = I231
 	goto(I71, expr11) = I65
 	goto(I71, AT) = I66
@@ -880,6 +952,7 @@ I71
 	goto(I71, COLONCOLON) = I129
 
 I72
+
 	goto(I72, expr10) = I232
 	goto(I72, expr11) = I65
 	goto(I72, AT) = I66
@@ -948,6 +1021,7 @@ I72
 	goto(I72, COLONCOLON) = I129
 
 I73
+
 	goto(I73, expr10) = I233
 	goto(I73, expr11) = I65
 	goto(I73, AT) = I66
@@ -1016,6 +1090,7 @@ I73
 	goto(I73, COLONCOLON) = I129
 
 I74
+
 	goto(I74, expr10) = I234
 	goto(I74, expr11) = I65
 	goto(I74, AT) = I66
@@ -1084,6 +1159,7 @@ I74
 	goto(I74, COLONCOLON) = I129
 
 I75
+
 	goto(I75, expr10) = I235
 	goto(I75, expr11) = I65
 	goto(I75, AT) = I66
@@ -1152,6 +1228,7 @@ I75
 	goto(I75, COLONCOLON) = I129
 
 I76
+
 	goto(I76, expr10) = I236
 	goto(I76, expr11) = I65
 	goto(I76, AT) = I66
@@ -1220,6 +1297,7 @@ I76
 	goto(I76, COLONCOLON) = I129
 
 I77
+
 	goto(I77, expr10) = I237
 	goto(I77, expr11) = I65
 	goto(I77, AT) = I66
@@ -1288,6 +1366,7 @@ I77
 	goto(I77, COLONCOLON) = I129
 
 I78
+
 	goto(I78, expr10) = I238
 	goto(I78, expr11) = I65
 	goto(I78, AT) = I66
@@ -1356,6 +1435,7 @@ I78
 	goto(I78, COLONCOLON) = I129
 
 I79
+
 	goto(I79, expr10) = I239
 	goto(I79, expr11) = I65
 	goto(I79, AT) = I66
@@ -1424,6 +1504,7 @@ I79
 	goto(I79, COLONCOLON) = I129
 
 I80
+
 	goto(I80, expr10) = I240
 	goto(I80, expr11) = I65
 	goto(I80, AT) = I66
@@ -1492,6 +1573,7 @@ I80
 	goto(I80, COLONCOLON) = I129
 
 I81
+
 	goto(I81, expr10) = I241
 	goto(I81, expr11) = I65
 	goto(I81, AT) = I66
@@ -1560,6 +1642,7 @@ I81
 	goto(I81, COLONCOLON) = I129
 
 I82
+
 	goto(I82, expr10) = I242
 	goto(I82, expr11) = I65
 	goto(I82, AT) = I66
@@ -1628,6 +1711,7 @@ I82
 	goto(I82, COLONCOLON) = I129
 
 I83
+
 	goto(I83, expr10) = I243
 	goto(I83, expr11) = I65
 	goto(I83, AT) = I66
@@ -1696,6 +1780,7 @@ I83
 	goto(I83, COLONCOLON) = I129
 
 I84
+
 	goto(I84, expr10) = I244
 	goto(I84, expr11) = I65
 	goto(I84, AT) = I66
@@ -1764,6 +1849,7 @@ I84
 	goto(I84, COLONCOLON) = I129
 
 I85
+
 	goto(I85, expr10) = I245
 	goto(I85, expr11) = I65
 	goto(I85, AT) = I66
@@ -1832,6 +1918,7 @@ I85
 	goto(I85, COLONCOLON) = I129
 
 I86
+
 	goto(I86, expr10) = I246
 	goto(I86, expr11) = I65
 	goto(I86, AT) = I66
@@ -1900,6 +1987,7 @@ I86
 	goto(I86, COLONCOLON) = I129
 
 I87
+
 	goto(I87, expr10) = I247
 	goto(I87, expr11) = I65
 	goto(I87, AT) = I66
@@ -1968,6 +2056,7 @@ I87
 	goto(I87, COLONCOLON) = I129
 
 I88
+
 	goto(I88, expr10) = I248
 	goto(I88, expr11) = I65
 	goto(I88, AT) = I66
@@ -2036,6 +2125,7 @@ I88
 	goto(I88, COLONCOLON) = I129
 
 I89
+
 	goto(I89, expr10) = I249
 	goto(I89, expr11) = I65
 	goto(I89, AT) = I66
@@ -2104,6 +2194,7 @@ I89
 	goto(I89, COLONCOLON) = I129
 
 I90
+
 	goto(I90, expr10) = I250
 	goto(I90, expr11) = I65
 	goto(I90, AT) = I66
@@ -2172,6 +2263,7 @@ I90
 	goto(I90, COLONCOLON) = I129
 
 I91
+
 	goto(I91, expr10) = I251
 	goto(I91, expr11) = I65
 	goto(I91, AT) = I66
@@ -2240,6 +2332,7 @@ I91
 	goto(I91, COLONCOLON) = I129
 
 I92
+
 	goto(I92, expr10) = I252
 	goto(I92, expr11) = I65
 	goto(I92, AT) = I66
@@ -2308,6 +2401,7 @@ I92
 	goto(I92, COLONCOLON) = I129
 
 I93
+
 	goto(I93, expr10) = I253
 	goto(I93, expr11) = I65
 	goto(I93, AT) = I66
@@ -2376,6 +2470,7 @@ I93
 	goto(I93, COLONCOLON) = I129
 
 I94
+
 	goto(I94, expr10) = I254
 	goto(I94, expr11) = I65
 	goto(I94, AT) = I66
@@ -2444,36 +2539,47 @@ I94
 	goto(I94, COLONCOLON) = I129
 
 I95
+
 	reduce	expr11 ->  literal.
 
 I96
+
 	reduce	expr11 ->  section.
 
 I97
+
 	reduce	expr11 ->  return.
 
 I98
+
 	reduce	expr11 ->  if.
 
 I99
+
 	reduce	expr11 ->  case.
 
 I100
+
 	reduce	expr11 ->  while.
 
 I101
+
 	reduce	expr11 ->  until.
 
 I102
+
 	reduce	expr11 ->  every.
 
 I103
+
 	reduce	expr11 ->  repeat.
 
 I104
+
 	reduce	expr11 ->  PUNEVAL.
 
 I105
+
 	goto(I105, expr) = I255
 	goto(I105, expr1a) = I51
 	goto(I105, error) = I52
@@ -2556,6 +2662,7 @@ I105
 	goto(I105, COLONCOLON) = I129
 
 I106
+
 	goto(I106, expr) = I256
 	goto(I106, expr1a) = I51
 	goto(I106, error) = I52
@@ -2638,6 +2745,7 @@ I106
 	goto(I106, COLONCOLON) = I129
 
 I107
+
 	goto(I107, expr2a) = I257
 	goto(I107, expr2) = I55
 	goto(I107, expr3) = I56
@@ -2716,13 +2824,16 @@ I107
 	goto(I107, COLONCOLON) = I129
 
 I108
+
 	reduce	expr11 ->  IDENT.
 	goto(I108, COLONCOLON) = I258
 
 I109
+
 	reduce	expr11 ->  NEXT.
 
 I110
+
 	goto(I110, nexpr) = I259
 	reduce	nexpr -> .
 	goto(I110, expr) = I50
@@ -2807,6 +2918,7 @@ I110
 	goto(I110, COLONCOLON) = I129
 
 I111
+
 	goto(I111, exprlist) = I260
 	goto(I111, nexpr) = I261
 	reduce	nexpr -> .
@@ -2892,6 +3004,7 @@ I111
 	goto(I111, COLONCOLON) = I129
 
 I112
+
 	goto(I112, compound) = I262
 	goto(I112, nexpr) = I263
 	reduce	nexpr -> .
@@ -2977,6 +3090,7 @@ I112
 	goto(I112, COLONCOLON) = I129
 
 I113
+
 	goto(I113, caselist) = I264
 	goto(I113, cclause) = I265
 	goto(I113, DEFAULT) = I266
@@ -3066,28 +3180,36 @@ I113
 	goto(I113, COLON) = I269
 
 I114
+
 	reduce	expr11 ->  packageref.
 
 I115
+
 	goto(I115, FAIL) = I270
 	goto(I115, IDENT) = I271
 
 I116
+
 	reduce	literal ->  INTLIT.
 
 I117
+
 	reduce	literal ->  REALLIT.
 
 I118
+
 	reduce	literal ->  STRINGLIT.
 
 I119
+
 	reduce	literal ->  CSETLIT.
 
 I120
+
 	reduce	return ->  FAIL.
 
 I121
+
 	goto(I121, nexpr) = I272
 	reduce	nexpr -> .
 	goto(I121, expr) = I50
@@ -3172,6 +3294,7 @@ I121
 	goto(I121, COLONCOLON) = I129
 
 I122
+
 	goto(I122, nexpr) = I273
 	reduce	nexpr -> .
 	goto(I122, expr) = I50
@@ -3256,6 +3379,7 @@ I122
 	goto(I122, COLONCOLON) = I129
 
 I123
+
 	goto(I123, expr) = I275
 	goto(I123, expr1a) = I51
 	goto(I123, error) = I52
@@ -3338,6 +3462,7 @@ I123
 	goto(I123, COLONCOLON) = I129
 
 I124
+
 	goto(I124, expr) = I276
 	goto(I124, expr1a) = I51
 	goto(I124, error) = I52
@@ -3420,6 +3545,7 @@ I124
 	goto(I124, COLONCOLON) = I129
 
 I125
+
 	goto(I125, expr) = I277
 	goto(I125, expr1a) = I51
 	goto(I125, error) = I52
@@ -3502,6 +3628,7 @@ I125
 	goto(I125, COLONCOLON) = I129
 
 I126
+
 	goto(I126, expr) = I278
 	goto(I126, expr1a) = I51
 	goto(I126, error) = I52
@@ -3584,6 +3711,7 @@ I126
 	goto(I126, COLONCOLON) = I129
 
 I127
+
 	goto(I127, expr) = I279
 	goto(I127, expr1a) = I51
 	goto(I127, error) = I52
@@ -3666,6 +3794,7 @@ I127
 	goto(I127, COLONCOLON) = I129
 
 I128
+
 	goto(I128, expr) = I280
 	goto(I128, expr1a) = I51
 	goto(I128, error) = I52
@@ -3748,9 +3877,11 @@ I128
 	goto(I128, COLONCOLON) = I129
 
 I129
+
 	goto(I129, IDENT) = I281
 
 I130
+
 	goto(I130, arglist) = I282
 	reduce	arglist -> .
 	goto(I130, parmlist) = I283
@@ -3758,30 +3889,37 @@ I130
 	goto(I130, IDENT) = I285
 
 I131
+
 	goto(I131, IDENT) = I286
 
 I132
+
 	goto(I132, lnkfile) = I287
 	goto(I132, IDENT) = I33
 	goto(I132, STRINGLIT) = I34
 
 I133
+
 	goto(I133, lnkfile) = I288
 	goto(I133, IDENT) = I33
 	goto(I133, STRINGLIT) = I34
 
 I134
+
 	goto(I134, invocop) = I289
 	goto(I134, IDENT) = I40
 	goto(I134, STRINGLIT) = I41
 
 I135
+
 	goto(I135, INTLIT) = I290
 
 I136
+
 	reduce	cl ->  classhead SEMICOL END.
 
 I137
+
 	goto(I137, methods) = I291
 	reduce	methods -> .
 	goto(I137, meth) = I292
@@ -3795,21 +3933,26 @@ I137
 	goto(I137, LOCAL) = I298
 
 I138
+
 	goto(I138, LPAREN) = I299
 
 I139
+
 	goto(I139, IDENT) = I300
 	goto(I139, packageref) = I301
 	goto(I139, COLONCOLON) = I129
 
 I140
+
 	goto(I140, RPAREN) = I302
 
 I141
+
 	reduce	fldlist ->  idlist.
 	goto(I141, COMMA) = I131
 
 I142
+
 	goto(I142, procbody) = I303
 	reduce	procbody -> .
 	goto(I142, nexpr) = I49
@@ -3895,6 +4038,7 @@ I142
 	goto(I142, COLONCOLON) = I129
 
 I143
+
 	goto(I143, expr) = I304
 	goto(I143, expr1a) = I51
 	goto(I143, error) = I52
@@ -3977,17 +4121,21 @@ I143
 	goto(I143, COLONCOLON) = I129
 
 I144
+
 	goto(I144, varlist) = I305
 	goto(I144, IDENT) = I306
 
 I145
+
 	goto(I145, stalist) = I307
 	goto(I145, IDENT) = I308
 
 I146
+
 	reduce	proc ->  prochead error procbody END.
 
 I147
+
 	goto(I147, procbody) = I309
 	reduce	procbody -> .
 	goto(I147, nexpr) = I49
@@ -4073,6 +4221,7 @@ I147
 	goto(I147, COLONCOLON) = I129
 
 I148
+
 	goto(I148, expr1a) = I310
 	goto(I148, expr1) = I53
 	goto(I148, expr2a) = I54
@@ -4153,6 +4302,7 @@ I148
 	goto(I148, COLONCOLON) = I129
 
 I149
+
 	goto(I149, expr1) = I311
 	goto(I149, expr2a) = I54
 	goto(I149, expr2) = I55
@@ -4232,6 +4382,7 @@ I149
 	goto(I149, COLONCOLON) = I129
 
 I150
+
 	goto(I150, expr1) = I312
 	goto(I150, expr2a) = I54
 	goto(I150, expr2) = I55
@@ -4311,6 +4462,7 @@ I150
 	goto(I150, COLONCOLON) = I129
 
 I151
+
 	goto(I151, expr1) = I313
 	goto(I151, expr2a) = I54
 	goto(I151, expr2) = I55
@@ -4390,6 +4542,7 @@ I151
 	goto(I151, COLONCOLON) = I129
 
 I152
+
 	goto(I152, expr1) = I314
 	goto(I152, expr2a) = I54
 	goto(I152, expr2) = I55
@@ -4469,6 +4622,7 @@ I152
 	goto(I152, COLONCOLON) = I129
 
 I153
+
 	goto(I153, expr1) = I315
 	goto(I153, expr2a) = I54
 	goto(I153, expr2) = I55
@@ -4548,6 +4702,7 @@ I153
 	goto(I153, COLONCOLON) = I129
 
 I154
+
 	goto(I154, expr1) = I316
 	goto(I154, expr2a) = I54
 	goto(I154, expr2) = I55
@@ -4627,6 +4782,7 @@ I154
 	goto(I154, COLONCOLON) = I129
 
 I155
+
 	goto(I155, expr1) = I317
 	goto(I155, expr2a) = I54
 	goto(I155, expr2) = I55
@@ -4706,6 +4862,7 @@ I155
 	goto(I155, COLONCOLON) = I129
 
 I156
+
 	goto(I156, expr1) = I318
 	goto(I156, expr2a) = I54
 	goto(I156, expr2) = I55
@@ -4785,6 +4942,7 @@ I156
 	goto(I156, COLONCOLON) = I129
 
 I157
+
 	goto(I157, expr1) = I319
 	goto(I157, expr2a) = I54
 	goto(I157, expr2) = I55
@@ -4864,6 +5022,7 @@ I157
 	goto(I157, COLONCOLON) = I129
 
 I158
+
 	goto(I158, expr1) = I320
 	goto(I158, expr2a) = I54
 	goto(I158, expr2) = I55
@@ -4943,6 +5102,7 @@ I158
 	goto(I158, COLONCOLON) = I129
 
 I159
+
 	goto(I159, expr1) = I321
 	goto(I159, expr2a) = I54
 	goto(I159, expr2) = I55
@@ -5022,6 +5182,7 @@ I159
 	goto(I159, COLONCOLON) = I129
 
 I160
+
 	goto(I160, expr1) = I322
 	goto(I160, expr2a) = I54
 	goto(I160, expr2) = I55
@@ -5101,6 +5262,7 @@ I160
 	goto(I160, COLONCOLON) = I129
 
 I161
+
 	goto(I161, expr1) = I323
 	goto(I161, expr2a) = I54
 	goto(I161, expr2) = I55
@@ -5180,6 +5342,7 @@ I161
 	goto(I161, COLONCOLON) = I129
 
 I162
+
 	goto(I162, expr1) = I324
 	goto(I162, expr2a) = I54
 	goto(I162, expr2) = I55
@@ -5259,6 +5422,7 @@ I162
 	goto(I162, COLONCOLON) = I129
 
 I163
+
 	goto(I163, expr1) = I325
 	goto(I163, expr2a) = I54
 	goto(I163, expr2) = I55
@@ -5338,6 +5502,7 @@ I163
 	goto(I163, COLONCOLON) = I129
 
 I164
+
 	goto(I164, expr1) = I326
 	goto(I164, expr2a) = I54
 	goto(I164, expr2) = I55
@@ -5417,6 +5582,7 @@ I164
 	goto(I164, COLONCOLON) = I129
 
 I165
+
 	goto(I165, expr1) = I327
 	goto(I165, expr2a) = I54
 	goto(I165, expr2) = I55
@@ -5496,6 +5662,7 @@ I165
 	goto(I165, COLONCOLON) = I129
 
 I166
+
 	goto(I166, expr1) = I328
 	goto(I166, expr2a) = I54
 	goto(I166, expr2) = I55
@@ -5575,6 +5742,7 @@ I166
 	goto(I166, COLONCOLON) = I129
 
 I167
+
 	goto(I167, expr1) = I329
 	goto(I167, expr2a) = I54
 	goto(I167, expr2) = I55
@@ -5654,6 +5822,7 @@ I167
 	goto(I167, COLONCOLON) = I129
 
 I168
+
 	goto(I168, expr1) = I330
 	goto(I168, expr2a) = I54
 	goto(I168, expr2) = I55
@@ -5733,6 +5902,7 @@ I168
 	goto(I168, COLONCOLON) = I129
 
 I169
+
 	goto(I169, expr1) = I331
 	goto(I169, expr2a) = I54
 	goto(I169, expr2) = I55
@@ -5812,6 +5982,7 @@ I169
 	goto(I169, COLONCOLON) = I129
 
 I170
+
 	goto(I170, expr1) = I332
 	goto(I170, expr2a) = I54
 	goto(I170, expr2) = I55
@@ -5891,6 +6062,7 @@ I170
 	goto(I170, COLONCOLON) = I129
 
 I171
+
 	goto(I171, expr1) = I333
 	goto(I171, expr2a) = I54
 	goto(I171, expr2) = I55
@@ -5970,6 +6142,7 @@ I171
 	goto(I171, COLONCOLON) = I129
 
 I172
+
 	goto(I172, expr1) = I334
 	goto(I172, expr2a) = I54
 	goto(I172, expr2) = I55
@@ -6049,6 +6222,7 @@ I172
 	goto(I172, COLONCOLON) = I129
 
 I173
+
 	goto(I173, expr1) = I335
 	goto(I173, expr2a) = I54
 	goto(I173, expr2) = I55
@@ -6128,6 +6302,7 @@ I173
 	goto(I173, COLONCOLON) = I129
 
 I174
+
 	goto(I174, expr1) = I336
 	goto(I174, expr2a) = I54
 	goto(I174, expr2) = I55
@@ -6207,6 +6382,7 @@ I174
 	goto(I174, COLONCOLON) = I129
 
 I175
+
 	goto(I175, expr1) = I337
 	goto(I175, expr2a) = I54
 	goto(I175, expr2) = I55
@@ -6286,6 +6462,7 @@ I175
 	goto(I175, COLONCOLON) = I129
 
 I176
+
 	goto(I176, expr1) = I338
 	goto(I176, expr2a) = I54
 	goto(I176, expr2) = I55
@@ -6365,6 +6542,7 @@ I176
 	goto(I176, COLONCOLON) = I129
 
 I177
+
 	goto(I177, expr1) = I339
 	goto(I177, expr2a) = I54
 	goto(I177, expr2) = I55
@@ -6444,6 +6622,7 @@ I177
 	goto(I177, COLONCOLON) = I129
 
 I178
+
 	goto(I178, expr1) = I340
 	goto(I178, expr2a) = I54
 	goto(I178, expr2) = I55
@@ -6523,6 +6702,7 @@ I178
 	goto(I178, COLONCOLON) = I129
 
 I179
+
 	goto(I179, expr1) = I341
 	goto(I179, expr2a) = I54
 	goto(I179, expr2) = I55
@@ -6602,6 +6782,7 @@ I179
 	goto(I179, COLONCOLON) = I129
 
 I180
+
 	goto(I180, expr1) = I342
 	goto(I180, expr2a) = I54
 	goto(I180, expr2) = I55
@@ -6681,6 +6862,7 @@ I180
 	goto(I180, COLONCOLON) = I129
 
 I181
+
 	goto(I181, expr1) = I343
 	goto(I181, expr2a) = I54
 	goto(I181, expr2) = I55
@@ -6760,6 +6942,7 @@ I181
 	goto(I181, COLONCOLON) = I129
 
 I182
+
 	goto(I182, expr2) = I344
 	goto(I182, expr3) = I56
 	goto(I182, expr4) = I57
@@ -6837,6 +7020,7 @@ I182
 	goto(I182, COLONCOLON) = I129
 
 I183
+
 	goto(I183, expr3) = I345
 	goto(I183, expr4) = I57
 	goto(I183, expr5) = I58
@@ -6913,6 +7097,7 @@ I183
 	goto(I183, COLONCOLON) = I129
 
 I184
+
 	goto(I184, expr3) = I346
 	goto(I184, expr4) = I57
 	goto(I184, expr5) = I58
@@ -6989,6 +7174,7 @@ I184
 	goto(I184, COLONCOLON) = I129
 
 I185
+
 	goto(I185, expr3) = I347
 	goto(I185, expr4) = I57
 	goto(I185, expr5) = I58
@@ -7065,6 +7251,7 @@ I185
 	goto(I185, COLONCOLON) = I129
 
 I186
+
 	goto(I186, expr3) = I348
 	goto(I186, expr4) = I57
 	goto(I186, expr5) = I58
@@ -7141,6 +7328,7 @@ I186
 	goto(I186, COLONCOLON) = I129
 
 I187
+
 	goto(I187, expr5) = I349
 	goto(I187, expr6) = I59
 	goto(I187, expr7) = I60
@@ -7215,6 +7403,7 @@ I187
 	goto(I187, COLONCOLON) = I129
 
 I188
+
 	goto(I188, expr5) = I350
 	goto(I188, expr6) = I59
 	goto(I188, expr7) = I60
@@ -7289,6 +7478,7 @@ I188
 	goto(I188, COLONCOLON) = I129
 
 I189
+
 	goto(I189, expr5) = I351
 	goto(I189, expr6) = I59
 	goto(I189, expr7) = I60
@@ -7363,6 +7553,7 @@ I189
 	goto(I189, COLONCOLON) = I129
 
 I190
+
 	goto(I190, expr5) = I352
 	goto(I190, expr6) = I59
 	goto(I190, expr7) = I60
@@ -7437,6 +7628,7 @@ I190
 	goto(I190, COLONCOLON) = I129
 
 I191
+
 	goto(I191, expr5) = I353
 	goto(I191, expr6) = I59
 	goto(I191, expr7) = I60
@@ -7511,6 +7703,7 @@ I191
 	goto(I191, COLONCOLON) = I129
 
 I192
+
 	goto(I192, expr5) = I354
 	goto(I192, expr6) = I59
 	goto(I192, expr7) = I60
@@ -7585,6 +7778,7 @@ I192
 	goto(I192, COLONCOLON) = I129
 
 I193
+
 	goto(I193, expr5) = I355
 	goto(I193, expr6) = I59
 	goto(I193, expr7) = I60
@@ -7659,6 +7853,7 @@ I193
 	goto(I193, COLONCOLON) = I129
 
 I194
+
 	goto(I194, expr5) = I356
 	goto(I194, expr6) = I59
 	goto(I194, expr7) = I60
@@ -7733,6 +7928,7 @@ I194
 	goto(I194, COLONCOLON) = I129
 
 I195
+
 	goto(I195, expr5) = I357
 	goto(I195, expr6) = I59
 	goto(I195, expr7) = I60
@@ -7807,6 +8003,7 @@ I195
 	goto(I195, COLONCOLON) = I129
 
 I196
+
 	goto(I196, expr5) = I358
 	goto(I196, expr6) = I59
 	goto(I196, expr7) = I60
@@ -7881,6 +8078,7 @@ I196
 	goto(I196, COLONCOLON) = I129
 
 I197
+
 	goto(I197, expr5) = I359
 	goto(I197, expr6) = I59
 	goto(I197, expr7) = I60
@@ -7955,6 +8153,7 @@ I197
 	goto(I197, COLONCOLON) = I129
 
 I198
+
 	goto(I198, expr5) = I360
 	goto(I198, expr6) = I59
 	goto(I198, expr7) = I60
@@ -8029,6 +8228,7 @@ I198
 	goto(I198, COLONCOLON) = I129
 
 I199
+
 	goto(I199, expr5) = I361
 	goto(I199, expr6) = I59
 	goto(I199, expr7) = I60
@@ -8103,6 +8303,7 @@ I199
 	goto(I199, COLONCOLON) = I129
 
 I200
+
 	goto(I200, expr5) = I362
 	goto(I200, expr6) = I59
 	goto(I200, expr7) = I60
@@ -8177,6 +8378,7 @@ I200
 	goto(I200, COLONCOLON) = I129
 
 I201
+
 	goto(I201, expr5) = I363
 	goto(I201, expr6) = I59
 	goto(I201, expr7) = I60
@@ -8251,6 +8453,7 @@ I201
 	goto(I201, COLONCOLON) = I129
 
 I202
+
 	goto(I202, expr5) = I364
 	goto(I202, expr6) = I59
 	goto(I202, expr7) = I60
@@ -8325,6 +8528,7 @@ I202
 	goto(I202, COLONCOLON) = I129
 
 I203
+
 	goto(I203, expr6) = I365
 	goto(I203, expr7) = I60
 	goto(I203, expr8) = I61
@@ -8398,6 +8602,7 @@ I203
 	goto(I203, COLONCOLON) = I129
 
 I204
+
 	goto(I204, expr6) = I366
 	goto(I204, expr7) = I60
 	goto(I204, expr8) = I61
@@ -8471,6 +8676,7 @@ I204
 	goto(I204, COLONCOLON) = I129
 
 I205
+
 	goto(I205, expr7) = I367
 	goto(I205, expr8) = I61
 	goto(I205, expr9) = I62
@@ -8543,6 +8749,7 @@ I205
 	goto(I205, COLONCOLON) = I129
 
 I206
+
 	goto(I206, expr7) = I368
 	goto(I206, expr8) = I61
 	goto(I206, expr9) = I62
@@ -8615,6 +8822,7 @@ I206
 	goto(I206, COLONCOLON) = I129
 
 I207
+
 	goto(I207, expr7) = I369
 	goto(I207, expr8) = I61
 	goto(I207, expr9) = I62
@@ -8687,6 +8895,7 @@ I207
 	goto(I207, COLONCOLON) = I129
 
 I208
+
 	goto(I208, expr7) = I370
 	goto(I208, expr8) = I61
 	goto(I208, expr9) = I62
@@ -8759,6 +8968,7 @@ I208
 	goto(I208, COLONCOLON) = I129
 
 I209
+
 	goto(I209, expr8) = I371
 	goto(I209, expr9) = I62
 	goto(I209, postfixthreadop) = I63
@@ -8830,6 +9040,7 @@ I209
 	goto(I209, COLONCOLON) = I129
 
 I210
+
 	goto(I210, expr8) = I372
 	goto(I210, expr9) = I62
 	goto(I210, postfixthreadop) = I63
@@ -8901,6 +9112,7 @@ I210
 	goto(I210, COLONCOLON) = I129
 
 I211
+
 	goto(I211, expr8) = I373
 	goto(I211, expr9) = I62
 	goto(I211, postfixthreadop) = I63
@@ -8972,6 +9184,7 @@ I211
 	goto(I211, COLONCOLON) = I129
 
 I212
+
 	goto(I212, expr8) = I374
 	goto(I212, expr9) = I62
 	goto(I212, postfixthreadop) = I63
@@ -9043,6 +9256,7 @@ I212
 	goto(I212, COLONCOLON) = I129
 
 I213
+
 	goto(I213, expr8) = I375
 	goto(I213, expr9) = I62
 	goto(I213, postfixthreadop) = I63
@@ -9114,6 +9328,7 @@ I213
 	goto(I213, COLONCOLON) = I129
 
 I214
+
 	goto(I214, expr10) = I376
 	goto(I214, expr11) = I65
 	goto(I214, AT) = I66
@@ -9182,6 +9397,7 @@ I214
 	goto(I214, COLONCOLON) = I129
 
 I215
+
 	goto(I215, expr10) = I377
 	goto(I215, expr11) = I65
 	goto(I215, AT) = I66
@@ -9250,6 +9466,7 @@ I215
 	goto(I215, COLONCOLON) = I129
 
 I216
+
 	goto(I216, expr10) = I378
 	goto(I216, expr11) = I65
 	goto(I216, AT) = I66
@@ -9319,6 +9536,7 @@ I216
 	reduce	postfixthreadop ->  expr9 SND.
 
 I217
+
 	goto(I217, expr10) = I379
 	goto(I217, expr11) = I65
 	goto(I217, AT) = I66
@@ -9388,6 +9606,7 @@ I217
 	reduce	postfixthreadop ->  expr9 SNDBK.
 
 I218
+
 	goto(I218, expr10) = I380
 	goto(I218, expr11) = I65
 	goto(I218, AT) = I66
@@ -9457,6 +9676,7 @@ I218
 	reduce	postfixthreadop ->  expr9 RCV.
 
 I219
+
 	goto(I219, expr10) = I381
 	goto(I219, expr11) = I65
 	goto(I219, AT) = I66
@@ -9526,6 +9746,7 @@ I219
 	reduce	postfixthreadop ->  expr9 RCVBK.
 
 I220
+
 	goto(I220, expr10) = I382
 	goto(I220, expr11) = I65
 	goto(I220, AT) = I66
@@ -9594,6 +9815,7 @@ I220
 	goto(I220, COLONCOLON) = I129
 
 I221
+
 	goto(I221, exprlist) = I383
 	goto(I221, nexpr) = I261
 	reduce	nexpr -> .
@@ -9679,6 +9901,7 @@ I221
 	goto(I221, COLONCOLON) = I129
 
 I222
+
 	goto(I222, RBRACE) = I385
 	goto(I222, pdcolist) = I386
 	goto(I222, nexpr) = I387
@@ -9765,6 +9988,7 @@ I222
 	goto(I222, COLONCOLON) = I129
 
 I223
+
 	goto(I223, exprlist) = I388
 	goto(I223, nexpr) = I261
 	reduce	nexpr -> .
@@ -9850,151 +10074,197 @@ I223
 	goto(I223, COLONCOLON) = I129
 
 I224
+
 	goto(I224, INITIALLY) = I389
 	goto(I224, IDENT) = I390
 
 I225
+
 	goto(I225, IDENT) = I391
 	goto(I225, INITIALLY) = I392
 
 I226
+
 	reduce	expr10 ->  AT expr10.
 
 I227
+
 	reduce	expr10 ->  SND expr10.
 
 I228
+
 	reduce	expr10 ->  SNDBK expr10.
 
 I229
+
 	reduce	expr10 ->  RCV expr10.
 
 I230
+
 	reduce	expr10 ->  RCVBK expr10.
 
 I231
+
 	reduce	expr10 ->  NOT expr10.
 
 I232
+
 	reduce	expr10 ->  BAR expr10.
 
 I233
+
 	reduce	expr10 ->  CONCAT expr10.
 
 I234
+
 	reduce	expr10 ->  LCONCAT expr10.
 
 I235
+
 	reduce	expr10 ->  DOT expr10.
 
 I236
+
 	reduce	expr10 ->  BANG expr10.
 
 I237
+
 	reduce	expr10 ->  DIFF expr10.
 
 I238
+
 	reduce	expr10 ->  PLUS expr10.
 
 I239
+
 	reduce	expr10 ->  STAR expr10.
 
 I240
+
 	reduce	expr10 ->  SLASH expr10.
 
 I241
+
 	reduce	expr10 ->  CARET expr10.
 
 I242
+
 	reduce	expr10 ->  INTER expr10.
 
 I243
+
 	reduce	expr10 ->  TILDE expr10.
 
 I244
+
 	reduce	expr10 ->  MINUS expr10.
 
 I245
+
 	reduce	expr10 ->  NMEQ expr10.
 
 I246
+
 	reduce	expr10 ->  NMNE expr10.
 
 I247
+
 	reduce	expr10 ->  SEQ expr10.
 
 I248
+
 	reduce	expr10 ->  SNE expr10.
 
 I249
+
 	reduce	expr10 ->  EQUIV expr10.
 
 I250
+
 	reduce	expr10 ->  UNION expr10.
 
 I251
+
 	reduce	expr10 ->  QMARK expr10.
 
 I252
+
 	reduce	expr10 ->  NEQUIV expr10.
 
 I253
+
 	reduce	expr10 ->  BACKSLASH expr10.
 
 I254
+
 	reduce	expr10 ->  PSETCUR expr10.
 
 I255
+
 	reduce	expr11 ->  CREATE expr.
 	goto(I255, AND) = I148
 
 I256
+
 	reduce	expr11 ->  THREAD expr.
 	goto(I256, AND) = I148
 
 I257
+
 	goto(I257, COLON) = I393
 	goto(I257, PMATCH) = I182
 
 I258
+
 	goto(I258, IDENT) = I394
 
 I259
+
 	reduce	expr11 ->  BREAK nexpr.
 
 I260
+
 	goto(I260, RPAREN) = I395
 	goto(I260, COMMA) = I396
 
 I261
+
 	reduce	exprlist ->  nexpr.
 
 I262
+
 	goto(I262, RBRACE) = I397
 
 I263
+
 	reduce	compound ->  nexpr.
 	goto(I263, SEMICOL) = I398
 
 I264
+
 	goto(I264, RBRACK) = I399
 	goto(I264, SEMICOL) = I400
 
 I265
+
 	reduce	caselist ->  cclause.
 
 I266
+
 	goto(I266, COLON) = I401
 
 I267
+
 	goto(I267, COLON) = I402
 	goto(I267, AND) = I148
 
 I268
+
 	goto(I268, RBRACK) = I403
 	goto(I268, COMMA) = I396
 
 I269
+
 	goto(I269, expr) = I404
 	goto(I269, expr1a) = I51
 	goto(I269, error) = I52
@@ -10077,87 +10347,110 @@ I269
 	goto(I269, COLONCOLON) = I129
 
 I270
+
 	reduce	expr11 ->  AND FAIL.
 
 I271
+
 	reduce	expr11 ->  AND IDENT.
 
 I272
+
 	reduce	return ->  RETURN nexpr.
 
 I273
+
 	reduce	return ->  SUSPEND nexpr.
 
 I274
+
 	goto(I274, DO) = I405
 	goto(I274, AND) = I148
 
 I275
+
 	goto(I275, THEN) = I406
 	goto(I275, AND) = I148
 
 I276
+
 	goto(I276, OF) = I407
 	goto(I276, AND) = I148
 
 I277
+
 	reduce	while ->  WHILE expr.
 	goto(I277, AND) = I148
 	goto(I277, DO) = I408
 
 I278
+
 	reduce	until ->  UNTIL expr.
 	goto(I278, AND) = I148
 	goto(I278, DO) = I409
 
 I279
+
 	reduce	every ->  EVERY expr.
 	goto(I279, AND) = I148
 	goto(I279, DO) = I410
 
 I280
+
 	reduce	repeat ->  REPEAT expr.
 	goto(I280, AND) = I148
 
 I281
+
 	reduce	packageref ->  COLONCOLON IDENT.
 
 I282
+
 	goto(I282, RPAREN) = I411
 
 I283
+
 	reduce	arglist ->  parmlist.
 	goto(I283, LBRACK) = I412
 	goto(I283, COMMA) = I413
 
 I284
+
 	reduce	parmlist ->  arg.
 
 I285
+
 	reduce	arg ->  IDENT.
 	goto(I285, COLON) = I414
 
 I286
+
 	reduce	idlist ->  idlist COMMA IDENT.
 
 I287
+
 	reduce	lnklist ->  lnklist COMMA lnkfile.
 
 I288
+
 	reduce	implist ->  implist COMMA lnkfile.
 
 I289
+
 	reduce	invoclist ->  invoclist COMMA invocop.
 
 I290
+
 	reduce	invocop ->  STRINGLIT COLON INTLIT.
 
 I291
+
 	goto(I291, optsemi) = I415
 	reduce	optsemi -> .
 	goto(I291, SEMICOL) = I415
 
 I292
+
 	goto(I292, methods) = I416
 	reduce	methods -> .
 	goto(I292, meth) = I292
@@ -10170,6 +10463,7 @@ I292
 	goto(I292, RECORD) = I12
 
 I293
+
 	goto(I293, methods) = I417
 	reduce	methods -> .
 	goto(I293, meth) = I292
@@ -10182,6 +10476,7 @@ I293
 	goto(I293, RECORD) = I12
 
 I294
+
 	goto(I294, methods) = I418
 	reduce	methods -> .
 	goto(I294, meth) = I292
@@ -10194,20 +10489,25 @@ I294
 	goto(I294, RECORD) = I12
 
 I295
+
 	goto(I295, SEMICOL) = I419
 
 I296
+
 	goto(I296, methhead) = I420
 	goto(I296, METHOD) = I297
 
 I297
+
 	goto(I297, IDENT) = I421
 
 I298
+
 	goto(I298, varlist) = I422
 	goto(I298, IDENT) = I306
 
 I299
+
 	goto(I299, carglist) = I423
 	reduce	carglist -> .
 	goto(I299, cparmlist) = I424
@@ -10217,247 +10517,313 @@ I299
 	goto(I299, MINUS) = I428
 
 I300
+
 	goto(I300, supers) = I429
 	reduce	supers -> .
 	goto(I300, COLON) = I139
 	goto(I300, COLONCOLON) = I258
 
 I301
+
 	goto(I301, supers) = I430
 	reduce	supers -> .
 	goto(I301, COLON) = I139
 
 I302
+
 	reduce	record ->  RECORD IDENT LPAREN fldlist RPAREN.
 
 I303
+
 	goto(I303, END) = I431
 
 I304
+
 	goto(I304, SEMICOL) = I432
 	goto(I304, AND) = I148
 
 I305
+
 	goto(I305, SEMICOL) = I433
 	goto(I305, COMMA) = I434
 
 I306
+
 	reduce	varlist ->  IDENT.
 	goto(I306, ASSIGN) = I435
 
 I307
+
 	goto(I307, SEMICOL) = I436
 	goto(I307, COMMA) = I437
 
 I308
+
 	reduce	stalist ->  IDENT.
 	goto(I308, ASSIGN) = I438
 
 I309
+
 	reduce	procbody ->  nexpr SEMICOL procbody.
 
 I310
+
 	reduce	expr ->  expr AND expr1a.
 	goto(I310, QMARK) = I149
 
 I311
+
 	reduce	expr1a ->  expr1a QMARK expr1.
 
 I312
+
 	reduce	expr1 ->  expr2a SWAP expr1.
 
 I313
+
 	reduce	expr1 ->  expr2a ASSIGN expr1.
 
 I314
+
 	reduce	expr1 ->  expr2a REVSWAP expr1.
 
 I315
+
 	reduce	expr1 ->  expr2a REVASSIGN expr1.
 
 I316
+
 	reduce	expr1 ->  expr2a AUGCONCAT expr1.
 
 I317
+
 	reduce	expr1 ->  expr2a AUGLCONCAT expr1.
 
 I318
+
 	reduce	expr1 ->  expr2a AUGDIFF expr1.
 
 I319
+
 	reduce	expr1 ->  expr2a AUGUNION expr1.
 
 I320
+
 	reduce	expr1 ->  expr2a AUGPLUS expr1.
 
 I321
+
 	reduce	expr1 ->  expr2a AUGMINUS expr1.
 
 I322
+
 	reduce	expr1 ->  expr2a AUGSTAR expr1.
 
 I323
+
 	reduce	expr1 ->  expr2a AUGINTER expr1.
 
 I324
+
 	reduce	expr1 ->  expr2a AUGSLASH expr1.
 
 I325
+
 	reduce	expr1 ->  expr2a AUGMOD expr1.
 
 I326
+
 	reduce	expr1 ->  expr2a AUGCARET expr1.
 
 I327
+
 	reduce	expr1 ->  expr2a AUGNMEQ expr1.
 
 I328
+
 	reduce	expr1 ->  expr2a AUGEQUIV expr1.
 
 I329
+
 	reduce	expr1 ->  expr2a AUGNMGE expr1.
 
 I330
+
 	reduce	expr1 ->  expr2a AUGNMGT expr1.
 
 I331
+
 	reduce	expr1 ->  expr2a AUGNMLE expr1.
 
 I332
+
 	reduce	expr1 ->  expr2a AUGNMLT expr1.
 
 I333
+
 	reduce	expr1 ->  expr2a AUGNMNE expr1.
 
 I334
+
 	reduce	expr1 ->  expr2a AUGNEQUIV expr1.
 
 I335
+
 	reduce	expr1 ->  expr2a AUGSEQ expr1.
 
 I336
+
 	reduce	expr1 ->  expr2a AUGSGE expr1.
 
 I337
+
 	reduce	expr1 ->  expr2a AUGSGT expr1.
 
 I338
+
 	reduce	expr1 ->  expr2a AUGSLE expr1.
 
 I339
+
 	reduce	expr1 ->  expr2a AUGSLT expr1.
 
 I340
+
 	reduce	expr1 ->  expr2a AUGSNE expr1.
 
 I341
+
 	reduce	expr1 ->  expr2a AUGQMARK expr1.
 
 I342
+
 	reduce	expr1 ->  expr2a AUGAND expr1.
 
 I343
+
 	reduce	expr1 ->  expr2a AUGAT expr1.
 
 I344
+
 	reduce	expr2a ->  expr2a PMATCH expr2.
 	goto(I344, TO) = I183
 	goto(I344, POR) = I184
 
 I345
+
 	reduce	expr2 ->  expr2 TO expr3.
 	goto(I345, BY) = I439
 
 I346
+
 	reduce	expr2 ->  expr2 POR expr3.
 
 I347
+
 	reduce	expr3 ->  expr4 PAND expr3.
 
 I348
+
 	reduce	expr3 ->  expr4 BAR expr3.
 
 I349
+
 	reduce	expr4 ->  expr4 PIMDASSN expr5.
 	goto(I349, CONCAT) = I203
 	goto(I349, LCONCAT) = I204
 
 I350
+
 	reduce	expr4 ->  expr4 PASSNONMATCH expr5.
 	goto(I350, CONCAT) = I203
 	goto(I350, LCONCAT) = I204
 
 I351
+
 	reduce	expr4 ->  expr4 SEQ expr5.
 	goto(I351, CONCAT) = I203
 	goto(I351, LCONCAT) = I204
 
 I352
+
 	reduce	expr4 ->  expr4 SGE expr5.
 	goto(I352, CONCAT) = I203
 	goto(I352, LCONCAT) = I204
 
 I353
+
 	reduce	expr4 ->  expr4 SGT expr5.
 	goto(I353, CONCAT) = I203
 	goto(I353, LCONCAT) = I204
 
 I354
+
 	reduce	expr4 ->  expr4 SLE expr5.
 	goto(I354, CONCAT) = I203
 	goto(I354, LCONCAT) = I204
 
 I355
+
 	reduce	expr4 ->  expr4 SLT expr5.
 	goto(I355, CONCAT) = I203
 	goto(I355, LCONCAT) = I204
 
 I356
+
 	reduce	expr4 ->  expr4 SNE expr5.
 	goto(I356, CONCAT) = I203
 	goto(I356, LCONCAT) = I204
 
 I357
+
 	reduce	expr4 ->  expr4 NMEQ expr5.
 	goto(I357, CONCAT) = I203
 	goto(I357, LCONCAT) = I204
 
 I358
+
 	reduce	expr4 ->  expr4 NMGE expr5.
 	goto(I358, CONCAT) = I203
 	goto(I358, LCONCAT) = I204
 
 I359
+
 	reduce	expr4 ->  expr4 NMGT expr5.
 	goto(I359, CONCAT) = I203
 	goto(I359, LCONCAT) = I204
 
 I360
+
 	reduce	expr4 ->  expr4 NMLE expr5.
 	goto(I360, CONCAT) = I203
 	goto(I360, LCONCAT) = I204
 
 I361
+
 	reduce	expr4 ->  expr4 NMLT expr5.
 	goto(I361, CONCAT) = I203
 	goto(I361, LCONCAT) = I204
 
 I362
+
 	reduce	expr4 ->  expr4 NMNE expr5.
 	goto(I362, CONCAT) = I203
 	goto(I362, LCONCAT) = I204
 
 I363
+
 	reduce	expr4 ->  expr4 EQUIV expr5.
 	goto(I363, CONCAT) = I203
 	goto(I363, LCONCAT) = I204
 
 I364
+
 	reduce	expr4 ->  expr4 NEQUIV expr5.
 	goto(I364, CONCAT) = I203
 	goto(I364, LCONCAT) = I204
 
 I365
+
 	reduce	expr5 ->  expr5 CONCAT expr6.
 	goto(I365, PLUS) = I205
 	goto(I365, DIFF) = I206
@@ -10465,6 +10831,7 @@ I365
 	goto(I365, MINUS) = I208
 
 I366
+
 	reduce	expr5 ->  expr5 LCONCAT expr6.
 	goto(I366, PLUS) = I205
 	goto(I366, DIFF) = I206
@@ -10472,6 +10839,7 @@ I366
 	goto(I366, MINUS) = I208
 
 I367
+
 	reduce	expr6 ->  expr6 PLUS expr7.
 	goto(I367, STAR) = I209
 	goto(I367, INTER) = I210
@@ -10479,6 +10847,7 @@ I367
 	goto(I367, MOD) = I212
 
 I368
+
 	reduce	expr6 ->  expr6 DIFF expr7.
 	goto(I368, STAR) = I209
 	goto(I368, INTER) = I210
@@ -10486,6 +10855,7 @@ I368
 	goto(I368, MOD) = I212
 
 I369
+
 	reduce	expr6 ->  expr6 UNION expr7.
 	goto(I369, STAR) = I209
 	goto(I369, INTER) = I210
@@ -10493,6 +10863,7 @@ I369
 	goto(I369, MOD) = I212
 
 I370
+
 	reduce	expr6 ->  expr6 MINUS expr7.
 	goto(I370, STAR) = I209
 	goto(I370, INTER) = I210
@@ -10500,46 +10871,60 @@ I370
 	goto(I370, MOD) = I212
 
 I371
+
 	reduce	expr7 ->  expr7 STAR expr8.
 
 I372
+
 	reduce	expr7 ->  expr7 INTER expr8.
 
 I373
+
 	reduce	expr7 ->  expr7 SLASH expr8.
 
 I374
+
 	reduce	expr7 ->  expr7 MOD expr8.
 
 I375
+
 	reduce	expr8 ->  expr9 CARET expr8.
 
 I376
+
 	reduce	expr9 ->  expr9 BACKSLASH expr10.
 
 I377
+
 	reduce	expr9 ->  expr9 AT expr10.
 
 I378
+
 	reduce	expr9 ->  expr9 SND expr10.
 
 I379
+
 	reduce	expr9 ->  expr9 SNDBK expr10.
 
 I380
+
 	reduce	expr9 ->  expr9 RCV expr10.
 
 I381
+
 	reduce	expr9 ->  expr9 RCVBK expr10.
 
 I382
+
 	reduce	expr9 ->  expr9 BANG expr10.
 
 I383
+
 	goto(I383, RBRACK) = I440
 	goto(I383, COMMA) = I396
 
 I384
+
 	goto(I384, sectop) = I441
 	goto(I384, AND) = I148
 	goto(I384, COLON) = I442
@@ -10547,33 +10932,42 @@ I384
 	goto(I384, MCOLON) = I444
 
 I385
+
 	reduce	expr11 ->  expr11 LBRACE RBRACE.
 
 I386
+
 	goto(I386, RBRACE) = I445
 	goto(I386, COMMA) = I446
 
 I387
+
 	reduce	pdcolist ->  nexpr.
 
 I388
+
 	goto(I388, RPAREN) = I447
 	goto(I388, COMMA) = I396
 
 I389
+
 	goto(I389, LPAREN) = I448
 
 I390
+
 	goto(I390, LPAREN) = I449
 	goto(I390, DOT) = I450
 
 I391
+
 	reduce	expr11 ->  expr11 DOT IDENT.
 
 I392
+
 	reduce	expr11 ->  expr11 DOT INITIALLY.
 
 I393
+
 	goto(I393, expr) = I451
 	goto(I393, expr1a) = I51
 	goto(I393, error) = I52
@@ -10656,12 +11050,15 @@ I393
 	goto(I393, COLONCOLON) = I129
 
 I394
+
 	reduce	packageref ->  IDENT COLONCOLON IDENT.
 
 I395
+
 	reduce	expr11 ->  LPAREN exprlist RPAREN.
 
 I396
+
 	goto(I396, nexpr) = I452
 	reduce	nexpr -> .
 	goto(I396, expr) = I50
@@ -10746,9 +11143,11 @@ I396
 	goto(I396, COLONCOLON) = I129
 
 I397
+
 	reduce	expr11 ->  LBRACE compound RBRACE.
 
 I398
+
 	goto(I398, compound) = I453
 	goto(I398, nexpr) = I263
 	reduce	nexpr -> .
@@ -10834,9 +11233,11 @@ I398
 	goto(I398, COLONCOLON) = I129
 
 I399
+
 	reduce	expr11 ->  LBRACK caselist RBRACK.
 
 I400
+
 	goto(I400, cclause) = I454
 	goto(I400, DEFAULT) = I266
 	goto(I400, expr) = I267
@@ -10921,6 +11322,7 @@ I400
 	goto(I400, COLONCOLON) = I129
 
 I401
+
 	goto(I401, expr) = I455
 	goto(I401, expr1a) = I51
 	goto(I401, error) = I52
@@ -11003,6 +11405,7 @@ I401
 	goto(I401, COLONCOLON) = I129
 
 I402
+
 	goto(I402, expr) = I456
 	goto(I402, expr1a) = I51
 	goto(I402, error) = I52
@@ -11085,13 +11488,16 @@ I402
 	goto(I402, COLONCOLON) = I129
 
 I403
+
 	reduce	expr11 ->  LBRACK exprlist RBRACK.
 
 I404
+
 	goto(I404, COLON) = I457
 	goto(I404, AND) = I148
 
 I405
+
 	goto(I405, expr) = I458
 	goto(I405, expr1a) = I51
 	goto(I405, error) = I52
@@ -11174,6 +11580,7 @@ I405
 	goto(I405, COLONCOLON) = I129
 
 I406
+
 	goto(I406, expr) = I459
 	goto(I406, expr1a) = I51
 	goto(I406, error) = I52
@@ -11256,9 +11663,11 @@ I406
 	goto(I406, COLONCOLON) = I129
 
 I407
+
 	goto(I407, LBRACE) = I460
 
 I408
+
 	goto(I408, expr) = I461
 	goto(I408, expr1a) = I51
 	goto(I408, error) = I52
@@ -11341,6 +11750,7 @@ I408
 	goto(I408, COLONCOLON) = I129
 
 I409
+
 	goto(I409, expr) = I462
 	goto(I409, expr1a) = I51
 	goto(I409, error) = I52
@@ -11423,6 +11833,7 @@ I409
 	goto(I409, COLONCOLON) = I129
 
 I410
+
 	goto(I410, expr) = I463
 	goto(I410, expr1a) = I51
 	goto(I410, error) = I52
@@ -11505,16 +11916,20 @@ I410
 	goto(I410, COLONCOLON) = I129
 
 I411
+
 	reduce	prochead ->  PROCEDURE IDENT LPAREN arglist RPAREN.
 
 I412
+
 	goto(I412, RBRACK) = I464
 
 I413
+
 	goto(I413, arg) = I465
 	goto(I413, IDENT) = I285
 
 I414
+
 	goto(I414, IDENT) = I466
 	goto(I414, literal) = I467
 	goto(I414, INTLIT) = I116
@@ -11524,6 +11939,7 @@ I414
 	goto(I414, AND) = I468
 
 I415
+
 	goto(I415, initiallysection) = I469
 	reduce	initiallysection -> .
 	goto(I415, INITIALLY) = I470
@@ -11610,70 +12026,90 @@ I415
 	goto(I415, COLONCOLON) = I129
 
 I416
+
 	reduce	methods ->  meth methods.
 
 I417
+
 	reduce	methods ->  global methods.
 
 I418
+
 	reduce	methods ->  record methods.
 
 I419
+
 	goto(I419, locals) = I471
 	reduce	locals -> .
 
 I420
+
 	reduce	meth ->  ABSTRACT methhead.
 
 I421
+
 	goto(I421, LPAREN) = I472
 
 I422
+
 	goto(I422, optsemi) = I473
 	reduce	optsemi -> .
 	goto(I422, SEMICOL) = I473
 	goto(I422, COMMA) = I434
 
 I423
+
 	goto(I423, RPAREN) = I474
 
 I424
+
 	reduce	carglist ->  cparmlist.
 	goto(I424, LBRACK) = I475
 	goto(I424, COMMA) = I476
 
 I425
+
 	reduce	cparmlist ->  carg.
 
 I426
+
 	goto(I426, arg) = I477
 	goto(I426, IDENT) = I285
 
 I427
+
 	reduce	priv ->  PLUS.
 
 I428
+
 	reduce	priv ->  MINUS.
 
 I429
+
 	reduce	supers ->  COLON IDENT supers.
 
 I430
+
 	reduce	supers ->  COLON packageref supers.
 
 I431
+
 	reduce	proc ->  prochead SEMICOL locals initial procbody END.
 
 I432
+
 	reduce	initial ->  iconINITIAL expr SEMICOL.
 
 I433
+
 	reduce	locals ->  locals LOCAL varlist SEMICOL.
 
 I434
+
 	goto(I434, IDENT) = I478
 
 I435
+
 	goto(I435, expr1) = I479
 	goto(I435, expr2a) = I54
 	goto(I435, expr2) = I55
@@ -11753,12 +12189,15 @@ I435
 	goto(I435, COLONCOLON) = I129
 
 I436
+
 	reduce	locals ->  locals STATIC stalist SEMICOL.
 
 I437
+
 	goto(I437, IDENT) = I480
 
 I438
+
 	goto(I438, expr1) = I481
 	goto(I438, expr2a) = I54
 	goto(I438, expr2) = I55
@@ -11838,6 +12277,7 @@ I438
 	goto(I438, COLONCOLON) = I129
 
 I439
+
 	goto(I439, expr3) = I482
 	goto(I439, expr4) = I57
 	goto(I439, expr5) = I58
@@ -11914,9 +12354,11 @@ I439
 	goto(I439, COLONCOLON) = I129
 
 I440
+
 	reduce	expr11 ->  expr11 LBRACK exprlist RBRACK.
 
 I441
+
 	goto(I441, expr) = I483
 	goto(I441, expr1a) = I51
 	goto(I441, error) = I52
@@ -11999,18 +12441,23 @@ I441
 	goto(I441, COLONCOLON) = I129
 
 I442
+
 	reduce	sectop ->  COLON.
 
 I443
+
 	reduce	sectop ->  PCOLON.
 
 I444
+
 	reduce	sectop ->  MCOLON.
 
 I445
+
 	reduce	expr11 ->  expr11 LBRACE pdcolist RBRACE.
 
 I446
+
 	goto(I446, nexpr) = I484
 	reduce	nexpr -> .
 	goto(I446, expr) = I50
@@ -12095,9 +12542,11 @@ I446
 	goto(I446, COLONCOLON) = I129
 
 I447
+
 	reduce	expr11 ->  expr11 LPAREN exprlist RPAREN.
 
 I448
+
 	goto(I448, exprlist) = I485
 	goto(I448, nexpr) = I261
 	reduce	nexpr -> .
@@ -12183,6 +12632,7 @@ I448
 	goto(I448, COLONCOLON) = I129
 
 I449
+
 	goto(I449, exprlist) = I486
 	goto(I449, nexpr) = I261
 	reduce	nexpr -> .
@@ -12268,43 +12718,54 @@ I449
 	goto(I449, COLONCOLON) = I129
 
 I450
+
 	goto(I450, INITIALLY) = I487
 	goto(I450, IDENT) = I488
 
 I451
+
 	reduce	expr11 ->  CRITICAL expr2a COLON expr.
 	goto(I451, AND) = I148
 
 I452
+
 	reduce	exprlist ->  exprlist COMMA nexpr.
 
 I453
+
 	reduce	compound ->  nexpr SEMICOL compound.
 
 I454
+
 	reduce	caselist ->  caselist SEMICOL cclause.
 
 I455
+
 	reduce	cclause ->  DEFAULT COLON expr.
 	goto(I455, AND) = I148
 
 I456
+
 	reduce	cclause ->  expr COLON expr.
 	goto(I456, AND) = I148
 
 I457
+
 	goto(I457, RBRACK) = I489
 
 I458
+
 	reduce	return ->  SUSPEND expr DO expr.
 	goto(I458, AND) = I148
 
 I459
+
 	reduce	if ->  IF expr THEN expr.
 	goto(I459, AND) = I148
 	goto(I459, ELSE) = I490
 
 I460
+
 	goto(I460, caselist) = I491
 	goto(I460, cclause) = I265
 	goto(I460, DEFAULT) = I266
@@ -12390,41 +12851,52 @@ I460
 	goto(I460, COLONCOLON) = I129
 
 I461
+
 	reduce	while ->  WHILE expr DO expr.
 	goto(I461, AND) = I148
 
 I462
+
 	reduce	until ->  UNTIL expr DO expr.
 	goto(I462, AND) = I148
 
 I463
+
 	reduce	every ->  EVERY expr DO expr.
 	goto(I463, AND) = I148
 
 I464
+
 	reduce	arglist ->  parmlist LBRACK RBRACK.
 
 I465
+
 	reduce	parmlist ->  parmlist COMMA arg.
 
 I466
+
 	reduce	arg ->  IDENT COLON IDENT.
 	goto(I466, COLON) = I492
 
 I467
+
 	reduce	arg ->  IDENT COLON literal.
 
 I468
+
 	goto(I468, IDENT) = I493
 
 I469
+
 	goto(I469, END) = I494
 
 I470
+
 	goto(I470, SEMICOL) = I495
 	goto(I470, LPAREN) = I496
 
 I471
+
 	goto(I471, initial) = I497
 	reduce	initial -> .
 	goto(I471, iconINITIAL) = I143
@@ -12432,6 +12904,7 @@ I471
 	goto(I471, STATIC) = I145
 
 I472
+
 	goto(I472, arglist) = I498
 	reduce	arglist -> .
 	goto(I472, parmlist) = I283
@@ -12439,15 +12912,19 @@ I472
 	goto(I472, IDENT) = I285
 
 I473
+
 	reduce	clocals ->  clocals LOCAL varlist optsemi.
 
 I474
+
 	reduce	classhead ->  CLASS IDENT supers LPAREN carglist RPAREN.
 
 I475
+
 	goto(I475, RBRACK) = I499
 
 I476
+
 	goto(I476, carg) = I500
 	goto(I476, priv) = I426
 	reduce	priv -> .
@@ -12455,50 +12932,64 @@ I476
 	goto(I476, MINUS) = I428
 
 I477
+
 	reduce	carg ->  priv arg.
 
 I478
+
 	reduce	varlist ->  varlist COMMA IDENT.
 	goto(I478, ASSIGN) = I501
 
 I479
+
 	reduce	varlist ->  IDENT ASSIGN expr1.
 
 I480
+
 	reduce	stalist ->  stalist COMMA IDENT.
 	goto(I480, ASSIGN) = I502
 
 I481
+
 	reduce	stalist ->  IDENT ASSIGN expr1.
 
 I482
+
 	reduce	expr2 ->  expr2 TO expr3 BY expr3.
 
 I483
+
 	goto(I483, RBRACK) = I503
 	goto(I483, AND) = I148
 
 I484
+
 	reduce	pdcolist ->  pdcolist COMMA nexpr.
 
 I485
+
 	goto(I485, RPAREN) = I504
 	goto(I485, COMMA) = I396
 
 I486
+
 	goto(I486, RPAREN) = I505
 	goto(I486, COMMA) = I396
 
 I487
+
 	goto(I487, LPAREN) = I506
 
 I488
+
 	goto(I488, LPAREN) = I507
 
 I489
+
 	reduce	expr11 ->  LBRACK COLON expr COLON RBRACK.
 
 I490
+
 	goto(I490, expr) = I508
 	goto(I490, expr1a) = I51
 	goto(I490, error) = I52
@@ -12581,10 +13072,12 @@ I490
 	goto(I490, COLONCOLON) = I129
 
 I491
+
 	goto(I491, RBRACE) = I509
 	goto(I491, SEMICOL) = I400
 
 I492
+
 	goto(I492, literal) = I510
 	goto(I492, INTLIT) = I116
 	goto(I492, REALLIT) = I117
@@ -12593,16 +13086,20 @@ I492
 	goto(I492, AND) = I511
 
 I493
+
 	reduce	arg ->  IDENT COLON AND IDENT.
 
 I494
+
 	reduce	cl ->  classhead optsemi clocals methods optsemi initiallysection END.
 
 I495
+
 	goto(I495, locals) = I512
 	reduce	locals -> .
 
 I496
+
 	goto(I496, arglist) = I513
 	reduce	arglist -> .
 	goto(I496, parmlist) = I283
@@ -12610,6 +13107,7 @@ I496
 	goto(I496, IDENT) = I285
 
 I497
+
 	goto(I497, procbody) = I514
 	reduce	procbody -> .
 	goto(I497, nexpr) = I49
@@ -12695,15 +13193,19 @@ I497
 	goto(I497, COLONCOLON) = I129
 
 I498
+
 	goto(I498, RPAREN) = I515
 
 I499
+
 	reduce	carglist ->  cparmlist LBRACK RBRACK.
 
 I500
+
 	reduce	cparmlist ->  cparmlist COMMA carg.
 
 I501
+
 	goto(I501, expr1) = I516
 	goto(I501, expr2a) = I54
 	goto(I501, expr2) = I55
@@ -12783,6 +13285,7 @@ I501
 	goto(I501, COLONCOLON) = I129
 
 I502
+
 	goto(I502, expr1) = I517
 	goto(I502, expr2a) = I54
 	goto(I502, expr2) = I55
@@ -12862,15 +13365,19 @@ I502
 	goto(I502, COLONCOLON) = I129
 
 I503
+
 	reduce	section ->  expr11 LBRACK expr sectop expr RBRACK.
 
 I504
+
 	reduce	expr11 ->  expr11 DOLLAR INITIALLY LPAREN exprlist RPAREN.
 
 I505
+
 	reduce	expr11 ->  expr11 DOLLAR IDENT LPAREN exprlist RPAREN.
 
 I506
+
 	goto(I506, exprlist) = I518
 	goto(I506, nexpr) = I261
 	reduce	nexpr -> .
@@ -12956,6 +13463,7 @@ I506
 	goto(I506, COLONCOLON) = I129
 
 I507
+
 	goto(I507, exprlist) = I519
 	goto(I507, nexpr) = I261
 	reduce	nexpr -> .
@@ -13041,19 +13549,24 @@ I507
 	goto(I507, COLONCOLON) = I129
 
 I508
+
 	reduce	if ->  IF expr THEN expr ELSE expr.
 	goto(I508, AND) = I148
 
 I509
+
 	reduce	case ->  CASE expr OF LBRACE caselist RBRACE.
 
 I510
+
 	reduce	arg ->  IDENT COLON IDENT COLON literal.
 
 I511
+
 	goto(I511, IDENT) = I520
 
 I512
+
 	goto(I512, initial) = I521
 	reduce	initial -> .
 	goto(I512, iconINITIAL) = I143
@@ -13061,32 +13574,41 @@ I512
 	goto(I512, STATIC) = I145
 
 I513
+
 	goto(I513, RPAREN) = I522
 
 I514
+
 	goto(I514, END) = I523
 
 I515
+
 	reduce	methhead ->  METHOD IDENT LPAREN arglist RPAREN.
 
 I516
+
 	reduce	varlist ->  varlist COMMA IDENT ASSIGN expr1.
 
 I517
+
 	reduce	stalist ->  stalist COMMA IDENT ASSIGN expr1.
 
 I518
+
 	goto(I518, RPAREN) = I524
 	goto(I518, COMMA) = I396
 
 I519
+
 	goto(I519, RPAREN) = I525
 	goto(I519, COMMA) = I396
 
 I520
+
 	reduce	arg ->  IDENT COLON IDENT COLON AND IDENT.
 
 I521
+
 	goto(I521, procbody) = I526
 	reduce	procbody -> .
 	goto(I521, nexpr) = I49
@@ -13172,21 +13694,27 @@ I521
 	goto(I521, COLONCOLON) = I129
 
 I522
+
 	goto(I522, SEMICOL) = I527
 
 I523
+
 	reduce	meth ->  methhead SEMICOL locals initial procbody END.
 
 I524
+
 	reduce	expr11 ->  expr11 DOLLAR IDENT DOT INITIALLY LPAREN exprlist RPAREN.
 
 I525
+
 	reduce	expr11 ->  expr11 DOLLAR IDENT DOT IDENT LPAREN exprlist RPAREN.
 
 I526
+
 	reduce	initiallysection ->  INITIALLY SEMICOL locals initial procbody.
 
 I527
+
 	goto(I527, locals) = I527
 	reduce	locals -> .
 

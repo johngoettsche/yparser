@@ -81,13 +81,20 @@ procedure createLookAheads(fileName, args, statesList, terminalsList, nonTermina
       outfileName := fileName || "-lookAhead.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
 		write("\nState Actions:\n") 
-      if outfile ~=== &output then every state := !statesList do {
-			write(outfile, state.name || "\n")
-			write(outfile, state.getActionTxt())
+      if outfile ~=== &output then {
+			every state := !statesList do {
+				write(outfile, state.name || "\n")
+				write(outfile, state.getActionTxt())
+			}
+			
 		}
 		every state := !statesList do {
 			write("\n" || state.name)
 			write(state.getActionTxt())
+		}
+		if outfile ~=== &output then {
+			write("\ncreated file: " || outfileName)
+			close(outfile)
 		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")

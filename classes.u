@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	classes.u1-1397337755-0
+uid	classes.u1-1397432509-0
 record	classes__Terminal__state,5
 	0,__s
 	1,__m
@@ -1461,18 +1461,14 @@ lab L4
 	line	109
 	colm	41
 	synt	any
-	field	getResult
-	line	109
-	colm	51
-	synt	any
-	invoke	0
+	field	token
 	line	109
 	colm	21
 	synt	any
 	cat
 	str	2
 	line	109
-	colm	53
+	colm	47
 	synt	any
 	cat
 	line	109
@@ -3518,10 +3514,9 @@ proc classes__State_getAcceptableTxt
 	local	2,000020,txt
 	local	3,000000,acceptableInput
 	con	0,002000,1,0
-	con	1,010000,28,011,055,055,055,055,040,101,143,143,145,160,164,141,142,154,145,040,111,156,160,165,164,040,055,055,055,055,012
+	con	1,010000,0
 	con	2,010000,1,011
 	con	3,010000,1,012
-	con	4,010000,28,011,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,055,012
 	declend
 	line	319
 	colm	11
@@ -3623,13 +3618,7 @@ lab L5
 	unmark
 lab L3
 	mark	L6
-	pnull
 	var	2
-	str	4
-	line	325
-	colm	37
-	synt	any
-	cat
 	line	325
 	colm	25
 	synt	any

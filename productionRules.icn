@@ -41,13 +41,16 @@ procedure createProductionRules(
       if member(args, "o") then outfile := open(outfileName, "c")
       write("\nCreated a grammar with the following production rules:")
       if outfile ~=== &output then{
-         every output := !nonTerminalsSet do {
+         every output := !nonTerminalsSet do
             every write(outfile, output.getTxt())
-         }
       }
       every output := !nonTerminalsSet do {
          every write("\t" || output.getTxt())
       }
+		if outfile ~=== &output then {
+			write("\ncreated file: " || outfileName)
+			close(outfile)
+		}
 		classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()

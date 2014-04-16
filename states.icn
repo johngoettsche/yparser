@@ -69,8 +69,14 @@ procedure createStates(fileName, args, nonTerminalsSet, TerminalsSet, terminalsL
       outfileName := fileName || "-states.txt"
       if member(args, "o") then outfile := open(outfileName, "c")
       write("\nStates:\n") 
-      if outfile ~=== &output then every state := !statesList do write(outfile, state.label)
+      if outfile ~=== &output then {
+			every state := !statesList do write(outfile, state.label)
+		}
       every state := !statesList do write(state.label)
+		if outfile ~=== &output then {
+			write("\ncreated file: " || outfileName)
+			close(outfile)
+		}
       classes::printTime()
       write("\n(press ENTER to continue)\n")
       getch()

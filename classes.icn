@@ -106,7 +106,7 @@ class Production(variables)
       str := ""
       x := 1
       while x <= *variables do {
-         str := str || variables[x].getResult() || " "
+         str := str || variables[x].token || " "
          x +:= 1
       }
       return str
@@ -320,9 +320,9 @@ class State(
 		local txt
 		
 		if *acceptable > 0 then {
-			txt := "\t---- Acceptable Input ----\n"
+			txt := ""
 			every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.token ||"\n"
-			return txt  || "\t--------------------------\n"
+			return txt
 		}
 	end
 
