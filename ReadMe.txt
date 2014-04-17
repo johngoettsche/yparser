@@ -11,7 +11,8 @@
 		-S		shows the source input for the states 
 					{} as a set of states
 					[] as a set of inputs
-		-E		shows a list of potiential error snippits
+		-e		shows a list of potential error snippets (short list)
+		-E		shows a list of potential error snippets (extensive list)
 
 		-o  to write to filename-Option.txt file
 
@@ -36,3 +37,6 @@
 
 ------------------
 4/12/2014 - added a method to define a 'textual pattern' for each terminal token.  Also added a printout of potential error strings using the token patterns.
+
+------------------
+4/16/2014 - edited the method for the error snippets to only generate one error snippet for each state, if it is not a duplicate.

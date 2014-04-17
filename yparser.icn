@@ -16,7 +16,8 @@ procedure main(args)
 #		-S		shows the source input for the states 
 #					{} as a set of states
 #					[] as a set of inputs
-#		-E		shows a list of potiential error snippits
+#		-e		shows a list of potential error snippets (short list)
+#		-E		shows a list of potential error snippets (extensive list)
 #
 #		-o  to write to filename-Option.txt file
 #

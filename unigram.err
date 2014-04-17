@@ -1,0 +1,680 @@
+#EOFX
+::: syntax error
+#EOFX #EOFX
+::: syntax error
+initially
+::: syntax error
+record x ( ) #EOFX
+::: syntax error
+procedure x ( ) #error end #EOFX
+::: syntax error
+global x #EOFX
+::: syntax error
+link x #EOFX
+::: syntax error
+package x #EOFX
+::: syntax error
+import x #EOFX
+::: syntax error
+invocable x #EOFX
+::: syntax error
+class x ( ) ; end #EOFX
+::: syntax error
+procedure x ( ) #EOFX
+::: syntax error
+class x ( ) #EOFX
+::: syntax error
+#error initially
+::: syntax error
+procedure x ( ) ; #EOFX
+::: syntax error
+procedure x ( ) #error #EOFX
+::: syntax error
+class x ( ) ; #EOFX
+::: syntax error
+#error #EOFX #EOFX
+::: syntax error
+procedure x ( ) #error 0 #EOFX
+::: syntax error
+procedure x ( ) #error #error #EOFX
+::: syntax error
+procedure x ( ) #error 0 @> #EOFX
+::: syntax error
+procedure x ( ) #error @ #EOFX
+::: syntax error
+procedure x ( ) #error @> #EOFX
+::: syntax error
+procedure x ( ) #error @>> #EOFX
+::: syntax error
+procedure x ( ) #error <@ #EOFX
+::: syntax error
+procedure x ( ) #error <<@ #EOFX
+::: syntax error
+procedure x ( ) #error not #EOFX
+::: syntax error
+procedure x ( ) #error | #EOFX
+::: syntax error
+procedure x ( ) #error || #EOFX
+::: syntax error
+procedure x ( ) #error ||| #EOFX
+::: syntax error
+procedure x ( ) #error . #EOFX
+::: syntax error
+procedure x ( ) #error ! #EOFX
+::: syntax error
+procedure x ( ) #error -- #EOFX
+::: syntax error
+procedure x ( ) #error + #EOFX
+::: syntax error
+procedure x ( ) #error * #EOFX
+::: syntax error
+procedure x ( ) #error / #EOFX
+::: syntax error
+procedure x ( ) #error % #EOFX
+::: syntax error
+procedure x ( ) #error ** #EOFX
+::: syntax error
+procedure x ( ) #error ~ #EOFX
+::: syntax error
+procedure x ( ) #error - #EOFX
+::: syntax error
+procedure x ( ) #error -> #EOFX
+::: syntax error
+procedure x ( ) #error ++ #EOFX
+::: syntax error
+procedure x ( ) #error initial #EOFX
+::: syntax error
+procedure x ( ) #error .$ #EOFX
+::: syntax error
+procedure x ( ) #error 0 { 0 : 0 } #EOFX
+::: syntax error
+procedure x ( ) #error fail #EOFX
+::: syntax error
+procedure x ( ) #error if 0 then 0 #EOFX
+::: syntax error
+procedure x ( ) #error case 0 of [ default : 0 ] #EOFX
+::: syntax error
+procedure x ( ) #error while 0 #EOFX
+::: syntax error
+procedure x ( ) #error until 0 #EOFX
+::: syntax error
+procedure x ( ) #error every 0 #EOFX
+::: syntax error
+procedure x ( ) #error repeat 0 #EOFX
+::: syntax error
+procedure x ( ) #error u #EOFX
+::: syntax error
+procedure x ( ) #error create #EOFX
+::: syntax error
+procedure x ( ) #error thread #EOFX
+::: syntax error
+procedure x ( ) #error critical #EOFX
+::: syntax error
+procedure x ( ) #error x #EOFX
+::: syntax error
+procedure x ( ) #error next #EOFX
+::: syntax error
+procedure x ( ) #error break #EOFX
+::: syntax error
+procedure x ( ) #error ( #EOFX
+::: syntax error
+procedure x ( ) #error [ #EOFX
+::: syntax error
+procedure x ( ) #error { #EOFX
+::: syntax error
+procedure x ( ) #error :: x #EOFX
+::: syntax error
+procedure x ( ) #error & #EOFX
+::: syntax error
+procedure x ( ) #error 1.0 #EOFX
+::: syntax error
+procedure x ( ) #error a #EOFX
+::: syntax error
+procedure x ( ) #error c #EOFX
+::: syntax error
+procedure x ( ) #error return #EOFX
+::: syntax error
+procedure x ( ) #error suspend #EOFX
+::: syntax error
+procedure x ( ) #error if #EOFX
+::: syntax error
+procedure x ( ) #error case #EOFX
+::: syntax error
+procedure x ( ) #error while #EOFX
+::: syntax error
+procedure x ( ) #error until #EOFX
+::: syntax error
+procedure x ( ) #error every #EOFX
+::: syntax error
+procedure x ( ) #error repeat #EOFX
+::: syntax error
+procedure x ( ) #error :: #EOFX
+::: syntax error
+global x , #EOFX
+::: syntax error
+link x , #EOFX
+::: syntax error
+import x , #EOFX
+::: syntax error
+invocable x , #EOFX
+::: syntax error
+class x #EOFX
+::: syntax error
+record x ( #EOFX
+::: syntax error
+record x ( x #EOFX
+::: syntax error
+procedure x ( ) ; initial #EOFX
+::: syntax error
+procedure x ( ) ; local #EOFX
+::: syntax error
+procedure x ( ) ; static #EOFX
+::: syntax error
+procedure x ( ) #error ; #EOFX
+::: syntax error
+procedure x ( ) #error 0 & #EOFX
+::: syntax error
+procedure x ( ) #error 0 initial #EOFX
+::: syntax error
+procedure x ( ) #error 0 : #EOFX
+::: syntax error
+procedure x ( ) #error 0 assign #EOFX
+::: syntax error
+procedure x ( ) #error 0 <-> #EOFX
+::: syntax error
+procedure x ( ) #error 0 <- #EOFX
+::: syntax error
+procedure x ( ) #error 0 ||: #EOFX
+::: syntax error
+procedure x ( ) #error 0 |||: #EOFX
+::: syntax error
+procedure x ( ) #error 0 --: #EOFX
+::: syntax error
+procedure x ( ) #error 0 ++: #EOFX
+::: syntax error
+procedure x ( ) #error 0 +: #EOFX
+::: syntax error
+procedure x ( ) #error 0 -: #EOFX
+::: syntax error
+procedure x ( ) #error 0 *: #EOFX
+::: syntax error
+procedure x ( ) #error 0 **: #EOFX
+::: syntax error
+procedure x ( ) #error 0 /: #EOFX
+::: syntax error
+procedure x ( ) #error 0 %: #EOFX
+::: syntax error
+procedure x ( ) #error 0 > #EOFX
+::: syntax error
+procedure x ( ) #error 0 >: #EOFX
+::: syntax error
+procedure x ( ) #error 0 < #EOFX
+::: syntax error
+procedure x ( ) #error 0 <: #EOFX
+::: syntax error
+procedure x ( ) #error 0 ~ #EOFX
+::: syntax error
+procedure x ( ) #error 0 >> #EOFX
+::: syntax error
+procedure x ( ) #error 0 >>: #EOFX
+::: syntax error
+procedure x ( ) #error 0 << #EOFX
+::: syntax error
+procedure x ( ) #error 0 <<: #EOFX
+::: syntax error
+procedure x ( ) #error 0 &: #EOFX
+::: syntax error
+procedure x ( ) #error 0 @: #EOFX
+::: syntax error
+procedure x ( ) #error 0 to #EOFX
+::: syntax error
+procedure x ( ) #error 0 .| #EOFX
+::: syntax error
+procedure x ( ) #error 0 && #EOFX
+::: syntax error
+procedure x ( ) #error 0 | #EOFX
+::: syntax error
+procedure x ( ) #error 0 $$ #EOFX
+::: syntax error
+procedure x ( ) #error 0 -> #EOFX
+::: syntax error
+procedure x ( ) #error 0 || #EOFX
+::: syntax error
+procedure x ( ) #error 0 ||| #EOFX
+::: syntax error
+procedure x ( ) #error 0 + #EOFX
+::: syntax error
+procedure x ( ) #error 0 -- #EOFX
+::: syntax error
+procedure x ( ) #error 0 ++ #EOFX
+::: syntax error
+procedure x ( ) #error 0 - #EOFX
+::: syntax error
+procedure x ( ) #error 0 * #EOFX
+::: syntax error
+procedure x ( ) #error 0 ** #EOFX
+::: syntax error
+procedure x ( ) #error 0 / #EOFX
+::: syntax error
+procedure x ( ) #error 0 % #EOFX
+::: syntax error
+procedure x ( ) #error 0 <<@ #EOFX
+::: syntax error
+procedure x ( ) #error 0 @ #EOFX
+::: syntax error
+procedure x ( ) #error 0 @>> #EOFX
+::: syntax error
+procedure x ( ) #error 0 <@ #EOFX
+::: syntax error
+procedure x ( ) #error 0 ! #EOFX
+::: syntax error
+procedure x ( ) #error 0 { #EOFX
+::: syntax error
+procedure x ( ) #error 0 [ #EOFX
+::: syntax error
+procedure x ( ) #error 0 ( #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ #EOFX
+::: syntax error
+procedure x ( ) #error 0 . #EOFX
+::: syntax error
+procedure x ( ) #error @ 0 #EOFX
+::: syntax error
+procedure x ( ) #error @> 0 #EOFX
+::: syntax error
+procedure x ( ) #error @>> 0 #EOFX
+::: syntax error
+procedure x ( ) #error <@ 0 #EOFX
+::: syntax error
+procedure x ( ) #error <<@ 0 #EOFX
+::: syntax error
+procedure x ( ) #error not 0 #EOFX
+::: syntax error
+procedure x ( ) #error | 0 #EOFX
+::: syntax error
+procedure x ( ) #error || 0 #EOFX
+::: syntax error
+procedure x ( ) #error ||| 0 #EOFX
+::: syntax error
+procedure x ( ) #error . 0 #EOFX
+::: syntax error
+procedure x ( ) #error ! 0 #EOFX
+::: syntax error
+procedure x ( ) #error -- 0 #EOFX
+::: syntax error
+procedure x ( ) #error + 0 #EOFX
+::: syntax error
+procedure x ( ) #error * 0 #EOFX
+::: syntax error
+procedure x ( ) #error / 0 #EOFX
+::: syntax error
+procedure x ( ) #error % 0 #EOFX
+::: syntax error
+procedure x ( ) #error ** 0 #EOFX
+::: syntax error
+procedure x ( ) #error ~ 0 #EOFX
+::: syntax error
+procedure x ( ) #error - 0 #EOFX
+::: syntax error
+procedure x ( ) #error -> 0 #EOFX
+::: syntax error
+procedure x ( ) #error ++ 0 #EOFX
+::: syntax error
+procedure x ( ) #error initial 0 #EOFX
+::: syntax error
+procedure x ( ) #error .$ 0 #EOFX
+::: syntax error
+procedure x ( ) #error create 0 #EOFX
+::: syntax error
+procedure x ( ) #error thread 0 #EOFX
+::: syntax error
+procedure x ( ) #error critical 0 #EOFX
+::: syntax error
+procedure x ( ) #error x :: #EOFX
+::: syntax error
+procedure x ( ) #error { default : 0 #EOFX
+::: syntax error
+procedure x ( ) #error { default #EOFX
+::: syntax error
+procedure x ( ) #error { 0 #EOFX
+::: syntax error
+procedure x ( ) #error { : #EOFX
+::: syntax error
+procedure x ( ) #error & fail #EOFX
+::: syntax error
+procedure x ( ) #error & x #EOFX
+::: syntax error
+procedure x ( ) #error if 0 #EOFX
+::: syntax error
+procedure x ( ) #error case 0 #EOFX
+::: syntax error
+procedure x ( #EOFX
+::: syntax error
+procedure x ( x #EOFX
+::: syntax error
+global x , x #EOFX
+::: syntax error
+link x , x #EOFX
+::: syntax error
+import x , x #EOFX
+::: syntax error
+invocable x , x #EOFX
+::: syntax error
+class x ( ) abstract method x ( ) #EOFX
+::: syntax error
+class x ( ) global x #EOFX
+::: syntax error
+class x ( ) record x ( ) #EOFX
+::: syntax error
+class x ( ) method x ( ) #EOFX
+::: syntax error
+class x ( ) abstract #EOFX
+::: syntax error
+class x ( ) method #EOFX
+::: syntax error
+class x ( ) local #EOFX
+::: syntax error
+class x ( #EOFX
+::: syntax error
+class x : :: x #EOFX
+::: syntax error
+procedure x ( ) ; initial 0 #EOFX
+::: syntax error
+procedure x ( ) ; local x #EOFX
+::: syntax error
+procedure x ( ) ; static x #EOFX
+::: syntax error
+procedure x ( ) #error 0 & 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 initial 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 : 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 assign 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 <-> 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 <- 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 ||: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 |||: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 --: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 ++: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 +: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 -: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 *: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 **: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 /: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 %: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 > 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 >: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 < 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 <: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 ~ 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 >> 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 >>: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 << 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 <<: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 &: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 @: 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 to 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 .| 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 && 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 | 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 $$ 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 -> 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 || 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 ||| 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 + 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 -- 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 ++ 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 - 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 * 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 ** 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 / 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 % 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 <<@ 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 @ 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 @> 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 @>> 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 <@ 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 ! 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 [ ] #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ initially #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x #EOFX
+::: syntax error
+procedure x ( ) #error 0 . x #EOFX
+::: syntax error
+procedure x ( ) #error 0 . initially #EOFX
+::: syntax error
+procedure x ( ) #error critical 0 : #EOFX
+::: syntax error
+procedure x ( ) #error x :: x #EOFX
+::: syntax error
+procedure x ( ) #error ( ) #EOFX
+::: syntax error
+procedure x ( ) #error ( , #EOFX
+::: syntax error
+procedure x ( ) #error [ ] #EOFX
+::: syntax error
+procedure x ( ) #error [ ; #EOFX
+::: syntax error
+procedure x ( ) #error { default : 0 } #EOFX
+::: syntax error
+procedure x ( ) #error { default : 0 ; #EOFX
+::: syntax error
+procedure x ( ) #error { default : #EOFX
+::: syntax error
+procedure x ( ) #error { 0 : #EOFX
+::: syntax error
+procedure x ( ) #error { } #EOFX
+::: syntax error
+procedure x ( ) #error { : 0 #EOFX
+::: syntax error
+procedure x ( ) #error suspend do #EOFX
+::: syntax error
+procedure x ( ) #error if 0 then #EOFX
+::: syntax error
+procedure x ( ) #error case 0 of #EOFX
+::: syntax error
+procedure x ( ) #error while 0 do #EOFX
+::: syntax error
+procedure x ( ) #error until 0 do #EOFX
+::: syntax error
+procedure x ( ) #error every 0 do #EOFX
+::: syntax error
+procedure x ( x { #EOFX
+::: syntax error
+procedure x ( x , #EOFX
+::: syntax error
+class x ( ) method x ( ) ; #EOFX
+::: syntax error
+class x ( ) method x #EOFX
+::: syntax error
+class x ( ) local x #EOFX
+::: syntax error
+class x ( x #EOFX
+::: syntax error
+class x ( + #EOFX
+::: syntax error
+class x ( - #EOFX
+::: syntax error
+class x : x #EOFX
+::: syntax error
+procedure x ( ) ; end #EOFX
+::: syntax error
+procedure x ( ) ; initial 0 ; #EOFX
+::: syntax error
+procedure x ( ) ; local x ; #EOFX
+::: syntax error
+procedure x ( ) ; local x , #EOFX
+::: syntax error
+procedure x ( ) ; local x assign #EOFX
+::: syntax error
+procedure x ( ) ; static x ; #EOFX
+::: syntax error
+procedure x ( ) ; static x , #EOFX
+::: syntax error
+procedure x ( ) ; static x assign #EOFX
+::: syntax error
+procedure x ( ) #error 0 to 0 by #EOFX
+::: syntax error
+procedure x ( ) #error 0 { } #EOFX
+::: syntax error
+procedure x ( ) #error 0 { : #EOFX
+::: syntax error
+procedure x ( ) #error 0 { +: #EOFX
+::: syntax error
+procedure x ( ) #error 0 { -: #EOFX
+::: syntax error
+procedure x ( ) #error 0 [ , #EOFX
+::: syntax error
+procedure x ( ) #error 0 ( ) #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ initially ( #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x ( #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x . #EOFX
+::: syntax error
+procedure x ( ) #error critical 0 : 0 #EOFX
+::: syntax error
+procedure x ( ) #error { default : 0 ; default : 0 #EOFX
+::: syntax error
+procedure x ( ) #error { 0 : 0 #EOFX
+::: syntax error
+procedure x ( ) #error { : 0 : #EOFX
+::: syntax error
+procedure x ( ) #error suspend do 0 #EOFX
+::: syntax error
+procedure x ( ) #error case 0 of [ #EOFX
+::: syntax error
+procedure x ( ) #error while 0 do 0 #EOFX
+::: syntax error
+procedure x ( ) #error until 0 do 0 #EOFX
+::: syntax error
+procedure x ( ) #error every 0 do 0 #EOFX
+::: syntax error
+procedure x ( x { } #EOFX
+::: syntax error
+procedure x ( x , x #EOFX
+::: syntax error
+procedure x ( x : 0 #EOFX
+::: syntax error
+class x ( ) initially #EOFX
+::: syntax error
+class x ( ) method x ( #EOFX
+::: syntax error
+class x ( x { #EOFX
+::: syntax error
+class x ( x , #EOFX
+::: syntax error
+procedure x ( ) ; local x , x #EOFX
+::: syntax error
+procedure x ( ) ; local x assign 0 #EOFX
+::: syntax error
+procedure x ( ) ; static x , x #EOFX
+::: syntax error
+procedure x ( ) ; static x assign 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 to 0 by 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 { : 0 #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x . initially #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x . x #EOFX
+::: syntax error
+procedure x ( ) #error { : 0 : } #EOFX
+::: syntax error
+procedure x ( ) #error if 0 then 0 else #EOFX
+::: syntax error
+procedure x ( ) #error case 0 of [ default : 0 #EOFX
+::: syntax error
+class x ( ) end #EOFX
+::: syntax error
+class x ( ) initially ; #EOFX
+::: syntax error
+class x ( ) initially ( #EOFX
+::: syntax error
+class x ( x { } #EOFX
+::: syntax error
+class x ( x , x #EOFX
+::: syntax error
+procedure x ( ) ; local x , x assign #EOFX
+::: syntax error
+procedure x ( ) ; static x , x assign #EOFX
+::: syntax error
+procedure x ( ) #error 0 { : 0 } #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ initially ( ) #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x ( ) #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x . initially ( #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x . x ( #EOFX
+::: syntax error
+procedure x ( ) #error if 0 then 0 else 0 #EOFX
+::: syntax error
+procedure x ( x : x : 0 #EOFX
+::: syntax error
+procedure x ( ) ; local x , x assign 0 #EOFX
+::: syntax error
+procedure x ( ) ; static x , x assign 0 #EOFX
+::: syntax error
+class x ( ) initially ( ) #EOFX
+::: syntax error
+class x ( ) method x ( ) ; end #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x . initially ( ) #EOFX
+::: syntax error
+procedure x ( ) #error 0 $ x . x ( ) #EOFX
+::: syntax error
+class x ( ) initially ( ) ; #EOFX
+::: syntax error

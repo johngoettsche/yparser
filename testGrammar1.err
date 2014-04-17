@@ -1,0 +1,18 @@
++
+::: syntax error
+x *
+::: syntax error
+x +
+::: syntax error
+x + +
+::: syntax error
+x * +
+::: syntax error
+( x *
+::: syntax error
+x + x +
+::: syntax error
+x * x +
+::: syntax error
+( x ) +
+::: syntax error

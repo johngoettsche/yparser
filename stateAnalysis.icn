@@ -16,24 +16,35 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList, nonTerm
 	determineAllSources(nonTerminalsSet, statesList)
 	every state := !statesList do determineAcceptableInputsFromNonTerminals(state)
 	errorSnippets := []
-	every state := !statesList do {
-		write(state.name)
-		every errorSnippet := getErrorSnippets(state, terminalsList) do
-			if not classes::duplicate(errorSnippets, errorSnippet) then {
-				put(errorSnippets, errorSnippet)
-			}
-	}			
 	
 	if *args > 0 then if member(args, "E") then {
+		every state := !statesList do {
+			write(state.name)
+			every errorSnippet := getAllErrorSnippets(state, terminalsList) do
+				if not classes::duplicate(errorSnippets, errorSnippet) then {
+					put(errorSnippets, errorSnippet)
+				}
+		}
+	}
+	
+	if *args > 0 then if member(args, "e") then {
+		every state := !statesList do {
+			every errorSnippet := getErrorSnippets(state, terminalsList) do
+				if not classes::duplicate(errorSnippets, errorSnippet) then {
+					put(errorSnippets, errorSnippet)
+				}
+		}
+	}
+	
+	if *args > 0 then if member(args, "E") | member(args, "e") then {
 		outfile := &output
-      outfileName := fileName || "-Errors.txt"
+      outfileName := fileName || ".err"
 		if member(args, "o") then outfile := open(outfileName, "c")
 		write("\nPotential Error Snippets:") 
-#		write("\nPotential Error Snippets: " || *errorSnippets || "\n") 
-#		getch()
 		if outfile ~=== &output then {
 			every errorSnippet := !errorSnippets do {
 				write(outfile, errorSnippet)
+				write(outfile, "::: syntax error")
 			}
 		}
 		every errorSnippet := !errorSnippets do 
@@ -132,6 +143,17 @@ procedure createStateAnalysis(fileName, args, statesList, terminalsList, nonTerm
 end
 
 procedure getErrorSnippets(state, terminalsList)
+	local 
+		txt,
+		notAcceptable
+	
+	thisTerminal := getNotAcceptable(state, terminalsList)
+	if \thisTerminal then notAcceptable := thisTerminal
+	if \state.patternChainTxt then suspend state.patternChainTxt || notAcceptable.pattern
+	else suspend notAcceptable.pattern
+end
+
+procedure getAllErrorSnippets(state, terminalsList)
 	local 
 		notAcceptable,
 		txt
