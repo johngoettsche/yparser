@@ -1,13 +1,17 @@
 <NotepadPlus>
-    <Project name="yparser">
-        <File name="classes.icn" />
+    <Project name="ESnippets">
+        <File name="Clock.icn" />
+        <File name="DAO.icn" />
+        <File name="Objects.icn" />
+        <File name="lists.icn" />
         <File name="yparser.icn" />
+        <File name="ESnipSLR.icn" />
         <File name="grammars.icn" />
         <File name="productionRules.icn" />
-        <File name="states.icn" />
+        <File name="statesSLR.icn" />
         <File name="lookAhead.icn" />
         <File name="stateAnalysis.icn" />
         <File name="makefile" />
-        <File name="Readme.txt" />
+        <File name="ReadMe.txt" />
     </Project>
 </NotepadPlus>

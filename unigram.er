@@ -1,35 +1,33 @@
 initially
-::: syntax error
-#EOFX initially
-::: syntax error
+::: invalid declaration
 ;
-::: syntax error
+::: invalid declaration
 record x ( ) initially
-::: syntax error
+::: global, class, or link expected
 procedure x ( ) ; end initially
-::: syntax error
+::: global, class, or link expected
 global x initially
-::: syntax error
+::: global, class, or link expected
 link x initially
-::: syntax error
+::: invalid link declaration
 package x initially
-::: syntax error
+::: global, class, or link expected
 import x initially
 ::: syntax error
 invocable x initially
 ::: syntax error
 class x ( ) ; end initially
-::: syntax error
+::: global, class, or link expected
 procedure x ( ) initially
-::: syntax error
+::: missing semicolon
 class x ( ) initially
 ::: syntax error
 procedure x ( ) ; initially
-::: syntax error
+::: invalid procedure body
 class x ( ) ; initially
 ::: syntax error
 global x , initially
-::: syntax error
+::: missing identifier
 link x , initially
 ::: syntax error
 import x , initially
@@ -39,23 +37,23 @@ invocable x , initially
 class x initially
 ::: syntax error
 record x ( initially
-::: syntax error
+::: left parenthesis expected to start class fieldlist
 record x ( x initially
 ::: syntax error
 procedure x ( ) ; initial initially
-::: syntax error
+::: invalid initial expression
 procedure x ( ) ; local initially
-::: syntax error
+::: invalid local declaration
 procedure x ( ) ; static initially
 ::: syntax error
 procedure x ( initially
-::: syntax error
+::: parameter name expected
 procedure x ( x initially
-::: syntax error
+::: missing comma or unclosed class field arguments
 global x , x initially
-::: syntax error
+::: global, class, or link expected
 link x , x initially
-::: syntax error
+::: invalid link declaration
 import x , x initially
 ::: syntax error
 invocable x , x initially
@@ -69,29 +67,29 @@ class x ( ) record x ( ) initially
 class x ( ) method x ( ) initially
 ::: syntax error
 class x ( ) abstract initially
-::: syntax error
+::: a ; or \n is missing between method header and body
 class x ( ) method initially
 ::: syntax error
 class x ( ) local initially
 ::: syntax error
 class x ( initially
-::: syntax error
+::: missing fieldname or right parenthesis
 class x : :: x initially
 ::: syntax error
 procedure x ( ) ; 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 @> initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; @ initially
 ::: syntax error
 procedure x ( ) ; @> initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; @>> initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; <@ initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; <<@ initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; not initially
 ::: syntax error
 procedure x ( ) ; | initially
@@ -103,7 +101,7 @@ procedure x ( ) ; ||| initially
 procedure x ( ) ; . initially
 ::: syntax error
 procedure x ( ) ; ! initially
-::: syntax error
+::: invalid argument to unary !
 procedure x ( ) ; -- initially
 ::: syntax error
 procedure x ( ) ; + initially
@@ -113,7 +111,7 @@ procedure x ( ) ; * initially
 procedure x ( ) ; / initially
 ::: syntax error
 procedure x ( ) ; % initially
-::: syntax error
+::: invalid procedure body
 procedure x ( ) ; ** initially
 ::: syntax error
 procedure x ( ) ; ~ initially
@@ -121,73 +119,73 @@ procedure x ( ) ; ~ initially
 procedure x ( ) ; - initially
 ::: syntax error
 procedure x ( ) ; -> initially
-::: syntax error
+::: invalid procedure body
 procedure x ( ) ; ++ initially
 ::: syntax error
 procedure x ( ) ; .$ initially
 ::: syntax error
 procedure x ( ) ; 0 { 0 : 0 } initially
-::: syntax error
+::: missing "do" or some such keyword earlier, or expected a comma or right brace here
 procedure x ( ) ; fail initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; if 0 then 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; case 0 of [ default : 0 ] initially
 ::: syntax error
 procedure x ( ) ; while 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; until 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; every 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; repeat 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; ` initially
-::: syntax error
+::: missing operator or "do" keyword
 procedure x ( ) ; create initially
-::: syntax error
+::: invalid create expression
 procedure x ( ) ; thread initially
 ::: syntax error
 procedure x ( ) ; critical initially
 ::: syntax error
 procedure x ( ) ; x initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; next initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; break initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; ( initially
 ::: syntax error
 procedure x ( ) ; [ initially
-::: syntax error
+::: unclosed list
 procedure x ( ) ; { initially
-::: syntax error
+::: invalid compound expression
 procedure x ( ) ; :: x initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; & initially
-::: syntax error
+::: bad keyword name or bogus & precedes this token
 procedure x ( ) ; 1.0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; a initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; c initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; return initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; suspend initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; if initially
-::: syntax error
+::: invalid if control expression
 procedure x ( ) ; case initially
-::: syntax error
+::: invalid case control expression
 procedure x ( ) ; while initially
-::: syntax error
+::: invalid while control expression
 procedure x ( ) ; until initially
-::: syntax error
+::: invalid until control expression
 procedure x ( ) ; every initially
-::: syntax error
+::: invalid every control expression
 procedure x ( ) ; repeat initially
-::: syntax error
+::: invalid repeat control expression
 procedure x ( ) ; initial 0 initially
 ::: syntax error
 procedure x ( ) ; local x initially
@@ -195,11 +193,11 @@ procedure x ( ) ; local x initially
 procedure x ( ) ; static x initially
 ::: syntax error
 procedure x ( x { initially
-::: syntax error
+::: missing comma or unclosed class field arguments
 procedure x ( x , initially
-::: syntax error
+::: parameter name expected
 class x ( ) ;
-::: syntax error
+::: method expected
 class x ( ) method x ( ) ; initially
 ::: syntax error
 class x ( ) method x initially
@@ -207,7 +205,7 @@ class x ( ) method x initially
 class x ( ) local x initially
 ::: syntax error
 class x ( x initially
-::: syntax error
+::: missing comma or unclosed class field arguments
 class x ( + initially
 ::: syntax error
 class x ( - initially
@@ -215,33 +213,33 @@ class x ( - initially
 class x : x initially
 ::: syntax error
 procedure x ( ) ; ; initially
-::: syntax error
+::: expression expected, or need to move declaration to top of preocedure or method
 procedure x ( ) ; 0 & initially
 ::: syntax error
 procedure x ( ) ; 0 initial initially
-::: syntax error
+::: missing operator or "do" keyword
 procedure x ( ) ; 0 : initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 assign initially
-::: syntax error
+::: missing operator or "do" keyword
 procedure x ( ) ; 0 <-> initially
 ::: syntax error
 procedure x ( ) ; 0 <- initially
 ::: syntax error
 procedure x ( ) ; 0 ||: initially
-::: syntax error
+::: missing operand after ||
 procedure x ( ) ; 0 |||: initially
-::: syntax error
+::: missing operand after |||
 procedure x ( ) ; 0 --: initially
 ::: syntax error
 procedure x ( ) ; 0 ++: initially
 ::: syntax error
 procedure x ( ) ; 0 +: initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 -: initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 *: initially
-::: syntax error
+::: missing or invalid second argument to *
 procedure x ( ) ; 0 **: initially
 ::: syntax error
 procedure x ( ) ; 0 /: initially
@@ -257,7 +255,7 @@ procedure x ( ) ; 0 < initially
 procedure x ( ) ; 0 <: initially
 ::: syntax error
 procedure x ( ) ; 0 ~ initially
-::: syntax error
+::: missing operator or "do" keyword
 procedure x ( ) ; 0 >> initially
 ::: syntax error
 procedure x ( ) ; 0 >>: initially
@@ -283,11 +281,11 @@ procedure x ( ) ; 0 $$ initially
 procedure x ( ) ; 0 -> initially
 ::: syntax error
 procedure x ( ) ; 0 || initially
-::: syntax error
+::: missing operand after ||
 procedure x ( ) ; 0 ||| initially
-::: syntax error
+::: missing operand after |||
 procedure x ( ) ; 0 + initially
-::: syntax error
+::: missing or invalid second argument to +
 procedure x ( ) ; 0 -- initially
 ::: syntax error
 procedure x ( ) ; 0 ++ initially
@@ -295,7 +293,7 @@ procedure x ( ) ; 0 ++ initially
 procedure x ( ) ; 0 - initially
 ::: syntax error
 procedure x ( ) ; 0 * initially
-::: syntax error
+::: missing or invalid second argument to *
 procedure x ( ) ; 0 ** initially
 ::: syntax error
 procedure x ( ) ; 0 / initially
@@ -303,15 +301,15 @@ procedure x ( ) ; 0 / initially
 procedure x ( ) ; 0 % initially
 ::: syntax error
 procedure x ( ) ; 0 <<@ initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 @ initially
 ::: syntax error
 procedure x ( ) ; 0 @>> initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 <@ initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 ! initially
-::: syntax error
+::: missing or invalid second argument to !
 procedure x ( ) ; 0 { initially
 ::: syntax error
 procedure x ( ) ; 0 [ initially
@@ -321,91 +319,91 @@ procedure x ( ) ; 0 ( initially
 procedure x ( ) ; 0 $ ;
 ::: syntax error
 procedure x ( ) ; 0 . ;
-::: syntax error
+::: field name expected
 procedure x ( ) ; @ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; @> 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; @>> 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; <@ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; <<@ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; not 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; | 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; || 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; ||| 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; . 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; ! 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; -- 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; + 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; * 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; / 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; % 0 initially
-::: syntax error
+::: invalid procedure body
 procedure x ( ) ; ** 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; ~ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; - 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; -> 0 initially
-::: syntax error
+::: invalid procedure body
 procedure x ( ) ; ++ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; .$ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; create 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; thread 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; critical 0 initially
 ::: syntax error
 procedure x ( ) ; { default : 0 initially
-::: syntax error
+::: invalid compound expression
 procedure x ( ) ; { default initially
-::: syntax error
+::: invalid compound expression
 procedure x ( ) ; { 0 initially
-::: syntax error
+::: missing operator or unbalanced parenthesis/bracket
 procedure x ( ) ; { : initially
-::: syntax error
+::: invalid compound expression
 procedure x ( ) ; & fail initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; & x initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; if 0 initially
-::: syntax error
+::: missing then
 procedure x ( ) ; case 0 initially
-::: syntax error
+::: missing "of" in case expression
 procedure x ( ) ; initial 0 ; initially
 ::: syntax error
 procedure x ( ) ; local x ; initially
-::: syntax error
+::: invalid procedure body
 procedure x ( ) ; local x , initially
 ::: syntax error
 procedure x ( ) ; local x assign initially
 ::: syntax error
 procedure x ( ) ; static x ; initially
-::: syntax error
+::: invalid procedure body
 procedure x ( ) ; static x , initially
 ::: syntax error
 procedure x ( ) ; static x assign initially
 ::: syntax error
 procedure x ( x { } initially
-::: syntax error
+::: missing comma or unclosed class field arguments
 procedure x ( x , x initially
-::: syntax error
+::: missing comma or unclosed class field arguments
 procedure x ( x : 0 initially
 ::: syntax error
 class x ( ) initially initially
@@ -413,35 +411,35 @@ class x ( ) initially initially
 class x ( ) method x ( initially
 ::: syntax error
 class x ( x { initially
-::: syntax error
+::: missing comma or unclosed class field arguments
 class x ( x , initially
 ::: syntax error
 procedure x ( ) ; 0 & 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 initial 0 initially
-::: syntax error
+::: missing operator or "do" keyword
 procedure x ( ) ; 0 : 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 assign 0 initially
-::: syntax error
+::: missing operator or "do" keyword
 procedure x ( ) ; 0 <-> 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 <- 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 ||: 0 initially
-::: syntax error
+::: missing operand after ||
 procedure x ( ) ; 0 |||: 0 initially
-::: syntax error
+::: missing operand after |||
 procedure x ( ) ; 0 --: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 ++: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 +: 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 -: 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 *: 0 initially
-::: syntax error
+::: missing or invalid second argument to *
 procedure x ( ) ; 0 **: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 /: 0 initially
@@ -449,21 +447,21 @@ procedure x ( ) ; 0 /: 0 initially
 procedure x ( ) ; 0 %: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 > 0 initially
-::: syntax error
+::: missing simicolon or operator
 procedure x ( ) ; 0 >: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 < 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 <: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 ~ 0 initially
-::: syntax error
+::: missing operator or "do" keyword
 procedure x ( ) ; 0 >> 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 >>: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 << 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 <<: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 &: 0 initially
@@ -471,61 +469,62 @@ procedure x ( ) ; 0 &: 0 initially
 procedure x ( ) ; 0 @: 0 initially
 ::: syntax error
 procedure x ( ) ; 0 to 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 .| 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 && 0 initially
 ::: syntax error
 procedure x ( ) ; 0 | 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 $$ 0 initially
-::: syntax error
+::: missing semicolon of operator
 procedure x ( ) ; 0 -> 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 || 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 ||| 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 + 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 -- 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 ++ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 - 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 * 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 ** 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 / 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 % 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 <<@ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 @ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 @> 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 @>> 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 <@ 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 ! 0 initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 [ ] initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 $ initially initially
 ::: syntax error
 procedure x ( ) ; 0 $ x initially
-::: syntax error
+::: parenthesis is required for method invocation
 procedure x ( ) ; 0 . x initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; 0 . initially initially
-::: syntax error
+::: missing semicolon or operator
 procedure x ( ) ; critical 0 : initially
 ::: syntax error
+************************************************************************************
 procedure x ( ) ; ( ) initially
 ::: syntax error
 procedure x ( ) ; ( , initially

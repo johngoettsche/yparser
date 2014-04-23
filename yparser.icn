@@ -2,34 +2,30 @@
 #  under the direction of Clinton Jeffery
 #  University of Idaho
 
-import grammars
+import Clock
+import DAO
+import Lists
 
 procedure main(args)
 #  this tool is executed as follows:
-#  yparser-states [-options] filename
-#		-n  	shows all the non terminals
-#		-t   	shows all the terminals
-#		-T		creates a .tk file with a list of terminals and default tokens
-#		-p  	shows production rules
-#		-s  	shows states
-#		-a  	shows actions: accept, shift/goto, reduce
-#		-S		shows the source input for the states 
-#					{} as a set of states
-#					[] as a set of inputs
-#		-e		shows a list of potential error snippets (short list)
-#		-E		shows a list of potential error snippets (extensive list)
+#  yparser-states filename
+#		-r		displays the raw data
+#		-n  	displays all the non terminals
+#		-t   	displays all the terminals
 #
-#		-o  to write to filename-Option.txt file
+# yparser parses a yakk file to be used in SLRAnalizer and creates the 
+# the following files: 
+#		.raw	: raw data file
+#		.nt	: non-terminal file
+#		.t		: terminal file
+#		.tk	: token file
 #
-# yparser parses a yakk file to dissect its grammar and produces a 
-#  - a raw grammar list which is a list of individual tokens and symbols 
-#  - a list of non-terminals used in the grammar
-#  - a list of terminals used in the grammar
-#  - a list of production rules in the grammar
-#  - a list of states or goto fuctions produced using a SLR parser as described
-#     in the 'Dragon Book' or "Compilers - Principles, Techniques, and Tools"
-#     by Alfred V. Aho, Ravi Sethi and Jeffery D. Ullman
-
+# The token file consists of the following on each line:
+#		A token name (which should not be edited)
+#		A token pattern which is set to a default of #TokenName
+#			the token pattern should be edited to an appropriate
+#			pattern.
+   
    local 
       x, 
       y, 
@@ -50,91 +46,94 @@ procedure main(args)
       arguments := arguments ++ args[x][2: *args[x] + 1]
       x +:= 1
    }
-   yfile := open(args[x], "r") | stop("ERROR: trouble reading " || args[x])
    args[x] ? fileName := tab(upto('.'))
    #Begin parsing file
-   allwords := getAllWords(yfile)
+	inFileName := args[x]
+
+	write("Reading " || inFileName || "...")
+   allwords := DAO::getWordListFromFile(inFileName)
+	allwords := purgeHeaderAndSub(allwords)
    allwords := purgeComments(allwords)
    rawGrammar := purgeC(allwords)
    
-   if *args > 1 then if member(arguments, "r") then {
-      outfile := &output
-      outfileName := fileName || "-rawGrammar.txt"
-      if member(arguments, "o") then outfile := open(outfileName, "c")
-      write("\nRaw Grammar\n")
-      if outfile ~=== &output then {
-         every write(outfile, "\t" || !rawGrammar)
-      }
-      every write("\t" || !rawGrammar)
-		if outfile ~=== &output then {
-			write("\ncreated file: " || outfileName)
-			close(outfile)
-		}
-		classes::printTime()
-      write("\n(press ENTER to continue)\n")
-      getch()
-   }
+	outfileName := fileName || ".raw"
+	DAO::writeListToFile(outfileName, rawGrammar, "standard")
+	if member(arguments, 'r') then {
+		write("\nRaw Grammar\n")
+		every write("\t" || !rawGrammar)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}
 	
-   grammars::createNonTerminals(fileName, arguments, rawGrammar)
-end
-
-procedure makeSubStateGrammars(thisRule, thisNonTerminal)
-#
-
-   local
-      mySubGrammar,
-      thisVariable,
-      newProductionRule,
-      newVariable
-   mySubGrammar := StateGrammar()
-   mySubGrammar.setLeft(thisNonTerminal)
-   every thisVariable := thisRule.getVariables() do 
-   {
-      mySubGrammar.addPossible(thisVariable)
-      if thisVariable.getType() == "terminal" then 
-      {
-         while \newProductionRule := thisVariable.getProductionRule(1) do 
-         {
-            every newVariable := newProductionRule.getVariables() do 
-               makeSubStateGrammars(newProductionRule)
-         }
+	write("Creating Non-Terminals...")
+   nonTerminalWordList := []
+   nonTerminalCheckSet := set()
+   every nonTerminal := getNonTerminals(rawGrammar) do 
+      if not member(nonTerminalCheckSet, nonTerminal) then {
+         put(nonTerminalWordList, nonTerminal)
+         insert(nonTerminalCheckSet, nonTerminal)
       }
-   }
-  return mySubGrammar
-end
-
-procedure getAllWords(yfile)
-# produces a list of allwords generated from the source file
-#  by sending each line of the file to the getWord procedure
-   local 
-		word, 
-		line, 
-		allwords, 
-		wordset
 		
-   allwords := []
-   every put(allwords, word := getWord(line:=!yfile))
-   close(yfile)
-   allwords := purgeHeaderAndSub(allwords)
-   return allwords
+   outfileName := fileName || ".nt"
+	DAO::writeListToFile(outfileName, nonTerminalWordList, "standard")
+	if member(arguments, 'n') then {
+		write("\nNon Terminals\n") 
+		every write("\t" || !nonTerminalWordList)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}
+	
+	write("Creating Terminals...")
+	terminalWordList := []
+   terminalCheckSet := set()
+   every terminal := getTerminals(rawGrammar, nonTerminalCheckSet) do 
+      if not member(terminalCheckSet, terminal) then { 
+         put(terminalWordList, terminal)
+         insert(terminalCheckSet, terminal)
+      }
+	
+   outfileName := fileName || ".t"
+	DAO::writeListToFile(outfileName, terminalWordList, "standard")
+	if member(arguments, 't') then {
+		write("\nTerminals\n") 
+		every terminal := !terminalWordList do write("\t" || terminal)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}
+	
+	DAO::writeListToFile(fileName, terminalWordList, "token")
+	Clock::printTime()
 end
 
-procedure getWord(line)
-#  suspends each word from the line it has been provided
+procedure getTerminals(wordList, nonTerminalsList)
+#  finds all the Terminals in the list and creates and suspends
+#  each terminal
 
-   local word, wordDef,symbolDef
-   symbolDef := '%{}|:;'
-   wordDef := &letters++&digits++'_*/'
-   line ? while tab(upto(wordDef++symbolDef)) do {
-        if word := tab(many(wordDef)) then {}
-      else {
-         # check to see if the current space and the following space combine
-         # to make the word  "%%"
-         if line[&pos] & line[&pos + 1] == "%" then word := move(2)
-         else word := move(1)
+   local x
+   x := 1
+   while wordList[x] do {
+      if not member(nonTerminalsList, wordList[x]) then {
+         if not (wordList[x] == (":" | ";" | "|")) then
+	    suspend wordList[x]
       }
-      suspend word
-   }  
+      x := x + 1
+   }
+end
+
+procedure getNonTerminals(wordList)
+#  finds and suspends all the NonTerminals in the list (rawGrammar)
+
+   local x
+   x := 1
+   while wordList[x] do {
+      if wordList[x] ~== "|" then suspend wordList[x]
+      x +:= 1
+      while wordList[x] ~== ";" do x := x + 1
+      x +:= 1
+   } 
 end
 
 procedure purgeHeaderAndSub(wordList)
@@ -164,7 +163,13 @@ procedure purgeComments(wordList)
 
    local x, wordSegment, comment
    x := 1
+#	words := []
    comment := 0
+#	every wordSegment := !wordList do {
+#		if wordSegment == "/*" then comment := 1
+#		if comment = 0 then put(words, wordSegment)
+#		if wordSegment == "*/" then comment := 0
+#	}
    while wordSegment := wordList[x] do {
       if wordSegment == "/*" then {
          comment := 1
@@ -178,7 +183,8 @@ procedure purgeComments(wordList)
       }
       x +:= 1 
    }
-   return wordList
+#   return words
+	return wordList
 end
 
 procedure purgeC(wordList)

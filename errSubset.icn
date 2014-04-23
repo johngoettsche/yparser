@@ -1,0 +1,46 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+import DAO
+
+procedure main(args)
+	local
+		linesExisting,
+		linesTesting,
+		x,
+		arguments,
+		line
+
+	linesExisting := []
+	linesTesting := []
+	
+	x := 1
+   arguments := '' #set up cset for options
+   while args[x][1:2] == "-" do {
+      arguments := arguments ++ args[x][2: *args[x] + 1]
+      x +:= 1
+   }
+   args[x] ? testingFileName := tab(upto('.')) || ".err"
+	args[x + 1] ? existingFileName := tab(upto('.')) || ".err"
+	
+	every line := DAO::getLinesFromFile(testingFileName) do
+		put(linesTesting, line)
+	every line := DAO::getLinesFromFile(existingFileName) do
+		put(linesExisting, line)	
+end
+
+procedure getWords(line)
+#  suspends each word from the line it has been provided
+
+   local 
+		word, 
+		wordDef,
+		symbolDef
+		
+   symbolDef := '`~!@#$%^&*()_-+=[{}])\|;:,<.>/?'
+   wordDef := &letters ++ &digits ++ symbolDef
+   line ? while tab(upto(wordDef)) do {
+        if word := tab(many(wordDef)) then suspend word
+   }  
+end

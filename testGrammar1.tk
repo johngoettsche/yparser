@@ -2,4 +2,4 @@ PLUS			+
 TIMES			*
 LPAREN		(
 RPAREN		)
-ID				x
+ID				'x'

@@ -103,7 +103,7 @@ NOT				not
 DOT				.
 TILDE				~
 PSETCUR			.$
-PUNEVAL			'u'
+PUNEVAL			`
 CREATE			create
 THREAD			thread
 CRITICAL			critical

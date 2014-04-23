@@ -5,62 +5,50 @@
 #grammars.icn
 package grammars
 
-import classes
+import DAO
+import Objects
 import productionRules
 
-procedure createNonTerminals(fileName, args, rawGrammar)  
+procedure createNonTerminals(fileName, arguments, rawGrammar)  
 #  from the rawGrammar it creates the NonTerminals and
 #  procedes the createTerminals procedure
 
    #create nonTerminals
    local 
       nonTerminal, 
-      nonTerminalWords, 
-      nonTerminalsSet, 
+      nonTerminalWordList, 
       nonTerminalCheckSet,
-      nonTerminalsList,
+      nonTerminalList,
       outfile,
       outfileName
    
+	nonTerminalCheckSet := set()
 	write("Creating Non-Terminals...\n")
-   nonTerminalWords := []
-   nonTerminalCheckSet := set()
-   every nonTerminal := getNonTerminals(rawGrammar) do 
-      if not member(nonTerminalCheckSet, nonTerminal) then {
-         put(nonTerminalWords, nonTerminal)
-         insert(nonTerminalCheckSet, nonTerminal)
-      }
-   #every write(!nonTerminalCheckSet)
-   nonTerminalsList := []
-   every put(nonTerminalsList, makeNonTerminalsSet(nonTerminalWords))
-
-   if *args > 0 then if member(args, "n") then {
-      outfile := &output
-      outfileName := fileName || "-nonTerminals.txt"
-      if member(args, "o") then outfile := open(outfileName, "c")
-      write("\nNon Terminals\n") 
-      if outfile ~=== &output then {
-			every write(outfile, !nonTerminalWords)
-		}
-      every write("\t" || !nonTerminalWords)
-		if outfile ~=== &output then {
-			write("\ncreated file: " || outfileName)
-			close(outfile)
-		}
-		classes::printTime()
-      write("\n(press ENTER to continue)\n")
-      getch()
-   }  
-   createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTerminalsList)
+	thisFileName := fileName || ".nt"
+   nonTerminalWordList := DAO::getWordListFromFile(thisFileName)
+	nonTerminalList := []
+   every put(nonTerminalList, makeNonTerminalSet(nonTerminalWordList))
+	every insert(nonTerminalCheckSet, !nonTerminalWordList)
+   createTerminals(fileName, arguments, rawGrammar, nonTerminalCheckSet, nonTerminalList)
 end
 
-procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTerminalsSet)
+procedure getNonTerminals(fileName)
+	thisFileName := fileName || ".nt"
+	thisFile := open(thisFileName, "r")
+	words := []
+   every put(words, word := getWord(line:=!thisFile))
+   close(thisFile)
+	
+	return words
+end
+
+procedure createTerminals(fileName, arguments, rawGrammar, nonTerminalCheckSet, nonTerminalList)
 #  from the rawGrammar, nonTerminalCheckSet and nonTerminalSet it
 #  produces the terminals and procedes to the creaeGrammar procedure
 
    #create terminals
    local 
-      terminalsList, 
+      terminalList, 
       terminalsSet, 
       terminalCheckSet, 
       terminal,
@@ -69,71 +57,25 @@ procedure createTerminals(fileName, args, rawGrammar, nonTerminalCheckSet, nonTe
 		terminalsWordList
       
 	write("Creating Terminals...\n")
-   terminalsWordList := []
-   terminalCheckSet := set()
-   every terminal := getTerminals(rawGrammar, nonTerminalCheckSet) do 
-      if not member(terminalCheckSet, terminal) then { 
-         put(terminalsWordList, terminal)
-         insert(terminalCheckSet, terminal)
-      }
-   terminalsList := []
-	every put(terminalsList, makeTerminalsList(fileName, args, terminalsWordList))
-
-   if *args > 0 then if member(args, "t") then {
-      outfile := &output
-      outfileName := fileName || "-terminals.txt"
-      if member(args, "o") then outfile := open(outfileName, "c")
-      write("\nTerminals\n") 
-      if outfile ~=== &output then {
-			every write(outfile, !terminalsWordList)
-		}
-      every terminal := !terminalsList do write("\t" || terminal.token)
-		if outfile ~=== &output then {
-			write("\ncreated file: " || outfileName)
-			close(outfile)
-		}
-		classes::printTime()
-      write("\n(press ENTER to continue)\n")
-      getch()
-   }  
 	
-	if *args > 0 then if member(args, "T") then {
-      outfileName := fileName || ".tk"
-      outfile := open(outfileName, "c")
-      if outfile ~=== &output then {
-         every terminal := !terminalsList do write(outfile, terminal.token || "\t\t\t#" || terminal.token)
-			close(outfile)
-      }
-      every write("\t" || !rawGrammar)
-		classes::printTime()
-      stop("\nCreated " || outfileName || "\n")
-   }
+	terminalCheckSet := set()
+   thisFileName := fileName || ".t"
+   terminalWordList := DAO::getWordListFromFile(thisFileName)
+   terminalList := []
+	every put(terminalList, makeTerminalList(fileName, terminalWordList))
+	every insert(terminalCheckSet, !terminalWordList)
 	
-   #write(production)
    productionRules::createProductionRules(
          fileName,
-         args,
+         arguments,
          rawGrammar, 
          nonTerminalCheckSet, 
-         nonTerminalsSet, 
+			nonTerminalList,
          terminalCheckSet, 
-         terminalsList)
+         terminalList)
 end
 
-procedure getNonTerminals(wordList)
-#  finds and suspends all the NonTerminals in the list (rawGrammar)
-
-   local x
-   x := 1
-   while wordList[x] do {
-      if wordList[x] ~== "|" then suspend wordList[x]
-      x +:= 1
-      while wordList[x] ~== ";" do x := x + 1
-      x +:= 1
-   } 
-end
-
-procedure makeNonTerminalsSet(nonTerminalWords)
+procedure makeNonTerminalSet(nonTerminalWordList)
 #  creates and suspends each NonTerminal in the nonTerminalWords
 # in the order they appear in the grammar
    local 
@@ -141,14 +83,14 @@ procedure makeNonTerminalsSet(nonTerminalWords)
 		token, 
 		thisNonTerminal
 	
-   every token := !nonTerminalWords do {
-      thisNonTerminal := classes::NonTerminal()
+   every token := !nonTerminalWordList do {
+      thisNonTerminal := Objects::NonTerminal()
       thisNonTerminal.token := token
       suspend thisNonTerminal
    }
 end
 
-procedure makeTerminalsList(fileName, args, terminalsList)
+procedure makeTerminalList(fileName, terminalList)
 # creates and susends each Terminal in the terminalsList
    local 
 		token, 
@@ -156,20 +98,16 @@ procedure makeTerminalsList(fileName, args, terminalsList)
 		pattern,
 		thisPattern
 	
-	fileN := fileName || ".tk"
-	#wordDef := &letters++&digits++'_*/%{}|:;+-$#@!&()[]<>,.~`'	
-   every token := !terminalsList do {
-		thisTerminal := classes::Terminal("terminal")
+	tokenFileName := fileName || ".tk"
+   every token := !terminalList do {
+		thisTerminal := Objects::Terminal("terminal")
 		thisTerminal.token := token
-		if *args > 0 then if not member(args, "T") then {
-			tkfile := open(fileN, "r") | stop("ERROR: trouble reading " || fileN)
-			pattern := getPattern(tkfile, token)
-			close(tkfile)
-			thisTerminal.pattern := pattern
-		}
+		tokenfile := open(tokenFileName, "r") | stop("ERROR: trouble reading " || fileN)
+		pattern := getPattern(tokenfile, token)
+		close(tokenfile)
+		thisTerminal.pattern := pattern
       suspend thisTerminal
    }
-	
 end
 
 procedure getPattern(tkfile, token)
@@ -187,19 +125,4 @@ procedure getPattern(tkfile, token)
 		}
 	}
 	return pattern
-end
-
-procedure getTerminals(wordList, nonTerminalsList)
-#  finds all the Terminals in the list and creates and suspends
-#  each terminal
-
-   local x
-   x := 1
-   while wordList[x] do {
-      if not member(nonTerminalsList, wordList[x]) then {
-         if not (wordList[x] == (":"|";"|"|")) then
-	    suspend wordList[x]
-      }
-      x := x + 1
-   }
 end

@@ -1,0 +1,248 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+package statesSLR
+
+import Clock
+import Objects
+import lookAhead
+
+procedure createStates(fileName, arguments, nonTerminalSet, terminalSet, terminalList)
+#  is a work in progress
+#  creates the states for compiling the Item for this tool
+
+   local 
+      statesList, 
+      thisNonTerminal, 
+      myState, 
+      thisProductionRule, 
+      myItem, 
+      B,
+      nextProductionRule,
+      mySubItem,
+      state,
+      stateNumber,
+      ItemList,
+      outfile,
+      thisToken,
+      itemSet,
+      stateName,
+      thisPrime,
+      initialItem,
+      thisItem,
+      outfileName
+
+	write("Creating States...\n")
+   stateNumber := 0
+   statesList := []
+   itemSet := set()
+   
+   #make item 0
+   thisNonTerminal := nonTerminalSet[1]
+   stateName := "I" || stateNumber
+   thisToken := thisNonTerminal.token || "'"
+   thisPrime := Objects::Terminal("prime")
+   thisPrime.token := thisToken
+   initialItem := Objects::Item()
+   initialItem.addBeta(thisNonTerminal)
+	sourceStateChain := []
+   myState := Objects::State(stateName, thisPrime, initialItem, sourceStateChain, &null) #create new state
+	
+   every thisItem := myState.getItems() do {
+      B := thisItem.getBeta(1)
+      if B.tokenType == "nonTerminal" then {
+         if not member(itemSet, B) then {
+            makeItems(myState, B, itemSet)
+            insert(itemSet, B)
+         }
+      }
+   }
+   myState.setTxt()
+   put(statesList, myState)
+   
+   makeAllStates(statesList, myState)
+   
+   if *arguments > 0 then if member(arguments, "s") then {
+      if member(arguments, "o") then DAO::writeListToFile(fileName, statesList, "states")
+      write("\nStates:\n") 
+      every state := !statesList do write(state.label)
+      Clock::printTime()
+      write("\n(press ENTER to continue)\n")
+      getch()
+   }  
+
+	createLookAheads(fileName, arguments, statesList, terminalList, nonTerminalSet)
+end
+   
+procedure makeItems(myState, B, itemSet)
+# Makes Items for myState given a Non-Terminal (B)
+
+   local
+      mySubItem,
+      newProductionRule,
+      newVariable,
+      stateNumber,
+      stateName,
+      thisProductionRule,
+      newItem,
+      newB
+    
+   every thisProductionRule := B.getProductionRules() do {
+      newItem := Objects::Item()
+      newItem.setLeft(B)
+      every newB := thisProductionRule.getVariables() do {
+         newItem.addBeta(newB)
+      }
+      newItem.setTxt()
+      if not duplicateItem(myState.getItemsList(), newItem) then {
+         myState.addItem(newItem)
+      }
+   }
+   
+   every thisProductionRule := B.getProductionRules() do {
+      newB := thisProductionRule.getVariable(1)
+      if newB.tokenType == "nonTerminal" then {
+         if not member(itemSet, newB) then { 
+				insert(itemSet, newB)
+            makeItems(myState, newB, itemSet)
+         }
+      }
+   }
+end
+
+procedure makeAllStates(statesList, state)
+# generates all states or goto operations as described in
+# pages 224 through 227 of the Dragon Book
+
+   local 
+      stateNumber, 
+      thisState,
+      newState,
+      thisToken,
+      newItem,
+      ItemList,
+      shifts,
+      count,
+      thisItem,
+      shiftElement,
+      element,
+      stateName
+   
+   stateNumber := 0   
+   count := 1
+   while stateNumber = 0 | count < stateNumber do {
+      write(count - 1 || " / I" || stateNumber)
+      if stateNumber = 0 then thisState := state
+      if stateNumber > 0 then thisState := statesList[count]
+      count +:= 1   
+      shifts := [] 
+      #shifts are the most recent element shifted over in an
+      #item or the most recent alpha element
+      every thisItem := thisState.getItems() do {
+         newItem := thisItem.getShift() 
+         #moves the current location to the right one element
+         #in the item
+         shiftElement := newItem.getLastAlpha()
+         put(shifts, shiftElement)
+         element := newItem.getLeft()
+         if element.tokenType == ("nonTerminal" | "prime") then {
+				#checks to see if the element is a non-terminal or a prime
+            if not member(shifts, element) then {
+               ItemList := []
+               stateNumber +:= 1
+               stateName := "I" || stateNumber
+               newState := Objects::State(stateName, element, newItem, thisState.sourceStateChain, thisState)
+               makeAllItems(statesList, thisState, newState, shiftElement)
+               if duplicateState(statesList, newState) then {
+                  stateNumber -:= 1
+               } else {
+						if not duplicateState(statesList, newState) then {
+                     newState.setTxt()
+							put(statesList, newState)
+						}
+					}
+            }
+         }
+      }
+   }
+end
+
+procedure makeAllItems(statesList, oldState, thisState, shiftElement)
+# makes all remaining items for the state by implementing the closure function
+# as depicted in Figure 4.33 of the Dragon Book
+   local 
+      newItem,
+      thisItem,
+      itemSet,
+      B
+      
+   itemSet := set()
+   every thisItem := oldState.getItems() do {
+      newItem := thisItem.getShift()
+		if \newItem then {
+         newItem.setTxt()
+			if not duplicateStateLabel(statesList, newItem) then {
+				if newItem.getLastAlpha() === shiftElement then {
+					if not duplicateItem(thisState.getItemsList(), newItem) then {
+						thisState.addItem(newItem)
+					}
+					B := newItem.getBeta(1)
+					if \B then if B.tokenType == "nonTerminal" then
+						makeItems(thisState, B, itemSet)
+				}
+			}
+		}
+	}
+end
+
+procedure duplicateItem(itemList, item)
+#  checks to see if Item is in the ItemList, if it is
+#  the Item is suspended
+
+   local 
+      thisItem      
+ 
+   every thisItem := !itemList do {
+      if thisItem.label == item.label then {
+         suspend item
+      }
+   }
+end
+
+procedure duplicateState(statesList, state)
+#  Checks to see if the state is a duplicate by checking
+#  the first production in the state with the first
+#  production of all the states in the stateList
+
+   local 
+      items,
+      item,
+      testItem,
+      testItems,
+      testState      
+      
+   items := state.getItemsList()
+   item := items[1]
+   every testState := !statesList do {
+      testItems := testState.getItemsList()
+      every testItem := !testItems do  
+			if testItem.label == item.label then return testState
+   }
+end
+
+procedure duplicateStateLabel(statesList, thisLabel)
+#  Checks to see if the state label is a duplicate by checking
+#  the state label with all the labels in the states
+#  in the stateList
+
+   local
+      thisState,
+      labelsList
+      
+	every thisState := !statesList do {
+		labelsList := thisState.getItemsList()
+		if thisLabel.label == labelsList[1].label then return thisLabel
+	}
+end
+

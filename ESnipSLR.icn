@@ -1,0 +1,48 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+import DAO
+import grammars
+  
+procedure main(args)
+#  this tool is executed as follows:
+#  ESnipSLR [-options] filename
+#		-p  	shows production rules
+#		-s  	shows states
+#		-a  	shows actions: accept, shift/goto, reduce
+#		-S		shows the source input for the states 
+#					{} as a set of states
+#					[] as a set of inputs
+#		-e		shows a list of potential error snippets (short list - recomended)
+#		-E		shows a list of potential error snippets (extensive list -- WARNING! THIS IS A VERY LARGE FILE!)
+#
+#		-o  to write to filename-Option.txt file
+#
+# ESnipSLR parses the files generated in yparser to dissect its grammar and produces a 
+#  - a list of production rules in the grammar
+#  - a list of states or goto fuctions produced using a SLR parser as described
+#     in the 'Dragon Book' or "Compilers - Principles, Techniques, and Tools"
+#     by Alfred V. Aho, Ravi Sethi and Jeffery D. Ullman
+#  - a veriety of state source strings and acceptable and unacceptable inputs
+#  - a .err file to be edited by the user and use with Muth
+
+	local
+		x,
+		arguments,
+		fileName,
+		thisFileName
+
+	x := 1
+   arguments := '' #set up cset for options
+   y := *args[x]
+   while args[x][1:2] == "-" do {
+      arguments := arguments ++ args[x][2: *args[x] + 1]
+      x +:= 1
+   }
+   args[x] ? fileName := tab(upto('.'))
+	thisFileName := fileName || ".raw"
+	rawGrammar := DAO::getWordListFromFile(thisFileName)
+	
+	grammars::createNonTerminals(fileName, arguments, rawGrammar)  
+end
