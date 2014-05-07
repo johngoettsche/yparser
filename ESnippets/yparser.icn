@@ -1,0 +1,203 @@
+#	John Goettsche
+#	under the direction of Clinton Jeffery
+#	University of Idaho
+
+import Clock
+import DAO
+import Lists
+
+procedure main(args)
+#	this tool is executed as follows:
+#	yparser-states filename
+#		-r		displays the raw data
+#		-n		displays all the non terminals
+#		-t		displays all the terminals
+#
+# yparser parses a yakk file to be used in SLRAnalizer and creates the 
+# the following files: 
+#		.raw	: raw data file
+#		.nt	: non-terminal file
+#		.t		: terminal file
+#		.tk	: token file
+#
+# The token file consists of the following on each line:
+#		A token name (which should not be edited)
+#		A token pattern which is set to a default of #TokenName
+#			the token pattern should be edited to an appropriate
+#			pattern.
+   
+	local 
+		x, 
+		y, 
+		arguments, 
+		file, 
+		allwords, 
+		wordset, 
+		rawGrammar, 
+		outfile, 
+		fileName, 
+		outfileName
+		
+	write("Running yparser...\n\n") 
+	x := 1
+	arguments := '' #set up cset for options
+	y := *args[x]
+	while args[x][1:2] == "-" do {
+		arguments := arguments ++ args[x][2: *args[x] + 1]
+		x +:= 1
+	}
+	args[x] ? fileName := tab(upto('.'))
+	#Begin parsing file
+	inFileName := args[x]
+
+	write("Reading " || inFileName || "...")
+	allwords := DAO::getWordListFromFile(inFileName)
+	allwords := purgeHeaderAndSub(allwords)
+	allwords := purgeComments(allwords)
+	rawGrammar := purgeC(allwords)
+   
+	outfileName := fileName || ".raw"
+	DAO::writeListToFile(outfileName, rawGrammar, "standard")
+	if member(arguments, 'r') then {
+		write("\nRaw Grammar\n")
+		every write("\t" || !rawGrammar)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}
+	
+	write("Creating Non-Terminals...")
+	nonTerminalWordList := []
+	nonTerminalCheckSet := set()
+	every nonTerminal := getNonTerminals(rawGrammar) do 
+		if not member(nonTerminalCheckSet, nonTerminal) then {
+			put(nonTerminalWordList, nonTerminal)
+			insert(nonTerminalCheckSet, nonTerminal)
+		}
+		
+	outfileName := fileName || ".nt"
+	DAO::writeListToFile(outfileName, nonTerminalWordList, "standard")
+	if member(arguments, 'n') then {
+		write("\nNon Terminals\n") 
+		every write("\t" || !nonTerminalWordList)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}
+	
+	write("Creating Terminals...")
+	terminalWordList := []
+	terminalCheckSet := set()
+	every terminal := getTerminals(rawGrammar, nonTerminalCheckSet) do 
+		if not member(terminalCheckSet, terminal) then { 
+			put(terminalWordList, terminal)
+			insert(terminalCheckSet, terminal)
+	}
+	
+	outfileName := fileName || ".t"
+	DAO::writeListToFile(outfileName, terminalWordList, "standard")
+	if member(arguments, 't') then {
+		write("\nTerminals\n") 
+		every terminal := !terminalWordList do write("\t" || terminal)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}
+	
+	DAO::writeListToFile(fileName, terminalWordList, "token")
+	Clock::printTime()
+end
+
+procedure getTerminals(wordList, nonTerminalsList)
+#	finds all the Terminals in the list and creates and suspends
+#	each terminal
+
+	local x
+	x := 1
+	while wordList[x] do {
+		if not member(nonTerminalsList, wordList[x]) then {
+			if not (wordList[x] == (":" | ";" | "|")) then
+			suspend wordList[x]
+		}
+		x := x + 1
+	}
+end
+
+procedure getNonTerminals(wordList)
+#	finds and suspends all the NonTerminals in the list (rawGrammar)
+
+	local x
+	x := 1
+	while wordList[x] do {
+		if wordList[x] ~== "|" then suspend wordList[x]
+		x +:= 1
+		while wordList[x] ~== ";" do x := x + 1
+		x +:= 1
+	} 
+end
+
+procedure purgeHeaderAndSub(wordList)
+#	purges all the words in the header section and the 
+#	footer/sub section of the allwords list it is provided
+#	and returns the remainder of the list
+   
+	#count sections
+	local sections, word
+	sections := 1
+	every word := !wordList do if word == "%%" then sections +:= 1
+ 
+	#purge header
+	word := pop(wordList)
+	while word  ~== "%%" do word := pop(wordList)
+
+	#purge footer/sub section there is one
+	if sections == 3 then {   
+		word := pull(wordList)
+		while word ~== "%%" do word := pull(wordList)
+	}
+	return wordList
+end
+
+procedure purgeComments(wordList)
+#	purges all the comments from the wordList   
+
+	local x, wordSegment, comment
+	x := 1
+	comment := 0
+	while wordSegment := wordList[x] do {
+		if wordSegment == "/*" then {
+			comment := 1
+		}
+		while comment > 0  do {
+			delete(wordList, x)
+			if wordList[x] == "*/" then {
+				comment := 0
+				delete(wordList, x)
+			}
+		}
+		x +:= 1 
+	}
+	return wordList
+end
+
+procedure purgeC(wordList)
+#	purges all C code in the wordList and returns the remainder
+#	of the wordList
+
+	local x, brackets
+	x := 1
+	brackets := 0
+	while wordList[x] do {
+		if (wordList[x] == "{") then {
+			brackets +:= 1
+			delete(wordList, x)
+			while brackets > 0 do {
+				if wordList[x] == "}" then brackets -:= 1
+				if wordList[x] == "{" then brackets +:= 1
+				delete(wordList, x)
+			}
+		}
+		x +:= 1
+	}
+   return wordList 
+end

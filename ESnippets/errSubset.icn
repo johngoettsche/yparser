@@ -1,0 +1,285 @@
+#	John Goettsche
+#	under the direction of Clinton Jeffery
+#	University of Idaho
+
+$include "posix.icn"
+
+import Clock
+import DAO
+
+procedure main(args)
+
+	local
+		linesExisting,
+		linesTesting,
+		x,
+		arguments,
+		line,
+		resultingSnippets,
+		testSnippets,
+		existingSnippets
+
+	linesExisting := []
+	linesTesting := []
+	
+	x := 1
+	compiler := args[x]
+	arguments := '' #set up cset for options
+	while args[x + 1][1:2] == "-" do {
+		arguments := arguments ++ args[x][2: *args[x] + 1]
+		x +:= 1
+	}
+	existingFileName := args[x + 1]
+	testingFileName := args[x + 2]
+	fileName := args[x + 2] ? fileName := tab(upto('.')) || "-ES.err"
+	
+	every line := DAO::getLinesFromFile(existingFileName) do 
+		put(linesExisting, line)	
+	every line := DAO::getLinesFromFile(testingFileName) do
+		put(linesTesting, line)
+	
+	testSnippets := makeSnippets(linesTesting)
+	existingSnippets := makeSnippets(linesExisting)
+	resultingSnippets := compare(compiler, existingSnippets, testSnippets)
+#	resultingSnippets := executeSnippets(resultingSnippets)
+	errorsList := []
+	every thisSnippet := !resultingSnippets do {
+		put(errorsList, thisSnippet.snippetTxt)
+		put(errorsList, thisSnippet.messageTxt)
+	}
+
+	DAO::writeListToFile(fileName, errorsList, "standard")
+end
+
+procedure getWords(line)
+#	suspends each word from the line it has been provided
+
+	local 
+		word, 
+		wordDef,
+		symbolDef
+	
+	quote := '\''
+	symbolDef := '`~!@#$%^&*()_-+=[{}])\|;:,<.>/?\"'
+	wordDef := &letters ++ &digits ++ symbolDef ++ quote
+	line ? while tab(upto(wordDef)) do {
+		if word := tab(many(wordDef)) then suspend word
+	}
+end
+
+procedure makeSnippets(lineList)
+	local
+		snippets,
+		line,
+		word
+		
+	snippets := []
+	thisSnippet := snippetMessage()
+	
+	every line := !lineList do {
+		mess := 0
+		every word := getWords(line) do {
+			if word == ":::" then {
+				mess := 1
+			}
+			if mess = 1 then put(thisSnippet.message, word)
+			if mess = 0 then put(thisSnippet.snippet, word)
+		}
+
+		if mess = 1 then {
+			thisSnippet.snippetTxt := toTxt(thisSnippet.snippet)
+			thisSnippet.messageTxt := toTxt(thisSnippet.message)
+			put(snippets, thisSnippet)
+			thisSnippet := snippetMessage()
+		}
+	}
+
+	return snippets
+end
+
+procedure compare(compiler, existingSnippets, testSnippets)
+	local
+		resultingSnippets,
+		testExistingCount,
+		existingTestCount,
+		snippet,
+		testSnippet,
+		existingSnippet
+		
+	resultingSnippets := []
+	existingCount := *existingSnippets
+	testCount := *testSnippets
+	testExistingCount := 0
+	every snippet := !existingSnippets do put(resultingSnippets, snippet)
+	every testSnippet := !testSnippets do {
+		if \included(resultingSnippets, testSnippet) then {
+			testExistingCount +:= 1
+		} else {
+			put(resultingSnippets, testSnippet)
+		}
+	}
+	existingTestCount := 0
+	every existingSnippet := !existingSnippets do {
+		if \included(testSnippets, existingSnippet) then {
+			existingTestCount +:= 1
+		}
+	}
+	
+	malFormedSnippets := 0
+	resultingSnippets := executeSnippets(compiler, resultingSnippets, existingCount, testCount, existingTestCount)
+	resultingCount := *resultingSnippets
+	
+	#printout results
+#	write("\n" || resultingCount || " Error Snippets:")
+#	write("\nExisting Error Snippets:\t\t" || existingCount)
+#	if existingCount > 0 then percent := 100 * testExistingCount / existingCount
+#	else percent := 0
+#	write("included in New Error Snippets:\t\t" || 
+#			testExistingCount || " or " || 
+#			percent || "%")
+#	write("\nNew Error Snippets:\t\t\t" || testCount)
+#	if testCount > 0 then percent := 100 * existingTestCount / testCount
+#	else percent := 0
+#	write("included in New Existing Snippets:\t" || 
+#			existingTestCount || " or " || 
+#			percent || "%")
+	
+#	write("Erroniously Snippets:\t\t\t" || malFormedSnippets)
+	return resultingSnippets
+end
+
+procedure included(existingSnippets, testSnippet)
+	local
+		existingSnippet
+
+	every existingSnippet := !existingSnippets do {
+		if testSnippet.snippetTxt == existingSnippet.snippetTxt then return testSnippet
+	}
+	fail
+end
+
+procedure executeSnippets(compiler, snippets, existingCount, testCount, existingTestCount)
+
+	# make delete set
+	deleteSet := set()
+	deleteSetFile := open("errSubset.txt", "r")
+	breakword := read(deleteSetFile)
+#	every line := !deleteSetFile do {
+#		every word := getWords(line) do {
+#			insert(deleteSet, word)
+#		}
+#	}
+
+	malFormedSnippets := 0
+	testExistingCount := 0
+	testAccountedCount := 0
+	testUnique := 0
+	newSnippetList := []
+	every snippet := !snippets do {
+		#create unicon file for snippet
+		snippetFile := open("snippet2014.icn" , "c")
+		write(snippetFile, snippet.snippetTxt)
+		close(snippetFile)
+		
+		#check snippits in snippet2014.icn file
+		snippetLength := *snippet.snippet
+		if snippet.messageTxt == "::: syntax error " then {			
+			#executes snippet file
+			system(compiler || " -log snippet.err snippet2014.icn")
+		
+			snippetFile := open("snippet.err" , "r")
+			#purge output to only relavant text
+			messageLine := []
+			pastBreak := 0
+			every line := !snippetFile do {
+				every word := getWords(line) do {
+					if pastBreak = 1 then {					
+						put(messageLine, word)
+					}
+					if word == breakword then {
+						pastBreak := 1
+					}
+				} 
+			}
+#			write(breakword || "   " || toTxt(messageLine))
+			close(snippetFile)
+
+			snippet.message := messageLine
+
+			if 2 = find(snippet.snippet[snippetLength], snippet.message[1]) then {
+				
+				pop(snippet.message)
+				snippet.messageTxt := "::: " || toTxt(messageLine)
+				if snippet.message[1] == "syntax" then {
+					testUnique +:= 1
+					put(newSnippetList, snippet)
+				} else {
+					testAccountedCount +:= 1
+				}
+			} else {
+				malFormedSnippets +:= 1
+#				write("\n**************************\nErroniously Formed Snippet\n**************************")
+			}
+		} else {
+			testExistingCount +:= 1
+			put(newSnippetList, snippet)
+		}
+	}
+	
+	resultingCount := existingCount + testUnique
+	#printout results
+	write("\n" || " Error Snippets:\t\t\t\t\t" || resultingCount)
+	
+	write("\nExisting Error  Snippets:\t\t\t\t" || existingCount)
+	
+	if existingCount > 0 then percent := 100 * existingTestCount / existingCount
+	else percent := 0
+	write("\tincluded in New Error Snippets:\t\t\t" || 
+			existingTestCount || " or " || 
+			percent || "%")
+			
+	write("\nNew Error Snippets:\t\t\t\t\t" || testCount)
+	
+	if testCount > 0 then percent := 100 * (testExistingCount - existingCount) / testCount
+	else percent := 0
+	write("\tMatching Snippets (Not Added):\t\t\t" || 
+			(testExistingCount - existingCount) || " or " || 
+			percent || "%")
+			
+	if testCount > 0 then percent := 100 * testAccountedCount / testCount
+	else percent := 0
+	write("\tSnippets Accounted for (Not Added):\t\t" || 
+			testAccountedCount || " or " || 
+			percent || "%")
+	
+	if testCount > 0 then percent := 100 * malFormedSnippets / testCount
+	else percent := 0
+	write("\tErronious Snippets (Not Added):\t\t\t" || 
+			malFormedSnippets || " or " || 
+			percent || "%")
+			
+	if testCount > 0 then percent := 100 * testUnique / testCount
+	else percent := 0
+	write("\tNew unique Error Snippets Added:\t\t" || 
+			testUnique || " or " || 
+			percent || "%\n")
+			
+	return newSnippetList
+end
+
+procedure toTxt(thisList)
+	local 
+		txt, 
+		item
+	
+	txt := ""
+	every item := !thisList do txt := txt || item || " "
+	return txt
+end
+
+class snippetMessage(snippet, snippetTxt, message, messageTxt)
+
+initially
+	snippet := []
+	message := []
+end

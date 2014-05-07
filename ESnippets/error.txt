@@ -1,0 +1,57 @@
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\Users\John>cd dropbox
+
+C:\Users\John\Dropbox>cd unicon
+
+C:\Users\John\Dropbox\Unicon>cd esnippets
+
+C:\Users\John\Dropbox\Unicon\ESnippets>ESnipLR1 -s testGrammar3.y
+Creating Non-Terminals...
+
+Creating Terminals...
+
+Creating Production Rules...
+
+S <- C C
+C <- c C
+Creating States...
+
+***nonTerminal
+
+Run-time error 106
+File statesLR1.icn; Line 135
+procedure or integer expected
+offending value: &null
+Traceback:
+   main(list_1 = ["-s","testGrammar3.y"])
+   grammars__createNonTerminals("testGrammar3",'s',list_2 = ["S",":","C",...,"|"
+,"d",";"]) from line 47 in ESnipLR1.icn
+   grammars__createTerminals("testGrammar3",'s',list_2 = ["S",":","C",...,"|","d
+",";"],set_1(2),list_4 = [object Objects__NonTerminal_1(6),object Objects__NonTe
+rminal_2(6)]) from line 32 in grammars.icn
+   productionRules__createProductionRules("testGrammar3",'s',list_2 = ["S",":","
+C",...,"|","d",";"],set_1(2),list_4 = [object Objects__NonTerminal_1(6),object O
+bjects__NonTerminal_2(6)],set_2(2),list_8 = [object Objects__Terminal_1(5),objec
+t Objects__Terminal_2(5)]) from line 58 in grammars.icn
+   statesLR1__createStates("testGrammar3",'s',list_4 = [object Objects__NonTermi
+nal_1(6),object Objects__NonTerminal_2(6)],list_8 = [object Objects__Terminal_1(
+5),object Objects__Terminal_2(5)],list_8 = [object Objects__Terminal_1(5),object
+ Objects__Terminal_2(5)]) from line 54 in productionRules.icn
+   statesLR1__closure(object Objects__State_1("I0",list_16(2),"I0\n\tS' -> .S ,
+$...",list_17 = [],list_18 = [],list_19 = [],list_20 = [],list_21 = [],list_22 =
+ [],list_23 = [],list_24 = [],list_25 = [],&null,&null),object Objects__Item_2(o
+bject Objects__Terminal_3(5),list_26 = [],list_27(1),object Objects__Terminal_4(
+5),"\tS' -> .S , $\n"),object Objects__NonTerminal_1("nonTerminal","S",list_5(1)
+,"nonTerminal"),set_3(1)) from line 59 in statesLR1.icn
+   &null((variable = object Objects__State_1("I0",list_16(2),"I0\n\tS' -> .S , $
+...",list_17 = [],list_18 = [],list_19 = [],list_20 = [],list_21 = [],list_22 =
+[],list_23 = [],list_24 = [],list_25 = [],&null,&null)),(variable = object Objec
+ts__Item_2(object Objects__Terminal_3(5),list_26 = [],list_27(1),object Objects_
+_Terminal_4(5),"\tS' -> .S , $\n")),(variable = object Objects__NonTerminal_2("n
+onTerminal","C",list_6(2),"nonTerminal")),(variable = set_3(1))) from line 135 i
+n statesLR1.icn
+
+C:\Users\John\Dropbox\Unicon\ESnippets>
+

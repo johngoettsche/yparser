@@ -1,0 +1,481 @@
+#	John Goettsche
+#	under the direction of Clinton Jeffery
+#	University of Idaho
+
+package Objects
+#	Contains the classes associated with yparser
+
+class Terminal(tokenType, token, pattern)
+#	used to hold a single terminal
+
+initially (thisType)
+	tokenType := thisType
+end
+
+class NonTerminal(tokenType, token, productions, pattern)
+#	used to hold a single non terminal
+
+	method addProductionRule(newProduction)
+		put(productions, newProduction)
+	end
+
+	method findRule(matchRule)
+		local production
+		every production := !productions do
+			if production == matchRule then return production
+	end
+      
+	method getProduction(r)
+		return productions[r]
+	end
+
+	method getProductionRules()
+		local production
+		every production := !productions do suspend production
+	end
+
+	method getTxt()      
+		local production, thisString
+		every production := !productions do {
+			thisString := token || " <- " || production.getTxt()
+			suspend thisString
+		}
+	end
+   
+initially
+	pattern := "nonTerminal"
+	tokenType := "nonTerminal"
+	productions := []
+end
+
+class Production(variables)
+#	used to hold all the inputs for each grammar rule
+#	the stuff that gets converted over into a non-terminal, a RHS.
+   
+	method addVariable(newVariable) 
+		put(variables, newVariable)
+	end
+
+	method getVariables()
+		local variable
+		every variable := !variables do suspend variable
+	end
+
+	method getVariableList()
+		return variables
+	end
+   
+	method getVariable(v)
+		return variables[v]
+	end
+
+	method getTxt()
+		local x, str
+		str := ""
+		x := 1
+		while x <= *variables do {
+			str := str || variables[x].token || " "
+			x +:= 1
+		}
+		return str
+	end
+
+initially
+	variables := []
+end
+
+class State(
+	name, 
+	items, 
+	label,
+	actions, 
+	sources, 
+	sourceChain,
+	sourceChains, 
+	sourceStateChain, 
+	sourceStateChains, 
+	sourceInputs, 
+	acceptable, 
+	nonTerminalShifts,
+	sourceChainTxt,
+	patternChainTxt)
+#  this class defines a state
+#	name: I#
+#	items:  a list of items
+#	label:  the name plus the first item
+#	actions:
+#	sources: most recent states
+#	sourceChain: the chain of inputs that bring you to this state by construction
+#	sourceChains: a list of chains of inputs that bring you to this state 
+#	sourceStateChain: the chain of states that brings you to this state by construction
+#	sourceStateChains:  a list of possible chains that bring you to this state
+#	sourceInputs: most recent input that brings you to this state
+#	acceptable: list of acceptable inputs
+#	nonTerminalShifts
+
+	method setName(newName)
+		name := newName
+	end
+
+	method addItem(itemProduction)
+		put(items, itemProduction)
+	end
+   
+	method addAlpha(newAlpha, ItemNumber)
+		items[ItemNumber].addAlpha(newAlpha)
+	end
+	
+	method addAction(action)
+		put(actions, action)
+	end
+	
+	method addSource(source)
+		put(sources, source)
+	end
+	
+	method addSourceToChain(newSource)
+		put(sourceChain, newSource)
+	end
+	
+	method setSourceChain(newSourceChain)
+		sourceChain := newSourceChain
+	end
+	
+	method addSourceChain(newSourceChain)
+		put(sourceChains, newSourceChain)
+	end
+	
+	method addSourceStateChain(newSourceStateChain)
+		put(sourceStateChains, newSourceStateChain)
+	end
+	
+	method addSourceInput(sourceInput)
+		put(sourceInputs, sourceInput)
+	end
+	
+	method addAcceptable(input)
+		put(acceptable, input)
+	end
+	
+	method addNonTerminalShift(nonTerminal)
+		put(nonTerminalShifts, nonTerminal)
+	end
+	
+	method getName()
+		return name
+	end
+
+	method getItems()
+		local itemProduction
+		every itemProduction := !items do suspend itemProduction
+	end
+
+	method getItemsList()
+		return items
+	end
+	
+	method getStateChains()
+		every stateChain := !sourceStateChains do suspend stateChain
+	end
+
+	method setTxt()
+		local txt, line
+		txt := name || "\n"
+		every line := !items do txt := txt || line.label
+		label := txt
+	end
+	
+	method getActionTxt()
+		local txt, line
+		txt := ""
+		every line := !actions do txt := txt || line.label
+		
+		return txt
+	end
+
+	method setSourceChainTxt()
+		local txt, thisSource
+		txt := "\t\t"
+		every thisSource := !sourceChain do {
+			txt := txt || thisSource.token || " "
+		}
+		txt := txt || "\n"
+		sourceChainTxt := txt
+	end
+	
+	method setPatternChainTxt()
+		local txt, thisSource
+		txt := ""
+		every thisSource := !sourceChain do {
+			txt := txt || thisSource.pattern || " "
+		}
+		#txt := txt || "\n"
+		patternChainTxt := txt
+	end
+
+	method getSourceChainsTxt()
+		local txt, thisItem, element
+		
+		txt := ""
+		every thisSourceChain := !sourceChains do{
+			txt := txt || "\t\t"
+			every element := !thisSourceChain do {
+				txt := txt || element.token || " "
+			}
+			txt := txt || "\n"
+		}
+		return txt
+	end
+	
+	method getSourceStateChainTxt()
+		local txt, thisItem, element
+		
+		if *sourceStateChain > 0 then {
+			txt := "\t\t"
+			every thisState := !sourceStateChain do {
+				if \thisState then txt := txt || thisState.name || " "
+			}
+			txt := txt || "\n"
+
+			return txt
+		}
+	end
+	
+	method getSourceStateChainsTxt()
+		local txt, thisItem, element
+		
+		if *sourceStateChains > 0 then {
+			txt := ""
+			every thisSourceStateChain := !sourceStateChains do{
+				txt := txt || "\t\t"
+				if *thisSourceStateChain > 0 then
+					every thisState := !thisSourceStateChain do {
+						if \thisState then txt := txt || thisState.name || " "
+					}
+				txt := txt || "\n"
+			}
+			return txt
+		}
+	end
+	
+	method getSourcesTxt()
+		local txt, source, count
+		count := 0
+		txt := "\t\t{"
+		every source := !sources do {
+			if count > 0 then txt := txt || ", "
+			txt := txt || source.name
+			count +:= 1
+		}
+		txt := txt || "}\n"
+		return txt
+	end
+	
+	method getSourceInputTxt()
+		local txt, source, count
+		count := 0
+		txt := "\t\t["
+		every sourceInput := !sourceInputs do {
+			if count > 0 then txt := txt || ", "
+			txt := txt || sourceInput.token
+			count +:= 1
+		}
+		txt := txt || "]\n"
+		return txt
+	end
+	
+	method getAcceptableTxt(terminalList)
+		local txt
+		
+		if *acceptable > 0 then {
+			txt := ""
+			every acceptableInput := !acceptable do txt := txt || "\t" || acceptableInput.token ||"\n"
+			return txt
+		}
+	end
+
+initially(newName, thisPrime, initialItem, thisStateChain, sourceState)
+	local 
+		result,
+		element,
+		newItem,
+		newAlpha
+   
+	label :=""
+	name := newName
+	items := []
+	actions := []
+	sources := []
+	sourceChain := []
+	sourceChains := []
+	sourceStateChain := []
+	sourceStateChains := []
+	sourceInputs := []
+	acceptable := []
+	nonTerminalShifts := []
+   
+	#source states
+	if *thisStateChain > 0 then {
+		every thisState := !thisStateChain do {
+			put(sourceStateChain, thisState)
+		}
+	}
+	
+	if \sourceState then { 
+		put(sourceStateChain, sourceState)
+	}
+	
+	#set up initialItem
+	newItem := Item()
+	newItem.setLeft(thisPrime)
+	every newAlpha := initialItem.getAlpha() do {
+		newItem.addAlpha(newAlpha)
+	}
+	every element := initialItem.getBetas() do {
+		newItem.addBeta(element)
+	}
+	if \initialItem.lookAheadTerminal then newItem.lookAheadTerminal := initialItem.lookAheadTerminal
+	newItem.setTxt()
+	put(items, newItem)
+	setTxt()
+end
+
+class Item(left, alpha, beta, lookAheadTerminal, label)
+#	this class defines an Item for a state
+
+	method setLeft(newLeft)
+		left := newLeft
+	end
+   
+	method addAlpha(newAlpha)
+		put(alpha, newAlpha)
+	end
+   
+	method addBeta(newBeta)
+		put(beta, newBeta)
+	end
+	
+	method setAlphaList(newAlphaList)
+		alpha := newAlphaList
+	end
+   
+	method setBetaList(newBetaList)
+		beta := newBetaList
+	end
+	   
+	method getLeft()
+		return left
+	end
+   
+	method getAlpha()
+		local element
+		every element := !alpha do suspend element
+	end
+   
+	method getAlphaList()
+		return alpha
+	end
+   
+	method getLastAlpha()
+		local element, thisElement
+		every thisElement := getAlpha() do {
+			element := thisElement
+		}
+		return element
+	end
+   
+	method getBetas()
+		local thisBeta
+		every thisBeta := !beta do suspend thisBeta
+	end
+   
+	method getBetaList()
+		return beta
+	end
+   
+	method getBeta(v)
+		return beta[v]
+	end
+   
+	method getShift()
+		local 
+			newItem, 
+			element, 
+			count
+      
+		if *beta > 0 then {
+			newItem := Item()
+			newItem.setLeft(left)
+			every element := getAlpha() do newItem.addAlpha(element)
+			count := 1
+			every element := getBetas() do {
+				if count = 1 then {
+					newItem.addAlpha(element)
+				}   
+				if count > 1 then {
+					newItem.addBeta(element)
+				}
+				count +:= 1
+			}
+			newItem.lookAheadTerminal := lookAheadTerminal
+			newItem.setTxt()
+			return newItem
+		}   
+	end
+   
+	method setTxt()
+	#prepares the textual representation of the Item
+		local 
+			p, 
+			g, 
+			element,
+			thisTerminal,
+			txt
+         
+		txt := "\t" || left.token || " -> "
+		p := 1
+		while p <= *alpha do {
+			txt := txt || " " || alpha[p].token
+			p +:= 1
+		}      
+		txt := txt || "."
+		g := 1
+		if \beta then
+		while g <= *beta do {
+			element := beta[g]
+			if \element then txt := txt || element.token || " "
+			g +:= 1
+		}
+		
+		if \lookAheadTerminal then {
+			txt := txt || ", " || lookAheadTerminal.token
+		}
+		
+		txt := txt || "\n"
+		label := txt
+	end
+   
+initially()
+	label := ""
+	alpha := []
+	beta := []
+end
+
+class Action(actionType, state, item, sigma, label, goto)
+	method getLabel()
+		return label
+	end
+
+initially(newState, newItem, newType, newSigma, newGoto)
+# creates transitions based upon algorithm 4.8 on page 227
+# of the Dragon Book
+	state := newState
+	item := newItem
+	goto := newGoto
+	actionType := newType
+	sigma := newSigma
+	if actionType == "accept" then label := "\t" || actionType || "\n"
+	else if actionType == "shift" then label := "\tgoto(" || state.name || ", " || sigma.token || ") = " || goto.name || "\n"
+	else if actionType == "reduce" then label := "\t" || actionType || item.label
+	else actionType := "error"
+end

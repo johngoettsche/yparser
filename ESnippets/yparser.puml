@@ -1,0 +1,74 @@
+@startuml
+    hide circles
+
+    package "rawGrammar" {
+        class NonTerminal {
+            -type
+            -result
+            -productionRules[]
+            +setResult(newResult)
+            +addProductionRule(newProductionRule)
+            +getType()
+            +getResult()
+            +findRule(matchRule)
+            +getProductionRule(r)
+            +getProductionRules()
+            +getTxt() 
+            +initially()
+        }
+        class Terminal {
+            -type
+            -result
+            +setResult(newResult)
+            +getType()
+            +getResult()
+            +initially(thisType)
+        }
+    }
+
+    package "production" {
+        class ProductionRule {
+            -variables[]
+            +addVariable(newVariable) 
+            +getVariables()
+            +getVariableList()
+            +getTxt()
+            +initially()
+        }
+        ProductionRule *- "*" NonTerminal
+        ProductionRule *- "*" Terminal
+        NonTerminal *-- "*" ProductionRule
+    }
+
+    package "states" {
+        class State {
+            -name
+            -stateGrammars[]
+            +setName(newName)
+            +addStateGrammar(stateGrammarProduction)
+            +getName()
+            +getStateGrammars()
+            +getStateGrammarsList()
+            +getTxt()
+            +initially(newName, thisNonTerminal)
+        }
+        class StateGrammar{
+            -left
+            -previous[]
+            -possible[]
+            +setLeft(newLeft)
+            +addPrevious(newPrevious)
+            +addPossible(newPossible)
+            +setPossibilities(newPossible)
+            +getLeft()
+            +getPrevious()
+            +getPossible()
+            +shift()
+            +getTxt()
+            +initially()
+        }
+        State *--  "*" StateGrammar  
+        StateGrammar *- "*" NonTerminal
+        StateGrammar *- "*" Terminal
+    }
+@enduml

@@ -1,0 +1,662 @@
+initially
+::: syntax error
+#EOFX initially
+::: syntax error
+;
+::: syntax error
+record x ( ) initially
+::: syntax error
+procedure x ( ) ; end initially
+::: syntax error
+global x initially
+::: syntax error
+link x initially
+::: syntax error
+package x initially
+::: syntax error
+import x initially
+::: syntax error
+invocable x initially
+::: syntax error
+class x ( ) ; end initially
+::: syntax error
+procedure x ( ) initially
+::: syntax error
+class x ( ) initially
+::: syntax error
+procedure x ( ) ; initially
+::: syntax error
+class x ( ) ; initially
+::: syntax error
+global x , initially
+::: syntax error
+link x , initially
+::: syntax error
+import x , initially
+::: syntax error
+invocable x , initially
+::: syntax error
+class x initially
+::: syntax error
+record x ( initially
+::: syntax error
+record x ( x initially
+::: syntax error
+procedure x ( ) ; initial initially
+::: syntax error
+procedure x ( ) ; local initially
+::: syntax error
+procedure x ( ) ; static initially
+::: syntax error
+procedure x ( initially
+::: syntax error
+procedure x ( x initially
+::: syntax error
+global x , x initially
+::: syntax error
+link x , x initially
+::: syntax error
+import x , x initially
+::: syntax error
+invocable x , x initially
+::: syntax error
+class x ( ) abstract method x ( ) initially
+::: syntax error
+class x ( ) global x initially
+::: syntax error
+class x ( ) record x ( ) initially
+::: syntax error
+class x ( ) method x ( ) initially
+::: syntax error
+class x ( ) abstract initially
+::: syntax error
+class x ( ) method initially
+::: syntax error
+class x ( ) local initially
+::: syntax error
+class x ( initially
+::: syntax error
+class x : :: x initially
+::: syntax error
+procedure x ( ) ; 0 initially
+::: syntax error
+procedure x ( ) ; 0 @> initially
+::: syntax error
+procedure x ( ) ; @ initially
+::: syntax error
+procedure x ( ) ; @> initially
+::: syntax error
+procedure x ( ) ; @>> initially
+::: syntax error
+procedure x ( ) ; <@ initially
+::: syntax error
+procedure x ( ) ; <<@ initially
+::: syntax error
+procedure x ( ) ; not initially
+::: syntax error
+procedure x ( ) ; | initially
+::: syntax error
+procedure x ( ) ; || initially
+::: syntax error
+procedure x ( ) ; ||| initially
+::: syntax error
+procedure x ( ) ; . initially
+::: syntax error
+procedure x ( ) ; ! initially
+::: syntax error
+procedure x ( ) ; -- initially
+::: syntax error
+procedure x ( ) ; + initially
+::: syntax error
+procedure x ( ) ; * initially
+::: syntax error
+procedure x ( ) ; / initially
+::: syntax error
+procedure x ( ) ; % initially
+::: syntax error
+procedure x ( ) ; ** initially
+::: syntax error
+procedure x ( ) ; ~ initially
+::: syntax error
+procedure x ( ) ; - initially
+::: syntax error
+procedure x ( ) ; -> initially
+::: syntax error
+procedure x ( ) ; ++ initially
+::: syntax error
+procedure x ( ) ; .$ initially
+::: syntax error
+procedure x ( ) ; 0 { 0 : 0 } initially
+::: syntax error
+procedure x ( ) ; fail initially
+::: syntax error
+procedure x ( ) ; if 0 then 0 initially
+::: syntax error
+procedure x ( ) ; case 0 of [ default : 0 ] initially
+::: syntax error
+procedure x ( ) ; while 0 initially
+::: syntax error
+procedure x ( ) ; until 0 initially
+::: syntax error
+procedure x ( ) ; every 0 initially
+::: syntax error
+procedure x ( ) ; repeat 0 initially
+::: syntax error
+procedure x ( ) ; ` initially
+::: syntax error
+procedure x ( ) ; create initially
+::: syntax error
+procedure x ( ) ; thread initially
+::: syntax error
+procedure x ( ) ; critical initially
+::: syntax error
+procedure x ( ) ; x initially
+::: syntax error
+procedure x ( ) ; next initially
+::: syntax error
+procedure x ( ) ; break initially
+::: syntax error
+procedure x ( ) ; ( initially
+::: syntax error
+procedure x ( ) ; [ initially
+::: syntax error
+procedure x ( ) ; { initially
+::: syntax error
+procedure x ( ) ; :: x initially
+::: syntax error
+procedure x ( ) ; & initially
+::: syntax error
+procedure x ( ) ; 1.0 initially
+::: syntax error
+procedure x ( ) ; a initially
+::: syntax error
+procedure x ( ) ; c initially
+::: syntax error
+procedure x ( ) ; return initially
+::: syntax error
+procedure x ( ) ; suspend initially
+::: syntax error
+procedure x ( ) ; if initially
+::: syntax error
+procedure x ( ) ; case initially
+::: syntax error
+procedure x ( ) ; while initially
+::: syntax error
+procedure x ( ) ; until initially
+::: syntax error
+procedure x ( ) ; every initially
+::: syntax error
+procedure x ( ) ; repeat initially
+::: syntax error
+procedure x ( ) ; initial 0 initially
+::: syntax error
+procedure x ( ) ; local x initially
+::: syntax error
+procedure x ( ) ; static x initially
+::: syntax error
+procedure x ( x { initially
+::: syntax error
+procedure x ( x , initially
+::: syntax error
+class x ( ) ;
+::: syntax error
+class x ( ) method x ( ) ; initially
+::: syntax error
+class x ( ) method x initially
+::: syntax error
+class x ( ) local x initially
+::: syntax error
+class x ( x initially
+::: syntax error
+class x ( + initially
+::: syntax error
+class x ( - initially
+::: syntax error
+class x : x initially
+::: syntax error
+procedure x ( ) ; ; initially
+::: syntax error
+procedure x ( ) ; 0 & initially
+::: syntax error
+procedure x ( ) ; 0 initial initially
+::: syntax error
+procedure x ( ) ; 0 : initially
+::: syntax error
+procedure x ( ) ; 0 assign initially
+::: syntax error
+procedure x ( ) ; 0 <-> initially
+::: syntax error
+procedure x ( ) ; 0 <- initially
+::: syntax error
+procedure x ( ) ; 0 ||: initially
+::: syntax error
+procedure x ( ) ; 0 |||: initially
+::: syntax error
+procedure x ( ) ; 0 --: initially
+::: syntax error
+procedure x ( ) ; 0 ++: initially
+::: syntax error
+procedure x ( ) ; 0 +: initially
+::: syntax error
+procedure x ( ) ; 0 -: initially
+::: syntax error
+procedure x ( ) ; 0 *: initially
+::: syntax error
+procedure x ( ) ; 0 **: initially
+::: syntax error
+procedure x ( ) ; 0 /: initially
+::: syntax error
+procedure x ( ) ; 0 %: initially
+::: syntax error
+procedure x ( ) ; 0 > initially
+::: syntax error
+procedure x ( ) ; 0 >: initially
+::: syntax error
+procedure x ( ) ; 0 < initially
+::: syntax error
+procedure x ( ) ; 0 <: initially
+::: syntax error
+procedure x ( ) ; 0 ~ initially
+::: syntax error
+procedure x ( ) ; 0 >> initially
+::: syntax error
+procedure x ( ) ; 0 >>: initially
+::: syntax error
+procedure x ( ) ; 0 << initially
+::: syntax error
+procedure x ( ) ; 0 <<: initially
+::: syntax error
+procedure x ( ) ; 0 &: initially
+::: syntax error
+procedure x ( ) ; 0 @: initially
+::: syntax error
+procedure x ( ) ; 0 to initially
+::: syntax error
+procedure x ( ) ; 0 .| initially
+::: syntax error
+procedure x ( ) ; 0 && initially
+::: syntax error
+procedure x ( ) ; 0 | initially
+::: syntax error
+procedure x ( ) ; 0 $$ initially
+::: syntax error
+procedure x ( ) ; 0 -> initially
+::: syntax error
+procedure x ( ) ; 0 || initially
+::: syntax error
+procedure x ( ) ; 0 ||| initially
+::: syntax error
+procedure x ( ) ; 0 + initially
+::: syntax error
+procedure x ( ) ; 0 -- initially
+::: syntax error
+procedure x ( ) ; 0 ++ initially
+::: syntax error
+procedure x ( ) ; 0 - initially
+::: syntax error
+procedure x ( ) ; 0 * initially
+::: syntax error
+procedure x ( ) ; 0 ** initially
+::: syntax error
+procedure x ( ) ; 0 / initially
+::: syntax error
+procedure x ( ) ; 0 % initially
+::: syntax error
+procedure x ( ) ; 0 <<@ initially
+::: syntax error
+procedure x ( ) ; 0 @ initially
+::: syntax error
+procedure x ( ) ; 0 @>> initially
+::: syntax error
+procedure x ( ) ; 0 <@ initially
+::: syntax error
+procedure x ( ) ; 0 ! initially
+::: syntax error
+procedure x ( ) ; 0 { initially
+::: syntax error
+procedure x ( ) ; 0 [ initially
+::: syntax error
+procedure x ( ) ; 0 ( initially
+::: syntax error
+procedure x ( ) ; 0 $ ;
+::: syntax error
+procedure x ( ) ; 0 . ;
+::: syntax error
+procedure x ( ) ; @ 0 initially
+::: syntax error
+procedure x ( ) ; @> 0 initially
+::: syntax error
+procedure x ( ) ; @>> 0 initially
+::: syntax error
+procedure x ( ) ; <@ 0 initially
+::: syntax error
+procedure x ( ) ; <<@ 0 initially
+::: syntax error
+procedure x ( ) ; not 0 initially
+::: syntax error
+procedure x ( ) ; | 0 initially
+::: syntax error
+procedure x ( ) ; || 0 initially
+::: syntax error
+procedure x ( ) ; ||| 0 initially
+::: syntax error
+procedure x ( ) ; . 0 initially
+::: syntax error
+procedure x ( ) ; ! 0 initially
+::: syntax error
+procedure x ( ) ; -- 0 initially
+::: syntax error
+procedure x ( ) ; + 0 initially
+::: syntax error
+procedure x ( ) ; * 0 initially
+::: syntax error
+procedure x ( ) ; / 0 initially
+::: syntax error
+procedure x ( ) ; % 0 initially
+::: syntax error
+procedure x ( ) ; ** 0 initially
+::: syntax error
+procedure x ( ) ; ~ 0 initially
+::: syntax error
+procedure x ( ) ; - 0 initially
+::: syntax error
+procedure x ( ) ; -> 0 initially
+::: syntax error
+procedure x ( ) ; ++ 0 initially
+::: syntax error
+procedure x ( ) ; .$ 0 initially
+::: syntax error
+procedure x ( ) ; create 0 initially
+::: syntax error
+procedure x ( ) ; thread 0 initially
+::: syntax error
+procedure x ( ) ; critical 0 initially
+::: syntax error
+procedure x ( ) ; { default : 0 initially
+::: syntax error
+procedure x ( ) ; { default initially
+::: syntax error
+procedure x ( ) ; { 0 initially
+::: syntax error
+procedure x ( ) ; { : initially
+::: syntax error
+procedure x ( ) ; & fail initially
+::: syntax error
+procedure x ( ) ; & x initially
+::: syntax error
+procedure x ( ) ; if 0 initially
+::: syntax error
+procedure x ( ) ; case 0 initially
+::: syntax error
+procedure x ( ) ; initial 0 ; initially
+::: syntax error
+procedure x ( ) ; local x ; initially
+::: syntax error
+procedure x ( ) ; local x , initially
+::: syntax error
+procedure x ( ) ; local x assign initially
+::: syntax error
+procedure x ( ) ; static x ; initially
+::: syntax error
+procedure x ( ) ; static x , initially
+::: syntax error
+procedure x ( ) ; static x assign initially
+::: syntax error
+procedure x ( x { } initially
+::: syntax error
+procedure x ( x , x initially
+::: syntax error
+procedure x ( x : 0 initially
+::: syntax error
+class x ( ) initially initially
+::: syntax error
+class x ( ) method x ( initially
+::: syntax error
+class x ( x { initially
+::: syntax error
+class x ( x , initially
+::: syntax error
+procedure x ( ) ; 0 & 0 initially
+::: syntax error
+procedure x ( ) ; 0 initial 0 initially
+::: syntax error
+procedure x ( ) ; 0 : 0 initially
+::: syntax error
+procedure x ( ) ; 0 assign 0 initially
+::: syntax error
+procedure x ( ) ; 0 <-> 0 initially
+::: syntax error
+procedure x ( ) ; 0 <- 0 initially
+::: syntax error
+procedure x ( ) ; 0 ||: 0 initially
+::: syntax error
+procedure x ( ) ; 0 |||: 0 initially
+::: syntax error
+procedure x ( ) ; 0 --: 0 initially
+::: syntax error
+procedure x ( ) ; 0 ++: 0 initially
+::: syntax error
+procedure x ( ) ; 0 +: 0 initially
+::: syntax error
+procedure x ( ) ; 0 -: 0 initially
+::: syntax error
+procedure x ( ) ; 0 *: 0 initially
+::: syntax error
+procedure x ( ) ; 0 **: 0 initially
+::: syntax error
+procedure x ( ) ; 0 /: 0 initially
+::: syntax error
+procedure x ( ) ; 0 %: 0 initially
+::: syntax error
+procedure x ( ) ; 0 > 0 initially
+::: syntax error
+procedure x ( ) ; 0 >: 0 initially
+::: syntax error
+procedure x ( ) ; 0 < 0 initially
+::: syntax error
+procedure x ( ) ; 0 <: 0 initially
+::: syntax error
+procedure x ( ) ; 0 ~ 0 initially
+::: syntax error
+procedure x ( ) ; 0 >> 0 initially
+::: syntax error
+procedure x ( ) ; 0 >>: 0 initially
+::: syntax error
+procedure x ( ) ; 0 << 0 initially
+::: syntax error
+procedure x ( ) ; 0 <<: 0 initially
+::: syntax error
+procedure x ( ) ; 0 &: 0 initially
+::: syntax error
+procedure x ( ) ; 0 @: 0 initially
+::: syntax error
+procedure x ( ) ; 0 to 0 initially
+::: syntax error
+procedure x ( ) ; 0 .| 0 initially
+::: syntax error
+procedure x ( ) ; 0 && 0 initially
+::: syntax error
+procedure x ( ) ; 0 | 0 initially
+::: syntax error
+procedure x ( ) ; 0 $$ 0 initially
+::: syntax error
+procedure x ( ) ; 0 -> 0 initially
+::: syntax error
+procedure x ( ) ; 0 || 0 initially
+::: syntax error
+procedure x ( ) ; 0 ||| 0 initially
+::: syntax error
+procedure x ( ) ; 0 + 0 initially
+::: syntax error
+procedure x ( ) ; 0 -- 0 initially
+::: syntax error
+procedure x ( ) ; 0 ++ 0 initially
+::: syntax error
+procedure x ( ) ; 0 - 0 initially
+::: syntax error
+procedure x ( ) ; 0 * 0 initially
+::: syntax error
+procedure x ( ) ; 0 ** 0 initially
+::: syntax error
+procedure x ( ) ; 0 / 0 initially
+::: syntax error
+procedure x ( ) ; 0 % 0 initially
+::: syntax error
+procedure x ( ) ; 0 <<@ 0 initially
+::: syntax error
+procedure x ( ) ; 0 @ 0 initially
+::: syntax error
+procedure x ( ) ; 0 @> 0 initially
+::: syntax error
+procedure x ( ) ; 0 @>> 0 initially
+::: syntax error
+procedure x ( ) ; 0 <@ 0 initially
+::: syntax error
+procedure x ( ) ; 0 ! 0 initially
+::: syntax error
+procedure x ( ) ; 0 [ ] initially
+::: syntax error
+procedure x ( ) ; 0 $ initially initially
+::: syntax error
+procedure x ( ) ; 0 $ x initially
+::: syntax error
+procedure x ( ) ; 0 . x initially
+::: syntax error
+procedure x ( ) ; 0 . initially initially
+::: syntax error
+procedure x ( ) ; critical 0 : initially
+::: syntax error
+procedure x ( ) ; ( ) initially
+::: syntax error
+procedure x ( ) ; ( , initially
+::: syntax error
+procedure x ( ) ; [ ] initially
+::: syntax error
+procedure x ( ) ; [ ; initially
+::: syntax error
+procedure x ( ) ; { default : 0 } initially
+::: syntax error
+procedure x ( ) ; { default : 0 ; initially
+::: syntax error
+procedure x ( ) ; { default : initially
+::: syntax error
+procedure x ( ) ; { 0 : initially
+::: syntax error
+procedure x ( ) ; { } initially
+::: syntax error
+procedure x ( ) ; { : 0 initially
+::: syntax error
+procedure x ( ) ; suspend do initially
+::: syntax error
+procedure x ( ) ; if 0 then initially
+::: syntax error
+procedure x ( ) ; case 0 of initially
+::: syntax error
+procedure x ( ) ; while 0 do initially
+::: syntax error
+procedure x ( ) ; until 0 do initially
+::: syntax error
+procedure x ( ) ; every 0 do initially
+::: syntax error
+procedure x ( ) ; local x , x initially
+::: syntax error
+procedure x ( ) ; local x assign 0 initially
+::: syntax error
+procedure x ( ) ; static x , x initially
+::: syntax error
+procedure x ( ) ; static x assign 0 initially
+::: syntax error
+class x ( ) end initially
+::: syntax error
+class x ( ) initially ; initially
+::: syntax error
+class x ( ) initially ( initially
+::: syntax error
+class x ( x { } initially
+::: syntax error
+class x ( x , x initially
+::: syntax error
+procedure x ( ) ; 0 to 0 by initially
+::: syntax error
+procedure x ( ) ; 0 { } initially
+::: syntax error
+procedure x ( ) ; 0 { : initially
+::: syntax error
+procedure x ( ) ; 0 { +: initially
+::: syntax error
+procedure x ( ) ; 0 { -: initially
+::: syntax error
+procedure x ( ) ; 0 [ , initially
+::: syntax error
+procedure x ( ) ; 0 ( ) initially
+::: syntax error
+procedure x ( ) ; 0 $ initially ( initially
+::: syntax error
+procedure x ( ) ; 0 $ x ( initially
+::: syntax error
+procedure x ( ) ; 0 $ x . ;
+::: syntax error
+procedure x ( ) ; critical 0 : 0 initially
+::: syntax error
+procedure x ( ) ; { default : 0 ; default : 0 initially
+::: syntax error
+procedure x ( ) ; { 0 : 0 initially
+::: syntax error
+procedure x ( ) ; { : 0 : initially
+::: syntax error
+procedure x ( ) ; suspend do 0 initially
+::: syntax error
+procedure x ( ) ; case 0 of [ initially
+::: syntax error
+procedure x ( ) ; while 0 do 0 initially
+::: syntax error
+procedure x ( ) ; until 0 do 0 initially
+::: syntax error
+procedure x ( ) ; every 0 do 0 initially
+::: syntax error
+procedure x ( ) ; local x , x assign initially
+::: syntax error
+procedure x ( ) ; static x , x assign initially
+::: syntax error
+procedure x ( x : x : 0 initially
+::: syntax error
+procedure x ( ) ; 0 to 0 by 0 initially
+::: syntax error
+procedure x ( ) ; 0 { : 0 initially
+::: syntax error
+procedure x ( ) ; 0 $ x . initially initially
+::: syntax error
+procedure x ( ) ; 0 $ x . x initially
+::: syntax error
+procedure x ( ) ; { : 0 : } initially
+::: syntax error
+procedure x ( ) ; if 0 then 0 else initially
+::: syntax error
+procedure x ( ) ; case 0 of [ default : 0 initially
+::: syntax error
+procedure x ( ) ; local x , x assign 0 initially
+::: syntax error
+procedure x ( ) ; static x , x assign 0 initially
+::: syntax error
+class x ( ) initially ( ) initially
+::: syntax error
+class x ( ) method x ( ) ; end initially
+::: syntax error
+procedure x ( ) ; 0 { : 0 } initially
+::: syntax error
+procedure x ( ) ; 0 $ initially ( ) initially
+::: syntax error
+procedure x ( ) ; 0 $ x ( ) initially
+::: syntax error
+procedure x ( ) ; 0 $ x . initially ( initially
+::: syntax error
+procedure x ( ) ; 0 $ x . x ( initially
+::: syntax error
+procedure x ( ) ; if 0 then 0 else 0 initially
+::: syntax error
+class x ( ) initially ( ) ; initially
+::: syntax error
+procedure x ( ) ; 0 $ x . initially ( ) initially
+::: syntax error
+procedure x ( ) ; 0 $ x . x ( ) initially
+::: syntax error

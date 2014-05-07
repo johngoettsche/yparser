@@ -1,0 +1,29 @@
+#	John Goettsche
+#	under the direction of Clinton Jeffery
+#	University of Idaho
+
+package Lists
+#	consists of helper procedures for lists
+
+procedure duplicate(sourceList, item)
+#	returns the item if it appears in the source list 
+
+	local 
+		testItem
+
+	every testItem := !sourceList do {
+		if testItem === item then return item
+	}
+end
+
+procedure countListItems(sourceList)
+#	returns the number of items in a source list
+
+	local 
+		count, 
+		testItem
+	
+	count := 0
+	every testItem := !sourceList do	count +:= 1
+	return count
+end

@@ -1,0 +1,340 @@
+#	John Goettsche
+#	under the direction of Clinton Jeffery
+#	University of Idaho
+
+package stateAnalysis
+#	dose an analysis of the state to see how each state can be 
+#	reached and what terminals are acceptable at that state.
+
+import Clock
+import DAO
+import Lists
+
+procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, nonTerminalsSet)
+#	performs an analysis of each state to determine how it can be
+#	reached and what are acceptable inputs
+
+	write("\nChecking state sources...\n")
+	determineAllSources(nonTerminalsSet, statesList)
+	every state := !statesList do determineAcceptableInputsFromNonTerminals(state)
+	errorSnippets := []
+	
+	if *arguments > 0 then if member(arguments, "E") then {
+		every state := !statesList do {
+			write(state.name)
+			every errorSnippet := getAllErrorSnippets(state, terminalsList) do
+				if errorSnippet ? tab(1) ~== "#" then {
+					if not Lists::duplicate(errorSnippets, errorSnippet) then {
+						put(errorSnippets, errorSnippet)
+					}
+				}
+		}
+	}
+
+	if *arguments > 0 then if member(arguments, "e") then {
+		every state := !statesList do {
+			write(state.name)
+			errorSnippet := getErrorSnippets(state, terminalsList)
+			if errorSnippet ? tab(1) ~== "#" then {
+				if not Lists::duplicate(errorSnippets, errorSnippet) then {
+					if not Lists::duplicate(errorSnippets, errorSnippet) then {
+						put(errorSnippets, errorSnippet)
+					}
+				}
+			}
+		}
+	}
+	
+	if *arguments > 0 then if member(arguments, "E") | member(arguments, "e") then {
+		write("\nPotential Error Snippets:") 
+		if member(arguments, "o") then {
+			DAO::writeListToFile(fileName, errorSnippets, "errors")
+			DAO::writeListToFile(fileName || ".e", errorSnippets, "standard")
+		}
+		every errorSnippet := !errorSnippets do write(errorSnippet)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+      getch()
+	}
+	
+	if *arguments > 0 then if member(arguments, "S") then {
+		outfileName := fileName || "so"
+		if member(arguments, "o") then writeListToFile(outfileName, thisList, fileType)
+		write("\nState Sources:\n") 
+		if outfile ~=== &output then {
+			every state := !statesList do {
+				write(outfile, "\n" || state.name)
+				if *state.sourceChains > 0 then {
+					write(outfile, "\tSources:")
+					write(outfile, state.getSourceChainsTxt())
+				}
+				if *state.sources > 0 then {
+					write(outfile, "\tMost recent states:")
+					write(outfile, state.getSourcesTxt())
+				}
+				if *state.sourceInputs > 0 then {	
+					write(outfile, "\tMost recent inputs:")
+					write(outfile, state.getSourceInputTxt())
+				}
+				if *state.sourceStateChain > 0 then {	
+					write(outfile, "\tConstructed Source State Chain:")
+					write(outfile, state.getSourceStateChainTxt())
+				}
+				if *state.sourceStateChains > 0 then {	
+					write(outfile, "\tSource State Chains:")
+					write(outfile, state.getSourceStateChainsTxt())
+				}
+				if *state.sourceChain > 0 then {
+					write(outfile, "\tInput chain:")
+					write(outfile, state.sourceChainTxt)
+					if \state.patternChainTxt then write(outfile, "\t\t" || state.patternChainTxt)			
+				}
+				if *state.acceptable > 0 then {	
+					write(outfile, "\tAcceptable inputs:")
+					write(outfile, state.getAcceptableTxt(terminalsList))
+					write(outfile, "\tNot acceptable inputs:")
+					every notAcceptable := getNotAcceptable(state, terminalsList) do write(outfile, "\t" || notAcceptable.token)
+				}
+			}
+		}
+		
+		every state := !statesList do {
+			write("\n" || state.name)
+			if *state.sourceChains > 0 then {
+				write("\tSources:")
+				write(state.getSourceChainsTxt())
+			}
+			if *state.sources > 0 then {
+				write("\tMost recent states:")
+				write(state.getSourcesTxt())
+			}
+			if *state.sourceInputs > 0 then {
+				write("\tMost recent inputs:")
+				write(state.getSourceInputTxt())	
+			}
+			if *state.sourceStateChain > 0 then {
+				write("\tConstructed Source State Chain:")
+				write(state.getSourceStateChainTxt())
+			}
+			if *state.sourceStateChains > 0 then {
+				write("\tSource State Chains:")
+				write(state.getSourceStateChainsTxt())
+			}
+			if *state.sourceChain > 0 then {			
+				write("\tInput chain:")
+				write(state.sourceChainTxt)
+				if \state.patternChainTxt then write("\t\t" || state.patternChainTxt)
+			}
+			if *state.acceptable > 0 then {
+				write("\tAcceptable inputs:")
+				write(state.getAcceptableTxt(terminalsList))
+				write("\tNot acceptable inputs:")
+				every notAcceptable := getNotAcceptable(state, terminalsList) do write("\t" || notAcceptable.token)
+			}
+		}
+		write("\ncreated file: " || outfileName)
+		close(outfile)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}
+end
+
+procedure getErrorSnippets(state, terminalsList)
+	local 
+		txt,
+		notAcceptable,
+		terminals
+		
+	terminals := []
+	every term := getNotAcceptable(state, terminalsList) do put(terminals, term)
+	if *terminals > 1 then thisTerminal := terminals[2]
+	else thisTerminal := terminals[1]	
+	
+	if \state.patternChainTxt then return state.patternChainTxt || thisTerminal.pattern
+	else return thisTerminal.pattern
+end
+
+procedure getAllErrorSnippets(state, terminalsList)
+	local
+		notAcceptable,
+		txt
+		
+	every notAcceptable := getNotAcceptable(state, terminalsList) do 
+		if \state.patternChainTxt then suspend state.patternChainTxt || notAcceptable.pattern
+		else suspend notAcceptable.pattern
+end
+
+procedure getNotAcceptable(state, terminalsList)
+	local
+		terminal
+	
+	every terminal := !terminalsList do {
+		if not Lists::duplicate(state.acceptable, terminal) then suspend terminal
+	}
+end
+
+procedure determineAllSources(nonTerminalsSet, statesList)
+#	finds the possible routs to get to each state
+	
+	local 
+		state,
+		thisItem,
+		thisAlpha,
+		action,
+		gotoState
+		
+	every state := !statesList do {
+		#add alpha from each item to the states sourceChains
+		every thisItem := !state.items do{
+			if *thisItem.alpha > 0 then {
+				thisAlpha := []
+				every element := !thisItem.alpha do {
+					put(thisAlpha, element)
+				}
+				if not duplicateChains(state.sourceChains, thisAlpha) then 	
+					state.addSourceChain(thisAlpha)
+			}
+		}
+		every action := !state.actions do {
+			if action.actionType == "shift" then{
+				every gotoState := !statesList do {
+					if gotoState === action.goto then {
+						gotoState.addSource(state)
+#						gotoState.addSourceToChain(action.sigma)
+						if not Lists::duplicate(gotoState.sourceInputs, action.sigma) then 
+							gotoState.addSourceInput(action.sigma)
+					}
+				} 
+			}
+		}
+	}
+	every state := !statesList do {
+		if *state.sources > 0 then {
+			every thisSource := !state.sources do {
+				thisSourceStateChain := []
+				if \thisSource then {
+					every thisState := !thisSource.sourceStateChain do {
+						put(thisSourceStateChain, thisState)
+					}
+					put(thisSourceStateChain, thisSource)
+					put(state.sourceStateChains, thisSourceStateChain)
+				}
+			}
+		}
+	}
+	every state := !statesList do {
+		every thisSource := !state.sourceStateChain do {
+			if \thisSource.sourceInputs[1] then state.addSourceToChain(thisSource.sourceInputs[1])
+		}
+		if \state.sourceInputs[1] then state.addSourceToChain(state.sourceInputs[1])
+	}
+	every state := !statesList do {
+	#	write("*** " || state.name || " ***")
+		analyizeSourceChain(nonTerminalsSet, state)
+	}
+end
+
+procedure analyizeSourceChain(nonTerminalsSet, state)
+	local
+		thisResult,
+		source,
+		variableCount,
+		rule
+		
+	while containsNonTerminal(nonTerminalsSet, state.sourceChain) === state.sourceChain do {
+		thisResult := []
+		every source := !state.sourceChain do {
+			if source.tokenType == "terminal" then put(thisResult, source)
+			if source.tokenType == "nonTerminal" then {
+				#select the production rule that is the shortest
+				variableCount := 10000
+				every rule := !source.productions do
+					if *rule.variables < variableCount then{
+						thisRule := rule
+						variableCount := *rule.variables
+					}
+				#insert the variables from the smallest rule in to the resulting chain
+				every thisVariable := !thisRule.variables do {
+					put(thisResult, thisVariable)
+				#	write("changed: " || source.token || " to " || thisVariable.token || " from " || state.getSourceChainTxt())
+				}
+			}
+		}
+		state.setSourceChain(thisResult)
+		state.setSourceChainTxt()
+		state.setPatternChainTxt()
+	}
+end
+
+procedure containsNonTerminal(nonTerminalsSet, chain)
+	every element := !chain do
+		if element.tokenType == "nonTerminal" then return chain
+end
+
+procedure duplicateChains(chainList, chain)
+	chainTxt := ""
+	every element := !chain do {
+		chainTxt := chainTxt || element.token
+	}
+	every testChain := !chainList do {
+		testChainTxt := ""
+		every element := !testChain do {
+			testChainTxt := testChainTxt || element.token
+		}
+		if chainTxt == testChainTxt then return chainTxt
+	}
+end
+
+procedure determineAcceptableInputsFromNonTerminals(state)
+# finds all possible acceptable for the state.
+	
+	every action := !state.actions do {
+		if action.actionType == "shift" then {
+			if action.sigma.tokenType == "terminal" then {
+				if not Lists::duplicate(state.acceptable, action.sigma) then {
+					state.addAcceptable(action.sigma)
+				}
+			}
+		}
+	}
+	every action := !state.actions do {
+		if action.actionType == "shift" then {		
+			if action.sigma.tokenType == "nonTerminal" then {
+				if not Lists::duplicate(state.nonTerminalShifts, action.sigma) then {
+					state.addNonTerminalShift(action.sigma)
+					every production := !action.sigma.productions do {
+						if \production then
+							if production.variables[1].tokenType == "terminal" then {
+								if not Lists::duplicate(state.acceptable, production.variables[1]) then {
+									state.addAcceptable(productionRule.variables[1])
+								}
+							}
+					}
+				}
+			}
+		}
+		#I'm not shure this section will add anything...
+		if action.actionType == "redude" then {
+			thisItem := action.item.left
+			if action.item.left.type == "terminal" then {
+				if not Lists::duplicate(state.acceptable, action.item.left) then {
+					state.addAcceptable(action.item.left)
+				}
+			}
+			if action.item.left.type == "nonTerminal" then {
+				if not Lists::duplicate(state.nonTerminalShifts, action.item.left) then {
+					state.addNonTerminalShift(action.item.left)
+					every productionRule := !action.item.left.productionRules do {
+						if \productionRule then
+							if productionRule.variables[1].type == "terminal" then {
+								if not Lists::duplicate(state.acceptable, productionRule.variables[1]) then {
+									state.addAcceptable(productionRule.variables[1])
+								}
+							}
+					}
+				}
+			}
+		}
+	}
+end
