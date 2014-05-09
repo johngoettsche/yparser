@@ -116,30 +116,17 @@ procedure closure(myState, item, B, itemSet)
 				}
 			}
 		}
-		#if \thisProductionRule.getVariable(1) then {
-#		thisB := thisProductionRule.getVariable(1)
-#		if \thisB then {
-#			if thisB.tokenType == "nonTerminal" then {
-#				if not member(itemSet, thisB) then { 
-#					insert(itemSet, thisB)
-#					makeItems(myState, item, thisB, itemSet)
-#				}
-#			}
-#		}
 	}
 
 	every thisProductionRule := B.getProductionRules() do {
 		if *thisProductionRule.variables > 0 then { 
 			newB := thisProductionRule.getVariable(1)
-			write("***" || newB.tokenType)
-			test := newB.tokenType
-			if test == "nonTerminal" then {
+			if newB.tokenType == "nonTerminal" then {
 				if not member(itemSet, newB) then { 
 					insert(itemSet, newB)
-					makeItems(myState, item, newB, itemSet)
+					closure(myState, item, newB, itemSet)
 				}
 			}
-			write("-------------")
 		}
 	}
 end
@@ -235,7 +222,11 @@ procedure makeAllItems(statesList, oldState, thisState, shiftElement)
       
 	itemSet := set()
 	every thisItem := oldState.getItems() do {
+		write("----")
+		write(thisItem.label)
 		newItem := thisItem.getShift()
+		write(newItem.label)
+		write("====")
 		if \newItem then {
 			newItem.setTxt()
 			if not duplicateStateLabel(statesList, newItem) then {

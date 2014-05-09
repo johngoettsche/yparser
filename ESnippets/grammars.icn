@@ -9,7 +9,7 @@ import DAO
 import Objects
 import productionRules
 
-procedure createNonTerminals(fileName, arguments, rawGrammar)  
+procedure createNonTerminals(fileName)  
 #	from the rawGrammar it creates the NonTerminals and
 #	procedes the createTerminals procedure
 
@@ -17,52 +17,35 @@ procedure createNonTerminals(fileName, arguments, rawGrammar)
 	local 
 		nonTerminal, 
 		nonTerminalWordList, 
-		nonTerminalCheckSet,
-		nonTerminalList,
 		outfile,
 		outfileName
    
-	nonTerminalCheckSet := set()
 	write("Creating Non-Terminals...\n")
+	nonTerminalList := []
 	thisFileName := fileName || ".nt"
 	nonTerminalWordList := DAO::getWordListFromFile(thisFileName)
-	nonTerminalList := []
 	every put(nonTerminalList, makeNonTerminalSet(nonTerminalWordList))
-	every insert(nonTerminalCheckSet, !nonTerminalWordList)
-	createTerminals(fileName, arguments, rawGrammar, nonTerminalCheckSet, nonTerminalList)
+
+	return nonTerminalList
 end
 
-procedure createTerminals(fileName, arguments, rawGrammar, nonTerminalCheckSet, nonTerminalList)
+procedure createTerminals(fileName)
+#procedure createTerminals(fileName, arguments, rawGrammar, nonTerminalCheckSet, nonTerminalList, terminalCheckSet, terminalList)
 #	from the rawGrammar, nonTerminalCheckSet and nonTerminalSet it
 #	produces the terminals and procedes to the creaeGrammar procedure
 
 	#create terminals
 	local 
-		terminalList, 
-		terminalsSet, 
-		terminalCheckSet, 
-		terminal,
-		outfile,
-		outfileName,
-		terminalsWordList
+		terminalList,
+		terminalWordList
       
 	write("Creating Terminals...\n")
-	
-	terminalCheckSet := set()
+	terminalList := []
 	thisFileName := fileName || ".t"
 	terminalWordList := DAO::getWordListFromFile(thisFileName)
-	terminalList := []
 	every put(terminalList, makeTerminalList(fileName, terminalWordList))
-	every insert(terminalCheckSet, !terminalWordList)
-	
-	productionRules::createProductionRules(
-			fileName,
-			arguments,
-			rawGrammar, 
-			nonTerminalCheckSet, 
-			nonTerminalList,
-			terminalCheckSet, 
-			terminalList)
+
+	return terminalList
 end
 
 procedure makeNonTerminalSet(nonTerminalWordList)

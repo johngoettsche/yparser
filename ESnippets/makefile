@@ -13,19 +13,19 @@ errSubset : Clock.u DAO.u errSubset.u
 yparser.u : yparser.icn
 	unicon -c yparser.icn
 
-ESnipLR1.u : ESnipLR1.icn DAO.u grammars.u
+ESnipLR1.u : ESnipLR1.icn DAO.u grammars.u productionRules.u statesLR1.u
 	unicon -c ESnipLR1.icn
 	
-ESnipSLR.u : ESnipSLR.icn DAO.u grammars.u
+ESnipSLR.u : ESnipSLR.icn DAO.u grammars.u productionRules.u statesSLR.u
 	unicon -c ESnipSLR.icn
 	
 errSubset.u : errSubset.icn Clock.u DAO.u
 	unicon -c errSubset.icn Clock.u DAO.u
 	
-grammars.u : grammars.icn DAO.u Objects.u productionRules.u
+grammars.u : grammars.icn DAO.u Objects.u 
 	unicon -c grammars.icn
 
-productionRules.u : productionRules.icn Clock.u DAO.u Objects.u statesSLR.u
+productionRules.u : productionRules.icn Clock.u DAO.u Objects.u
 	unicon -c productionRules.icn
 
 statesLR1.u : statesLR1.icn Clock.u lists.u Objects.u lookAhead.u

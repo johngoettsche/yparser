@@ -4,7 +4,9 @@
 
 import DAO
 import grammars
-  
+import productionRules
+import statesSLR
+
 procedure main(args)
 #	this tool is executed as follows:
 #	ESnipSLR [-options] filename
@@ -31,8 +33,15 @@ procedure main(args)
 		x,
 		arguments,
 		fileName,
-		thisFileName
-
+		thisFileName,
+		rawGrammar, 
+		nonTerminalCheckSet, 
+		nonTerminalList,
+		terminalCheckSet, 
+		terminalList,
+		terminalsSet, 
+		terminalsList
+		
 	x := 1
 	arguments := '' #set up cset for options
 	y := *args[x]
@@ -40,9 +49,40 @@ procedure main(args)
 		arguments := arguments ++ args[x][2: *args[x] + 1]
 		x +:= 1
 	}
+	
 	args[x] ? fileName := tab(upto('.'))
 	thisFileName := fileName || ".raw"
 	rawGrammar := DAO::getWordListFromFile(thisFileName)
 	
-	grammars::createNonTerminals(fileName, arguments, rawGrammar)  
+	nonTerminalCheckSet := set() 
+	nonTerminalList := grammars::createNonTerminals(fileName) 
+	
+	terminalCheckSet := set()
+	terminalList := grammars::createTerminals(fileName)
+	terminalSet := set()
+	
+	every nonTerm := !nonTerminalList do {
+		insert(nonTerminalCheckSet, nonTerm.token)
+	#	insert(nonTerminalsSet, nonTerm)
+	}
+	every term := !terminalList do {
+		insert(terminalCheckSet, term.token)
+		insert(terminalSet, term)
+	}
+	
+	nonTerminalList := productionRules::createProductionRules(
+			fileName,
+			arguments,
+			rawGrammar, 
+			nonTerminalCheckSet, 
+			nonTerminalList,
+			terminalCheckSet, 
+			terminalList)
+			
+	statesSLR::createStates(
+			fileName, 
+			arguments, 
+			nonTerminalList, 
+			terminalsSet, 
+			terminalsList)   
 end

@@ -7,7 +7,6 @@ package productionRules
 import Clock
 import DAO
 import Objects
-import statesLR1
 
 procedure createProductionRules(
 			fileName,
@@ -24,10 +23,12 @@ procedure createProductionRules(
 
 	local 
 		grammar, 
-		output,
 		outfile,
 		outfileName
 
+	#write("testing grammar:\n")
+	#every write (!rawGrammar)
+		
 	write("Creating Production Rules...\n")
 	grammar := makeProductionRules(
 			rawGrammar, 
@@ -37,21 +38,19 @@ procedure createProductionRules(
 			terminalsSet)
 
 	#print tokens
-	every nt := !nonTerminalList do write(nt.getTxt())
 	if *arguments > 0 then if member(arguments, "p") then {
 		if member(arguments, "o") then {
 			DAO::writeListToFile(fileName, nonTerminalList, "production")
 		} 
 		write("\nCreated a grammar with the following production rules:")
 		every output := !nonTerminalList do {
-			every write("\t" || output.getTxt())
+			write(output.getTxt())
 		}
 		Clock::printTime()
 		write("\n(press ENTER to continue)\n")
 		getch()
 	}
-   
-	statesLR1::createStates(fileName, arguments, nonTerminalList, terminalsSet, terminalsSet)  
+	return nonTerminalList
 end
 
 procedure makeProductionRules(
@@ -71,11 +70,12 @@ procedure makeProductionRules(
 		nonTerminal,
 		productionRule, 
 		term
-      
+
 	x := 1
+	productionRule := Objects::Production()
 	while rawGrammar[x] do {
-		if member(nonTerminalCheckSet, rawGrammar[x]) then {#is a non terminal?
-			if rawGrammar[x + 1] == ":" then { #is a grammar rule ?
+		if member(nonTerminalCheckSet, rawGrammar[x]) then {	#	is a non terminal?
+			if rawGrammar[x + 1] == ":" then {	#	is a grammar rule ?
 				every nonTerm := !nonTerminalList do {
 					if \nonTerm then {
 						if nonTerm.token == rawGrammar[x] then { 

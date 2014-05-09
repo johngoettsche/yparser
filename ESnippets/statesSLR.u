@@ -1,9 +1,9 @@
 version	U12.1.00
-uid	statesSLR.u1-1399422821-0
+uid	statesSLR.u1-1399602458-0
 impl	local
-link	C:/Users/John/Dropbox/Unicon/ESnippets/Clock.u
-link	C:/Users/John/Dropbox/Unicon/ESnippets/Objects.u
-link	C:/Users/John/Dropbox/Unicon/ESnippets/lookAhead.u
+link	C:/Users/John/Documents/GitHub/yparser/ESnippets/Clock.u
+link	C:/Users/John/Documents/GitHub/yparser/ESnippets/Objects.u
+link	C:/Users/John/Documents/GitHub/yparser/ESnippets/lookAhead.u
 global	7
 	0,000005,statesSLR__createStates,5
 	1,000005,statesSLR__makeItems,3

@@ -1,10 +1,9 @@
 version	U12.1.00
-uid	productionRules.u1-1399422821-0
+uid	productionRules.u1-1399602569-0
 impl	local
-link	C:/Users/John/Dropbox/Unicon/ESnippets/Clock.u
-link	C:/Users/John/Dropbox/Unicon/ESnippets/DAO.u
-link	C:/Users/John/Dropbox/Unicon/ESnippets/Objects.u
-link	C:/Users/John/Dropbox/Unicon/ESnippets/statesLR1.u
+link	C:/Users/John/Documents/GitHub/yparser/ESnippets/Clock.u
+link	C:/Users/John/Documents/GitHub/yparser/ESnippets/DAO.u
+link	C:/Users/John/Documents/GitHub/yparser/ESnippets/Objects.u
 global	3
 	0,000005,productionRules__createProductionRules,7
 	1,000005,productionRules__makeProductionRules,5
@@ -19,34 +18,31 @@ proc productionRules__createProductionRules
 	local	5,001000,terminalCheckSet
 	local	6,001000,terminalsSet
 	local	7,000020,grammar
-	local	8,000020,output
-	local	9,000020,outfile
-	local	10,000020,outfileName
-	local	11,000000,write
-	local	12,000000,productionRules__makeProductionRules
-	local	13,000000,nt
-	local	14,000000,member
-	local	15,000000,DAO__writeListToFile
-	local	16,000000,Clock__printTime
-	local	17,000000,getch
-	local	18,000000,statesLR1__createStates
+	local	8,000020,outfile
+	local	9,000020,outfileName
+	local	10,000000,write
+	local	11,000000,productionRules__makeProductionRules
+	local	12,000000,member
+	local	13,000000,DAO__writeListToFile
+	local	14,000000,output
+	local	15,000000,Clock__printTime
+	local	16,000000,getch
 	con	0,010000,29,103,162,145,141,164,151,156,147,040,120,162,157,144,165,143,164,151,157,156,040,122,165,154,145,163,056,056,056,012
 	con	1,002000,1,0
 	con	2,010000,1,160
 	con	3,010000,1,157
 	con	4,010000,10,160,162,157,144,165,143,164,151,157,156
 	con	5,010000,55,012,103,162,145,141,164,145,144,040,141,040,147,162,141,155,155,141,162,040,167,151,164,150,040,164,150,145,040,146,157,154,154,157,167,151,156,147,040,160,162,157,144,165,143,164,151,157,156,040,162,165,154,145,163,072
-	con	6,010000,1,011
-	con	7,010000,27,012,050,160,162,145,163,163,040,105,116,124,105,122,040,164,157,040,143,157,156,164,151,156,165,145,051,012
+	con	6,010000,27,012,050,160,162,145,163,163,040,105,116,124,105,122,040,164,157,040,143,157,156,164,151,156,165,145,051,012
 	declend
 	filen	productionRules.icn
-	line	12
+	line	11
 	colm	11
 	synt	any
 	mark	L1
-	var	11
+	var	10
 	str	0
-	line	31
+	line	32
 	colm	14
 	synt	any
 	invoke	1
@@ -55,66 +51,23 @@ lab L1
 	mark	L2
 	pnull
 	var	7
-	var	12
+	var	11
 	var	2
 	var	3
 	var	4
 	var	5
 	var	6
-	line	32
+	line	33
 	colm	56
 	synt	any
 	invoke	5
-	line	32
+	line	33
 	colm	17
 	synt	any
 	asgn
 	unmark
 lab L2
 	mark	L3
-	line	40
-	colm	9
-	synt	every
-	mark0
-	pnull
-	var	13
-	pnull
-	var	4
-	line	40
-	colm	21
-	synt	any
-	bang
-	line	40
-	colm	18
-	synt	any
-	asgn
-	pop
-	mark0
-	var	11
-	pnull
-	var	13
-	line	40
-	colm	49
-	synt	any
-	field	getTxt
-	line	40
-	colm	56
-	synt	any
-	invoke	0
-	line	40
-	colm	46
-	synt	any
-	invoke	1
-	unmark
-lab L4
-	efail
-lab L5
-	line	40
-	colm	9
-	synt	endevery
-	unmark
-lab L3
-	mark	L6
 	line	41
 	colm	9
 	synt	if
@@ -136,7 +89,7 @@ lab L3
 	colm	32
 	synt	if
 	mark0
-	var	14
+	var	12
 	var	1
 	str	2
 	line	41
@@ -144,12 +97,12 @@ lab L3
 	synt	any
 	invoke	2
 	unmark
-	mark	L7
+	mark	L4
 	line	42
 	colm	17
 	synt	if
 	mark0
-	var	14
+	var	12
 	var	1
 	str	3
 	line	42
@@ -157,7 +110,7 @@ lab L3
 	synt	any
 	invoke	2
 	unmark
-	var	15
+	var	13
 	var	0
 	var	4
 	str	4
@@ -169,23 +122,23 @@ lab L3
 	colm	17
 	synt	endif
 	unmark
-lab L7
-	mark	L8
-	var	11
+lab L4
+	mark	L5
+	var	10
 	str	5
 	line	45
 	colm	22
 	synt	any
 	invoke	1
 	unmark
-lab L8
-	mark	L9
+lab L5
+	mark	L6
 	line	46
 	colm	17
 	synt	every
 	mark0
 	pnull
-	var	8
+	var	14
 	pnull
 	var	4
 	line	46
@@ -198,65 +151,48 @@ lab L8
 	asgn
 	pop
 	mark0
-	line	47
-	colm	25
-	synt	every
-	mark0
-	var	11
+	var	10
 	pnull
-	str	6
-	pnull
-	var	8
+	var	14
 	line	47
-	colm	51
+	colm	37
 	synt	any
 	field	getTxt
 	line	47
-	colm	58
+	colm	44
 	synt	any
 	invoke	0
 	line	47
-	colm	42
-	synt	any
-	cat
-	line	47
-	colm	36
+	colm	30
 	synt	any
 	invoke	1
-	pop
-lab L12
-	efail
-lab L13
-	line	47
-	colm	25
-	synt	endevery
 	unmark
-lab L10
+lab L7
 	efail
-lab L11
+lab L8
 	line	46
 	colm	17
 	synt	endevery
 	unmark
-lab L9
-	mark	L14
-	var	16
+lab L6
+	mark	L9
+	var	15
 	line	49
 	colm	33
 	synt	any
 	invoke	0
 	unmark
-lab L14
-	mark	L15
-	var	11
-	str	7
+lab L9
+	mark	L10
+	var	10
+	str	6
 	line	50
 	colm	22
 	synt	any
 	invoke	1
 	unmark
-lab L15
-	var	17
+lab L10
+	var	16
 	line	51
 	colm	22
 	synt	any
@@ -268,23 +204,22 @@ lab L15
 	colm	9
 	synt	endif
 	unmark
-lab L6
-	mark	L16
-	var	18
-	var	0
-	var	1
+lab L3
+	mark	L11
+	mark	L12
 	var	4
-	var	6
-	var	6
-	line	54
-	colm	32
+	line	53
+	colm	9
 	synt	any
-	invoke	5
+	pret
+lab L12
+	synt	any
+	pfail
 	unmark
-lab L16
+lab L11
 	pnull
-	line	55
-	colm	1
+	line	54
+	colm	2
 	synt	any
 	pfail
 	end
@@ -299,29 +234,43 @@ proc productionRules__makeProductionRules
 	local	7,000020,nonTerminal
 	local	8,000020,productionRule
 	local	9,000020,term
-	local	10,000000,member
-	local	11,000000,Objects__Production
+	local	10,000000,Objects__Production
+	local	11,000000,member
 	local	12,000000,productionRules__errorFree
 	con	0,002000,1,1
 	con	1,010000,1,072
 	con	2,010000,1,174
 	con	3,010000,1,073
 	declend
-	line	57
+	line	56
 	colm	12
 	synt	any
 	mark	L1
 	pnull
 	var	5
 	int	0
-	line	75
+	line	74
 	colm	11
 	synt	any
 	asgn
 	unmark
 lab L1
 	mark	L2
-lab L3
+	pnull
+	var	8
+	var	10
+	line	75
+	colm	46
+	synt	any
+	invoke	0
+	line	75
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+lab L4
 	line	76
 	colm	9
 	synt	while
@@ -334,13 +283,13 @@ lab L3
 	synt	any
 	subsc
 	unmark
-	mark	L3
-	mark	L6
+	mark	L4
+	mark	L7
 	line	77
 	colm	17
 	synt	if
 	mark0
-	var	10
+	var	11
 	var	1
 	pnull
 	var	0
@@ -357,7 +306,7 @@ lab L3
 	line	78
 	colm	25
 	synt	ifelse
-	mark	L7
+	mark	L8
 	pnull
 	pnull
 	var	0
@@ -430,7 +379,7 @@ lab L3
 	synt	any
 	lexeq
 	unmark
-	mark	L11
+	mark	L12
 	pnull
 	var	7
 	var	6
@@ -439,11 +388,11 @@ lab L3
 	synt	any
 	asgn
 	unmark
-lab L11
-	mark	L12
+lab L12
+	mark	L13
 	pnull
 	var	8
-	var	11
+	var	10
 	line	83
 	colm	94
 	synt	any
@@ -453,7 +402,7 @@ lab L11
 	synt	any
 	asgn
 	unmark
-lab L12
+lab L13
 	pnull
 	var	5
 	pnull
@@ -474,14 +423,14 @@ lab L12
 	colm	41
 	synt	endif
 	unmark
-lab L9
-	efail
 lab L10
+	efail
+lab L11
 	line	79
 	colm	33
 	synt	endevery
-	goto	L8
-lab L7
+	goto	L9
+lab L8
 	line	89
 	colm	33
 	synt	every
@@ -552,13 +501,13 @@ lab L7
 	colm	41
 	synt	endif
 	unmark
-lab L13
-	efail
 lab L14
+	efail
+lab L15
 	line	89
 	colm	33
 	synt	endevery
-lab L8
+lab L9
 	line	78
 	colm	25
 	synt	endifelse
@@ -566,13 +515,13 @@ lab L8
 	colm	17
 	synt	endif
 	unmark
-lab L6
-	mark	L15
+lab L7
+	mark	L16
 	line	100
 	colm	17
 	synt	if
 	mark0
-	var	10
+	var	11
 	var	3
 	pnull
 	var	0
@@ -670,9 +619,9 @@ lab L6
 	colm	33
 	synt	endif
 	unmark
-lab L16
-	efail
 lab L17
+	efail
+lab L18
 	line	101
 	colm	25
 	synt	endevery
@@ -680,8 +629,8 @@ lab L17
 	colm	17
 	synt	endif
 	unmark
-lab L15
-	mark	L18
+lab L16
+	mark	L19
 	line	109
 	colm	17
 	synt	if
@@ -700,7 +649,7 @@ lab L15
 	synt	any
 	lexeq
 	unmark
-	mark	L19
+	mark	L20
 	line	110
 	colm	25
 	synt	if
@@ -733,10 +682,10 @@ lab L15
 	colm	25
 	synt	endif
 	unmark
-lab L19
+lab L20
 	pnull
 	var	8
-	var	11
+	var	10
 	line	113
 	colm	62
 	synt	any
@@ -749,8 +698,8 @@ lab L19
 	colm	17
 	synt	endif
 	unmark
-lab L18
-	mark	L20
+lab L19
+	mark	L21
 	line	117
 	colm	17
 	synt	if
@@ -769,7 +718,7 @@ lab L18
 	synt	any
 	lexeq
 	unmark
-	mark	L21
+	mark	L22
 	line	118
 	colm	25
 	synt	if
@@ -802,7 +751,7 @@ lab L18
 	colm	25
 	synt	endif
 	unmark
-lab L21
+lab L22
 	line	121
 	colm	25
 	synt	if
@@ -827,10 +776,10 @@ lab L21
 	synt	any
 	lexeq
 	unmark
-	mark	L22
+	mark	L23
 	pnull
 	var	8
-	var	11
+	var	10
 	line	122
 	colm	70
 	synt	any
@@ -840,7 +789,7 @@ lab L21
 	synt	any
 	asgn
 	unmark
-lab L22
+lab L23
 	pnull
 	var	5
 	dup
@@ -857,7 +806,7 @@ lab L22
 	colm	17
 	synt	endif
 	unmark
-lab L20
+lab L21
 	pnull
 	var	5
 	dup
@@ -867,15 +816,15 @@ lab L20
 	synt	any
 	plus
 	asgn
-lab L4
-	unmark
-	goto	L3
 lab L5
+	unmark
+	goto	L4
+lab L6
 	line	76
 	colm	9
 	synt	endwhile
 	unmark
-lab L2
+lab L3
 	pnull
 	line	128
 	colm	1

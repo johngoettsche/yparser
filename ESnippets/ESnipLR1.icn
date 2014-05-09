@@ -4,6 +4,8 @@
 
 import DAO
 import grammars
+import productionRules
+import statesLR1
   
 procedure main(args)
 #	this tool is executed as follows:
@@ -27,12 +29,18 @@ procedure main(args)
 #	- a	veriety of state source strings and acceptable and unacceptable inputs
 #	- a	.err file to be edited by the user and use with Muth
 
-	local
+	local 
 		x,
 		arguments,
 		fileName,
-		thisFileName
-
+		thisFileName,
+		rawGrammar, 
+		nonTerminalCheckSet, 
+		nonTerminalList,
+		terminalCheckSet, 
+		terminalList,
+		terminalSet
+	
 	x := 1
 	arguments := '' #set up cset for options
 	y := *args[x]
@@ -40,9 +48,40 @@ procedure main(args)
 		arguments := arguments ++ args[x][2: *args[x] + 1]
 		x +:= 1
 	}
+	
 	args[x] ? fileName := tab(upto('.'))
 	thisFileName := fileName || ".raw"
 	rawGrammar := DAO::getWordListFromFile(thisFileName)
 	
-	grammars::createNonTerminals(fileName, arguments, rawGrammar)  
+	nonTerminalCheckSet := set() 
+	nonTerminalList := grammars::createNonTerminals(fileName) 
+	
+	terminalCheckSet := set()
+	terminalList := grammars::createTerminals(fileName)
+	terminalSet := set()
+	
+	every nonTerm := !nonTerminalList do {
+		insert(nonTerminalCheckSet, nonTerm.token)
+	#	insert(nonTerminalsSet, nonTerm)
+	}
+	every term := !terminalList do {
+		insert(terminalCheckSet, term.token)
+		insert(terminalSet, term)
+	}
+	
+	productionRules::createProductionRules(
+			fileName,
+			arguments,
+			rawGrammar, 
+			nonTerminalCheckSet, 
+			nonTerminalList,
+			terminalCheckSet, 
+			terminalList)
+	
+	statesLR1::createStates(
+			fileName, 
+			arguments, 
+			nonTerminalList, 
+			terminalsSet, 
+			terminalsList)  
 end

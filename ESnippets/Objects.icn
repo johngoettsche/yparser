@@ -36,10 +36,12 @@ class NonTerminal(tokenType, token, productions, pattern)
 
 	method getTxt()      
 		local production, thisString
+
+		thisString := ""
 		every production := !productions do {
-			thisString := token || " <- " || production.getTxt()
-			suspend thisString
+			thisString := thisString || token || " <- " || production.getTxt() || "\n"
 		}
+		return thisString
 	end
    
 initially
