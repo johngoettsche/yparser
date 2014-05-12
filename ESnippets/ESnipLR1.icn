@@ -82,6 +82,6 @@ procedure main(args)
 			fileName, 
 			arguments, 
 			nonTerminalList, 
-			terminalsSet, 
-			terminalsList)  
+			terminalSet, 
+			terminalList)  
 end

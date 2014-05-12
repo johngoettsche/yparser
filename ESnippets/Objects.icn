@@ -405,6 +405,9 @@ class Item(left, alpha, beta, lookAheadTerminal, label)
 			element, 
 			count
       
+		if/beta then {
+			write("Beta Error")
+		}
 		if *beta > 0 then {
 			newItem := Item()
 			newItem.setLeft(left)

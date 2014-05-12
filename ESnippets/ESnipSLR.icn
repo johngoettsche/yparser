@@ -39,8 +39,7 @@ procedure main(args)
 		nonTerminalList,
 		terminalCheckSet, 
 		terminalList,
-		terminalsSet, 
-		terminalsList
+		terminalSet
 		
 	x := 1
 	arguments := '' #set up cset for options
@@ -83,6 +82,6 @@ procedure main(args)
 			fileName, 
 			arguments, 
 			nonTerminalList, 
-			terminalsSet, 
-			terminalsList)   
+			terminalSet, 
+			terminalList)   
 end

@@ -6,7 +6,7 @@ package statesSLR
 
 import Clock
 import Objects
-import lookAhead
+import tableSLR
 
 procedure createStates(fileName, arguments, nonTerminalSet, terminalSet, terminalList)
 #	is a work in progress

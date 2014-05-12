@@ -1,0 +1,90 @@
+#  John Goettsche
+#  under the direction of Clinton Jeffery
+#  University of Idaho
+
+package tableLR1
+
+import Clock
+import stateAnalysis
+
+procedure createLookAheads(fileName, arguments, statesList, terminalsList, nonTerminalsSet)
+	local
+		state,
+		item,
+		count,
+		newAction,
+		thisState,
+		searchLabel,
+		compareLabel,
+		goto,
+		sigma,
+		searchItem,
+		thisItem,
+		actionType,
+		checkLength,
+		checkString,
+		actions,
+		action,
+		outfile,
+		outfileName
+		
+	write("\nCreating actions...\n")
+	every state := !statesList do {
+		every item := !state.getItemsList() do {
+			sigma := &null
+			sigma := item.getBeta(1)
+			if \sigma then { #Conditions #2a or 3 of Algorithm 4.10 of Dragon Book
+				searchItem := item.getShift()
+				searchItem.setTxt()			
+				searchLabel := searchItem.label
+				every thisState := !statesList do{
+					thisItem := thisState.getItemsList()[1] 
+					if thisItem.left === searchItem.left then {
+						compareLabel := thisItem.label
+						if searchLabel == compareLabel then goto := thisState
+					}
+				}
+				if \goto then {
+					actionType := "shift"
+				} else write("unable to find: " || searchLabel)
+			} else { #Condition #2b of Algorithm 4.10 in Dragon Book
+				actionType := "reduce" 
+				checkLength := *item.left.token
+				checkString := item.left.token[1:checkLength]
+				if \item.getLastAlpha() then { #Condition #2c of Algorithm 4.8 of Dragon Book
+					if item.left.tokenType == "prime" & item.getLastAlpha().token == checkString then {
+						actionType := "accept"
+						goto := &null
+					}	
+				}
+			}
+			newAction := Objects::Action(state, item, actionType, sigma, goto)
+			if not Lists::duplicate(state.actions, newAction) then {				
+				state.addAction(newAction)
+			} else { # select goto state with the shortest Beta, this is my assumption it may have to be removed.
+				if \actions then 
+					every action := !actions do {
+						if action.sigma === sigma then # select goto state with the shortest Beta
+							if *action.item.beta > item.beta then action.goto := goto
+					}
+			}
+		}
+	}
+
+	if *arguments > 0 then if member(arguments, "a") then {
+		outfile := &output
+		outfileName := fileName || ".sa"
+		if member(arguments, "o") then DAO::writeListToFile(outfileName, statesList, "actions")
+		write("\nState Actions:\n") 			
+		every state := !statesList do {
+			write("\n" || state.name)
+			write(state.getActionTxt())
+		}
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+		getch()
+	}   
+	stateAnalysis::createStateAnalysis(fileName, arguments, statesList, terminalsList, nonTerminalsSet)
+end
+
+

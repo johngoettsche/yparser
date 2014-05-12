@@ -18,125 +18,141 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 	determineAllSources(nonTerminalsSet, statesList)
 	every state := !statesList do determineAcceptableInputsFromNonTerminals(state)
 	errorSnippets := []
-	
-	if *arguments > 0 then if member(arguments, "E") then {
-		every state := !statesList do {
-			write(state.name)
-			every errorSnippet := getAllErrorSnippets(state, terminalsList) do
-				if errorSnippet ? tab(1) ~== "#" then {
-					if not Lists::duplicate(errorSnippets, errorSnippet) then {
-						put(errorSnippets, errorSnippet)
-					}
-				}
-		}
-	}
 
-	if *arguments > 0 then if member(arguments, "e") then {
+	if *arguments > 0 then if member(arguments, "e") | member(arguments, "m")then {
 		every state := !statesList do {
 			write(state.name)
 			errorSnippet := getErrorSnippets(state, terminalsList)
-			if errorSnippet ? tab(1) ~== "#" then {
+#			if errorSnippet ? tab(1) ~== "#" then {
 				if not Lists::duplicate(errorSnippets, errorSnippet) then {
-					if not Lists::duplicate(errorSnippets, errorSnippet) then {
-						put(errorSnippets, errorSnippet)
-					}
+					put(errorSnippets, errorSnippet)
 				}
+#			}
+		}
+		if member(arguments, "o") then {
+			if member(arguments, "e") then DAO::writeListToFile(fileName, errorSnippets, "errors")
+			if member(arguments, "m") then DAO::writeListToFile(fileName || ".e", errorSnippets, "standard")
+		}
+		if member(arguments, "e") then {
+			write("\nPotential Error Snippets:") 
+			every errorSnippet := !errorSnippets do write(errorSnippet)
+		}
+		if member(arguments, "m") then {
+			write("\nPotential Error Snippets in Merr format:") 
+			every errorSnippet := !errorSnippets do{
+				write(errorSnippet)
+				write("::: syntax error")
 			}
 		}
-	}
-	
-	if *arguments > 0 then if member(arguments, "E") | member(arguments, "e") then {
-		write("\nPotential Error Snippets:") 
-		if member(arguments, "o") then {
-			DAO::writeListToFile(fileName, errorSnippets, "errors")
-			DAO::writeListToFile(fileName || ".e", errorSnippets, "standard")
-		}
-		every errorSnippet := !errorSnippets do write(errorSnippet)
 		Clock::printTime()
 		write("\n(press ENTER to continue)\n")
       getch()
 	}
 	
-	if *arguments > 0 then if member(arguments, "S") then {
-		outfileName := fileName || "so"
-		if member(arguments, "o") then writeListToFile(outfileName, thisList, fileType)
-		write("\nState Sources:\n") 
-		if outfile ~=== &output then {
-			every state := !statesList do {
-				write(outfile, "\n" || state.name)
-				if *state.sourceChains > 0 then {
-					write(outfile, "\tSources:")
-					write(outfile, state.getSourceChainsTxt())
-				}
-				if *state.sources > 0 then {
-					write(outfile, "\tMost recent states:")
-					write(outfile, state.getSourcesTxt())
-				}
-				if *state.sourceInputs > 0 then {	
-					write(outfile, "\tMost recent inputs:")
-					write(outfile, state.getSourceInputTxt())
-				}
-				if *state.sourceStateChain > 0 then {	
-					write(outfile, "\tConstructed Source State Chain:")
-					write(outfile, state.getSourceStateChainTxt())
-				}
-				if *state.sourceStateChains > 0 then {	
-					write(outfile, "\tSource State Chains:")
-					write(outfile, state.getSourceStateChainsTxt())
-				}
-				if *state.sourceChain > 0 then {
-					write(outfile, "\tInput chain:")
-					write(outfile, state.sourceChainTxt)
-					if \state.patternChainTxt then write(outfile, "\t\t" || state.patternChainTxt)			
-				}
-				if *state.acceptable > 0 then {	
-					write(outfile, "\tAcceptable inputs:")
-					write(outfile, state.getAcceptableTxt(terminalsList))
-					write(outfile, "\tNot acceptable inputs:")
-					every notAcceptable := getNotAcceptable(state, terminalsList) do write(outfile, "\t" || notAcceptable.token)
-				}
-			}
+	if *arguments > 0 then if member(arguments, "y") then {
+		fileName := fileName || ".ac"
+		txt := "\nAcceptable Inputs:\n"
+		every thisState := !statesList do {
+			txt := txt || thisState.name || "\n"
+			every accept := !thisState.acceptable do txt := txt || "\t" || accept.token || "\n" 
 		}
-		
-		every state := !statesList do {
-			write("\n" || state.name)
-			if *state.sourceChains > 0 then {
-				write("\tSources:")
-				write(state.getSourceChainsTxt())
-			}
-			if *state.sources > 0 then {
-				write("\tMost recent states:")
-				write(state.getSourcesTxt())
-			}
-			if *state.sourceInputs > 0 then {
-				write("\tMost recent inputs:")
-				write(state.getSourceInputTxt())	
-			}
-			if *state.sourceStateChain > 0 then {
-				write("\tConstructed Source State Chain:")
-				write(state.getSourceStateChainTxt())
-			}
-			if *state.sourceStateChains > 0 then {
-				write("\tSource State Chains:")
-				write(state.getSourceStateChainsTxt())
-			}
-			if *state.sourceChain > 0 then {			
-				write("\tInput chain:")
-				write(state.sourceChainTxt)
-				if \state.patternChainTxt then write("\t\t" || state.patternChainTxt)
-			}
-			if *state.acceptable > 0 then {
-				write("\tAcceptable inputs:")
-				write(state.getAcceptableTxt(terminalsList))
-				write("\tNot acceptable inputs:")
-				every notAcceptable := getNotAcceptable(state, terminalsList) do write("\t" || notAcceptable.token)
-			}
+		if member(arguments, "o") then {
+			DAO::writeStringToFile(fileName, txt)
 		}
-		write("\ncreated file: " || outfileName)
-		close(outfile)
+		write(txt)
 		Clock::printTime()
 		write("\n(press ENTER to continue)\n")
-		getch()
+      getch()
+	}
+	
+	if *arguments > 0 then if member(arguments, "x") then {
+		fileName := fileName || ".un"
+		txt := "\nUnacceptable Inputs:\n"
+		every thisState := !statesList do {
+			txt := txt || thisState.name || "\n"
+			every unAccept := getNotAcceptable(thisState, terminalsList) do txt := txt || "\t" || unAccept.token || "\n" 
+		}
+		if member(arguments, "o") then {
+			DAO::writeStringToFile(fileName, txt)
+		}
+		write(txt)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+      getch()
+	}
+	
+	if *arguments > 0 then if member(arguments, "c") then {
+		fileName := fileName || ".ch"
+		txt := "\nSource Chain:\n"
+		every thisState := !statesList do {
+			txt := txt || thisState.name || "\n\t"
+			every source := !thisState.sourceChain do txt := txt || source.token || " " 
+			txt := txt || "\n"
+		}
+		if member(arguments, "o") then {
+			DAO::writeStringToFile(fileName, txt)
+		}
+		write(txt)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+      getch()
+	}
+	
+	if *arguments > 0 then if member(arguments, "C") then {
+		fileName := fileName || ".chs"
+		txt := "\nSource Chains:\n"
+		every thisState := !statesList do {
+			txt := txt || thisState.name || "\n"
+			every chain := !thisState.sourceChains do {
+				txt := txt || "\t"
+				every source := !chain do txt := txt || source.token || " " 
+				txt := txt || "\n"
+			}
+		}
+		if member(arguments, "o") then {
+			DAO::writeStringToFile(fileName, txt)
+		}
+		write(txt)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+      getch()
+	}
+	
+		if *arguments > 0 then if member(arguments, "l") then {
+		fileName := fileName || ".sn"
+		txt := "\nSource Chain:\n"
+		every thisState := !statesList do {
+			txt := txt || thisState.name || "\n\t"
+			every source := !thisState.sourceChain do txt := txt || source.pattern || " " 
+			txt := txt || "\n"
+		}
+		if member(arguments, "o") then {
+			DAO::writeStringToFile(fileName, txt)
+		}
+		write(txt)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+      getch()
+	}
+	
+	if *arguments > 0 then if member(arguments, "L") then {
+		fileName := fileName || ".ch"
+		txt := "\nSource Chains:\n"
+		every thisState := !statesList do {
+			txt := txt || thisState.name || "\n"
+			every chain := !thisState.sourceChains do {
+				txt := txt || "\t"
+				every source := !chain do txt := txt || source.token || " " 
+				txt := txt || "\n"
+			}
+		}
+		if member(arguments, "o") then {
+			DAO::writeStringToFile(fileName, txt)
+		}
+		write(txt)
+		Clock::printTime()
+		write("\n(press ENTER to continue)\n")
+      getch()
 	}
 end
 
@@ -151,8 +167,10 @@ procedure getErrorSnippets(state, terminalsList)
 	if *terminals > 1 then thisTerminal := terminals[2]
 	else thisTerminal := terminals[1]	
 	
-	if \state.patternChainTxt then return state.patternChainTxt || thisTerminal.pattern
-	else return thisTerminal.pattern
+	if \thisTerminal then {
+		if \state.patternChainTxt then return state.patternChainTxt || thisTerminal.pattern
+		else return thisTerminal.pattern
+	} else { return "$" }
 end
 
 procedure getAllErrorSnippets(state, terminalsList)

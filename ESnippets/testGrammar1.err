@@ -1,12 +1,18 @@
 *
-::: ID required
+::: syntax error
+x (
+::: syntax error
+x *
+::: syntax error
 x + *
-::: ID required
+::: syntax error
 x * *
-::: ID required
+::: syntax error
 ( x (
-::: function required
+::: syntax error
 x + x (
-::: function required
+::: syntax error
+x * x *
+::: syntax error
 ( x ) *
-::: ID required
+::: syntax error

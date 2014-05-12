@@ -1,0 +1,355 @@
+program <- decls EOFX 
+
+decls <- 
+decls <- decls decl 
+
+decl <- record 
+decl <- proc 
+decl <- global 
+decl <- link 
+decl <- package 
+decl <- import 
+decl <- invocable 
+decl <- cl 
+
+initiallysection <- 
+initiallysection <- INITIALLY SEMICOL locals initial procbody 
+initiallysection <- INITIALLY LPAREN arglist RPAREN SEMICOL locals initial procbody 
+
+optsemi <- 
+optsemi <- SEMICOL 
+
+cl <- classhead SEMICOL END 
+cl <- classhead optsemi clocals methods optsemi initiallysection END 
+
+classhead <- CLASS IDENT supers LPAREN carglist RPAREN 
+
+supers <- 
+supers <- COLON IDENT supers 
+supers <- COLON packageref supers 
+
+packageref <- IDENT COLONCOLON IDENT 
+packageref <- COLONCOLON IDENT 
+
+methods <- 
+methods <- meth methods 
+methods <- global methods 
+methods <- record methods 
+
+invocable <- INVOCABLE invoclist 
+
+invoclist <- invocop 
+invoclist <- invoclist COMMA invocop 
+
+invocop <- IDENT 
+invocop <- STRINGLIT 
+invocop <- STRINGLIT COLON INTLIT 
+
+package <- PACKAGE lnkfile 
+
+import <- IMPORT implist 
+
+link <- LINK lnklist 
+
+lnklist <- lnkfile 
+lnklist <- lnklist COMMA lnkfile 
+
+implist <- lnkfile 
+implist <- implist COMMA lnkfile 
+
+lnkfile <- IDENT 
+lnkfile <- STRINGLIT 
+
+global <- GLOBAL idlist 
+
+record <- RECORD IDENT LPAREN fldlist RPAREN 
+
+fldlist <- 
+fldlist <- idlist 
+
+proc <- prochead SEMICOL locals initial procbody END 
+
+meth <- methhead SEMICOL locals initial procbody END 
+meth <- ABSTRACT methhead 
+
+prochead <- PROCEDURE IDENT LPAREN arglist RPAREN 
+
+methhead <- METHOD IDENT LPAREN arglist RPAREN 
+
+arglist <- 
+arglist <- parmlist 
+arglist <- parmlist LBRACK RBRACK 
+
+carglist <- 
+carglist <- cparmlist 
+carglist <- cparmlist LBRACK RBRACK 
+
+idlist <- IDENT 
+idlist <- idlist COMMA IDENT 
+
+varlist <- IDENT 
+varlist <- IDENT ASSIGN expr1 
+varlist <- varlist COMMA IDENT 
+varlist <- varlist COMMA IDENT ASSIGN expr1 
+
+stalist <- IDENT 
+stalist <- IDENT ASSIGN expr1 
+stalist <- stalist COMMA IDENT 
+stalist <- stalist COMMA IDENT ASSIGN expr1 
+
+parmlist <- arg 
+parmlist <- parmlist COMMA arg 
+
+cparmlist <- carg 
+cparmlist <- cparmlist COMMA carg 
+
+arg <- IDENT 
+arg <- IDENT COLON IDENT 
+arg <- IDENT COLON literal 
+arg <- IDENT COLON IDENT COLON literal 
+arg <- IDENT COLON AND IDENT 
+arg <- IDENT COLON IDENT COLON AND IDENT 
+
+carg <- priv arg 
+
+priv <- 
+priv <- PLUS 
+priv <- MINUS 
+
+clocals <- 
+clocals <- clocals LOCAL varlist optsemi 
+
+locals <- 
+locals <- locals LOCAL varlist SEMICOL 
+locals <- locals STATIC stalist SEMICOL 
+
+initial <- 
+initial <- iconINITIAL expr SEMICOL 
+
+procbody <- 
+procbody <- nexpr SEMICOL procbody 
+
+nexpr <- 
+nexpr <- expr 
+
+expr <- expr1a 
+expr <- expr AND expr1a 
+
+expr1a <- expr1 
+expr1a <- expr1a QMARK expr1 
+
+expr1 <- expr2a 
+expr1 <- expr2a SWAP expr1 
+expr1 <- expr2a ASSIGN expr1 
+expr1 <- expr2a REVSWAP expr1 
+expr1 <- expr2a REVASSIGN expr1 
+expr1 <- expr2a AUGCONCAT expr1 
+expr1 <- expr2a AUGLCONCAT expr1 
+expr1 <- expr2a AUGDIFF expr1 
+expr1 <- expr2a AUGUNION expr1 
+expr1 <- expr2a AUGPLUS expr1 
+expr1 <- expr2a AUGMINUS expr1 
+expr1 <- expr2a AUGSTAR expr1 
+expr1 <- expr2a AUGINTER expr1 
+expr1 <- expr2a AUGSLASH expr1 
+expr1 <- expr2a AUGMOD expr1 
+expr1 <- expr2a AUGCARET expr1 
+expr1 <- expr2a AUGNMEQ expr1 
+expr1 <- expr2a AUGEQUIV expr1 
+expr1 <- expr2a AUGNMGE expr1 
+expr1 <- expr2a AUGNMGT expr1 
+expr1 <- expr2a AUGNMLE expr1 
+expr1 <- expr2a AUGNMLT expr1 
+expr1 <- expr2a AUGNMNE expr1 
+expr1 <- expr2a AUGNEQUIV expr1 
+expr1 <- expr2a AUGSEQ expr1 
+expr1 <- expr2a AUGSGE expr1 
+expr1 <- expr2a AUGSGT expr1 
+expr1 <- expr2a AUGSLE expr1 
+expr1 <- expr2a AUGSLT expr1 
+expr1 <- expr2a AUGSNE expr1 
+expr1 <- expr2a AUGQMARK expr1 
+expr1 <- expr2a AUGAND expr1 
+expr1 <- expr2a AUGAT expr1 
+
+expr2a <- expr2 
+expr2a <- expr2a PMATCH expr2 
+
+expr2 <- expr3 
+expr2 <- expr2 TO expr3 
+expr2 <- expr2 TO expr3 BY expr3 
+expr2 <- expr2 POR expr3 
+
+expr3 <- expr4 
+expr3 <- expr4 PAND expr3 
+expr3 <- expr4 BAR expr3 
+
+expr4 <- expr5 
+expr4 <- expr4 PIMDASSN expr5 
+expr4 <- expr4 PASSNONMATCH expr5 
+expr4 <- expr4 SEQ expr5 
+expr4 <- expr4 SGE expr5 
+expr4 <- expr4 SGT expr5 
+expr4 <- expr4 SLE expr5 
+expr4 <- expr4 SLT expr5 
+expr4 <- expr4 SNE expr5 
+expr4 <- expr4 NMEQ expr5 
+expr4 <- expr4 NMGE expr5 
+expr4 <- expr4 NMGT expr5 
+expr4 <- expr4 NMLE expr5 
+expr4 <- expr4 NMLT expr5 
+expr4 <- expr4 NMNE expr5 
+expr4 <- expr4 EQUIV expr5 
+expr4 <- expr4 NEQUIV expr5 
+
+expr5 <- expr6 
+expr5 <- expr5 CONCAT expr6 
+expr5 <- expr5 LCONCAT expr6 
+
+expr6 <- expr7 
+expr6 <- expr6 PLUS expr7 
+expr6 <- expr6 DIFF expr7 
+expr6 <- expr6 UNION expr7 
+expr6 <- expr6 MINUS expr7 
+
+expr7 <- expr8 
+expr7 <- expr7 STAR expr8 
+expr7 <- expr7 INTER expr8 
+expr7 <- expr7 SLASH expr8 
+expr7 <- expr7 MOD expr8 
+
+expr8 <- expr9 
+expr8 <- postfixthreadop 
+expr8 <- expr9 CARET expr8 
+
+postfixthreadop <- expr9 SND 
+postfixthreadop <- expr9 SNDBK 
+postfixthreadop <- expr9 RCV 
+postfixthreadop <- expr9 RCVBK 
+
+expr9 <- expr10 
+expr9 <- expr9 BACKSLASH expr10 
+expr9 <- expr9 AT expr10 
+expr9 <- expr9 SND expr10 
+expr9 <- expr9 SNDBK expr10 
+expr9 <- expr9 RCV expr10 
+expr9 <- expr9 RCVBK expr10 
+expr9 <- expr9 BANG expr10 
+
+expr10 <- expr11 
+expr10 <- AT expr10 
+expr10 <- SND expr10 
+expr10 <- SNDBK expr10 
+expr10 <- RCV expr10 
+expr10 <- RCVBK expr10 
+expr10 <- NOT expr10 
+expr10 <- BAR expr10 
+expr10 <- CONCAT expr10 
+expr10 <- LCONCAT expr10 
+expr10 <- DOT expr10 
+expr10 <- BANG expr10 
+expr10 <- DIFF expr10 
+expr10 <- PLUS expr10 
+expr10 <- STAR expr10 
+expr10 <- SLASH expr10 
+expr10 <- CARET expr10 
+expr10 <- INTER expr10 
+expr10 <- TILDE expr10 
+expr10 <- MINUS expr10 
+expr10 <- NMEQ expr10 
+expr10 <- NMNE expr10 
+expr10 <- SEQ expr10 
+expr10 <- SNE expr10 
+expr10 <- EQUIV expr10 
+expr10 <- UNION expr10 
+expr10 <- QMARK expr10 
+expr10 <- NEQUIV expr10 
+expr10 <- BACKSLASH expr10 
+expr10 <- PSETCUR expr10 
+
+expr11 <- literal 
+expr11 <- section 
+expr11 <- return 
+expr11 <- if 
+expr11 <- case 
+expr11 <- while 
+expr11 <- until 
+expr11 <- every 
+expr11 <- repeat 
+expr11 <- SND 
+expr11 <- SNDBK 
+expr11 <- RCV 
+expr11 <- RCVBK 
+expr11 <- PUNEVAL 
+expr11 <- CREATE expr 
+expr11 <- THREAD expr 
+expr11 <- CRITICAL expr2a COLON expr 
+expr11 <- IDENT 
+expr11 <- NEXT 
+expr11 <- BREAK nexpr 
+expr11 <- LPAREN exprlist RPAREN 
+expr11 <- LBRACE compound RBRACE 
+expr11 <- LBRACK caselist RBRACK 
+expr11 <- LBRACK exprlist RBRACK 
+expr11 <- LBRACK COLON expr COLON RBRACK 
+expr11 <- expr11 LBRACK exprlist RBRACK 
+expr11 <- expr11 LBRACE RBRACE 
+expr11 <- expr11 LBRACE pdcolist RBRACE 
+expr11 <- expr11 LPAREN exprlist RPAREN 
+expr11 <- expr11 DOLLAR INITIALLY LPAREN exprlist RPAREN 
+expr11 <- expr11 DOLLAR IDENT LPAREN exprlist RPAREN 
+expr11 <- expr11 DOLLAR IDENT DOT INITIALLY LPAREN exprlist RPAREN 
+expr11 <- expr11 DOLLAR IDENT DOT IDENT LPAREN exprlist RPAREN 
+expr11 <- expr11 DOT IDENT 
+expr11 <- packageref 
+expr11 <- expr11 DOT INITIALLY 
+expr11 <- AND FAIL 
+expr11 <- AND IDENT 
+
+while <- WHILE expr 
+while <- WHILE expr DO expr 
+
+until <- UNTIL expr 
+until <- UNTIL expr DO expr 
+
+every <- EVERY expr 
+every <- EVERY expr DO expr 
+
+repeat <- REPEAT expr 
+
+return <- FAIL 
+return <- RETURN nexpr 
+return <- SUSPEND nexpr 
+return <- SUSPEND expr DO expr 
+
+if <- IF expr THEN expr 
+if <- IF expr THEN expr ELSE expr 
+
+case <- CASE expr OF LBRACE caselist RBRACE 
+
+caselist <- cclause 
+caselist <- caselist SEMICOL cclause 
+
+cclause <- DEFAULT COLON expr 
+cclause <- expr COLON expr 
+
+exprlist <- nexpr 
+exprlist <- exprlist COMMA nexpr 
+
+pdcolist <- nexpr 
+pdcolist <- pdcolist COMMA nexpr 
+
+literal <- INTLIT 
+literal <- REALLIT 
+literal <- STRINGLIT 
+literal <- CSETLIT 
+
+section <- expr11 LBRACK expr sectop expr RBRACK 
+
+sectop <- COLON 
+sectop <- PCOLON 
+sectop <- MCOLON 
+
+compound <- nexpr 
+compound <- nexpr SEMICOL compound 
+

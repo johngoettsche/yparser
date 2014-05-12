@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	ESnipLR1.u1-1399604093-0
+uid	ESnipLR1.u1-1399875354-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/ESnippets/DAO.u
 link	C:/Users/John/Documents/GitHub/yparser/ESnippets/grammars.u
@@ -32,8 +32,6 @@ proc main
 	local	20,000000,term
 	local	21,000000,productionRules__createProductionRules
 	local	22,000000,statesLR1__createStates
-	local	23,000000,terminalsSet
-	local	24,000000,terminalsList
 	con	0,002000,1,1
 	con	1,020000,0
 	con	2,002000,1,2
@@ -428,8 +426,8 @@ lab L24
 	var	3
 	var	2
 	var	7
-	var	23
-	var	24
+	var	10
+	var	9
 	line	81
 	colm	32
 	synt	any

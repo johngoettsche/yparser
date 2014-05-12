@@ -1,0 +1,65 @@
+I0
+
+	goto(I0, e) = I1
+	goto(I0, t) = I2
+	goto(I0, f) = I3
+	goto(I0, LPAREN) = I4
+	goto(I0, ID) = I5
+
+I1
+
+	accept
+	goto(I1, PLUS) = I6
+
+I2
+
+	reduce	e ->  t.
+	goto(I2, TIMES) = I7
+
+I3
+
+	reduce	t ->  f.
+
+I4
+
+	goto(I4, e) = I8
+	goto(I4, t) = I2
+	goto(I4, f) = I3
+	goto(I4, LPAREN) = I4
+	goto(I4, ID) = I5
+
+I5
+
+	reduce	f ->  ID.
+
+I6
+
+	goto(I6, t) = I9
+	goto(I6, f) = I3
+	goto(I6, LPAREN) = I4
+	goto(I6, ID) = I5
+
+I7
+
+	goto(I7, f) = I10
+	goto(I7, LPAREN) = I4
+	goto(I7, ID) = I5
+
+I8
+
+	goto(I8, RPAREN) = I11
+	goto(I8, PLUS) = I6
+
+I9
+
+	reduce	e ->  e PLUS t.
+	goto(I9, TIMES) = I7
+
+I10
+
+	reduce	t ->  t TIMES f.
+
+I11
+
+	reduce	f ->  LPAREN e RPAREN.
+

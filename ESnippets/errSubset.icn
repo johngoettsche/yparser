@@ -22,8 +22,9 @@ procedure main(args)
 	linesExisting := []
 	linesTesting := []
 	
-	x := 1
-	compiler := args[x]
+	x := 2
+	compiler := args[x - 1]
+	extension := args[x]
 	arguments := '' #set up cset for options
 	while args[x + 1][1:2] == "-" do {
 		arguments := arguments ++ args[x][2: *args[x] + 1]
@@ -201,7 +202,6 @@ procedure executeSnippets(compiler, snippets, existingCount, testCount, existing
 					}
 				} 
 			}
-#			write(breakword || "   " || toTxt(messageLine))
 			close(snippetFile)
 
 			snippet.message := messageLine
@@ -218,7 +218,6 @@ procedure executeSnippets(compiler, snippets, existingCount, testCount, existing
 				}
 			} else {
 				malFormedSnippets +:= 1
-#				write("\n**************************\nErroniously Formed Snippet\n**************************")
 			}
 		} else {
 			testExistingCount +:= 1

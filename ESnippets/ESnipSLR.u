@@ -1,5 +1,5 @@
 version	U12.1.00
-uid	ESnipSLR.u1-1399602570-0
+uid	ESnipSLR.u1-1399774961-0
 impl	local
 link	C:/Users/John/Documents/GitHub/yparser/ESnippets/DAO.u
 link	C:/Users/John/Documents/GitHub/yparser/ESnippets/grammars.u
@@ -19,21 +19,19 @@ proc main
 	local	7,000020,nonTerminalList
 	local	8,000020,terminalCheckSet
 	local	9,000020,terminalList
-	local	10,000020,terminalsSet
-	local	11,000020,terminalsList
-	local	12,000000,y
-	local	13,000000,tab
-	local	14,000000,upto
-	local	15,000000,DAO__getWordListFromFile
-	local	16,000000,set
-	local	17,000000,grammars__createNonTerminals
-	local	18,000000,grammars__createTerminals
-	local	19,000000,terminalSet
-	local	20,000000,nonTerm
-	local	21,000000,insert
-	local	22,000000,term
-	local	23,000000,productionRules__createProductionRules
-	local	24,000000,statesSLR__createStates
+	local	10,000020,terminalSet
+	local	11,000000,y
+	local	12,000000,tab
+	local	13,000000,upto
+	local	14,000000,DAO__getWordListFromFile
+	local	15,000000,set
+	local	16,000000,grammars__createNonTerminals
+	local	17,000000,grammars__createTerminals
+	local	18,000000,nonTerm
+	local	19,000000,insert
+	local	20,000000,term
+	local	21,000000,productionRules__createProductionRules
+	local	22,000000,statesSLR__createStates
 	con	0,002000,1,1
 	con	1,020000,0
 	con	2,002000,1,2
@@ -49,7 +47,7 @@ proc main
 	pnull
 	var	1
 	int	0
-	line	45
+	line	44
 	colm	11
 	synt	any
 	asgn
@@ -59,7 +57,7 @@ lab L1
 	pnull
 	var	2
 	cset	1
-	line	46
+	line	45
 	colm	19
 	synt	any
 	asgn
@@ -67,20 +65,20 @@ lab L1
 lab L2
 	mark	L3
 	pnull
-	var	12
+	var	11
 	pnull
 	pnull
 	var	0
 	var	1
-	line	47
+	line	46
 	colm	19
 	synt	any
 	subsc
-	line	47
+	line	46
 	colm	14
 	synt	any
 	size
-	line	47
+	line	46
 	colm	11
 	synt	any
 	asgn
@@ -88,7 +86,7 @@ lab L2
 lab L3
 	mark	L4
 lab L5
-	line	48
+	line	47
 	colm	9
 	synt	while
 	mark0
@@ -97,19 +95,19 @@ lab L5
 	pnull
 	var	0
 	var	1
-	line	48
+	line	47
 	colm	19
 	synt	any
 	subsc
 	int	0
 	int	2
-	line	48
+	line	47
 	colm	24
 	synt	any
 	synt	any
 	sect
 	str	3
-	line	48
+	line	47
 	colm	28
 	synt	any
 	lexeq
@@ -124,7 +122,7 @@ lab L5
 	pnull
 	var	0
 	var	1
-	line	49
+	line	48
 	colm	47
 	synt	any
 	subsc
@@ -134,29 +132,29 @@ lab L5
 	pnull
 	var	0
 	var	1
-	line	49
+	line	48
 	colm	59
 	synt	any
 	subsc
-	line	49
+	line	48
 	colm	54
 	synt	any
 	size
 	int	0
-	line	49
+	line	48
 	colm	63
 	synt	any
 	plus
-	line	49
+	line	48
 	colm	52
 	synt	any
 	synt	any
 	sect
-	line	49
+	line	48
 	colm	40
 	synt	any
 	unions
-	line	49
+	line	48
 	colm	27
 	synt	any
 	asgn
@@ -166,7 +164,7 @@ lab L8
 	var	1
 	dup
 	int	0
-	line	50
+	line	49
 	colm	19
 	synt	any
 	plus
@@ -175,7 +173,7 @@ lab L6
 	unmark
 	goto	L5
 lab L7
-	line	48
+	line	47
 	colm	9
 	synt	endwhile
 	unmark
@@ -184,32 +182,32 @@ lab L4
 	pnull
 	var	0
 	var	1
-	line	53
+	line	52
 	colm	13
 	synt	any
 	subsc
-	line	53
+	line	52
 	colm	17
 	synt	any
 	bscan
 	pnull
 	var	3
+	var	12
 	var	13
-	var	14
 	cset	4
-	line	53
+	line	52
 	colm	39
 	synt	any
 	invoke	1
-	line	53
+	line	52
 	colm	34
 	synt	any
 	invoke	1
-	line	53
+	line	52
 	colm	28
 	synt	any
 	asgn
-	line	53
+	line	52
 	colm	17
 	synt	any
 	escan
@@ -221,11 +219,11 @@ lab L9
 	pnull
 	var	3
 	str	5
-	line	54
+	line	53
 	colm	34
 	synt	any
 	cat
-	line	54
+	line	53
 	colm	22
 	synt	any
 	asgn
@@ -234,13 +232,13 @@ lab L10
 	mark	L11
 	pnull
 	var	5
-	var	15
+	var	14
 	var	4
-	line	55
+	line	54
 	colm	47
 	synt	any
 	invoke	1
-	line	55
+	line	54
 	colm	20
 	synt	any
 	asgn
@@ -249,12 +247,12 @@ lab L11
 	mark	L12
 	pnull
 	var	6
-	var	16
-	line	57
+	var	15
+	line	56
 	colm	35
 	synt	any
 	invoke	0
-	line	57
+	line	56
 	colm	29
 	synt	any
 	asgn
@@ -263,13 +261,13 @@ lab L12
 	mark	L13
 	pnull
 	var	7
-	var	17
+	var	16
 	var	3
-	line	58
+	line	57
 	colm	56
 	synt	any
 	invoke	1
-	line	58
+	line	57
 	colm	25
 	synt	any
 	asgn
@@ -278,12 +276,12 @@ lab L13
 	mark	L14
 	pnull
 	var	8
-	var	16
-	line	60
+	var	15
+	line	59
 	colm	32
 	synt	any
 	invoke	0
-	line	60
+	line	59
 	colm	26
 	synt	any
 	asgn
@@ -292,13 +290,13 @@ lab L14
 	mark	L15
 	pnull
 	var	9
-	var	18
+	var	17
 	var	3
-	line	61
+	line	60
 	colm	50
 	synt	any
 	invoke	1
-	line	61
+	line	60
 	colm	22
 	synt	any
 	asgn
@@ -306,46 +304,46 @@ lab L14
 lab L15
 	mark	L16
 	pnull
-	var	19
-	var	16
-	line	62
+	var	10
+	var	15
+	line	61
 	colm	27
 	synt	any
 	invoke	0
-	line	62
+	line	61
 	colm	21
 	synt	any
 	asgn
 	unmark
 lab L16
 	mark	L17
-	line	64
+	line	63
 	colm	9
 	synt	every
 	mark0
 	pnull
-	var	20
+	var	18
 	pnull
 	var	7
-	line	64
+	line	63
 	colm	26
 	synt	any
 	bang
-	line	64
+	line	63
 	colm	23
 	synt	any
 	asgn
 	pop
 	mark0
-	var	21
+	var	19
 	var	6
 	pnull
-	var	20
-	line	65
+	var	18
+	line	64
 	colm	52
 	synt	any
 	field	token
-	line	65
+	line	64
 	colm	23
 	synt	any
 	invoke	2
@@ -353,49 +351,49 @@ lab L16
 lab L18
 	efail
 lab L19
-	line	64
+	line	63
 	colm	9
 	synt	endevery
 	unmark
 lab L17
 	mark	L20
-	line	68
+	line	67
 	colm	9
 	synt	every
 	mark0
 	pnull
-	var	22
+	var	20
 	pnull
 	var	9
-	line	68
+	line	67
 	colm	23
 	synt	any
 	bang
-	line	68
+	line	67
 	colm	20
 	synt	any
 	asgn
 	pop
 	mark0
 	mark	L23
-	var	21
+	var	19
 	var	8
 	pnull
-	var	22
-	line	69
+	var	20
+	line	68
 	colm	46
 	synt	any
 	field	token
-	line	69
+	line	68
 	colm	23
 	synt	any
 	invoke	2
 	unmark
 lab L23
-	var	21
 	var	19
-	var	22
-	line	70
+	var	10
+	var	20
+	line	69
 	colm	23
 	synt	any
 	invoke	2
@@ -403,7 +401,7 @@ lab L23
 lab L21
 	efail
 lab L22
-	line	68
+	line	67
 	colm	9
 	synt	endevery
 	unmark
@@ -411,7 +409,7 @@ lab L20
 	mark	L24
 	pnull
 	var	7
-	var	23
+	var	21
 	var	3
 	var	2
 	var	5
@@ -419,31 +417,31 @@ lab L20
 	var	7
 	var	8
 	var	9
-	line	73
+	line	72
 	colm	66
 	synt	any
 	invoke	7
-	line	73
+	line	72
 	colm	25
 	synt	any
 	asgn
 	unmark
 lab L24
 	mark	L25
-	var	24
+	var	22
 	var	3
 	var	2
 	var	7
 	var	10
-	var	11
-	line	82
+	var	9
+	line	81
 	colm	32
 	synt	any
 	invoke	5
 	unmark
 lab L25
 	pnull
-	line	88
+	line	87
 	colm	1
 	synt	any
 	pfail

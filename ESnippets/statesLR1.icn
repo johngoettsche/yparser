@@ -7,7 +7,7 @@ package statesLR1
 import Clock
 import Lists
 import Objects
-import lookAhead
+import tableLR1
 
 procedure createStates(fileName, arguments, nonTerminalSet, terminalSet, terminalList)
 #	is a work in progress
@@ -52,12 +52,14 @@ procedure createStates(fileName, arguments, nonTerminalSet, terminalSet, termina
 	initialItem.lookAheadTerminal := closeTerminal
 	sourceStateChain := []
 	myState := Objects::State(stateName, thisPrime, initialItem, sourceStateChain, &null) #create new state
-	thisItem := myState.getItemsList()[1]
-	B := thisItem.getBeta(1)
-	if B.tokenType == "nonTerminal" then {
-		if not member(itemSet, B) then {
-			closure(myState, thisItem, B, itemSet)
-			insert(itemSet, B)
+	
+	every thisItem := myState.getItems() do {
+		B := thisItem.getBeta(1)
+		if B.tokenType == "nonTerminal" then {
+			if not member(itemSet, B) then {
+				closure(myState, thisItem, B, itemSet)
+				insert(itemSet, B)
+			}
 		}
 	}
 	myState.setTxt()
@@ -78,7 +80,7 @@ procedure createStates(fileName, arguments, nonTerminalSet, terminalSet, termina
 end
    
 procedure closure(myState, item, B, itemSet)
-# Makes Items for myState given a Non-Terminal (B) as described in the closure
+#	Makes Items for myState given a Non-Terminal (B) as described in the closure
 #	function in Fig. 4.38 of Section 4.7 of the Dragon Book
 
 	local
@@ -94,37 +96,59 @@ procedure closure(myState, item, B, itemSet)
 		
 	aList := []
 	
-	every thisProductionRule := B.getProductionRules() do {
+	every thisProductionRule := !B.productions do {
 		newLeft := B
 		newAlpha := []
 		newBeta := []
 		every newB := thisProductionRule.getVariables() do {
 			put(newBeta, newB)
 		}
-		if *item.beta = 1 then {
-			newA := item.lookAheadTerminal
+		newA := item.lookAheadTerminal #set a
+		if *item.beta = 1 then { #is Beta epsilon
 			newItem := makeNewItem(newLeft, newAlpha, newBeta, newA)
 			if not duplicateItem(myState.getItemsList(), newItem) then {
 				myState.addItem(newItem)
+				if *thisProductionRule.variables > 0 then { 
+					newB := thisProductionRule.getVariable(1)
+					if newB.tokenType == "nonTerminal" then {
+						if not member(itemSet, newB) then { 
+							insert(itemSet, newB)
+							closure(myState, newItem, newB, itemSet)
+						}
+					}
+				}
 			}
-		} else {
-			setA(aList, B)
-			every newA := !aList do {
+		} else { # beta is not epsilon			
+			aList := setA(B) #get all possible terminals for a
+			if *aList > 0 then {
+				every newA := !aList do { #set all possible a
+					newItem := makeNewItem(newLeft, newAlpha, newBeta, newA)
+					if not duplicateItem(myState.getItemsList(), newItem) then {
+						myState.addItem(newItem)
+						if *thisProductionRule.variables > 0 then { 
+							newB := thisProductionRule.getVariable(1)
+							if newB.tokenType == "nonTerminal" then {
+								if not member(itemSet, newB) then { 
+									insert(itemSet, newB)
+									closure(myState, newItem, newB, itemSet)
+								}
+							}
+						}
+					}
+				}
+			} else {
 				newItem := makeNewItem(newLeft, newAlpha, newBeta, newA)
 				if not duplicateItem(myState.getItemsList(), newItem) then {
 					myState.addItem(newItem)
-				}
-			}
-		}
-	}
-
-	every thisProductionRule := B.getProductionRules() do {
-		if *thisProductionRule.variables > 0 then { 
-			newB := thisProductionRule.getVariable(1)
-			if newB.tokenType == "nonTerminal" then {
-				if not member(itemSet, newB) then { 
-					insert(itemSet, newB)
-					closure(myState, item, newB, itemSet)
+					if *thisProductionRule.variables > 0 then { 
+						newB := thisProductionRule.getVariable(1)
+						if newB.tokenType == "nonTerminal" then {
+							if not member(itemSet, newB) then { 
+								insert(itemSet, newB)
+								closure(myState, newItem, newB, itemSet)
+							}
+						}
+					}
 				}
 			}
 		}
@@ -137,13 +161,14 @@ procedure makeNewItem(newLeft, newAlpha, newBeta, newLookAheadTerminal)
 	thisItem := Objects::Item()
 	thisItem.setLeft(newLeft)
 	thisItem.setAlphaList(newAlpha)
-	thisItem.setBetaList(newBetaList)
+	thisItem.setBetaList(newBeta)
 	thisItem.lookAheadTerminal := newLookAheadTerminal
 	thisItem.setTxt()
 	return thisItem
 end
 
-procedure setA(aList, nonTerminal)
+procedure setA(nonTerminal)
+	aList := []
 	every productionRule := nonTerminal.getProductionRules() do {
 		if productionRule.getVariable(1).tokenType == "terminal" then {
 			thisTerminal := productionRule.getVariable(1)
@@ -152,6 +177,7 @@ procedure setA(aList, nonTerminal)
 			}
 		}
 	}
+	return aList
 end
 
 procedure makeAllStates(statesList, state)
@@ -172,10 +198,11 @@ procedure makeAllStates(statesList, state)
 		element,
 		stateName
    
-	stateNumber := 0   
+	stateNumber := 0 
 	count := 1
-	while stateNumber = 0 | count < stateNumber do {
-		write(count - 1 || " / I" || stateNumber)
+	potential := countPotential(statesList, count)
+	while potential > 0 do {
+		write("I" || count - 1 || " / I" || stateNumber)
 		if stateNumber = 0 then thisState := state
 		if stateNumber > 0 then thisState := statesList[count]
 		count +:= 1   
@@ -208,6 +235,7 @@ procedure makeAllStates(statesList, state)
 				}
 			}
 		}
+		potential := countPotential(statesList, count)
 	}
 end
 
@@ -222,11 +250,7 @@ procedure makeAllItems(statesList, oldState, thisState, shiftElement)
       
 	itemSet := set()
 	every thisItem := oldState.getItems() do {
-		write("----")
-		write(thisItem.label)
 		newItem := thisItem.getShift()
-		write(newItem.label)
-		write("====")
 		if \newItem then {
 			newItem.setTxt()
 			if not duplicateStateLabel(statesList, newItem) then {
@@ -235,12 +259,24 @@ procedure makeAllItems(statesList, oldState, thisState, shiftElement)
 						thisState.addItem(newItem)
 					}
 					B := newItem.getBeta(1)
-					if \B then if B.tokenType == "nonTerminal" then
-						makeItems(thisState, B, newItem.lookAheadTerminal, itemSet)
+					if \B then {
+						if B.tokenType == "nonTerminal" then {
+							closure(thisState, newItem, B, itemSet)
+						}
+					}
 				}
 			}
 		}
 	}
+end
+
+procedure countPotential(statesList, count)
+	potential := 0
+	while count <= *statesList do {
+		every thisItem := statesList[count].getItems() do potential +:= 1
+		count +:= 1
+	}
+	return potential
 end
 
 procedure duplicateItem(itemList, item)

@@ -1,0 +1,90 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+%\usepackage{utr}
+\doublespacing
+
+\usepackage{cite}
+
+\usepackage[pdftex]{graphicx}
+% declare the path(s) where your graphic files are
+\graphicspath{{./images/}}
+ % and their extensions so you won't have to specify these with
+ % every instance of \includegraphics
+ \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+\begin{document}
+
+\title{ESnippets, a tool set for generating error snippets in the Merr format from YACC/Bison .y files}
+\author{John Goettsche}
+\date{May 15, 2014}
+
+\maketitle
+\begin{abstract}
+A tool set for generating Merr error snippets from a YACC/Bison .y file.
+\end{abstract}
+
+\section{Introduction}
+One of the tedious tasks of an author of a programming language is the production of meaningful error messages for the developers who use the language.  Anyone who has spent time working developing software is all too aware that they are capable of making their fair share syntactic errors.  When a syntax error exists in some code, it is helpful to have a description of the error so that it can be easily identified and corrected.
+
+The purpose of this directed study was to produce a software tool that reads in YACC/Bison .y files, construct a data structure representing the context free grammar, and use it to generate a set of example syntax error fragments in Merr format that exercise the entire grammar.
+
+\section{Project Development}
+Before I could go through the process of implementing the tool, I had to decide on what programming language to use to develop this tool.  One of the advantages of goal directed languages, like Unicon, is the simplicity of code in performing complex tasks. ...
+
+In developing the tool, the project was divided into three sub sub-projects
+\begin{enumerate}
+\item \textbf{Reading:} reading the YACC/Bison .y file, scanning it for tokens, identifying terminals and non terminal tokens and extracting the raw grammar.
+\item \textbf{Analyzing and Generating:} use the raw grammar to construct SLR items or states and an SLR parsing table.  Identify the inputs that generate an error in the grammar for each of the states.  Then generate a snippet for the error fragment.
+\item \textbf{Testing:} each of the error snippets was tested to see if the current error messaging system has identified the error, or that the error is being caught on the erroneous token.  The acceptable new errors are saved to a file in the Merr format and a report of the results is generated.
+\end{enumerate}
+
+\subsection{Reading Source Files}
+The reading of the source files 
+
+
+
+
+The tool will be applied to the Unicon grammar, and to test generality, also the RTL language grammar from the Unicon implementation. For the Unicon grammar, the student will construct error diagnostic messages for each fragment in consultation with the instructor.
+
+The directed study will be completed with an electronic submission of the stub generator and generated fragment files, and a written report that describes the tool and its use.
+
+
+\section{Background}
+
+
+\section{Methods}
+
+\section{Results}
+
+
+ 
+\subsection{Neutral Exploration}
+(similar format as Baseline)
+\subsection{Breadth}
+(similar format as Baseline)
+\subsection{Depth}
+(similar format as Baseline)
+\subsection{Flat}
+(similar format as Baseline)
+\subsection{summation of results}
+
+\section{Conclusions and future work}
+\subsection{structural issues}
+\subsubsection{DAG vs normal}
+\subsection{computational issues}
+\subsubsection{}
+\subsubsection{}
+\subsection{}
+\subsection{}
+\subsection{When most effective}
+\subsection{Discussion}
+\subsection{future work}
+
+\pagebreak
+\bibliography{ESnippets}{}
+
+\bibliographystyle{plain}
+
+\end{document}

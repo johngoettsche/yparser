@@ -90,13 +90,13 @@ procedure writeListToFile(fileName, thisList, fileType)
 		close(outFile)
 		write(fileName || " created.")
 	} else if fileType == "errors" then {	
-		fileName := fileName || ".err"
+		fileName := fileName || ".er"
 		outFile := open(fileName, "c")
 		every output := !thisList do write(outFile, output || "\n::: syntax error")
 		close(outFile)
 		write(fileName || " created.")
 	} else if fileType == "actions" then {	
-		fileName := fileName || ".ac"
+		fileName := fileName || ".an"
 		outFile := open(fileName, "c")
 		every output := !thisList do {
 			write(outFile, output.name || "\n")
@@ -108,3 +108,14 @@ procedure writeListToFile(fileName, thisList, fileType)
 		write("DAO ERROR: fileType not recognized.")
 	}
 end
+
+procedure writeStringToFile(fileName, output)
+	local
+		outFile
+	
+	outFile := open(fileName, "c")
+	write(outFile, output)
+	close(outFile)
+	write(fileName || " created.")
+end
+
