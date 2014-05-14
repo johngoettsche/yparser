@@ -50,14 +50,14 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 	}
 	
 	if *arguments > 0 then if member(arguments, "y") then {
-		fileName := fileName || ".ac"
+		outFileName := fileName || ".ac"
 		txt := "\nAcceptable Inputs:\n"
 		every thisState := !statesList do {
 			txt := txt || thisState.name || "\n"
 			every accept := !thisState.acceptable do txt := txt || "\t" || accept.token || "\n" 
 		}
 		if member(arguments, "o") then {
-			DAO::writeStringToFile(fileName, txt)
+			DAO::writeStringToFile(outFileName, txt)
 		}
 		write(txt)
 		Clock::printTime()
@@ -66,14 +66,14 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 	}
 	
 	if *arguments > 0 then if member(arguments, "x") then {
-		fileName := fileName || ".un"
+		outFileName := fileName || ".un"
 		txt := "\nUnacceptable Inputs:\n"
 		every thisState := !statesList do {
 			txt := txt || thisState.name || "\n"
 			every unAccept := getNotAcceptable(thisState, terminalsList) do txt := txt || "\t" || unAccept.token || "\n" 
 		}
 		if member(arguments, "o") then {
-			DAO::writeStringToFile(fileName, txt)
+			DAO::writeStringToFile(outFileName, txt)
 		}
 		write(txt)
 		Clock::printTime()
@@ -82,7 +82,7 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 	}
 	
 	if *arguments > 0 then if member(arguments, "c") then {
-		fileName := fileName || ".ch"
+		outFileName := fileName || ".ch"
 		txt := "\nSource Chain:\n"
 		every thisState := !statesList do {
 			txt := txt || thisState.name || "\n\t"
@@ -90,7 +90,7 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 			txt := txt || "\n"
 		}
 		if member(arguments, "o") then {
-			DAO::writeStringToFile(fileName, txt)
+			DAO::writeStringToFile(outFileName, txt)
 		}
 		write(txt)
 		Clock::printTime()
@@ -99,7 +99,7 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 	}
 	
 	if *arguments > 0 then if member(arguments, "C") then {
-		fileName := fileName || ".chs"
+		outFileName := fileName || ".chs"
 		txt := "\nSource Chains:\n"
 		every thisState := !statesList do {
 			txt := txt || thisState.name || "\n"
@@ -110,7 +110,7 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 			}
 		}
 		if member(arguments, "o") then {
-			DAO::writeStringToFile(fileName, txt)
+			DAO::writeStringToFile(outFileName, txt)
 		}
 		write(txt)
 		Clock::printTime()
@@ -119,7 +119,7 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 	}
 	
 		if *arguments > 0 then if member(arguments, "l") then {
-		fileName := fileName || ".sn"
+		outFileName := fileName || ".sn"
 		txt := "\nSource Chain:\n"
 		every thisState := !statesList do {
 			txt := txt || thisState.name || "\n\t"
@@ -127,27 +127,7 @@ procedure createStateAnalysis(fileName, arguments, statesList, terminalsList, no
 			txt := txt || "\n"
 		}
 		if member(arguments, "o") then {
-			DAO::writeStringToFile(fileName, txt)
-		}
-		write(txt)
-		Clock::printTime()
-		write("\n(press ENTER to continue)\n")
-      getch()
-	}
-	
-	if *arguments > 0 then if member(arguments, "L") then {
-		fileName := fileName || ".ch"
-		txt := "\nSource Chains:\n"
-		every thisState := !statesList do {
-			txt := txt || thisState.name || "\n"
-			every chain := !thisState.sourceChains do {
-				txt := txt || "\t"
-				every source := !chain do txt := txt || source.token || " " 
-				txt := txt || "\n"
-			}
-		}
-		if member(arguments, "o") then {
-			DAO::writeStringToFile(fileName, txt)
+			DAO::writeStringToFile(outFileName, txt)
 		}
 		write(txt)
 		Clock::printTime()

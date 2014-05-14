@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{aho}
+Alfred~V Aho, Ravi Sethi, and Jeffrey~D Ullman.
+\newblock {\em Compilers: Principles, Techniques, and Tools</TITLE>}.
+\newblock Addison Wesley</publisher>, 1985.
+
+\bibitem{jeffery}
+Clinton~L Jeffery.
+\newblock Generating lr syntax error messages from examples.
+\newblock {\em ACM Transactions on Programming Languages and Systems (TOPLAS)},
+  25(5):631--640, 2003.
+
+\bibitem{levine}
+John Levine.
+\newblock {\em Flex \& bison}.
+\newblock " O'Reilly Media, Inc.", 2009.
+
+\bibitem{louden}
+Kenneth~C Louden.
+\newblock {\em Compiler construction}.
+\newblock PWS Publ., 1997.
+
+\end{thebibliography}

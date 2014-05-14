@@ -7,8 +7,8 @@ ESnipSLR : Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableSLR.u statesSLR.
 ESnipLR1 : Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableLR1.u statesLR1.u productionRules.u grammars.u ESnipLR1.u 
 	unicon -o ESnipLR1 Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableLR1.u statesLR1.u productionRules.u grammars.u ESnipLR1.u 	
 	
-errSubset : Clock.u DAO.u errSubset.u
-	unicon -o errSubset Clock.u DAO.u errSubset.u
+errSubset : Clock.u DAO.u Lists.u errSubset.u
+	unicon -o errSubset Clock.u DAO.u Lists.u errSubset.u
 	
 yparser.u : yparser.icn
 	unicon -c yparser.icn
@@ -28,17 +28,17 @@ grammars.u : grammars.icn DAO.u Objects.u
 productionRules.u : productionRules.icn Clock.u DAO.u Objects.u
 	unicon -c productionRules.icn
 
-statesSLR.u : statesSLR.icn Clock.u Objects.u lookAhead.u
+statesSLR.u : statesSLR.icn Clock.u Objects.u tableSLR.u
 	unicon -c statesSLR.icn
 	
-statesLR1.u : statesLR1.icn Clock.u lists.u Objects.u lookAhead.u
+statesLR1.u : statesLR1.icn Clock.u lists.u Objects.u tableLR1.u
 	unicon -c statesLR1.icn
-
-tableLR1.u : tableLR1.icn Clock.u stateAnalysis.u
-	unicon -c tableLR1.icn
 	
 tableSLR.u : tableSLR.icn Clock.u stateAnalysis.u
 	unicon -c tableSLR.icn
+	
+tableLR1.u : tableLR1.icn Clock.u stateAnalysis.u
+	unicon -c tableLR1.icn
 	
 stateAnalysis.u : stateAnalysis.icn Clock.u DAO.u lists.u
 	unicon -c stateAnalysis.icn

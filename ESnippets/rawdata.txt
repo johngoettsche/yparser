@@ -1,0 +1,300 @@
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" missing operand after ||
+Parsing snippet.icn:
+snippet.icn:1: # ":" missing operand after |||
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (279;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (277;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "+:" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "-:" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" missing or invalid second argument to *
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (282;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (283;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (280;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (263;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (256;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "~" missing operator or "do" keyword
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (265;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (257;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (218;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (285;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "&&": pattern operator && is non-standard, did you mean & ?
+
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (424;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" parenthesis is required for method invocation
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (326;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (333;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ";" unclosed list
+Parsing snippet.icn:
+snippet.icn:1: # "default" invalid compound expression
+Parsing snippet.icn:
+snippet.icn:1: # "default" invalid compound expression
+Parsing snippet.icn:
+snippet.icn:1: # "default" invalid compound expression
+Parsing snippet.icn:
+snippet.icn:1: # ":" missing operator or unbalanced parenthesis/bracket
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" invalid compound expression
+Parsing snippet.icn:
+snippet.icn:1: # "do" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing then-part
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (325;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (331;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (330;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (327;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (426;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "assign" syntax error (314;257)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (496;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "assign" syntax error (427;257)
+(use -M for assistance with this error)
+Parsing snippet.icn: .
+snippet.icn:1: # "initially" global, class, or link expected
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (501;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (482;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "{" missing comma or unclosed class field arguments
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing comma or unclosed class field arguments
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (458;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (295;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "+:" syntax error (295;366)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "-:" syntax error (295;368)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (333;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (469;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (468;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ";" syntax error (467;371)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "default" invalid compound expression
+Parsing snippet.icn:
+snippet.icn:1: # ":" missing operator or unbalanced parenthesis/bracket
+Parsing snippet.icn:
+snippet.icn:1: # ":" invalid compound expression
+Parsing snippet.icn:
+snippet.icn:1: # "do" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "[" syntax error (325;372)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "assign" syntax error (480;257)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "assign" syntax error (496;257)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (150;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (295;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (492;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (491;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ":" invalid compound expression
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (487;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "[" syntax error (325;372)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "assign" syntax error (480;257)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "assign" syntax error (496;257)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (512;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:2: # "" syntax error (442;262)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # ":" syntax error (295;369)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (507;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (506;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" syntax error (522;279)
+(use -M for assistance with this error)
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+Parsing snippet.icn:
+snippet.icn:1: # "initially" missing semicolon or operator
+
+ Error Snippets:                                                165
+
+Existing Error  Snippets:                                       70
+        included in New Error Snippets:                         0 or 0%
+        Existing Error Snippets included in New Error Snippets: 37 or 52%
+
+New Error Snippets:                                             331
+        Matching Snippets (Not Added):                          0 or 0%
+        Snippets Accounted for (Not Added):                     144 or 43%
+        Erronious Snippets (Not Added):                         92 or 27%
+        New unique Error Snippets Added:                        95 or 28%
+
+unigram-ES.err created.
+
+C:\Users\John\Documents\GitHub\yparser\ESnippets>

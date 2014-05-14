@@ -6,6 +6,7 @@ $include "posix.icn"
 
 import Clock
 import DAO
+import Lists
 
 procedure main(args)
 
@@ -24,6 +25,7 @@ procedure main(args)
 	
 	x := 2
 	compiler := args[x - 1]
+	write(compiler)
 	extension := args[x]
 	arguments := '' #set up cset for options
 	while args[x + 1][1:2] == "-" do {
@@ -42,7 +44,6 @@ procedure main(args)
 	testSnippets := makeSnippets(linesTesting)
 	existingSnippets := makeSnippets(linesExisting)
 	resultingSnippets := compare(compiler, existingSnippets, testSnippets)
-#	resultingSnippets := executeSnippets(resultingSnippets)
 	errorsList := []
 	every thisSnippet := !resultingSnippets do {
 		put(errorsList, thisSnippet.snippetTxt)
@@ -130,22 +131,6 @@ procedure compare(compiler, existingSnippets, testSnippets)
 	resultingSnippets := executeSnippets(compiler, resultingSnippets, existingCount, testCount, existingTestCount)
 	resultingCount := *resultingSnippets
 	
-	#printout results
-#	write("\n" || resultingCount || " Error Snippets:")
-#	write("\nExisting Error Snippets:\t\t" || existingCount)
-#	if existingCount > 0 then percent := 100 * testExistingCount / existingCount
-#	else percent := 0
-#	write("included in New Error Snippets:\t\t" || 
-#			testExistingCount || " or " || 
-#			percent || "%")
-#	write("\nNew Error Snippets:\t\t\t" || testCount)
-#	if testCount > 0 then percent := 100 * existingTestCount / testCount
-#	else percent := 0
-#	write("included in New Existing Snippets:\t" || 
-#			existingTestCount || " or " || 
-#			percent || "%")
-	
-#	write("Erroniously Snippets:\t\t\t" || malFormedSnippets)
 	return resultingSnippets
 end
 
@@ -176,9 +161,10 @@ procedure executeSnippets(compiler, snippets, existingCount, testCount, existing
 	testAccountedCount := 0
 	testUnique := 0
 	newSnippetList := []
+	oldSnippetList := []
 	every snippet := !snippets do {
 		#create unicon file for snippet
-		snippetFile := open("snippet2014.icn" , "c")
+		snippetFile := open("snippet.icn" , "c")
 		write(snippetFile, snippet.snippetTxt)
 		close(snippetFile)
 		
@@ -186,8 +172,9 @@ procedure executeSnippets(compiler, snippets, existingCount, testCount, existing
 		snippetLength := *snippet.snippet
 		if snippet.messageTxt == "::: syntax error " then {			
 			#executes snippet file
-			system(compiler || " -log snippet.err snippet2014.icn")
-		
+		#		write(snippet.snippetTxt)
+		#		write(snippet.messageTxt)
+			system(compiler || " -log snippet.err snippet.icn")
 			snippetFile := open("snippet.err" , "r")
 			#purge output to only relavant text
 			messageLine := []
@@ -215,6 +202,8 @@ procedure executeSnippets(compiler, snippets, existingCount, testCount, existing
 					put(newSnippetList, snippet)
 				} else {
 					testAccountedCount +:= 1
+					if not Lists::duplicate(oldSnippetList, snippet.messageTxt) then
+						put(oldSnippetList, snippet.messageTxt)
 				}
 			} else {
 				malFormedSnippets +:= 1
@@ -227,39 +216,45 @@ procedure executeSnippets(compiler, snippets, existingCount, testCount, existing
 	
 	resultingCount := existingCount + testUnique
 	#printout results
-	write("\n" || " Error Snippets:\t\t\t\t\t" || resultingCount)
+	write("\n" || " Error Snippets:\t\t\t\t\t\t" || resultingCount)
 	
-	write("\nExisting Error  Snippets:\t\t\t\t" || existingCount)
+	write("\nExisting Error  Snippets:\t\t\t\t\t" || existingCount)
 	
 	if existingCount > 0 then percent := 100 * existingTestCount / existingCount
 	else percent := 0
-	write("\tincluded in New Error Snippets:\t\t\t" || 
+	write("\tincluded in New Error Snippets:\t\t\t\t" || 
 			existingTestCount || " or " || 
 			percent || "%")
-			
-	write("\nNew Error Snippets:\t\t\t\t\t" || testCount)
+	
+	if existingCount > 0 then percent := 100 * *oldSnippetList / existingCount		
+	write("\tExisting Error Snippets included in New Error Snippets: " ||
+			*oldSnippetList || " or " ||
+			percent || "%")	
+
+	
+	write("\nNew Error Snippets:\t\t\t\t\t\t" || testCount)
 	
 	if testCount > 0 then percent := 100 * (testExistingCount - existingCount) / testCount
 	else percent := 0
-	write("\tMatching Snippets (Not Added):\t\t\t" || 
+	write("\tMatching Snippets (Not Added):\t\t\t\t" || 
 			(testExistingCount - existingCount) || " or " || 
 			percent || "%")
 			
 	if testCount > 0 then percent := 100 * testAccountedCount / testCount
 	else percent := 0
-	write("\tSnippets Accounted for (Not Added):\t\t" || 
+	write("\tSnippets Accounted for (Not Added):\t\t\t" || 
 			testAccountedCount || " or " || 
 			percent || "%")
 	
 	if testCount > 0 then percent := 100 * malFormedSnippets / testCount
 	else percent := 0
-	write("\tErronious Snippets (Not Added):\t\t\t" || 
+	write("\tErroneous Snippets (Not Added):\t\t\t\t" || 
 			malFormedSnippets || " or " || 
 			percent || "%")
 			
 	if testCount > 0 then percent := 100 * testUnique / testCount
 	else percent := 0
-	write("\tNew unique Error Snippets Added:\t\t" || 
+	write("\tNew unique Error Snippets Added:\t\t\t" || 
 			testUnique || " or " || 
 			percent || "%\n")
 			

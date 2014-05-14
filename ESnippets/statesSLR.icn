@@ -9,7 +9,6 @@ import Objects
 import tableSLR
 
 procedure createStates(fileName, arguments, nonTerminalSet, terminalSet, terminalList)
-#	is a work in progress
 #	creates the states for compiling the Item for this tool
 
 	local 

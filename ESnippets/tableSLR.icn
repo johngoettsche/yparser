@@ -76,8 +76,7 @@ procedure createLookAheads(fileName, arguments, statesList, terminalsList, nonTe
 
 	if *arguments > 0 then if member(arguments, "a") then {
 		outfile := &output
-		outfileName := fileName || ".sa"
-		if member(arguments, "o") then DAO::writeListToFile(outfileName, statesList, "actions")
+		if member(arguments, "o") then DAO::writeListToFile(fileName, statesList, "actions")
 		write("\nState Actions:\n") 			
 		every state := !statesList do {
 			write("\n" || state.name)

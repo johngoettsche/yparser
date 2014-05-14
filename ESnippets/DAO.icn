@@ -3,21 +3,14 @@
 #	University of Idaho
 
 package DAO
-
 #	this package handles the communication to the data file of yparser and
 #	SLRAnalyizer
 
 procedure getLinesFromFile(fileName)
-	local
-		infile
-		
-	inFile := open(fileName, "r")
-	if \inFile then {
-		every line := !inFile do suspend line
-		close(inFile)
-	} else {
-		stop("DAO ERROR: failure to read " || fileName)
-	} 
+	local infile	
+	inFile := open(fileName, "r") | stop("DAO ERROR: failure to read " || fileName)
+	every line := !inFile do suspend line
+	close(inFile)
 end
 
 procedure getWordListFromFile(fileName)
@@ -96,8 +89,8 @@ procedure writeListToFile(fileName, thisList, fileType)
 		close(outFile)
 		write(fileName || " created.")
 	} else if fileType == "actions" then {	
-		fileName := fileName || ".an"
-		outFile := open(fileName, "c")
+		outFileName := fileName || ".an"
+		outFile := open(outFileName, "c")
 		every output := !thisList do {
 			write(outFile, output.name || "\n")
 			write(outFile, output.getActionTxt())
