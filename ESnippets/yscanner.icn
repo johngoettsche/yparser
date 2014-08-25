@@ -8,13 +8,13 @@ import Lists
 
 procedure main(args)
 #	this tool is executed as follows:
-#	yparser-states filename
+#	yscanner [options] filename
 #		-r		displays the raw data
 #		-n		displays all the non terminals
 #		-t		displays all the terminals
 #
-# yparser parses a yakk file to be used in SLRAnalizer and creates the 
-# the following files: 
+# yscanner performs a lexical analysis of a yakk file to be 
+# used in ESnipSLR and creates the following files: 
 #		.raw	: raw data file
 #		.nt	: non-terminal file
 #		.t		: terminal file
@@ -38,7 +38,7 @@ procedure main(args)
 		fileName, 
 		outfileName
 		
-	write("Running yparser...\n\n") 
+	write("Running yscanner...\n\n") 
 	x := 1
 	arguments := '' #set up cset for options
 	y := *args[x]

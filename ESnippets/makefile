@@ -1,23 +1,23 @@
-yparser : DAO.u lists.u yparser.u 
-	unicon -o yparser DAO.u lists.u yparser.u 
+yscanner : DAO.u lists.u yscanner.u 
+	unicon -o yscanner DAO.u lists.u yscanner.u 
 	
-ESnipSLR : Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableSLR.u statesSLR.u productionRules.u grammars.u ESnipSLR.u 
-	unicon -o ESnipSLR Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableSLR.u statesSLR.u productionRules.u grammars.u ESnipSLR.u 
+EFragSLR : Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableSLR.u statesSLR.u productionRules.u grammars.u EFragSLR.u 
+	unicon -o EFragSLR Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableSLR.u statesSLR.u productionRules.u grammars.u EFragSLR.u 
 	
-ESnipLR1 : Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableLR1.u statesLR1.u productionRules.u grammars.u ESnipLR1.u 
-	unicon -o ESnipLR1 Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableLR1.u statesLR1.u productionRules.u grammars.u ESnipLR1.u 	
+EFragLR1 : Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableLR1.u statesLR1.u productionRules.u grammars.u EFragLR1.u 
+	unicon -o EFragLR1 Clock.u DAO.u lists.u Objects.u stateAnalysis.u tableLR1.u statesLR1.u productionRules.u grammars.u EFragLR1.u 	
 	
 errSubset : Clock.u DAO.u Lists.u errSubset.u
 	unicon -o errSubset Clock.u DAO.u Lists.u errSubset.u
 	
-yparser.u : yparser.icn
-	unicon -c yparser.icn
+yscanner.u : yscanner.icn
+	unicon -c yscanner.icn
 
-ESnipSLR.u : ESnipSLR.icn DAO.u grammars.u productionRules.u statesSLR.u
-	unicon -c ESnipSLR.icn
+EFragSLR.u : EFragSLR.icn DAO.u grammars.u productionRules.u statesSLR.u
+	unicon -c EFragSLR.icn
 	
-ESnipLR1.u : ESnipLR1.icn DAO.u grammars.u productionRules.u statesLR1.u
-	unicon -c ESnipLR1.icn
+EFragLR1.u : EFragLR1.icn DAO.u grammars.u productionRules.u statesLR1.u
+	unicon -c EFragLR1.icn
 	
 errSubset.u : errSubset.icn Clock.u DAO.u
 	unicon -c errSubset.icn Clock.u DAO.u

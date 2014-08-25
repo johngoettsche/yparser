@@ -1,0 +1,2900 @@
+version	U12.1.00
+uid	statesLR1.u1-1409009071-0
+impl	local
+link	C:/Users/John/My Documents/GitHub/yparser/ESnippets/Clock.u
+link	C:/Users/John/My Documents/GitHub/yparser/ESnippets/lists.u
+link	C:/Users/John/My Documents/GitHub/yparser/ESnippets/Objects.u
+link	C:/Users/John/My Documents/GitHub/yparser/ESnippets/tableLR1.u
+global	10
+	0,000005,statesLR1__createStates,5
+	1,000005,statesLR1__closure,4
+	2,000005,statesLR1__makeNewItem,4
+	3,000005,statesLR1__setA,1
+	4,000005,statesLR1__makeAllStates,2
+	5,000005,statesLR1__makeAllItems,4
+	6,000005,statesLR1__countPotential,2
+	7,000005,statesLR1__duplicateItem,2
+	8,000005,statesLR1__duplicateState,2
+	9,000005,statesLR1__duplicateStateLabel,2
+
+proc statesLR1__createStates
+	local	0,001000,fileName
+	local	1,001000,arguments
+	local	2,001000,nonTerminalSet
+	local	3,001000,terminalSet
+	local	4,001000,terminalList
+	local	5,000020,statesList
+	local	6,000020,thisNonTerminal
+	local	7,000020,myState
+	local	8,000020,thisProductionRule
+	local	9,000020,myItem
+	local	10,000020,B
+	local	11,000020,nextProductionRule
+	local	12,000020,mySubItem
+	local	13,000020,state
+	local	14,000020,stateNumber
+	local	15,000020,ItemList
+	local	16,000020,outfile
+	local	17,000020,thisToken
+	local	18,000020,itemSet
+	local	19,000020,stateName
+	local	20,000020,thisPrime
+	local	21,000020,initialItem
+	local	22,000020,thisItem
+	local	23,000020,outfileName
+	local	24,000000,write
+	local	25,000000,set
+	local	26,000000,Objects__Terminal
+	local	27,000000,Objects__Item
+	local	28,000000,closeTerminal
+	local	29,000000,sourceStateChain
+	local	30,000000,Objects__State
+	local	31,000000,member
+	local	32,000000,statesLR1__closure
+	local	33,000000,insert
+	local	34,000000,put
+	local	35,000000,statesLR1__makeAllStates
+	local	36,000000,DAO__writeListToFile
+	local	37,000000,Clock__printTime
+	local	38,000000,getch
+	local	39,000000,tableLR1__createLookAheads
+	con	0,010000,19,103,162,145,141,164,151,156,147,040,123,164,141,164,145,163,056,056,056,012
+	con	1,002000,1,0
+	con	2,002000,1,1
+	con	3,010000,1,111
+	con	4,010000,1,047
+	con	5,010000,5,160,162,151,155,145
+	con	6,010000,5,143,154,157,163,145
+	con	7,010000,1,044
+	con	8,010000,11,156,157,156,124,145,162,155,151,156,141,154
+	con	9,010000,1,163
+	con	10,010000,1,157
+	con	11,010000,6,163,164,141,164,145,163
+	con	12,010000,9,012,123,164,141,164,145,163,072,012
+	con	13,010000,27,012,050,160,162,145,163,163,040,105,116,124,105,122,040,164,157,040,143,157,156,164,151,156,165,145,051,012
+	declend
+	filen	statesLR1.icn
+	line	12
+	colm	11
+	synt	any
+	mark	L1
+	var	24
+	str	0
+	line	37
+	colm	14
+	synt	any
+	invoke	1
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	14
+	int	1
+	line	38
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	5
+	pnull
+	line	39
+	colm	23
+	synt	any
+	llist	0
+	line	39
+	colm	20
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	18
+	var	25
+	line	40
+	colm	23
+	synt	any
+	invoke	0
+	line	40
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L4
+	mark	L5
+	pnull
+	var	6
+	pnull
+	var	2
+	int	2
+	line	43
+	colm	42
+	synt	any
+	subsc
+	line	43
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	19
+	pnull
+	str	3
+	var	14
+	line	44
+	colm	26
+	synt	any
+	cat
+	line	44
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	17
+	pnull
+	pnull
+	var	6
+	line	45
+	colm	37
+	synt	any
+	field	token
+	str	4
+	line	45
+	colm	44
+	synt	any
+	cat
+	line	45
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	pnull
+	var	20
+	var	26
+	str	5
+	line	46
+	colm	39
+	synt	any
+	invoke	1
+	line	46
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L8
+	mark	L9
+	pnull
+	pnull
+	var	20
+	line	47
+	colm	18
+	synt	any
+	field	token
+	var	17
+	line	47
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L9
+	mark	L10
+	pnull
+	var	21
+	var	27
+	line	48
+	colm	37
+	synt	any
+	invoke	0
+	line	48
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	21
+	line	49
+	colm	20
+	synt	any
+	field	addBeta
+	var	6
+	line	49
+	colm	28
+	synt	any
+	invoke	1
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	28
+	var	26
+	str	6
+	line	50
+	colm	43
+	synt	any
+	invoke	1
+	line	50
+	colm	23
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	pnull
+	pnull
+	var	28
+	line	51
+	colm	22
+	synt	any
+	field	token
+	str	7
+	line	51
+	colm	29
+	synt	any
+	asgn
+	unmark
+lab L13
+	mark	L14
+	pnull
+	pnull
+	var	21
+	line	52
+	colm	20
+	synt	any
+	field	lookAheadTerminal
+	var	28
+	line	52
+	colm	39
+	synt	any
+	asgn
+	unmark
+lab L14
+	mark	L15
+	pnull
+	var	29
+	pnull
+	line	53
+	colm	29
+	synt	any
+	llist	0
+	line	53
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L15
+	mark	L16
+	pnull
+	var	7
+	var	30
+	var	19
+	var	20
+	var	21
+	var	29
+	line	54
+	colm	88
+	synt	any
+	keywd	null
+	line	54
+	colm	34
+	synt	any
+	invoke	5
+	line	54
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	line	56
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	22
+	pnull
+	var	7
+	line	56
+	colm	34
+	synt	any
+	field	getItems
+	line	56
+	colm	43
+	synt	any
+	invoke	0
+	line	56
+	colm	24
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L20
+	pnull
+	var	10
+	pnull
+	var	22
+	line	57
+	colm	30
+	synt	any
+	field	getBeta
+	int	2
+	line	57
+	colm	38
+	synt	any
+	invoke	1
+	line	57
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L20
+	line	58
+	colm	17
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	10
+	line	58
+	colm	21
+	synt	any
+	field	tokenType
+	str	8
+	line	58
+	colm	32
+	synt	any
+	lexeq
+	unmark
+	line	59
+	colm	25
+	synt	if
+	mark0
+	mark	L21
+	var	31
+	var	18
+	var	10
+	line	59
+	colm	38
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L21
+	pnull
+	unmark
+	mark	L22
+	var	32
+	var	7
+	var	22
+	var	10
+	var	18
+	line	60
+	colm	51
+	synt	any
+	invoke	4
+	unmark
+lab L22
+	var	33
+	var	18
+	var	10
+	line	61
+	colm	39
+	synt	any
+	invoke	2
+	line	59
+	colm	25
+	synt	endif
+	line	58
+	colm	17
+	synt	endif
+	unmark
+lab L18
+	efail
+lab L19
+	line	56
+	colm	9
+	synt	endevery
+	unmark
+lab L17
+	mark	L23
+	pnull
+	var	7
+	line	65
+	colm	16
+	synt	any
+	field	setTxt
+	line	65
+	colm	23
+	synt	any
+	invoke	0
+	unmark
+lab L23
+	mark	L24
+	var	34
+	var	5
+	var	7
+	line	66
+	colm	12
+	synt	any
+	invoke	2
+	unmark
+lab L24
+	mark	L25
+	var	35
+	var	5
+	var	7
+	line	68
+	colm	33
+	synt	any
+	invoke	2
+	unmark
+lab L25
+	mark	L26
+	line	70
+	colm	9
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	70
+	colm	12
+	synt	any
+	size
+	int	1
+	line	70
+	colm	23
+	synt	any
+	numgt
+	unmark
+	line	70
+	colm	32
+	synt	if
+	mark0
+	var	31
+	var	1
+	str	9
+	line	70
+	colm	41
+	synt	any
+	invoke	2
+	unmark
+	mark	L27
+	line	71
+	colm	17
+	synt	if
+	mark0
+	var	31
+	var	1
+	str	10
+	line	71
+	colm	26
+	synt	any
+	invoke	2
+	unmark
+	var	36
+	var	0
+	var	5
+	str	11
+	line	71
+	colm	68
+	synt	any
+	invoke	3
+	line	71
+	colm	17
+	synt	endif
+	unmark
+lab L27
+	mark	L28
+	var	24
+	str	12
+	line	72
+	colm	22
+	synt	any
+	invoke	1
+	unmark
+lab L28
+	mark	L29
+	line	73
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	13
+	pnull
+	var	5
+	line	73
+	colm	32
+	synt	any
+	bang
+	line	73
+	colm	29
+	synt	any
+	asgn
+	pop
+	mark0
+	var	24
+	pnull
+	var	13
+	line	73
+	colm	58
+	synt	any
+	field	label
+	line	73
+	colm	52
+	synt	any
+	invoke	1
+	unmark
+lab L30
+	efail
+lab L31
+	line	73
+	colm	17
+	synt	endevery
+	unmark
+lab L29
+	mark	L32
+	var	37
+	line	74
+	colm	33
+	synt	any
+	invoke	0
+	unmark
+lab L32
+	mark	L33
+	var	24
+	str	13
+	line	75
+	colm	22
+	synt	any
+	invoke	1
+	unmark
+lab L33
+	var	38
+	line	76
+	colm	22
+	synt	any
+	invoke	0
+	line	70
+	colm	32
+	synt	endif
+	line	70
+	colm	9
+	synt	endif
+	unmark
+lab L26
+	mark	L34
+	var	39
+	var	0
+	var	1
+	var	5
+	var	4
+	var	2
+	line	79
+	colm	35
+	synt	any
+	invoke	5
+	unmark
+lab L34
+	pnull
+	line	80
+	colm	1
+	synt	any
+	pfail
+	end
+proc statesLR1__closure
+	local	0,001000,myState
+	local	1,001000,item
+	local	2,001000,B
+	local	3,001000,itemSet
+	local	4,000020,aList
+	local	5,000020,mySubItem
+	local	6,000020,newProductionRule
+	local	7,000020,newVariable
+	local	8,000020,stateNumber
+	local	9,000020,stateName
+	local	10,000020,thisProductionRule
+	local	11,000020,newItem
+	local	12,000020,newB
+	local	13,000000,newLeft
+	local	14,000000,newAlpha
+	local	15,000000,newBeta
+	local	16,000000,put
+	local	17,000000,newA
+	local	18,000000,statesLR1__makeNewItem
+	local	19,000000,statesLR1__duplicateItem
+	local	20,000000,member
+	local	21,000000,insert
+	local	22,000000,statesLR1__closure
+	local	23,000000,statesLR1__setA
+	con	0,002000,1,1
+	con	1,002000,1,0
+	con	2,010000,11,156,157,156,124,145,162,155,151,156,141,154
+	declend
+	line	82
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	pnull
+	line	97
+	colm	18
+	synt	any
+	llist	0
+	line	97
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	99
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	10
+	pnull
+	pnull
+	var	2
+	line	99
+	colm	39
+	synt	any
+	field	productions
+	line	99
+	colm	37
+	synt	any
+	bang
+	line	99
+	colm	34
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L5
+	pnull
+	var	13
+	var	2
+	line	100
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	14
+	pnull
+	line	101
+	colm	29
+	synt	any
+	llist	0
+	line	101
+	colm	26
+	synt	any
+	asgn
+	unmark
+lab L6
+	mark	L7
+	pnull
+	var	15
+	pnull
+	line	102
+	colm	28
+	synt	any
+	llist	0
+	line	102
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L7
+	mark	L8
+	line	103
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	12
+	pnull
+	var	10
+	line	103
+	colm	49
+	synt	any
+	field	getVariables
+	line	103
+	colm	62
+	synt	any
+	invoke	0
+	line	103
+	colm	28
+	synt	any
+	asgn
+	pop
+	mark0
+	var	16
+	var	15
+	var	12
+	line	104
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L9
+	efail
+lab L10
+	line	103
+	colm	17
+	synt	endevery
+	unmark
+lab L8
+	mark	L11
+	pnull
+	var	17
+	pnull
+	var	1
+	line	106
+	colm	29
+	synt	any
+	field	lookAheadTerminal
+	line	106
+	colm	22
+	synt	any
+	asgn
+	unmark
+lab L11
+	line	107
+	colm	17
+	synt	ifelse
+	mark	L12
+	pnull
+	pnull
+	pnull
+	var	1
+	line	107
+	colm	25
+	synt	any
+	field	beta
+	line	107
+	colm	20
+	synt	any
+	size
+	int	0
+	line	107
+	colm	31
+	synt	any
+	numeq
+	unmark
+	mark	L14
+	pnull
+	var	11
+	var	18
+	var	13
+	var	14
+	var	15
+	var	17
+	line	108
+	colm	58
+	synt	any
+	invoke	4
+	line	108
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L14
+	line	109
+	colm	25
+	synt	if
+	mark0
+	mark	L15
+	var	19
+	pnull
+	var	0
+	line	109
+	colm	64
+	synt	any
+	field	getItemsList
+	line	109
+	colm	77
+	synt	any
+	invoke	0
+	var	11
+	line	109
+	colm	56
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L15
+	pnull
+	unmark
+	mark	L16
+	pnull
+	var	0
+	line	110
+	colm	40
+	synt	any
+	field	addItem
+	var	11
+	line	110
+	colm	48
+	synt	any
+	invoke	1
+	unmark
+lab L16
+	line	111
+	colm	33
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	10
+	line	111
+	colm	55
+	synt	any
+	field	variables
+	line	111
+	colm	36
+	synt	any
+	size
+	int	1
+	line	111
+	colm	66
+	synt	any
+	numgt
+	unmark
+	mark	L17
+	pnull
+	var	12
+	pnull
+	var	10
+	line	112
+	colm	67
+	synt	any
+	field	getVariable
+	int	0
+	line	112
+	colm	79
+	synt	any
+	invoke	1
+	line	112
+	colm	46
+	synt	any
+	asgn
+	unmark
+lab L17
+	line	113
+	colm	41
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	12
+	line	113
+	colm	48
+	synt	any
+	field	tokenType
+	str	2
+	line	113
+	colm	59
+	synt	any
+	lexeq
+	unmark
+	line	114
+	colm	49
+	synt	if
+	mark0
+	mark	L18
+	var	20
+	var	3
+	var	12
+	line	114
+	colm	62
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L18
+	pnull
+	unmark
+	mark	L19
+	var	21
+	var	3
+	var	12
+	line	115
+	colm	63
+	synt	any
+	invoke	2
+	unmark
+lab L19
+	var	22
+	var	0
+	var	11
+	var	12
+	var	3
+	line	116
+	colm	75
+	synt	any
+	invoke	4
+	line	114
+	colm	49
+	synt	endif
+	line	113
+	colm	41
+	synt	endif
+	line	111
+	colm	33
+	synt	endif
+	line	109
+	colm	25
+	synt	endif
+	goto	L13
+lab L12
+	mark	L20
+	pnull
+	var	4
+	var	23
+	var	2
+	line	122
+	colm	49
+	synt	any
+	invoke	1
+	line	122
+	colm	31
+	synt	any
+	asgn
+	unmark
+lab L20
+	line	123
+	colm	25
+	synt	ifelse
+	mark	L21
+	pnull
+	pnull
+	var	4
+	line	123
+	colm	28
+	synt	any
+	size
+	int	1
+	line	123
+	colm	35
+	synt	any
+	numgt
+	unmark
+	line	124
+	colm	33
+	synt	every
+	mark0
+	pnull
+	var	17
+	pnull
+	var	4
+	line	124
+	colm	47
+	synt	any
+	bang
+	line	124
+	colm	44
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L25
+	pnull
+	var	11
+	var	18
+	var	13
+	var	14
+	var	15
+	var	17
+	line	125
+	colm	74
+	synt	any
+	invoke	4
+	line	125
+	colm	49
+	synt	any
+	asgn
+	unmark
+lab L25
+	line	126
+	colm	41
+	synt	if
+	mark0
+	mark	L26
+	var	19
+	pnull
+	var	0
+	line	126
+	colm	80
+	synt	any
+	field	getItemsList
+	line	126
+	colm	93
+	synt	any
+	invoke	0
+	var	11
+	line	126
+	colm	72
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L26
+	pnull
+	unmark
+	mark	L27
+	pnull
+	var	0
+	line	127
+	colm	56
+	synt	any
+	field	addItem
+	var	11
+	line	127
+	colm	64
+	synt	any
+	invoke	1
+	unmark
+lab L27
+	line	128
+	colm	49
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	10
+	line	128
+	colm	71
+	synt	any
+	field	variables
+	line	128
+	colm	52
+	synt	any
+	size
+	int	1
+	line	128
+	colm	82
+	synt	any
+	numgt
+	unmark
+	mark	L28
+	pnull
+	var	12
+	pnull
+	var	10
+	line	129
+	colm	83
+	synt	any
+	field	getVariable
+	int	0
+	line	129
+	colm	95
+	synt	any
+	invoke	1
+	line	129
+	colm	62
+	synt	any
+	asgn
+	unmark
+lab L28
+	line	130
+	colm	57
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	12
+	line	130
+	colm	64
+	synt	any
+	field	tokenType
+	str	2
+	line	130
+	colm	75
+	synt	any
+	lexeq
+	unmark
+	line	131
+	colm	65
+	synt	if
+	mark0
+	mark	L29
+	var	20
+	var	3
+	var	12
+	line	131
+	colm	78
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L29
+	pnull
+	unmark
+	mark	L30
+	var	21
+	var	3
+	var	12
+	line	132
+	colm	79
+	synt	any
+	invoke	2
+	unmark
+lab L30
+	var	22
+	var	0
+	var	11
+	var	12
+	var	3
+	line	133
+	colm	91
+	synt	any
+	invoke	4
+	line	131
+	colm	65
+	synt	endif
+	line	130
+	colm	57
+	synt	endif
+	line	128
+	colm	49
+	synt	endif
+	line	126
+	colm	41
+	synt	endif
+	unmark
+lab L23
+	efail
+lab L24
+	line	124
+	colm	33
+	synt	endevery
+	goto	L22
+lab L21
+	mark	L31
+	pnull
+	var	11
+	var	18
+	var	13
+	var	14
+	var	15
+	var	17
+	line	140
+	colm	66
+	synt	any
+	invoke	4
+	line	140
+	colm	41
+	synt	any
+	asgn
+	unmark
+lab L31
+	line	141
+	colm	33
+	synt	if
+	mark0
+	mark	L32
+	var	19
+	pnull
+	var	0
+	line	141
+	colm	72
+	synt	any
+	field	getItemsList
+	line	141
+	colm	85
+	synt	any
+	invoke	0
+	var	11
+	line	141
+	colm	64
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L32
+	pnull
+	unmark
+	mark	L33
+	pnull
+	var	0
+	line	142
+	colm	48
+	synt	any
+	field	addItem
+	var	11
+	line	142
+	colm	56
+	synt	any
+	invoke	1
+	unmark
+lab L33
+	line	143
+	colm	41
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	10
+	line	143
+	colm	63
+	synt	any
+	field	variables
+	line	143
+	colm	44
+	synt	any
+	size
+	int	1
+	line	143
+	colm	74
+	synt	any
+	numgt
+	unmark
+	mark	L34
+	pnull
+	var	12
+	pnull
+	var	10
+	line	144
+	colm	75
+	synt	any
+	field	getVariable
+	int	0
+	line	144
+	colm	87
+	synt	any
+	invoke	1
+	line	144
+	colm	54
+	synt	any
+	asgn
+	unmark
+lab L34
+	line	145
+	colm	49
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	12
+	line	145
+	colm	56
+	synt	any
+	field	tokenType
+	str	2
+	line	145
+	colm	67
+	synt	any
+	lexeq
+	unmark
+	line	146
+	colm	57
+	synt	if
+	mark0
+	mark	L35
+	var	20
+	var	3
+	var	12
+	line	146
+	colm	70
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L35
+	pnull
+	unmark
+	mark	L36
+	var	21
+	var	3
+	var	12
+	line	147
+	colm	71
+	synt	any
+	invoke	2
+	unmark
+lab L36
+	var	22
+	var	0
+	var	11
+	var	12
+	var	3
+	line	148
+	colm	83
+	synt	any
+	invoke	4
+	line	146
+	colm	57
+	synt	endif
+	line	145
+	colm	49
+	synt	endif
+	line	143
+	colm	41
+	synt	endif
+	line	141
+	colm	33
+	synt	endif
+lab L22
+	line	123
+	colm	25
+	synt	endifelse
+lab L13
+	line	107
+	colm	17
+	synt	endifelse
+	unmark
+lab L3
+	efail
+lab L4
+	line	99
+	colm	9
+	synt	endevery
+	unmark
+lab L2
+	pnull
+	line	156
+	colm	1
+	synt	any
+	pfail
+	end
+proc statesLR1__makeNewItem
+	local	0,001000,newLeft
+	local	1,001000,newAlpha
+	local	2,001000,newBeta
+	local	3,001000,newLookAheadTerminal
+	local	4,000020,thisItem
+	local	5,000000,Objects__Item
+	declend
+	line	158
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	4
+	var	5
+	line	161
+	colm	34
+	synt	any
+	invoke	0
+	line	161
+	colm	18
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	4
+	line	162
+	colm	17
+	synt	any
+	field	setLeft
+	var	0
+	line	162
+	colm	25
+	synt	any
+	invoke	1
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	4
+	line	163
+	colm	17
+	synt	any
+	field	setAlphaList
+	var	1
+	line	163
+	colm	30
+	synt	any
+	invoke	1
+	unmark
+lab L3
+	mark	L4
+	pnull
+	var	4
+	line	164
+	colm	17
+	synt	any
+	field	setBetaList
+	var	2
+	line	164
+	colm	29
+	synt	any
+	invoke	1
+	unmark
+lab L4
+	mark	L5
+	pnull
+	pnull
+	var	4
+	line	165
+	colm	17
+	synt	any
+	field	lookAheadTerminal
+	var	3
+	line	165
+	colm	36
+	synt	any
+	asgn
+	unmark
+lab L5
+	mark	L6
+	pnull
+	var	4
+	line	166
+	colm	17
+	synt	any
+	field	setTxt
+	line	166
+	colm	24
+	synt	any
+	invoke	0
+	unmark
+lab L6
+	mark	L7
+	mark	L8
+	var	4
+	line	167
+	colm	9
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	unmark
+lab L7
+	pnull
+	line	168
+	colm	2
+	synt	any
+	pfail
+	end
+proc statesLR1__setA
+	local	0,001000,nonTerminal
+	local	1,000000,aList
+	local	2,000000,productionRule
+	local	3,000000,thisTerminal
+	local	4,000000,Lists__duplicate
+	local	5,000000,put
+	con	0,002000,1,1
+	con	1,010000,8,164,145,162,155,151,156,141,154
+	declend
+	line	170
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	1
+	pnull
+	line	171
+	colm	18
+	synt	any
+	llist	0
+	line	171
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	172
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	var	0
+	line	172
+	colm	44
+	synt	any
+	field	getProductionRules
+	line	172
+	colm	63
+	synt	any
+	invoke	0
+	line	172
+	colm	30
+	synt	any
+	asgn
+	pop
+	mark0
+	line	173
+	colm	17
+	synt	if
+	mark0
+	pnull
+	pnull
+	pnull
+	var	2
+	line	173
+	colm	34
+	synt	any
+	field	getVariable
+	int	0
+	line	173
+	colm	46
+	synt	any
+	invoke	1
+	line	173
+	colm	49
+	synt	any
+	field	tokenType
+	str	1
+	line	173
+	colm	60
+	synt	any
+	lexeq
+	unmark
+	mark	L5
+	pnull
+	var	3
+	pnull
+	var	2
+	line	174
+	colm	55
+	synt	any
+	field	getVariable
+	int	0
+	line	174
+	colm	67
+	synt	any
+	invoke	1
+	line	174
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L5
+	line	175
+	colm	25
+	synt	if
+	mark0
+	mark	L6
+	var	4
+	var	1
+	var	3
+	line	175
+	colm	48
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L6
+	pnull
+	unmark
+	var	5
+	var	1
+	var	3
+	line	176
+	colm	36
+	synt	any
+	invoke	2
+	line	175
+	colm	25
+	synt	endif
+	line	173
+	colm	17
+	synt	endif
+	unmark
+lab L3
+	efail
+lab L4
+	line	172
+	colm	9
+	synt	endevery
+	unmark
+lab L2
+	mark	L7
+	mark	L8
+	var	1
+	line	180
+	colm	9
+	synt	any
+	pret
+lab L8
+	synt	any
+	pfail
+	unmark
+lab L7
+	pnull
+	line	181
+	colm	2
+	synt	any
+	pfail
+	end
+proc statesLR1__makeAllStates
+	local	0,001000,statesList
+	local	1,001000,state
+	local	2,000020,stateNumber
+	local	3,000020,thisState
+	local	4,000020,newState
+	local	5,000020,thisToken
+	local	6,000020,newItem
+	local	7,000020,ItemList
+	local	8,000020,shifts
+	local	9,000020,count
+	local	10,000020,thisItem
+	local	11,000020,shiftElement
+	local	12,000020,element
+	local	13,000020,stateName
+	local	14,000000,potential
+	local	15,000000,statesLR1__countPotential
+	local	16,000000,write
+	local	17,000000,put
+	local	18,000000,member
+	local	19,000000,Objects__State
+	local	20,000000,statesLR1__makeAllItems
+	local	21,000000,statesLR1__duplicateState
+	con	0,002000,1,0
+	con	1,002000,1,1
+	con	2,010000,1,111
+	con	3,010000,4,040,057,040,111
+	con	4,010000,11,156,157,156,124,145,162,155,151,156,141,154
+	con	5,010000,5,160,162,151,155,145
+	declend
+	line	183
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	int	0
+	line	201
+	colm	21
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	9
+	int	1
+	line	202
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	pnull
+	var	14
+	var	15
+	var	0
+	var	9
+	line	203
+	colm	47
+	synt	any
+	invoke	2
+	line	203
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L3
+	mark	L4
+lab L5
+	line	204
+	colm	9
+	synt	while
+	mark0
+	pnull
+	var	14
+	int	0
+	line	204
+	colm	25
+	synt	any
+	numgt
+	unmark
+	mark	L5
+	mark	L8
+	var	16
+	pnull
+	pnull
+	pnull
+	str	2
+	pnull
+	var	9
+	int	1
+	line	205
+	colm	36
+	synt	any
+	minus
+	line	205
+	colm	27
+	synt	any
+	cat
+	str	3
+	line	205
+	colm	40
+	synt	any
+	cat
+	var	2
+	line	205
+	colm	50
+	synt	any
+	cat
+	line	205
+	colm	22
+	synt	any
+	invoke	1
+	unmark
+lab L8
+	mark	L9
+	line	206
+	colm	17
+	synt	if
+	mark0
+	pnull
+	var	2
+	int	0
+	line	206
+	colm	32
+	synt	any
+	numeq
+	unmark
+	pnull
+	var	3
+	var	1
+	line	206
+	colm	51
+	synt	any
+	asgn
+	line	206
+	colm	17
+	synt	endif
+	unmark
+lab L9
+	mark	L10
+	line	207
+	colm	17
+	synt	if
+	mark0
+	pnull
+	var	2
+	int	0
+	line	207
+	colm	32
+	synt	any
+	numgt
+	unmark
+	pnull
+	var	3
+	pnull
+	var	0
+	var	9
+	line	207
+	colm	64
+	synt	any
+	subsc
+	line	207
+	colm	51
+	synt	any
+	asgn
+	line	207
+	colm	17
+	synt	endif
+	unmark
+lab L10
+	mark	L11
+	pnull
+	var	9
+	dup
+	int	1
+	line	208
+	colm	23
+	synt	any
+	plus
+	asgn
+	unmark
+lab L11
+	mark	L12
+	pnull
+	var	8
+	pnull
+	line	209
+	colm	27
+	synt	any
+	llist	0
+	line	209
+	colm	24
+	synt	any
+	asgn
+	unmark
+lab L12
+	mark	L13
+	line	212
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	10
+	pnull
+	var	3
+	line	212
+	colm	44
+	synt	any
+	field	getItems
+	line	212
+	colm	53
+	synt	any
+	invoke	0
+	line	212
+	colm	32
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L16
+	pnull
+	var	6
+	pnull
+	var	10
+	line	213
+	colm	44
+	synt	any
+	field	getShift
+	line	213
+	colm	53
+	synt	any
+	invoke	0
+	line	213
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L16
+	mark	L17
+	pnull
+	var	11
+	pnull
+	var	6
+	line	216
+	colm	48
+	synt	any
+	field	getLastAlpha
+	line	216
+	colm	61
+	synt	any
+	invoke	0
+	line	216
+	colm	38
+	synt	any
+	asgn
+	unmark
+lab L17
+	mark	L18
+	var	17
+	var	8
+	var	11
+	line	217
+	colm	28
+	synt	any
+	invoke	2
+	unmark
+lab L18
+	mark	L19
+	pnull
+	var	12
+	pnull
+	var	6
+	line	218
+	colm	43
+	synt	any
+	field	getLeft
+	line	218
+	colm	51
+	synt	any
+	invoke	0
+	line	218
+	colm	33
+	synt	any
+	asgn
+	unmark
+lab L19
+	line	219
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	12
+	line	219
+	colm	35
+	synt	any
+	field	tokenType
+	mark	L20
+	str	4
+	line	219
+	colm	64
+	synt	any
+	esusp
+	goto	L21
+lab L20
+	str	5
+lab L21
+	line	219
+	colm	46
+	synt	any
+	lexeq
+	unmark
+	line	221
+	colm	33
+	synt	if
+	mark0
+	mark	L22
+	var	18
+	var	8
+	var	12
+	line	221
+	colm	46
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L22
+	pnull
+	unmark
+	mark	L23
+	pnull
+	var	7
+	pnull
+	line	222
+	colm	53
+	synt	any
+	llist	0
+	line	222
+	colm	50
+	synt	any
+	asgn
+	unmark
+lab L23
+	mark	L24
+	pnull
+	var	2
+	dup
+	int	1
+	line	223
+	colm	53
+	synt	any
+	plus
+	asgn
+	unmark
+lab L24
+	mark	L25
+	pnull
+	var	13
+	pnull
+	str	2
+	var	2
+	line	224
+	colm	58
+	synt	any
+	cat
+	line	224
+	colm	51
+	synt	any
+	asgn
+	unmark
+lab L25
+	mark	L26
+	pnull
+	var	4
+	var	19
+	var	13
+	var	12
+	var	6
+	pnull
+	var	3
+	line	225
+	colm	106
+	synt	any
+	field	sourceStateChain
+	var	3
+	line	225
+	colm	67
+	synt	any
+	invoke	5
+	line	225
+	colm	50
+	synt	any
+	asgn
+	unmark
+lab L26
+	mark	L27
+	var	20
+	var	0
+	var	3
+	var	4
+	var	11
+	line	226
+	colm	64
+	synt	any
+	invoke	4
+	unmark
+lab L27
+	line	227
+	colm	41
+	synt	ifelse
+	mark	L28
+	var	21
+	var	0
+	var	4
+	line	227
+	colm	69
+	synt	any
+	invoke	2
+	unmark
+	pnull
+	var	2
+	dup
+	int	1
+	line	228
+	colm	61
+	synt	any
+	minus
+	asgn
+	goto	L29
+lab L28
+	line	230
+	colm	49
+	synt	if
+	mark0
+	mark	L30
+	var	21
+	var	0
+	var	4
+	line	230
+	colm	81
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L30
+	pnull
+	unmark
+	mark	L31
+	pnull
+	var	4
+	line	231
+	colm	65
+	synt	any
+	field	setTxt
+	line	231
+	colm	72
+	synt	any
+	invoke	0
+	unmark
+lab L31
+	var	17
+	var	0
+	var	4
+	line	232
+	colm	60
+	synt	any
+	invoke	2
+	line	230
+	colm	49
+	synt	endif
+lab L29
+	line	227
+	colm	41
+	synt	endifelse
+	line	221
+	colm	33
+	synt	endif
+	line	219
+	colm	25
+	synt	endif
+	unmark
+lab L14
+	efail
+lab L15
+	line	212
+	colm	17
+	synt	endevery
+	unmark
+lab L13
+	pnull
+	var	14
+	var	15
+	var	0
+	var	9
+	line	238
+	colm	55
+	synt	any
+	invoke	2
+	line	238
+	colm	27
+	synt	any
+	asgn
+lab L6
+	unmark
+	goto	L5
+lab L7
+	line	204
+	colm	9
+	synt	endwhile
+	unmark
+lab L4
+	pnull
+	line	240
+	colm	1
+	synt	any
+	pfail
+	end
+proc statesLR1__makeAllItems
+	local	0,001000,statesList
+	local	1,001000,oldState
+	local	2,001000,thisState
+	local	3,001000,shiftElement
+	local	4,000020,newItem
+	local	5,000020,thisItem
+	local	6,000020,itemSet
+	local	7,000020,B
+	local	8,000000,set
+	local	9,000000,statesLR1__duplicateStateLabel
+	local	10,000000,statesLR1__duplicateItem
+	local	11,000000,statesLR1__closure
+	con	0,002000,1,1
+	con	1,010000,11,156,157,156,124,145,162,155,151,156,141,154
+	declend
+	line	242
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	6
+	var	8
+	line	251
+	colm	23
+	synt	any
+	invoke	0
+	line	251
+	colm	17
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	line	252
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	5
+	pnull
+	var	1
+	line	252
+	colm	35
+	synt	any
+	field	getItems
+	line	252
+	colm	44
+	synt	any
+	invoke	0
+	line	252
+	colm	24
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L5
+	pnull
+	var	4
+	pnull
+	var	5
+	line	253
+	colm	36
+	synt	any
+	field	getShift
+	line	253
+	colm	45
+	synt	any
+	invoke	0
+	line	253
+	colm	25
+	synt	any
+	asgn
+	unmark
+lab L5
+	line	254
+	colm	17
+	synt	if
+	mark0
+	pnull
+	var	4
+	line	254
+	colm	20
+	synt	any
+	nonnull
+	unmark
+	mark	L6
+	pnull
+	var	4
+	line	255
+	colm	32
+	synt	any
+	field	setTxt
+	line	255
+	colm	39
+	synt	any
+	invoke	0
+	unmark
+lab L6
+	line	256
+	colm	25
+	synt	if
+	mark0
+	mark	L7
+	var	9
+	var	0
+	var	4
+	line	256
+	colm	62
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L7
+	pnull
+	unmark
+	line	257
+	colm	33
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	257
+	colm	43
+	synt	any
+	field	getLastAlpha
+	line	257
+	colm	56
+	synt	any
+	invoke	0
+	var	3
+	line	257
+	colm	59
+	synt	any
+	eqv
+	unmark
+	mark	L8
+	line	258
+	colm	41
+	synt	if
+	mark0
+	mark	L9
+	var	10
+	pnull
+	var	2
+	line	258
+	colm	82
+	synt	any
+	field	getItemsList
+	line	258
+	colm	95
+	synt	any
+	invoke	0
+	var	4
+	line	258
+	colm	72
+	synt	any
+	invoke	2
+	unmark
+	efail
+lab L9
+	pnull
+	unmark
+	pnull
+	var	2
+	line	259
+	colm	58
+	synt	any
+	field	addItem
+	var	4
+	line	259
+	colm	66
+	synt	any
+	invoke	1
+	line	258
+	colm	41
+	synt	endif
+	unmark
+lab L8
+	mark	L10
+	pnull
+	var	7
+	pnull
+	var	4
+	line	261
+	colm	53
+	synt	any
+	field	getBeta
+	int	0
+	line	261
+	colm	61
+	synt	any
+	invoke	1
+	line	261
+	colm	43
+	synt	any
+	asgn
+	unmark
+lab L10
+	line	262
+	colm	41
+	synt	if
+	mark0
+	pnull
+	var	7
+	line	262
+	colm	44
+	synt	any
+	nonnull
+	unmark
+	line	263
+	colm	49
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	7
+	line	263
+	colm	53
+	synt	any
+	field	tokenType
+	str	1
+	line	263
+	colm	64
+	synt	any
+	lexeq
+	unmark
+	var	11
+	var	2
+	var	4
+	var	7
+	var	6
+	line	264
+	colm	75
+	synt	any
+	invoke	4
+	line	263
+	colm	49
+	synt	endif
+	line	262
+	colm	41
+	synt	endif
+	line	257
+	colm	33
+	synt	endif
+	line	256
+	colm	25
+	synt	endif
+	line	254
+	colm	17
+	synt	endif
+	unmark
+lab L3
+	efail
+lab L4
+	line	252
+	colm	9
+	synt	endevery
+	unmark
+lab L2
+	pnull
+	line	271
+	colm	1
+	synt	any
+	pfail
+	end
+proc statesLR1__countPotential
+	local	0,001000,statesList
+	local	1,001000,count
+	local	2,000000,potential
+	local	3,000000,thisItem
+	con	0,002000,1,0
+	con	1,002000,1,1
+	declend
+	line	273
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	int	0
+	line	274
+	colm	19
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+lab L3
+	line	275
+	colm	9
+	synt	while
+	mark0
+	pnull
+	var	1
+	pnull
+	var	0
+	line	275
+	colm	24
+	synt	any
+	size
+	line	275
+	colm	21
+	synt	any
+	numle
+	unmark
+	mark	L3
+	mark	L6
+	line	276
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	3
+	pnull
+	pnull
+	var	0
+	var	1
+	line	276
+	colm	45
+	synt	any
+	subsc
+	line	276
+	colm	52
+	synt	any
+	field	getItems
+	line	276
+	colm	61
+	synt	any
+	invoke	0
+	line	276
+	colm	32
+	synt	any
+	asgn
+	pop
+	mark0
+	pnull
+	var	2
+	dup
+	int	1
+	line	276
+	colm	77
+	synt	any
+	plus
+	asgn
+	unmark
+lab L7
+	efail
+lab L8
+	line	276
+	colm	17
+	synt	endevery
+	unmark
+lab L6
+	pnull
+	var	1
+	dup
+	int	1
+	line	277
+	colm	23
+	synt	any
+	plus
+	asgn
+lab L4
+	unmark
+	goto	L3
+lab L5
+	line	275
+	colm	9
+	synt	endwhile
+	unmark
+lab L2
+	mark	L9
+	mark	L10
+	var	2
+	line	279
+	colm	9
+	synt	any
+	pret
+lab L10
+	synt	any
+	pfail
+	unmark
+lab L9
+	pnull
+	line	280
+	colm	2
+	synt	any
+	pfail
+	end
+proc statesLR1__duplicateItem
+	local	0,001000,itemList
+	local	1,001000,item
+	local	2,000020,thisItem
+	declend
+	line	282
+	colm	12
+	synt	any
+	mark	L1
+	line	289
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	var	0
+	line	289
+	colm	27
+	synt	any
+	bang
+	line	289
+	colm	24
+	synt	any
+	asgn
+	pop
+	mark0
+	line	290
+	colm	17
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	2
+	line	290
+	colm	28
+	synt	any
+	field	label
+	pnull
+	var	1
+	line	290
+	colm	42
+	synt	any
+	field	label
+	line	290
+	colm	35
+	synt	any
+	lexeq
+	unmark
+	line	291
+	colm	25
+	synt	suspend
+	mark0
+	var	1
+	synt	any
+	psusp
+	pop
+lab L4
+	efail
+lab L5
+	line	291
+	colm	25
+	synt	endsuspend
+	line	290
+	colm	17
+	synt	endif
+	unmark
+lab L2
+	efail
+lab L3
+	line	289
+	colm	9
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	294
+	colm	1
+	synt	any
+	pfail
+	end
+proc statesLR1__duplicateState
+	local	0,001000,statesList
+	local	1,001000,state
+	local	2,000020,items
+	local	3,000020,item
+	local	4,000020,testItem
+	local	5,000020,testItems
+	local	6,000020,testState
+	con	0,002000,1,1
+	declend
+	line	296
+	colm	12
+	synt	any
+	mark	L1
+	pnull
+	var	2
+	pnull
+	var	1
+	line	308
+	colm	23
+	synt	any
+	field	getItemsList
+	line	308
+	colm	36
+	synt	any
+	invoke	0
+	line	308
+	colm	15
+	synt	any
+	asgn
+	unmark
+lab L1
+	mark	L2
+	pnull
+	var	3
+	pnull
+	var	2
+	int	0
+	line	309
+	colm	22
+	synt	any
+	subsc
+	line	309
+	colm	14
+	synt	any
+	asgn
+	unmark
+lab L2
+	mark	L3
+	line	310
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	6
+	pnull
+	var	0
+	line	310
+	colm	28
+	synt	any
+	bang
+	line	310
+	colm	25
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L6
+	pnull
+	var	5
+	pnull
+	var	6
+	line	311
+	colm	39
+	synt	any
+	field	getItemsList
+	line	311
+	colm	52
+	synt	any
+	invoke	0
+	line	311
+	colm	27
+	synt	any
+	asgn
+	unmark
+lab L6
+	line	312
+	colm	17
+	synt	every
+	mark0
+	pnull
+	var	4
+	pnull
+	var	5
+	line	312
+	colm	35
+	synt	any
+	bang
+	line	312
+	colm	32
+	synt	any
+	asgn
+	pop
+	mark0
+	line	313
+	colm	25
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	4
+	line	313
+	colm	36
+	synt	any
+	field	label
+	pnull
+	var	3
+	line	313
+	colm	50
+	synt	any
+	field	label
+	line	313
+	colm	43
+	synt	any
+	lexeq
+	unmark
+	mark	L9
+	var	6
+	line	313
+	colm	62
+	synt	any
+	pret
+lab L9
+	synt	any
+	pfail
+	line	313
+	colm	25
+	synt	endif
+	unmark
+lab L7
+	efail
+lab L8
+	line	312
+	colm	17
+	synt	endevery
+	unmark
+lab L4
+	efail
+lab L5
+	line	310
+	colm	9
+	synt	endevery
+	unmark
+lab L3
+	pnull
+	line	315
+	colm	1
+	synt	any
+	pfail
+	end
+proc statesLR1__duplicateStateLabel
+	local	0,001000,statesList
+	local	1,001000,thisLabel
+	local	2,000020,thisState
+	local	3,000020,labelsList
+	con	0,002000,1,1
+	declend
+	line	317
+	colm	12
+	synt	any
+	mark	L1
+	line	326
+	colm	9
+	synt	every
+	mark0
+	pnull
+	var	2
+	pnull
+	var	0
+	line	326
+	colm	28
+	synt	any
+	bang
+	line	326
+	colm	25
+	synt	any
+	asgn
+	pop
+	mark0
+	mark	L4
+	pnull
+	var	3
+	pnull
+	var	2
+	line	327
+	colm	40
+	synt	any
+	field	getItemsList
+	line	327
+	colm	53
+	synt	any
+	invoke	0
+	line	327
+	colm	28
+	synt	any
+	asgn
+	unmark
+lab L4
+	line	328
+	colm	17
+	synt	if
+	mark0
+	pnull
+	pnull
+	var	1
+	line	328
+	colm	29
+	synt	any
+	field	label
+	pnull
+	pnull
+	var	3
+	int	0
+	line	328
+	colm	49
+	synt	any
+	subsc
+	line	328
+	colm	52
+	synt	any
+	field	label
+	line	328
+	colm	36
+	synt	any
+	lexeq
+	unmark
+	mark	L5
+	var	1
+	line	328
+	colm	64
+	synt	any
+	pret
+lab L5
+	synt	any
+	pfail
+	line	328
+	colm	17
+	synt	endif
+	unmark
+lab L2
+	efail
+lab L3
+	line	326
+	colm	9
+	synt	endevery
+	unmark
+lab L1
+	pnull
+	line	330
+	colm	1
+	synt	any
+	pfail
+	end
